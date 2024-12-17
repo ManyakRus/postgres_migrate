@@ -1,0 +1,242 @@
+package grpc_client
+
+import (
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client_func"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc_nrpc"
+	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
+	"context"
+	"errors"
+	"github.com/ManyakRus/starter/contextmain"
+	"github.com/ManyakRus/starter/log"
+	"github.com/ManyakRus/starter/port_checker"
+	"github.com/ManyakRus/starter/stopapp"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
+	"os"
+	"sync"
+	"time"
+)
+
+// SettingsINI - тип структуры для хранения настроек подключени
+type SettingsINI struct {
+	SYNC_SERVICE_HOST string
+	SYNC_SERVICE_PORT string
+}
+
+// SettingsINI - структура для хранения настроек подключени
+var Settings SettingsINI
+
+// Conn - подключение к серверу GRPC
+var Conn *grpc.ClientConn
+
+// mutex_Connect - защита от многопоточности Reconnect()
+var mutex_Connect = &sync.Mutex{}
+
+// NeedReconnect - флаг необходимости переподключения
+var NeedReconnect bool
+
+// Объект с функцией Connect_GRPC_NRPC()
+type Object_Connect_GRPC_NRPC struct {
+}
+
+// Connect - подключается к серверу GRPC, при ошибке вызывает панику
+func Connect() {
+	var err error
+
+	err = Connect_err()
+
+	if err != nil {
+		log.Panicf("GRPC Connect() error: %v", err)
+	} else {
+		addr := Settings.SYNC_SERVICE_HOST + ":" + Settings.SYNC_SERVICE_PORT
+		log.Info("GRPC client connected. Address: ", addr)
+	}
+
+}
+
+// Connect_err - подключается к серверу GRPC, возвращает ошибку
+func Connect_err() error {
+	var err error
+
+	//
+	mutex_Connect.Lock()
+	defer mutex_Connect.Unlock()
+
+	//
+	grpc_client_func.Func_Connect_GRPC_NRPC = Object_Connect_GRPC_NRPC{}
+	crud_starter.InitCrudTransport_GRPC()
+
+	//
+	if Settings.SYNC_SERVICE_HOST == "" {
+		err = FillSettings()
+		if err != nil {
+			return err
+		}
+	}
+
+	addr := Settings.SYNC_SERVICE_HOST + ":" + Settings.SYNC_SERVICE_PORT
+	Conn, err = grpc.Dial(addr, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		return err
+	}
+
+	grpc_client_func.Client = grpc_proto.NewPostgresMigrateClient(Conn)
+
+	grpc_nrpc.NeedNRPC = false
+
+	return err
+}
+
+func FillSettings() error {
+	var err error
+
+	Settings = SettingsINI{}
+	Settings.SYNC_SERVICE_HOST = os.Getenv("SYNC_SERVICE_HOST")
+	Settings.SYNC_SERVICE_PORT = os.Getenv("SYNC_SERVICE_PORT")
+
+	if Settings.SYNC_SERVICE_HOST == "" {
+		TextError := "Need fill SYNC_SERVICE_HOST ! in OS Environment "
+		err = errors.New(TextError)
+		return err
+	}
+
+	if Settings.SYNC_SERVICE_PORT == "" {
+		TextError := "Need fill SYNC_SERVICE_PORT ! in OS Environment "
+		err = errors.New(TextError)
+		return err
+	}
+
+	return err
+}
+
+// WaitStop - ожидает отмену глобального контекста
+func WaitStop() {
+
+	select {
+	case <-contextmain.GetContext().Done():
+		log.Warn("Context app is canceled. grpc_connect")
+	}
+
+	// ждём пока отправляемых сейчас сообщений будет =0
+	stopapp.WaitTotalMessagesSendingNow("postgres_migrate_client")
+
+	// закрываем соединение
+	CloseConnection()
+	stopapp.GetWaitGroup_Main().Done()
+}
+
+// Start - необходимые процедуры для запуска сервера GRPC
+// если контекст хранится в contextmain.GetContext()
+// и есть stopapp.GetWaitGroup_Main()
+// при ошибке вызывает панику
+func Start() {
+	Connect()
+
+	stopapp.GetWaitGroup_Main().Add(1)
+	go WaitStop()
+
+	stopapp.GetWaitGroup_Main().Add(1)
+	go ping_go()
+
+}
+
+// Start_ctx - необходимые процедуры для запуска сервера GRPC
+// ctx - глобальный контекст приложения
+// wg - глобальный WaitGroup приложения
+func Start_ctx(ctx *context.Context, wg *sync.WaitGroup) error {
+	var err error
+	contextmain.Ctx = ctx
+	stopapp.SetWaitGroup_Main(wg)
+
+	err = Connect_err()
+	if err != nil {
+		return err
+	}
+
+	stopapp.GetWaitGroup_Main().Add(1)
+	go WaitStop()
+
+	stopapp.GetWaitGroup_Main().Add(1)
+	go ping_go()
+
+	return err
+}
+
+// CloseConnection - закрывает подключение к GRPC, и пишет лог
+func CloseConnection() {
+	err := CloseConnection_err()
+	if err != nil {
+		log.Error("GRPC client CloseConnection() error: ", err)
+	} else {
+		log.Info("GRPC client connection closed")
+	}
+}
+
+// CloseConnection - закрывает подключение к GRPC, и возвращает ошибку
+func CloseConnection_err() error {
+	err := Conn.Close()
+	return err
+}
+
+// ping_go - делает пинг каждые 60 секунд, и реконнект
+func ping_go() {
+
+	ticker := time.NewTicker(60 * time.Second)
+	defer ticker.Stop()
+
+	addr := Settings.SYNC_SERVICE_HOST + ":" + Settings.SYNC_SERVICE_PORT
+
+	//бесконечный цикл
+loop:
+	for {
+		select {
+		case <-contextmain.GetContext().Done():
+			log.Warn("Context app is canceled. grpc_client.ping")
+			break loop
+		case <-ticker.C:
+			err := port_checker.CheckPort_err(Settings.SYNC_SERVICE_HOST, Settings.SYNC_SERVICE_PORT)
+			//log.Debug("ticker, ping err: ", err) //удалить
+			if err != nil {
+				NeedReconnect = true
+				log.Warn("grpc_client CheckPort(", addr, ") error: ", err)
+			} else if NeedReconnect == true {
+				log.Warn("grpc_client CheckPort(", addr, ") OK. Start Reconnect()")
+				NeedReconnect = false
+				err = Connect_err()
+				if err != nil {
+					NeedReconnect = true
+					log.Error("grpc_client Connect() error: ", err)
+				}
+			}
+		}
+	}
+
+	stopapp.GetWaitGroup_Main().Done()
+}
+
+// GetTimeoutSeconds - возвращает время ожидания ответа
+func GetTimeoutSeconds() int {
+	Otvet := grpc_constants.GetTimeoutSeconds()
+
+	return Otvet
+}
+
+// SetTimeoutSeconds - устанавливает время ожидания ответа
+func SetTimeoutSeconds(seconds int) {
+	grpc_constants.SetTimeoutSeconds(seconds)
+}
+
+// Connect_GRPC_NRPC - подключается к серверу GRPC или NRPC, при ошибке вызывает панику
+func (Object_Connect_GRPC_NRPC) Connect_GRPC_NRPC() {
+	if grpc_nrpc.NeedNRPC == true {
+		//if nrpc_client.Client == nil {
+		//	nrpc_client.Connect()
+		//}
+	} else {
+		if grpc_client_func.Client == nil {
+			Connect()
+		}
+	}
+}

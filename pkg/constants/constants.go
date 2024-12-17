@@ -1,5 +1,3 @@
 package constants
 
-// SERVICE_NAME - название сервиса
-const SERVICE_NAME = "tinkoff_invest"
-
+const SERVICE_NAME = "postgres_migrate"
