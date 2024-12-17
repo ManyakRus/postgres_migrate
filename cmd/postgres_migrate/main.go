@@ -31,9 +31,6 @@ func StartApp() {
 	crud_starter.InitCrudTransport_DB()
 
 	//
-	postgres_gorm2.Start_SingularTableName(constants.SERVICE_NAME)
-
-	//
 	stopapp.GetWaitGroup_Main().Wait()
 
 	//
