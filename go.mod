@@ -2,7 +2,7 @@ module github.com/ManyakRus/postgres_migrate
 
 go 1.22.1
 
-require github.com/ManyakRus/starter v1.0.100
+require github.com/ManyakRus/starter v1.0.101
 
 require (
 	github.com/ManyakRus/logrus v0.0.0-20231019115155-9e6fede0d792 // indirect
