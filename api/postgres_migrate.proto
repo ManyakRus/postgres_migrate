@@ -186,1866 +186,261 @@ service Postgres_migrate {
 	rpc PostgresMigrateVersion_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
 	rpc PostgresMigrateVersion_ReadFromCache(Request_Int64) returns (Response) {}
 	rpc PostgresMigrateVersion_ReadObject(Request_Int64) returns (Response) {}
-
-	//AccountingArea
-	rpc AccountingArea_Read(Request_Int64) returns (Response) {}
-	rpc AccountingArea_Create(RequestModel) returns (Response) {}
-	rpc AccountingArea_Update(RequestModel) returns (Response) {}
-	rpc AccountingArea_Save(RequestModel) returns (Response) {}
-	rpc AccountingArea_FindByExtID(RequestExtID) returns (Response) {}
-	rpc AccountingArea_Delete(Request_Int64) returns (Response) {}
-	rpc AccountingArea_Restore(Request_Int64) returns (Response) {}
-	rpc AccountingArea_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc AccountingArea_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc AccountingArea_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc AccountingArea_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc AccountingArea_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc AccountingArea_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc AccountingArea_ReadObject(Request_Int64) returns (Response) {}
-
-	//AccrualType
-	rpc AccrualType_Read(Request_Int64) returns (Response) {}
-	rpc AccrualType_Create(RequestModel) returns (Response) {}
-	rpc AccrualType_Update(RequestModel) returns (Response) {}
-	rpc AccrualType_Save(RequestModel) returns (Response) {}
-	rpc AccrualType_Delete(Request_Int64) returns (Response) {}
-	rpc AccrualType_Restore(Request_Int64) returns (Response) {}
-	rpc AccrualType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc AccrualType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc AccrualType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc AccrualType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc AccrualType_ReadObject(Request_Int64) returns (Response) {}
-
-	//Balance
-	rpc Balance_Read(Request_Int64) returns (Response) {}
-	rpc Balance_Create(RequestModel) returns (Response) {}
-	rpc Balance_Update(RequestModel) returns (Response) {}
-	rpc Balance_Save(RequestModel) returns (Response) {}
-	rpc Balance_FindByExtID(RequestExtID) returns (Response) {}
-	rpc Balance_Delete(Request_Int64) returns (Response) {}
-	rpc Balance_Restore(Request_Int64) returns (Response) {}
-	rpc Balance_Update_BillingMonth(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Balance_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Balance_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Balance_Update_DebtTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Balance_Update_DocumentAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Balance_Update_DocumentInvoiceID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Balance_Update_DocumentPaymentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Balance_Update_Sum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Balance_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Balance_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Balance_ReadObject(Request_Int64) returns (Response) {}
-
-	//BankAccountOrganization
-	rpc BankAccountOrganization_Read(Request_Int64) returns (Response) {}
-	rpc BankAccountOrganization_Create(RequestModel) returns (Response) {}
-	rpc BankAccountOrganization_Update(RequestModel) returns (Response) {}
-	rpc BankAccountOrganization_Save(RequestModel) returns (Response) {}
-	rpc BankAccountOrganization_FindByExtID(RequestExtID) returns (Response) {}
-	rpc BankAccountOrganization_Delete(Request_Int64) returns (Response) {}
-	rpc BankAccountOrganization_Restore(Request_Int64) returns (Response) {}
-	rpc BankAccountOrganization_Update_AccountNumber(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc BankAccountOrganization_Update_BankID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BankAccountOrganization_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BankAccountOrganization_Update_OrganizationID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BankAccountOrganization_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc BankAccountOrganization_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc BankAccountOrganization_ReadObject(Request_Int64) returns (Response) {}
-
-	//Bank
-	rpc Bank_Read(Request_Int64) returns (Response) {}
-	rpc Bank_Create(RequestModel) returns (Response) {}
-	rpc Bank_Update(RequestModel) returns (Response) {}
-	rpc Bank_Save(RequestModel) returns (Response) {}
-	rpc Bank_FindByExtID(RequestExtID) returns (Response) {}
-	rpc Bank_Delete(Request_Int64) returns (Response) {}
-	rpc Bank_Restore(Request_Int64) returns (Response) {}
-	rpc Bank_Update_BIK(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Bank_Update_City(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Bank_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Bank_Update_CorrespondentAccount(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Bank_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Bank_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Bank_Update_OrganizationID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Bank_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Bank_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Bank_ReadObject(Request_Int64) returns (Response) {}
-
-	//BeforeTimeType
-	rpc BeforeTimeType_Read(Request_Int64) returns (Response) {}
-	rpc BeforeTimeType_Create(RequestModel) returns (Response) {}
-	rpc BeforeTimeType_Update(RequestModel) returns (Response) {}
-	rpc BeforeTimeType_Save(RequestModel) returns (Response) {}
-	rpc BeforeTimeType_Delete(Request_Int64) returns (Response) {}
-	rpc BeforeTimeType_Restore(Request_Int64) returns (Response) {}
-	rpc BeforeTimeType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc BeforeTimeType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc BeforeTimeType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc BeforeTimeType_Update_Value(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc BeforeTimeType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc BeforeTimeType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc BeforeTimeType_ReadObject(Request_Int64) returns (Response) {}
-
-	//BillKindType
-	rpc BillKindType_Read(Request_Int64) returns (Response) {}
-	rpc BillKindType_Create(RequestModel) returns (Response) {}
-	rpc BillKindType_Update(RequestModel) returns (Response) {}
-	rpc BillKindType_Save(RequestModel) returns (Response) {}
-	rpc BillKindType_Delete(Request_Int64) returns (Response) {}
-	rpc BillKindType_Restore(Request_Int64) returns (Response) {}
-	rpc BillKindType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc BillKindType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc BillKindType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc BillKindType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc BillKindType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc BillKindType_ReadObject(Request_Int64) returns (Response) {}
-
-	//Branch
-	rpc Branch_Read(Request_Int64) returns (Response) {}
-	rpc Branch_Create(RequestModel) returns (Response) {}
-	rpc Branch_Update(RequestModel) returns (Response) {}
-	rpc Branch_Save(RequestModel) returns (Response) {}
-	rpc Branch_Delete(Request_Int64) returns (Response) {}
-	rpc Branch_Restore(Request_Int64) returns (Response) {}
-	rpc Branch_Update_Code(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Branch_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Branch_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Branch_Update_OrganizationID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Branch_Update_PersonalAreaLink(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Branch_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Branch_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Branch_ReadObject(Request_Int64) returns (Response) {}
-
-	//Briefcase
-	rpc Briefcase_Read(Request_Int64) returns (Response) {}
-	rpc Briefcase_Create(RequestModel) returns (Response) {}
-	rpc Briefcase_Update(RequestModel) returns (Response) {}
-	rpc Briefcase_Save(RequestModel) returns (Response) {}
-	rpc Briefcase_Delete(Request_Int64) returns (Response) {}
-	rpc Briefcase_Restore(Request_Int64) returns (Response) {}
-	rpc Briefcase_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Briefcase_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Briefcase_Update_LawerID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Briefcase_Update_BranchID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Briefcase_Update_Number(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Briefcase_Update_StatusID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Briefcase_SetLawer_ChangeItems(Request_Model_Int64) returns (ResponseEmpty) {}
-	rpc Briefcase_FindEmployeeBy_LawerID(Request_Int64_Int64) returns (Response) {}
-	rpc Briefcase_ReadObject(Request_Int64) returns (Response) {}
-
-	//BriefcaseComment
-	rpc BriefcaseComment_Read(Request_Int64) returns (Response) {}
-	rpc BriefcaseComment_Create(RequestModel) returns (Response) {}
-	rpc BriefcaseComment_Update(RequestModel) returns (Response) {}
-	rpc BriefcaseComment_Save(RequestModel) returns (Response) {}
-	rpc BriefcaseComment_Delete(Request_Int64) returns (Response) {}
-	rpc BriefcaseComment_Restore(Request_Int64) returns (Response) {}
-	rpc BriefcaseComment_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc BriefcaseComment_Update_BriefcaseID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BriefcaseComment_Update_CommentTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BriefcaseComment_Update_EmployeeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BriefcaseComment_Update_Message(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc BriefcaseComment_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc BriefcaseComment_ReadObject(Request_Int64) returns (Response) {}
-	rpc BriefcaseComment_FindMassBy_BriefcaseID_CommentTypeID(Request_Int64_Int64) returns (ResponseMass) {}
-
-	//BriefcasesFile
-	rpc BriefcasesFile_Read(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesFile_Create(RequestModel) returns (Response) {}
-	rpc BriefcasesFile_Update(RequestModel) returns (Response) {}
-	rpc BriefcasesFile_Save(RequestModel) returns (Response) {}
-	rpc BriefcasesFile_Delete(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesFile_Restore(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesFile_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc BriefcasesFile_Update_BriefcaseID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BriefcasesFile_Update_FileID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BriefcasesFile_ReadFromCache(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesFile_ReadObject(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesFile_FindMassBy_BriefcaseID(Request_Int64) returns (ResponseMass) {}
-	rpc BriefcasesFile_FindMassObjectBy_BriefcaseID(Request_Int64) returns (ResponseMass) {}
-
-	//BriefcasesHashtag
-	rpc BriefcasesHashtag_Read(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesHashtag_Create(RequestModel) returns (Response) {}
-	rpc BriefcasesHashtag_Update(RequestModel) returns (Response) {}
-	rpc BriefcasesHashtag_Save(RequestModel) returns (Response) {}
-	rpc BriefcasesHashtag_Delete(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesHashtag_Restore(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesHashtag_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc BriefcasesHashtag_Update_BriefcaseID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BriefcasesHashtag_Update_HashtagID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BriefcasesHashtag_ReadFromCache(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesHashtag_FindMassBy_BriefcaseID(Request_Int64) returns (ResponseMass) {}
-	rpc BriefcasesHashtag_ReadObject(Request_Int64_Int64) returns (Response) {}
-
-	//BriefcasesLawsuit
-	rpc BriefcasesLawsuit_Read(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesLawsuit_Create(RequestModel) returns (Response) {}
-	rpc BriefcasesLawsuit_Update(RequestModel) returns (Response) {}
-	rpc BriefcasesLawsuit_Save(RequestModel) returns (Response) {}
-	rpc BriefcasesLawsuit_Delete(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesLawsuit_Restore(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesLawsuit_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc BriefcasesLawsuit_Update_BriefcaseID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BriefcasesLawsuit_Update_LawsuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BriefcasesLawsuit_ReadFromCache(Request_Int64_Int64) returns (Response) {}
-	rpc BriefcasesLawsuit_ReadObject(Request_Int64_Int64) returns (Response) {}
-
-	//BriefcaseStatusState
-	rpc BriefcaseStatusState_Read(Request_Int64) returns (Response) {}
-	rpc BriefcaseStatusState_Create(RequestModel) returns (Response) {}
-	rpc BriefcaseStatusState_Update(RequestModel) returns (Response) {}
-	rpc BriefcaseStatusState_Save(RequestModel) returns (Response) {}
-	rpc BriefcaseStatusState_Delete(Request_Int64) returns (Response) {}
-	rpc BriefcaseStatusState_Restore(Request_Int64) returns (Response) {}
-	rpc BriefcaseStatusState_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_BriefcaseDebtSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_BriefcaseID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_BriefcaseInvoiceSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_BriefcasePaySum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_ContractBillsTotalSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_ContractDebtSumAllTypes(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_ContractMainSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_ContractPennySum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_ContractRestrictSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_ContractStateDutySum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_StatusAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_Update_StatusID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc BriefcaseStatusState_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc BriefcaseStatusState_ReadObject(Request_Int64) returns (Response) {}
-
-	//Calendar
-	rpc Calendar_Read(Request_Int64) returns (Response) {}
-	rpc Calendar_Create(RequestModel) returns (Response) {}
-	rpc Calendar_Update(RequestModel) returns (Response) {}
-	rpc Calendar_Save(RequestModel) returns (Response) {}
-	rpc Calendar_Delete(Request_Int64) returns (Response) {}
-	rpc Calendar_Restore(Request_Int64) returns (Response) {}
-	rpc Calendar_Update_Comment(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Calendar_Update_Date(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Calendar_Update_DayTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Calendar_Update_Days(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc Calendar_Update_Hours(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc Calendar_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Calendar_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Calendar_ReadObject(Request_Int64) returns (Response) {}
-
-	//ChangeItem
-	rpc ChangeItem_Read(Request_Int64) returns (Response) {}
-	rpc ChangeItem_Create(RequestModel) returns (Response) {}
-	rpc ChangeItem_Update(RequestModel) returns (Response) {}
-	rpc ChangeItem_Save(RequestModel) returns (Response) {}
-	rpc ChangeItem_Delete(Request_Int64) returns (Response) {}
-	rpc ChangeItem_Restore(Request_Int64) returns (Response) {}
-	rpc ChangeItem_Update_Key(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ChangeItem_Update_Prev(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ChangeItem_Update_Value(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ChangeItem_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc ChangeItem_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ChangeItem_Update_TableNameID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ChangeItem_Update_TableRowID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ChangeItem_ReadObject(Request_Int64) returns (Response) {}
-
-	//ChannelType
-	rpc ChannelType_Read(Request_Int64) returns (Response) {}
-	rpc ChannelType_Create(RequestModel) returns (Response) {}
-	rpc ChannelType_Update(RequestModel) returns (Response) {}
-	rpc ChannelType_Save(RequestModel) returns (Response) {}
-	rpc ChannelType_Delete(Request_Int64) returns (Response) {}
-	rpc ChannelType_Restore(Request_Int64) returns (Response) {}
-	rpc ChannelType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc ChannelType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ChannelType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ChannelType_Update_NotifierID(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ChannelType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc ChannelType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ChannelType_ReadObject(Request_Int64) returns (Response) {}
-
-	//ClaimType
-	rpc ClaimType_Read(Request_Int64) returns (Response) {}
-	rpc ClaimType_Create(RequestModel) returns (Response) {}
-	rpc ClaimType_Update(RequestModel) returns (Response) {}
-	rpc ClaimType_Save(RequestModel) returns (Response) {}
-	rpc ClaimType_Delete(Request_Int64) returns (Response) {}
-	rpc ClaimType_Restore(Request_Int64) returns (Response) {}
-	rpc ClaimType_Update_Code(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ClaimType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ClaimType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ClaimType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc ClaimType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ClaimType_ReadObject(Request_Int64) returns (Response) {}
-
-	//ColorType
-	rpc ColorType_Read(Request_Int64) returns (Response) {}
-	rpc ColorType_Create(RequestModel) returns (Response) {}
-	rpc ColorType_Update(RequestModel) returns (Response) {}
-	rpc ColorType_Save(RequestModel) returns (Response) {}
-	rpc ColorType_Delete(Request_Int64) returns (Response) {}
-	rpc ColorType_Restore(Request_Int64) returns (Response) {}
-	rpc ColorType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc ColorType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ColorType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ColorType_Update_Value(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ColorType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc ColorType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ColorType_Update_Blue(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc ColorType_Update_Green(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc ColorType_Update_Red(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc ColorType_ReadObject(Request_Int64) returns (Response) {}
-
-	//CommentType
-	rpc CommentType_Read(Request_Int64) returns (Response) {}
-	rpc CommentType_Create(RequestModel) returns (Response) {}
-	rpc CommentType_Update(RequestModel) returns (Response) {}
-	rpc CommentType_Save(RequestModel) returns (Response) {}
-	rpc CommentType_Delete(Request_Int64) returns (Response) {}
-	rpc CommentType_Restore(Request_Int64) returns (Response) {}
-	rpc CommentType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc CommentType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc CommentType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc CommentType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc CommentType_ReadObject(Request_Int64) returns (Response) {}
-
-	//CompletedMonth
-	rpc CompletedMonth_Read(Request_Int64) returns (Response) {}
-	rpc CompletedMonth_Create(RequestModel) returns (Response) {}
-	rpc CompletedMonth_Update(RequestModel) returns (Response) {}
-	rpc CompletedMonth_Save(RequestModel) returns (Response) {}
-	rpc CompletedMonth_FindByExtID(RequestExtID) returns (Response) {}
-	rpc CompletedMonth_Delete(Request_Int64) returns (Response) {}
-	rpc CompletedMonth_Restore(Request_Int64) returns (Response) {}
-	rpc CompletedMonth_Update_AccountingAreaID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc CompletedMonth_Update_BillingMonth(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc CompletedMonth_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc CompletedMonth_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc CompletedMonth_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc CompletedMonth_ReadObject(Request_Int64) returns (Response) {}
-
-	//Connection
-	rpc Connection_Read(Request_Int64) returns (Response) {}
-	rpc Connection_Create(RequestModel) returns (Response) {}
-	rpc Connection_Update(RequestModel) returns (Response) {}
-	rpc Connection_Save(RequestModel) returns (Response) {}
-	rpc Connection_Update_BranchID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Connection_Update_DbName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Connection_Update_DbScheme(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Connection_Update_IsLegal(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Connection_Update_Login(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Connection_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Connection_Update_Password(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Connection_Update_Port(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Connection_Update_Server(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Connection_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Connection_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Connection_FindBy_BranchID_IsLegal(Request_Int64_Bool) returns (Response) {}
-	rpc Connection_FindMassBy_BranchID(Request_Int64) returns (ResponseMass) {}
-	rpc Connection_ReadObject(Request_Int64) returns (Response) {}
-
-	//ContractBlackItem
-	rpc ContractBlackItem_Read(Request_Int64) returns (Response) {}
-	rpc ContractBlackItem_Create(RequestModel) returns (Response) {}
-	rpc ContractBlackItem_Update(RequestModel) returns (Response) {}
-	rpc ContractBlackItem_Save(RequestModel) returns (Response) {}
-	rpc ContractBlackItem_Delete(Request_Int64) returns (Response) {}
-	rpc ContractBlackItem_Restore(Request_Int64) returns (Response) {}
-	rpc ContractBlackItem_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ContractBlackItem_Update_ContractNumber(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractBlackItem_Update_CreatedByID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ContractBlackItem_Update_DateFrom(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc ContractBlackItem_Update_DateTo(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc ContractBlackItem_Update_EDMSLink(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractBlackItem_Update_ModifiedByID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ContractBlackItem_Update_Note(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractBlackItem_Update_Reason(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractBlackItem_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc ContractBlackItem_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ContractBlackItem_ReadObject(Request_Int64) returns (Response) {}
-
-	//ContractCategoryType
-	rpc ContractCategoryType_Read(Request_Int64) returns (Response) {}
-	rpc ContractCategoryType_Create(RequestModel) returns (Response) {}
-	rpc ContractCategoryType_Update(RequestModel) returns (Response) {}
-	rpc ContractCategoryType_Save(RequestModel) returns (Response) {}
-	rpc ContractCategoryType_FindByExtID(RequestExtID) returns (Response) {}
-	rpc ContractCategoryType_Delete(Request_Int64) returns (Response) {}
-	rpc ContractCategoryType_Restore(Request_Int64) returns (Response) {}
-	rpc ContractCategoryType_Update_Code(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractCategoryType_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ContractCategoryType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractCategoryType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractCategoryType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc ContractCategoryType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ContractCategoryType_ReadObject(Request_Int64) returns (Response) {}
-
-	//ContractType
-	rpc ContractType_Read(Request_Int64) returns (Response) {}
-	rpc ContractType_Create(RequestModel) returns (Response) {}
-	rpc ContractType_Update(RequestModel) returns (Response) {}
-	rpc ContractType_Save(RequestModel) returns (Response) {}
-	rpc ContractType_Delete(Request_Int64) returns (Response) {}
-	rpc ContractType_Restore(Request_Int64) returns (Response) {}
-	rpc ContractType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ContractType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc ContractType_ReadObject(Request_Int64) returns (Response) {}
-
-	//ContractWhiteItem
-	rpc ContractWhiteItem_Read(Request_Int64) returns (Response) {}
-	rpc ContractWhiteItem_Create(RequestModel) returns (Response) {}
-	rpc ContractWhiteItem_Update(RequestModel) returns (Response) {}
-	rpc ContractWhiteItem_Save(RequestModel) returns (Response) {}
-	rpc ContractWhiteItem_Delete(Request_Int64) returns (Response) {}
-	rpc ContractWhiteItem_Restore(Request_Int64) returns (Response) {}
-	rpc ContractWhiteItem_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ContractWhiteItem_Update_ContractNumber(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractWhiteItem_Update_CreatedByID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ContractWhiteItem_Update_DateFrom(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc ContractWhiteItem_Update_DateTo(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc ContractWhiteItem_Update_EDMSLink(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractWhiteItem_Update_ModifiedByID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ContractWhiteItem_Update_Note(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractWhiteItem_Update_Reason(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ContractWhiteItem_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc ContractWhiteItem_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ContractWhiteItem_ReadObject(Request_Int64) returns (Response) {}
-
-	//Contract
-	rpc Contract_Read(Request_Int64) returns (Response) {}
-	rpc Contract_Create(RequestModel) returns (Response) {}
-	rpc Contract_Update(RequestModel) returns (Response) {}
-	rpc Contract_Save(RequestModel) returns (Response) {}
-	rpc Contract_FindByExtID(RequestExtID) returns (Response) {}
-	rpc Contract_Delete(Request_Int64) returns (Response) {}
-	rpc Contract_Restore(Request_Int64) returns (Response) {}
-	rpc Contract_FindBy_Number(RequestString) returns (Response) {}
-	rpc Contract_Update_BeginAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Contract_Update_BranchID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_CategoryID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_CuratorClaimID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_CuratorContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_CuratorLegalID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_CuratorPaymentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_CuratorTechAuditID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_DaysToResolveClaim(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc Contract_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Contract_Update_Email(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Contract_Update_EndAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Contract_Update_ErrorFromStackAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Contract_Update_IndividualID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_IsErrorFromStack(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Contract_Update_IsIndOrganization(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Contract_Update_IsOrganization(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Contract_Update_IsValidEmail(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Contract_Update_Number(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Contract_Update_OrganizationConsigneeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_OrganizationCustomerID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_OrganizationPayerID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_PostAddress(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Contract_Update_SignAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Contract_Update_Status(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Contract_Update_TerminateAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Contract_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Contract_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Contract_Update_IsBelongsRosatom(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Contract_Update_DepartmentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_Note(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Contract_Update_SectorID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_Update_TypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Contract_ReadObject(Request_Int64) returns (Response) {}
-
-	//ContractsTotalSum
-	rpc ContractsTotalSum_Read(Request_Int64) returns (Response) {}
-	rpc ContractsTotalSum_Create(RequestModel) returns (Response) {}
-	rpc ContractsTotalSum_Update(RequestModel) returns (Response) {}
-	rpc ContractsTotalSum_Save(RequestModel) returns (Response) {}
-	rpc ContractsTotalSum_Delete(Request_Int64) returns (Response) {}
-	rpc ContractsTotalSum_Restore(Request_Int64) returns (Response) {}
-	rpc ContractsTotalSum_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ContractsTotalSum_Update_ContractID(Request_Int64) returns (ResponseEmpty) {}
-	rpc ContractsTotalSum_Update_MainSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc ContractsTotalSum_Update_PennySum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc ContractsTotalSum_Update_RestrictSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc ContractsTotalSum_Update_StateDutySum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc ContractsTotalSum_Update_TotalSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc ContractsTotalSum_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc ContractsTotalSum_Update_BillsSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc ContractsTotalSum_ReadObject(Request_Int64) returns (Response) {}
-
-	//ContractIndividual
-	rpc ContractIndividual_Read(Request_Int64_Int64) returns (Response) {}
-	rpc ContractIndividual_Create(RequestModel) returns (Response) {}
-	rpc ContractIndividual_Update(RequestModel) returns (Response) {}
-	rpc ContractIndividual_Save(RequestModel) returns (Response) {}
-	rpc ContractIndividual_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ContractIndividual_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ContractIndividual_Update_IndividualID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ContractIndividual_ReadFromCache(Request_Int64_Int64) returns (Response) {}
-	rpc ContractIndividual_ReadObject(Request_Int64_Int64) returns (Response) {}
-
-	//ContractOrganization
-	rpc ContractOrganization_Read(Request_Int64_Int64) returns (Response) {}
-	rpc ContractOrganization_Create(RequestModel) returns (Response) {}
-	rpc ContractOrganization_Update(RequestModel) returns (Response) {}
-	rpc ContractOrganization_Save(RequestModel) returns (Response) {}
-	rpc ContractOrganization_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ContractOrganization_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ContractOrganization_Update_OrganizationID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ContractOrganization_ReadFromCache(Request_Int64_Int64) returns (Response) {}
-	rpc ContractOrganization_ReadObject(Request_Int64_Int64) returns (Response) {}
-
-	//CourtSuit
-	rpc CourtSuit_Read(Request_Int64) returns (Response) {}
-	rpc CourtSuit_Create(RequestModel) returns (Response) {}
-	rpc CourtSuit_Update(RequestModel) returns (Response) {}
-	rpc CourtSuit_Save(RequestModel) returns (Response) {}
-	rpc CourtSuit_Delete(Request_Int64) returns (Response) {}
-	rpc CourtSuit_Restore(Request_Int64) returns (Response) {}
-	rpc CourtSuit_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc CourtSuit_Update_BriefcaseID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc CourtSuit_Update_CourtID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc CourtSuit_Update_LawerID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc CourtSuit_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc CourtSuit_Update_LitigationTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc CourtSuit_ReadObject(Request_Int64) returns (Response) {}
-
-	//CourtSuitsFile
-	rpc CourtSuitsFile_Read(Request_Int64_Int64) returns (Response) {}
-	rpc CourtSuitsFile_Create(RequestModel) returns (Response) {}
-	rpc CourtSuitsFile_Update(RequestModel) returns (Response) {}
-	rpc CourtSuitsFile_Save(RequestModel) returns (Response) {}
-	rpc CourtSuitsFile_Delete(Request_Int64_Int64) returns (Response) {}
-	rpc CourtSuitsFile_Restore(Request_Int64_Int64) returns (Response) {}
-	rpc CourtSuitsFile_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc CourtSuitsFile_Update_CourtSuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc CourtSuitsFile_Update_FileID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc CourtSuitsFile_ReadFromCache(Request_Int64_Int64) returns (Response) {}
-	rpc CourtSuitsFile_ReadObject(Request_Int64_Int64) returns (Response) {}
-	rpc CourtSuitsFile_FindMassBy_CourtSuitID(Request_Int64) returns (ResponseMass) {}
-	rpc CourtSuitsFile_FindMassObjectBy_CourtSuitID(Request_Int64) returns (ResponseMass) {}
-
-	//Court
-	rpc Court_Read(Request_Int64) returns (Response) {}
-	rpc Court_Create(RequestModel) returns (Response) {}
-	rpc Court_Update(RequestModel) returns (Response) {}
-	rpc Court_Save(RequestModel) returns (Response) {}
-	rpc Court_Delete(Request_Int64) returns (Response) {}
-	rpc Court_Restore(Request_Int64) returns (Response) {}
-	rpc Court_Update_City(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Court_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Court_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Court_Update_OrganizationID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Court_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Court_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Court_ReadObject(Request_Int64) returns (Response) {}
-
- 	//CourtSuitComment
-	rpc CourtSuitComment_Read(Request_Int64) returns (Response) {}
-	rpc CourtSuitComment_Create(RequestModel) returns (Response) {}
-	rpc CourtSuitComment_Update(RequestModel) returns (Response) {}
-	rpc CourtSuitComment_Save(RequestModel) returns (Response) {}
-	rpc CourtSuitComment_Delete(Request_Int64) returns (Response) {}
-	rpc CourtSuitComment_Restore(Request_Int64) returns (Response) {}
-	rpc CourtSuitComment_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc CourtSuitComment_Update_CommentTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc CourtSuitComment_Update_CourtSuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc CourtSuitComment_Update_EmployeeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc CourtSuitComment_Update_Message(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc CourtSuitComment_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc CourtSuitComment_FindMassBy_CourtSuitID_CommentTypeID(Request_Int64_Int64) returns (ResponseMass) {}
-	rpc CourtSuitComment_ReadObject(Request_Int64) returns (Response) {}
-
-	//DayType
-	rpc DayType_Read(Request_Int64) returns (Response) {}
-	rpc DayType_Create(RequestModel) returns (Response) {}
-	rpc DayType_Update(RequestModel) returns (Response) {}
-	rpc DayType_Save(RequestModel) returns (Response) {}
-	rpc DayType_Delete(Request_Int64) returns (Response) {}
-	rpc DayType_Restore(Request_Int64) returns (Response) {}
-	rpc DayType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DayType_Update_IsWorkDay(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc DayType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DayType_Update_ShortName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DayType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc DayType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc DayType_ReadObject(Request_Int64) returns (Response) {}
-
-	//DebtType
-	rpc DebtType_Read(Request_Int64) returns (Response) {}
-	rpc DebtType_Create(RequestModel) returns (Response) {}
-	rpc DebtType_Update(RequestModel) returns (Response) {}
-	rpc DebtType_Save(RequestModel) returns (Response) {}
-	rpc DebtType_FindByExtID(RequestExtID) returns (Response) {}
-	rpc DebtType_Delete(Request_Int64) returns (Response) {}
-	rpc DebtType_Restore(Request_Int64) returns (Response) {}
-	rpc DebtType_Update_CodeNSI(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc DebtType_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DebtType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DebtType_Update_ExtCode(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DebtType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DebtType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc DebtType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc DebtType_ReadObject(Request_Int64) returns (Response) {}
-
-	//DirectionType
-	rpc DirectionType_Read(Request_Int64) returns (Response) {}
-	rpc DirectionType_Create(RequestModel) returns (Response) {}
-	rpc DirectionType_Update(RequestModel) returns (Response) {}
-	rpc DirectionType_Save(RequestModel) returns (Response) {}
-	rpc DirectionType_Delete(Request_Int64) returns (Response) {}
-	rpc DirectionType_Restore(Request_Int64) returns (Response) {}
-	rpc DirectionType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DirectionType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DirectionType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc DirectionType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc DirectionType_ReadObject(Request_Int64) returns (Response) {}
-
-	//DocumentLinkType
-	rpc DocumentLinkType_Read(Request_Int64) returns (Response) {}
-	rpc DocumentLinkType_Create(RequestModel) returns (Response) {}
-	rpc DocumentLinkType_Update(RequestModel) returns (Response) {}
-	rpc DocumentLinkType_Save(RequestModel) returns (Response) {}
-	rpc DocumentLinkType_Delete(Request_Int64) returns (Response) {}
-	rpc DocumentLinkType_Restore(Request_Int64) returns (Response) {}
-	rpc DocumentLinkType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc DocumentLinkType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DocumentLinkType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DocumentLinkType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc DocumentLinkType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc DocumentLinkType_ReadObject(Request_Int64) returns (Response) {}
-
-	//DocumentLink
-	rpc DocumentLink_Read(Request_Int64) returns (Response) {}
-	rpc DocumentLink_Create(RequestModel) returns (Response) {}
-	rpc DocumentLink_Update(RequestModel) returns (Response) {}
-	rpc DocumentLink_Save(RequestModel) returns (Response) {}
-	rpc DocumentLink_FindByExtID(RequestExtID) returns (Response) {}
-	rpc DocumentLink_Delete(Request_Int64) returns (Response) {}
-	rpc DocumentLink_Restore(Request_Int64) returns (Response) {}
-	rpc DocumentLink_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DocumentLink_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DocumentLink_Update_CorrectionSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc DocumentLink_Update_Document1ID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DocumentLink_Update_Document2ID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DocumentLink_Update_LinkTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DocumentLink_Update_DateFrom(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc DocumentLink_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc DocumentLink_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc DocumentLink_ReadObject(Request_Int64) returns (Response) {}
-
-	//DocumentLinksRapira
-	rpc DocumentLinksRapira_Read(Request_Int64) returns (Response) {}
-	rpc DocumentLinksRapira_Create(RequestModel) returns (Response) {}
-	rpc DocumentLinksRapira_Update(RequestModel) returns (Response) {}
-	rpc DocumentLinksRapira_Save(RequestModel) returns (Response) {}
-	rpc DocumentLinksRapira_Delete(Request_Int64) returns (Response) {}
-	rpc DocumentLinksRapira_Restore(Request_Int64) returns (Response) {}
-	rpc DocumentLinksRapira_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc DocumentLinksRapira_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DocumentLinksRapira_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DocumentLinksRapira_Update_CorrectionSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc DocumentLinksRapira_Update_DateFrom(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc DocumentLinksRapira_Update_Document1ID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DocumentLinksRapira_Update_Document2ID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DocumentLinksRapira_Update_LinkTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DocumentLinksRapira_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc DocumentLinksRapira_ReadObject(Request_Int64) returns (Response) {}
-	rpc DocumentLinksRapira_Update_ModifiedAtStack(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc DocumentLinksRapira_Update_CreatedAtStack(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc DocumentLinksRapira_FindByExtID(RequestExtIDString) returns (Response) {}
-
-	//DocumentRequired
-	rpc DocumentRequired_Read(Request_Int64) returns (Response) {}
-	rpc DocumentRequired_Create(RequestModel) returns (Response) {}
-	rpc DocumentRequired_Update(RequestModel) returns (Response) {}
-	rpc DocumentRequired_Save(RequestModel) returns (Response) {}
-	rpc DocumentRequired_Delete(Request_Int64) returns (Response) {}
-	rpc DocumentRequired_Restore(Request_Int64) returns (Response) {}
-	rpc DocumentRequired_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc DocumentRequired_Update_Code(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DocumentRequired_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DocumentRequired_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc DocumentRequired_ReadObject(Request_Int64) returns (Response) {}
-
-	//DocumentReturnReason
-	rpc DocumentReturnReason_Read(Request_Int64) returns (Response) {}
-	rpc DocumentReturnReason_Create(RequestModel) returns (Response) {}
-	rpc DocumentReturnReason_Update(RequestModel) returns (Response) {}
-	rpc DocumentReturnReason_Save(RequestModel) returns (Response) {}
-	rpc DocumentReturnReason_Delete(Request_Int64) returns (Response) {}
-	rpc DocumentReturnReason_Restore(Request_Int64) returns (Response) {}
-	rpc DocumentReturnReason_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc DocumentReturnReason_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DocumentReturnReason_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DocumentReturnReason_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc DocumentReturnReason_ReadObject(Request_Int64) returns (Response) {}
-
-	//DocumentStatus
-	rpc DocumentStatus_Read(Request_Int64) returns (Response) {}
-	rpc DocumentStatus_Create(RequestModel) returns (Response) {}
-	rpc DocumentStatus_Update(RequestModel) returns (Response) {}
-	rpc DocumentStatus_Save(RequestModel) returns (Response) {}
-	rpc DocumentStatus_Delete(Request_Int64) returns (Response) {}
-	rpc DocumentStatus_Restore(Request_Int64) returns (Response) {}
-	rpc DocumentStatus_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc DocumentStatus_Update_Code(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DocumentStatus_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DocumentStatus_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc DocumentStatus_ReadObject(Request_Int64) returns (Response) {}
-
-	//DocumentType
-	rpc DocumentType_Read(Request_Int64) returns (Response) {}
-	rpc DocumentType_Create(RequestModel) returns (Response) {}
-	rpc DocumentType_Update(RequestModel) returns (Response) {}
-	rpc DocumentType_Save(RequestModel) returns (Response) {}
-	rpc DocumentType_FindByExtID(RequestExtID) returns (Response) {}
-	rpc DocumentType_Delete(Request_Int64) returns (Response) {}
-	rpc DocumentType_Restore(Request_Int64) returns (Response) {}
-	rpc DocumentType_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc DocumentType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DocumentType_Update_IncomeExpense(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc DocumentType_Update_IsService(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc DocumentType_Update_IsVisible(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc DocumentType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DocumentType_Update_ShortName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc DocumentType_Update_Type(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc DocumentType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc DocumentType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc DocumentType_ReadObject(Request_Int64) returns (Response) {}
-
-	//Document
-	rpc Document_Read(Request_Int64) returns (Response) {}
-	rpc Document_Create(RequestModel) returns (Response) {}
-	rpc Document_Update(RequestModel) returns (Response) {}
-	rpc Document_Save(RequestModel) returns (Response) {}
-	rpc Document_FindByExtID(RequestExtID) returns (Response) {}
-	rpc Document_Delete(Request_Int64) returns (Response) {}
-	rpc Document_Restore(Request_Int64) returns (Response) {}
-	rpc Document_Update_Analytics(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Document_Update_Balance(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Document_Update_BillKindID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Document_Update_BillingMonth(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Document_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Document_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Document_Update_Count(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Document_Update_DebtSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Document_Update_DocumentAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Document_Update_DocumentSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Document_Update_DocumentTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Document_Update_Note(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Document_Update_Number(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Document_Update_NumberFull(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Document_Update_PayDeadline(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Document_Update_PayFrom(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Document_Update_PayTo(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Document_Update_Payment(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Document_Update_Reason(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Document_Update_ReversalID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Document_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Document_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Document_ReadObject(Request_Int64) returns (Response) {}
-
-	//Employee
-	rpc Employee_Read(Request_Int64) returns (Response) {}
-	rpc Employee_Create(RequestModel) returns (Response) {}
-	rpc Employee_Update(RequestModel) returns (Response) {}
-	rpc Employee_Save(RequestModel) returns (Response) {}
-	rpc Employee_Delete(Request_Int64) returns (Response) {}
-	rpc Employee_Restore(Request_Int64) returns (Response) {}
-	rpc Employee_FindByExtId(RequestExtID) returns (Response) {}
-	rpc Employee_FindByLogin(RequestString) returns (Response) {}
-	rpc Employee_FindByEMail(RequestString) returns (Response) {}
-	rpc Employee_FindByFIO(RequestString3) returns (Response) {}
-	rpc Employee_FindByExtID(RequestExtID) returns (Response) {}
-	rpc Employee_Update_BranchID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Employee_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Employee_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Employee_Update_Email(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Employee_Update_IsActive(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Employee_Update_Login(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Employee_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Employee_Update_ParentName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Employee_Update_Phone(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Employee_Update_Photo(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Employee_Update_Position(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Employee_Update_SecondName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Employee_Update_Tag(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Employee_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Employee_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Employee_ReadObject(Request_Int64) returns (Response) {}
-
-	//EmployeesHashtag
-	rpc EmployeesHashtag_Read(Request_Int64_Int64) returns (Response) {}
-	rpc EmployeesHashtag_Create(RequestModel) returns (Response) {}
-	rpc EmployeesHashtag_Update(RequestModel) returns (Response) {}
-	rpc EmployeesHashtag_Save(RequestModel) returns (Response) {}
-	rpc EmployeesHashtag_Delete(Request_Int64_Int64) returns (Response) {}
-	rpc EmployeesHashtag_Restore(Request_Int64_Int64) returns (Response) {}
-	rpc EmployeesHashtag_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc EmployeesHashtag_Update_EmployeeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc EmployeesHashtag_Update_HashtagID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc EmployeesHashtag_ReadFromCache(Request_Int64_Int64) returns (Response) {}
-	rpc EmployeesHashtag_FindMassBy_EmployeeID(Request_Int64) returns (ResponseMass) {}
-	rpc EmployeesHashtag_ReadObject(Request_Int64_Int64) returns (Response) {}
-
-	//EventType
-	rpc EventType_Read(Request_Int64) returns (Response) {}
-	rpc EventType_Create(RequestModel) returns (Response) {}
-	rpc EventType_Update(RequestModel) returns (Response) {}
-	rpc EventType_Save(RequestModel) returns (Response) {}
-	rpc EventType_Delete(Request_Int64) returns (Response) {}
-	rpc EventType_Restore(Request_Int64) returns (Response) {}
-	rpc EventType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc EventType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc EventType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc EventType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc EventType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc EventType_ReadObject(Request_Int64) returns (Response) {}
-
-	//Event
-	rpc Event_Read(Request_Int64) returns (Response) {}
-	rpc Event_Create(RequestModel) returns (Response) {}
-	rpc Event_Update(RequestModel) returns (Response) {}
-	rpc Event_Save(RequestModel) returns (Response) {}
-	rpc Event_Delete(Request_Int64) returns (Response) {}
-	rpc Event_Restore(Request_Int64) returns (Response) {}
-	rpc Event_Update_ColorTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Event_Update_CreatedByID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Event_Update_DeletedByID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Event_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Event_Update_EventTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Event_Update_FinishAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Event_Update_IsAllDay(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Event_Update_ModifiedByID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Event_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Event_Update_NotificationID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Event_Update_PerformerID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Event_Update_PriorityTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Event_Update_RepeatTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Event_Update_StartAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Event_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Event_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Event_ReadObject(Request_Int64) returns (Response) {}
-
-	//Facsimile
-	rpc Facsimile_Read(Request_Int64) returns (Response) {}
-	rpc Facsimile_Create(RequestModel) returns (Response) {}
-	rpc Facsimile_Update(RequestModel) returns (Response) {}
-	rpc Facsimile_Save(RequestModel) returns (Response) {}
-	rpc Facsimile_Delete(Request_Int64) returns (Response) {}
-	rpc Facsimile_Restore(Request_Int64) returns (Response) {}
-	rpc Facsimile_Update_Branch(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Facsimile_Update_Contract(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Facsimile_Update_Department(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Facsimile_Update_Post(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Facsimile_Update_Responsible(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Facsimile_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Facsimile_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Facsimile_ReadObject(Request_Int64) returns (Response) {}
-
-	//File
-	rpc File_Read(Request_Int64) returns (Response) {}
-	rpc File_Create(RequestModel) returns (Response) {}
-	rpc File_Update(RequestModel) returns (Response) {}
-	rpc File_Save(RequestModel) returns (Response) {}
-	rpc File_Delete(Request_Int64) returns (Response) {}
-	rpc File_Restore(Request_Int64) returns (Response) {}
-	rpc File_FindByFileID(RequestString) returns (Response) {}
-	rpc File_FindByFullName(RequestString) returns (Response) {}
-	rpc File_FindMassBy_TableNameID_TableRowID(Request_Int64_Int64) returns (ResponseMass) {} //находит массив файлов по: TableNameID, TableRowID
-	rpc File_FindMassBy_TableNameID_TableRowID_FileTypeID(Request_Int64_Int64_Int64) returns (ResponseMass) {} //находит массив файлов по: TableNameID, TableRowID, FileTypeID
-	rpc File_Update_BranchID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc File_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc File_Update_EmployeeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc File_Update_Extension(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc File_Update_FileID(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc File_Update_FileName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc File_Update_FileTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc File_Update_FullName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc File_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc File_Update_Size(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc File_Update_TemplateID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc File_Update_Version(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc File_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc File_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc File_Save_SaveLink_SaveChangeItems(Request_Model_Int64_Int64) returns (ResponseInt64) {}
-	rpc File_SaveLinkDeleted_SaveChangeItems(Request_Model_Int64_Int64_Int64) returns (ResponseEmpty) {}
-	rpc File_Update_TableNameID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc File_Update_TableRowID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc File_Update_BucketName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc File_ReadObject(Request_Int64) returns (Response) {}
-
-	//FileChange
-	rpc FileChange_Read(Request_Int64) returns (Response) {}
-	rpc FileChange_Create(RequestModel) returns (Response) {}
-	rpc FileChange_Update(RequestModel) returns (Response) {}
-	rpc FileChange_Save(RequestModel) returns (Response) {}
-	rpc FileChange_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FileChange_Update_EmployeeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc FileChange_Update_FileID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc FileChange_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc FileChange_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc FileChange_ReadObject(Request_Int64) returns (Response) {}
-
-	//FileTemplate
-	rpc FileTemplate_Read(Request_Int64) returns (Response) {}
-	rpc FileTemplate_Create(RequestModel) returns (Response) {}
-	rpc FileTemplate_Update(RequestModel) returns (Response) {}
-	rpc FileTemplate_Save(RequestModel) returns (Response) {}
-	rpc FileTemplate_Delete(Request_Int64) returns (Response) {}
-	rpc FileTemplate_Restore(Request_Int64) returns (Response) {}
-	rpc FileTemplate_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FileTemplate_Update_FileID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc FileTemplate_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FileTemplate_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc FileTemplate_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc FileTemplate_ReadObject(Request_Int64) returns (Response) {}
-
-	//FilesClaim
-	rpc FilesClaim_Read(Request_Int64) returns (Response) {}
-	rpc FilesClaim_Create(RequestModel) returns (Response) {}
-	rpc FilesClaim_Update(RequestModel) returns (Response) {}
-	rpc FilesClaim_Save(RequestModel) returns (Response) {}
-	rpc FilesClaim_Delete(Request_Int64) returns (Response) {}
-	rpc FilesClaim_Restore(Request_Int64) returns (Response) {}
-	rpc FilesClaim_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_CheckOfClaim(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_Code(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_ConsumerSignature(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_DateOfDocument(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_DateOfDownload(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_FilePath(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_Invoice(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_Number(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_OriginalDocument(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_Period(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_PersonDownloadID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_SignOfObligation(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc FilesClaim_Update_StatusOfDocument(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc FilesClaim_ReadFromCache(Request_Int64) returns (Response) {}
-
-	//FileType
-	rpc FileType_Read(Request_Int64) returns (Response) {}
-	rpc FileType_Create(RequestModel) returns (Response) {}
-	rpc FileType_Update(RequestModel) returns (Response) {}
-	rpc FileType_Save(RequestModel) returns (Response) {}
-	rpc FileType_Delete(Request_Int64) returns (Response) {}
-	rpc FileType_Restore(Request_Int64) returns (Response) {}
-	rpc FileType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc FileType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FileType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FileType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc FileType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc FileType_Update_CanBeSynced(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc FileType_Update_MimeType(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FileType_Update_RequireUpload(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc FileType_ReadAll(Request_Empty) returns (ResponseMass) {}
-	rpc FileType_Update_TableNameID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc FileType_FindBy_Code(Request_Int32) returns (Response) {}
-	rpc FileType_Update_ExistsBankMark(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc FileType_Update_ExistsSignature(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc FileType_Update_FilenameTemplate(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc FileType_Update_MultipleLoad(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc FileType_ReadObject(Request_Int64) returns (Response) {}
-
-	//GenderType
-	rpc GenderType_Read(Request_Int64) returns (Response) {}
-	rpc GenderType_Create(RequestModel) returns (Response) {}
-	rpc GenderType_Update(RequestModel) returns (Response) {}
-	rpc GenderType_Save(RequestModel) returns (Response) {}
-	rpc GenderType_Delete(Request_Int64) returns (Response) {}
-	rpc GenderType_Restore(Request_Int64) returns (Response) {}
-	rpc GenderType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc GenderType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc GenderType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc GenderType_ReadObject(Request_Int64) returns (Response) {}
-
-	//Hashtag
-	rpc Hashtag_Read(Request_Int64) returns (Response) {}
-	rpc Hashtag_Create(RequestModel) returns (Response) {}
-	rpc Hashtag_Update(RequestModel) returns (Response) {}
-	rpc Hashtag_Save(RequestModel) returns (Response) {}
-	rpc Hashtag_Delete(Request_Int64) returns (Response) {}
-	rpc Hashtag_Restore(Request_Int64) returns (Response) {}
-	rpc Hashtag_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Hashtag_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Hashtag_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Hashtag_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Hashtag_ReadAll(Request_Empty) returns (ResponseMass) {}
-	rpc Hashtag_ReadObject(Request_Int64) returns (Response) {}
-
-	//Individual
-	rpc Individual_Read(Request_Int64) returns (Response) {}
-	rpc Individual_Create(RequestModel) returns (Response) {}
-	rpc Individual_Update(RequestModel) returns (Response) {}
-	rpc Individual_Save(RequestModel) returns (Response) {}
-	rpc Individual_FindByExtID(RequestExtID) returns (Response) {}
-	rpc Individual_Delete(Request_Int64) returns (Response) {}
-	rpc Individual_Restore(Request_Int64) returns (Response) {}
-	rpc Individual_Update_BirthDate(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Individual_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Individual_Update_DeathDate(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Individual_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Individual_Update_Email(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Individual_Update_GenderID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Individual_Update_INN(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Individual_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Individual_Update_ParentName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Individual_Update_Phone(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Individual_Update_SecondName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Individual_Update_Snils(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Individual_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Individual_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Individual_ReadObject(Request_Int64) returns (Response) {}
-
-	//InnerNotifyMessage
-	rpc InnerNotifyMessage_Read(Request_Int64) returns (Response) {}
-	rpc InnerNotifyMessage_Create(RequestModel) returns (Response) {}
-	rpc InnerNotifyMessage_Update(RequestModel) returns (Response) {}
-	rpc InnerNotifyMessage_Save(RequestModel) returns (Response) {}
-	rpc InnerNotifyMessage_Delete(Request_Int64) returns (Response) {}
-	rpc InnerNotifyMessage_Restore(Request_Int64) returns (Response) {}
-	rpc InnerNotifyMessage_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc InnerNotifyMessage_Update_Body(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc InnerNotifyMessage_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc InnerNotifyMessage_Update_MessageType(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc InnerNotifyMessage_Update_RecipientEmail(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc InnerNotifyMessage_Update_SendResult(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc InnerNotifyMessage_Update_SenderEmail(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc InnerNotifyMessage_Update_Subject(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc InnerNotifyMessage_Update_Title(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc InnerNotifyMessage_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc InnerNotifyMessage_ReadObject(Request_Int64) returns (Response) {}
-
-	//InvoiceDebtTypeStat
-	rpc InvoiceDebtTypeStat_Read(Request_Int64) returns (Response) {}
-	rpc InvoiceDebtTypeStat_Create(RequestModel) returns (Response) {}
-	rpc InvoiceDebtTypeStat_Update(RequestModel) returns (Response) {}
-	rpc InvoiceDebtTypeStat_Save(RequestModel) returns (Response) {}
-	rpc InvoiceDebtTypeStat_Delete(Request_Int64) returns (Response) {}
-	rpc InvoiceDebtTypeStat_Restore(Request_Int64) returns (Response) {}
-	rpc InvoiceDebtTypeStat_Update_DebtTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc InvoiceDebtTypeStat_Update_InvoiceID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc InvoiceDebtTypeStat_Update_StateAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc InvoiceDebtTypeStat_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc InvoiceDebtTypeStat_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc InvoiceDebtTypeStat_ReadObject(Request_Int64) returns (Response) {}
-
-	//Lawsuit
-	rpc Lawsuit_Read(Request_Int64) returns (Response) {}
-	rpc Lawsuit_Create(RequestModel) returns (Response) {}
-	rpc Lawsuit_Update(RequestModel) returns (Response) {}
-	rpc Lawsuit_Save(RequestModel) returns (Response) {}
-	rpc Lawsuit_Delete(Request_Int64) returns (Response) {}
-	rpc Lawsuit_Restore(Request_Int64) returns (Response) {}
-	rpc Lawsuit_FindByExtID(RequestExtID) returns (Response) {}
-	rpc Lawsuit_FindBy_Number(RequestString) returns (Response) {}
-	rpc Lawsuit_FindBy_NumberClaim(RequestString) returns (Response) {}
-	rpc Lawsuit_Update_BranchID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_Chance(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_ClaimAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_ClaimPeriodStr(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_ClaimTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_ClosedAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_ControlledAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_CourtID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_CuratorClaimID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_CuratorContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_CuratorLegalID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_CuratorPaymentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_CuratorTechAuditID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_DateFrom(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_DateTo(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_DebtSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_DebtSumAllTypes(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_ErrorText(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_InvoiceSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_IsClosed(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_MainSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyClaimAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyClaimChannel(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyClaimCode(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyClaimDone(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyClaimMailingCode(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyPretrialAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyPretrialChannel(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyPretrialCode(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyPretrialDone(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyPretrialMailingCode(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_Number(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NumberClaim(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NumberTrial(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_PaySum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_Penalty(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_Penny(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_Percent317(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_Percent395(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_PretrialAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_ProcessKey(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_ProcessStartedAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_ReasonID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_RestrictSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_StageAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_StageID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_StateDuty(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_StatusAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_StatusID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_Tag(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_TypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_UnknownPayments(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_TrialAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Lawsuit_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Lawsuit_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyPostBarcode(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_Update_NotifyPostReq(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Lawsuit_ReadObject(Request_Int64) returns (Response) {}
-
-	//LawsuitComment
-	rpc LawsuitComment_Read(Request_Int64) returns (Response) {}
-	rpc LawsuitComment_Create(RequestModel) returns (Response) {}
-	rpc LawsuitComment_Update(RequestModel) returns (Response) {}
-	rpc LawsuitComment_Save(RequestModel) returns (Response) {}
-	rpc LawsuitComment_Delete(Request_Int64) returns (Response) {}
-	rpc LawsuitComment_Restore(Request_Int64) returns (Response) {}
-	rpc LawsuitComment_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LawsuitComment_Update_CommentTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitComment_Update_EmployeeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitComment_Update_LawsuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitComment_Update_Message(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitComment_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LawsuitComment_ReadObject(Request_Int64) returns (Response) {}
-	rpc LawsuitComment_FindMassBy_LawsuitID_CommentTypeID(Request_Int64_Int64) returns (ResponseMass) {}
-
-	//LawsuitsFile
-	rpc LawsuitsFile_Read(Request_Int64_Int64) returns (Response) {}
-	rpc LawsuitsFile_Create(RequestModel) returns (Response) {}
-	rpc LawsuitsFile_Update(RequestModel) returns (Response) {}
-	rpc LawsuitsFile_Save(RequestModel) returns (Response) {}
-	rpc LawsuitsFile_Delete(Request_Int64_Int64) returns (Response) {}
-	rpc LawsuitsFile_Restore(Request_Int64_Int64) returns (Response) {}
-	rpc LawsuitsFile_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LawsuitsFile_Update_FileID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitsFile_Update_LawsuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitsFile_ReadFromCache(Request_Int64_Int64) returns (Response) {}
-	rpc LawsuitsFile_ReadObject(Request_Int64_Int64) returns (Response) {}
-	rpc LawsuitsFile_FindMassBy_LawsuitID(Request_Int64) returns (ResponseMass) {}
-	rpc LawsuitsFile_FindMassObjectBy_LawsuitID(Request_Int64) returns (ResponseMass) {}
-
-	//LawsuitInvoiceCorrection
-	rpc LawsuitInvoiceCorrection_Read(Request_Int64) returns (Response) {}
-	rpc LawsuitInvoiceCorrection_Create(RequestModel) returns (Response) {}
-	rpc LawsuitInvoiceCorrection_Update(RequestModel) returns (Response) {}
-	rpc LawsuitInvoiceCorrection_Save(RequestModel) returns (Response) {}
-	rpc LawsuitInvoiceCorrection_Delete(Request_Int64) returns (Response) {}
-	rpc LawsuitInvoiceCorrection_Restore(Request_Int64) returns (Response) {}
-	rpc LawsuitInvoiceCorrection_Update_CorrectionDocumentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitInvoiceCorrection_Update_CorrectionDocumentSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitInvoiceCorrection_Update_InvoiceDocumentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitInvoiceCorrection_Update_LawsuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitInvoiceCorrection_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LawsuitInvoiceCorrection_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LawsuitInvoiceCorrection_ReadObject(Request_Int64) returns (Response) {}
-
-	//LawsuitInvoice
-	rpc LawsuitInvoice_Read(Request_Int64) returns (Response) {}
-	rpc LawsuitInvoice_Create(RequestModel) returns (Response) {}
-	rpc LawsuitInvoice_Update(RequestModel) returns (Response) {}
-	rpc LawsuitInvoice_Save(RequestModel) returns (Response) {}
-	rpc LawsuitInvoice_Delete(Request_Int64) returns (Response) {}
-	rpc LawsuitInvoice_Restore(Request_Int64) returns (Response) {}
-	rpc LawsuitInvoice_Update_ClosedAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc LawsuitInvoice_Update_ClosedSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitInvoice_Update_Count(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitInvoice_Update_DocumentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitInvoice_Update_DocumentSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitInvoice_Update_IsClosed(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc LawsuitInvoice_Update_IsCorrective(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc LawsuitInvoice_Update_LawsuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitInvoice_Update_Sum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitInvoice_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LawsuitInvoice_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LawsuitInvoice_Update_BriefcaseID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitInvoice_ReadObject(Request_Int64) returns (Response) {}
-
-	//LawsuitPaymentCorrection
-	rpc LawsuitPaymentCorrection_Read(Request_Int64) returns (Response) {}
-	rpc LawsuitPaymentCorrection_Create(RequestModel) returns (Response) {}
-	rpc LawsuitPaymentCorrection_Update(RequestModel) returns (Response) {}
-	rpc LawsuitPaymentCorrection_Save(RequestModel) returns (Response) {}
-	rpc LawsuitPaymentCorrection_Delete(Request_Int64) returns (Response) {}
-	rpc LawsuitPaymentCorrection_Restore(Request_Int64) returns (Response) {}
-	rpc LawsuitPaymentCorrection_Update_CorrectionDocumentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitPaymentCorrection_Update_CorrectionDocumentSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitPaymentCorrection_Update_LawsuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitPaymentCorrection_Update_PaymentDocumentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitPaymentCorrection_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LawsuitPaymentCorrection_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LawsuitPaymentCorrection_ReadObject(Request_Int64) returns (Response) {}
-
-	//LawsuitPayment
-	rpc LawsuitPayment_Read(Request_Int64) returns (Response) {}
-	rpc LawsuitPayment_Create(RequestModel) returns (Response) {}
-	rpc LawsuitPayment_Update(RequestModel) returns (Response) {}
-	rpc LawsuitPayment_Save(RequestModel) returns (Response) {}
-	rpc LawsuitPayment_Delete(Request_Int64) returns (Response) {}
-	rpc LawsuitPayment_Restore(Request_Int64) returns (Response) {}
-	rpc LawsuitPayment_Update_DocumentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitPayment_Update_DocumentSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitPayment_Update_InvoiceID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitPayment_Update_IsCorrective(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc LawsuitPayment_Update_LawsuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitPayment_Update_Sum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitPayment_Update_LinkedAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc LawsuitPayment_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LawsuitPayment_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LawsuitPayment_ReadObject(Request_Int64) returns (Response) {}
-
-	//LawsuitReasonType
-	rpc LawsuitReasonType_Read(Request_Int64) returns (Response) {}
-	rpc LawsuitReasonType_Create(RequestModel) returns (Response) {}
-	rpc LawsuitReasonType_Update(RequestModel) returns (Response) {}
-	rpc LawsuitReasonType_Save(RequestModel) returns (Response) {}
-	rpc LawsuitReasonType_Delete(Request_Int64) returns (Response) {}
-	rpc LawsuitReasonType_Restore(Request_Int64) returns (Response) {}
-	rpc LawsuitReasonType_Update_Code(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitReasonType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitReasonType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitReasonType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LawsuitReasonType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LawsuitReasonType_ReadObject(Request_Int64) returns (Response) {}
-
-	//LawsuitStageType
-	rpc LawsuitStageType_Read(Request_Int64) returns (Response) {}
-	rpc LawsuitStageType_Create(RequestModel) returns (Response) {}
-	rpc LawsuitStageType_Update(RequestModel) returns (Response) {}
-	rpc LawsuitStageType_Save(RequestModel) returns (Response) {}
-	rpc LawsuitStageType_Delete(Request_Int64) returns (Response) {}
-	rpc LawsuitStageType_Restore(Request_Int64) returns (Response) {}
-	rpc LawsuitStageType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc LawsuitStageType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitStageType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitStageType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LawsuitStageType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LawsuitStageType_ReadObject(Request_Int64) returns (Response) {}
-
-	//LawsuitStatusState
-	rpc LawsuitStatusState_Read(Request_Int64) returns (Response) {}
-	rpc LawsuitStatusState_Create(RequestModel) returns (Response) {}
-	rpc LawsuitStatusState_Update(RequestModel) returns (Response) {}
-	rpc LawsuitStatusState_Save(RequestModel) returns (Response) {}
-	rpc LawsuitStatusState_Delete(Request_Int64) returns (Response) {}
-	rpc LawsuitStatusState_Restore(Request_Int64) returns (Response) {}
-	rpc LawsuitStatusState_FillFromLawsuit(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_FindDebtSum(Request_Int64_Int64) returns (ResponseFloat64) {}
-	rpc LawsuitStatusState_FindPreviousStatus(Request_Int64_Int64) returns (ResponseInt64) {} //находит последний статус претензии, кроме переданного ID
-	rpc LawsuitStatusState_Update_CommentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_InvoiceSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_LawsuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_MainSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_PaySum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_PenaltySum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_PennySum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_RestrictSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_StateDutySum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_StatusAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_StatusID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_Tag(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_TotalDebt(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LawsuitStatusState_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_ContractDebtSumAllTypes(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_Update_BillsTotalSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusState_ReadObject(Request_Int64) returns (Response) {}
-
-	//LawsuitStatusType
-	rpc LawsuitStatusType_Read(Request_Int64) returns (Response) {}
-	rpc LawsuitStatusType_Create(RequestModel) returns (Response) {}
-	rpc LawsuitStatusType_Update(RequestModel) returns (Response) {}
-	rpc LawsuitStatusType_Save(RequestModel) returns (Response) {}
-	rpc LawsuitStatusType_Delete(Request_Int64) returns (Response) {}
-	rpc LawsuitStatusType_Restore(Request_Int64) returns (Response) {}
-	rpc LawsuitStatusType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc LawsuitStatusType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitStatusType_Update_IsClosed(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc LawsuitStatusType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitStatusType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LawsuitStatusType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LawsuitStatusType_Update_ColorID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc LawsuitStatusType_Update_IsError(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc LawsuitStatusType_Update_IsTech(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc LawsuitStatusType_Update_ViewSort(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc LawsuitStatusType_ReadObject(Request_Int64) returns (Response) {}
-
-	//LawsuitType
-	rpc LawsuitType_Read(Request_Int64) returns (Response) {}
-	rpc LawsuitType_Create(RequestModel) returns (Response) {}
-	rpc LawsuitType_Update(RequestModel) returns (Response) {}
-	rpc LawsuitType_Save(RequestModel) returns (Response) {}
-	rpc LawsuitType_Delete(Request_Int64) returns (Response) {}
-	rpc LawsuitType_Restore(Request_Int64) returns (Response) {}
-	rpc LawsuitType_Update_Code(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LawsuitType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LawsuitType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LawsuitType_ReadObject(Request_Int64) returns (Response) {}
-
-	//LegalType
-	rpc LegalType_Read(Request_Int64) returns (Response) {}
-	rpc LegalType_Create(RequestModel) returns (Response) {}
-	rpc LegalType_Update(RequestModel) returns (Response) {}
-	rpc LegalType_Save(RequestModel) returns (Response) {}
-	rpc LegalType_Delete(Request_Int64) returns (Response) {}
-	rpc LegalType_Restore(Request_Int64) returns (Response) {}
-	rpc LegalType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LegalType_Update_IsIndividual(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc LegalType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LegalType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LegalType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LegalType_ReadAll(Request_Empty) returns (ResponseMass) {}
-	rpc LegalType_ReadObject(Request_Int64) returns (Response) {}
-
-	//LitigationType
-	rpc LitigationType_Read(Request_Int64) returns (Response) {}
-	rpc LitigationType_Create(RequestModel) returns (Response) {}
-	rpc LitigationType_Update(RequestModel) returns (Response) {}
-	rpc LitigationType_Save(RequestModel) returns (Response) {}
-	rpc LitigationType_Delete(Request_Int64) returns (Response) {}
-	rpc LitigationType_Restore(Request_Int64) returns (Response) {}
-	rpc LitigationType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc LitigationType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LitigationType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc LitigationType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc LitigationType_ReadAll(Request_Empty) returns (ResponseMass) {}
-	rpc LitigationType_ReadObject(Request_Int64) returns (Response) {}
-
-	//MessageAttachement
-	rpc MessageAttachement_Read(Request_Int64) returns (Response) {}
-	rpc MessageAttachement_Create(RequestModel) returns (Response) {}
-	rpc MessageAttachement_Update(RequestModel) returns (Response) {}
-	rpc MessageAttachement_Save(RequestModel) returns (Response) {}
-	rpc MessageAttachement_Delete(Request_Int64) returns (Response) {}
-	rpc MessageAttachement_Restore(Request_Int64) returns (Response) {}
-	rpc MessageAttachement_Update_FilesID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc MessageAttachement_Update_MessagesID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc MessageAttachement_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc MessageAttachement_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc MessageAttachement_ReadObject(Request_Int64) returns (Response) {}
-
-	//MessageSendStatus
-	rpc MessageSendStatus_Read(Request_Int64) returns (Response) {}
-	rpc MessageSendStatus_Create(RequestModel) returns (Response) {}
-	rpc MessageSendStatus_Update(RequestModel) returns (Response) {}
-	rpc MessageSendStatus_Save(RequestModel) returns (Response) {}
-	rpc MessageSendStatus_Delete(Request_Int64) returns (Response) {}
-	rpc MessageSendStatus_Restore(Request_Int64) returns (Response) {}
-	rpc MessageSendStatus_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc MessageSendStatus_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc MessageSendStatus_Update_FormalName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc MessageSendStatus_Update_IsDelivered(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc MessageSendStatus_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc MessageSendStatus_Update_NotifierID(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc MessageSendStatus_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc MessageSendStatus_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc MessageSendStatus_ReadObject(Request_Int64) returns (Response) {}
-
-	//MessageType
-	rpc MessageType_Read(Request_Int64) returns (Response) {}
-	rpc MessageType_Create(RequestModel) returns (Response) {}
-	rpc MessageType_Update(RequestModel) returns (Response) {}
-	rpc MessageType_Save(RequestModel) returns (Response) {}
-	rpc MessageType_Delete(Request_Int64) returns (Response) {}
-	rpc MessageType_Restore(Request_Int64) returns (Response) {}
-	rpc MessageType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc MessageType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc MessageType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc MessageType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc MessageType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc MessageType_ReadObject(Request_Int64) returns (Response) {}
-
-	//Message
-	rpc Message_Read(Request_Int64) returns (Response) {}
-	rpc Message_Create(RequestModel) returns (Response) {}
-	rpc Message_Update(RequestModel) returns (Response) {}
-	rpc Message_Save(RequestModel) returns (Response) {}
-	rpc Message_Delete(Request_Int64) returns (Response) {}
-	rpc Message_Restore(Request_Int64) returns (Response) {}
-	rpc Message_FindBy_LawsuitID_MessageTypeID(Request_Int64_Int64) returns (Response) {}
-	rpc Message_Update_ChannelTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Message_Update_ContactFrom(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Message_Update_ContactTo(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Message_Update_DirectionTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Message_Update_EmployeeIdFrom(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Message_Update_EmployeeIdTo(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Message_Update_ExtCode(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Message_Update_LawsuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Message_Update_MailingCode(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Message_Update_MessageFileID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Message_Update_MessageTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Message_Update_ReceiveResult(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Message_Update_ReceiveStatusID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Message_Update_ReceivedAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Message_Update_SendResult(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Message_Update_SendStatusID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Message_Update_SentAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Message_Update_Topic(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Message_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Message_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Message_ReadObject(Request_Int64) returns (Response) {}
-
-	//NotificationType
-	rpc NotificationType_Read(Request_Int64) returns (Response) {}
-	rpc NotificationType_Create(RequestModel) returns (Response) {}
-	rpc NotificationType_Update(RequestModel) returns (Response) {}
-	rpc NotificationType_Save(RequestModel) returns (Response) {}
-	rpc NotificationType_Delete(Request_Int64) returns (Response) {}
-	rpc NotificationType_Restore(Request_Int64) returns (Response) {}
-	rpc NotificationType_Update_BeforeTimeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc NotificationType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc NotificationType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc NotificationType_Update_InTime(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc NotificationType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc NotificationType_Update_Value(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc NotificationType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc NotificationType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc NotificationType_ReadObject(Request_Int64) returns (Response) {}
-
-	//Organization
-	rpc Organization_Read(Request_Int64) returns (Response) {}
-	rpc Organization_Create(RequestModel) returns (Response) {}
-	rpc Organization_Update(RequestModel) returns (Response) {}
-	rpc Organization_Save(RequestModel) returns (Response) {}
-	rpc Organization_Delete(Request_Int64) returns (Response) {}
-	rpc Organization_Restore(Request_Int64) returns (Response) {}
-	rpc Organization_FindByInnKpp(RequestInnKpp) returns (Response) {}
-	rpc Organization_FindBy_InnKppLegaltype(Request_String_String_Int64) returns (Response) {}
-	rpc Organization_FindByExtId(RequestExtID) returns (Response) {}
-	rpc Organization_FindByExtID(RequestExtID) returns (Response) {}
-	rpc Organization_Update_BankruptAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Organization_Update_BookkeeperName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_CategoryID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Organization_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Organization_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_Email(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_FullName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_INN(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_IsActive(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Organization_Update_IsBankrupt(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Organization_Update_IsLiquidated(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc Organization_Update_KPP(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_LegalAddress(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_LegalEmail(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_LegalTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Organization_Update_LiquidateAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Organization_Update_ManagerName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_NSIFlat(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_NSIFlatID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Organization_Update_NSIID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Organization_Update_OGRN(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_OKATO(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_OKPO(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_Phone(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_PostAddress(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_PostAddressID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Organization_Update_RegistrationAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc Organization_Update_StateCode(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_Update_StateID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc Organization_Update_WWW(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc Organization_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc Organization_Update_LegalAddressStack(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc Organization_ReadObject(Request_Int64) returns (Response) {}
-
-	//OrganizationsFile
-	rpc OrganizationsFile_Read(Request_Int64_Int64) returns (Response) {}
-	rpc OrganizationsFile_Create(RequestModel) returns (Response) {}
-	rpc OrganizationsFile_Update(RequestModel) returns (Response) {}
-	rpc OrganizationsFile_Save(RequestModel) returns (Response) {}
-	rpc OrganizationsFile_Delete(Request_Int64_Int64) returns (Response) {}
-	rpc OrganizationsFile_Restore(Request_Int64_Int64) returns (Response) {}
-	rpc OrganizationsFile_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc OrganizationsFile_Update_FileID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc OrganizationsFile_Update_OrganizationID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc OrganizationsFile_ReadFromCache(Request_Int64_Int64) returns (Response) {}
-	rpc OrganizationsFile_ReadObject(Request_Int64_Int64) returns (Response) {}
-
-	//OrganizationCasebook
-	rpc OrganizationCasebook_Read(Request_Int64) returns (Response) {}
-	rpc OrganizationCasebook_Create(RequestModel) returns (Response) {}
-	rpc OrganizationCasebook_Update(RequestModel) returns (Response) {}
-	rpc OrganizationCasebook_Save(RequestModel) returns (Response) {}
-	rpc OrganizationCasebook_Delete(Request_Int64) returns (Response) {}
-	rpc OrganizationCasebook_Restore(Request_Int64) returns (Response) {}
-	rpc OrganizationCasebook_FindByInnKpp(RequestInnKpp) returns (Response) {}
-	rpc OrganizationCasebook_FindByInn(RequestString) returns (Response) {}
-	rpc OrganizationCasebook_FindByOrganizationId(Request_Int64) returns (Response) {}
-	rpc OrganizationCasebook_Update_INN(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc OrganizationCasebook_Update_JSONFileID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc OrganizationCasebook_Update_JSONUpdatedAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc OrganizationCasebook_Update_OrganizationID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc OrganizationCasebook_Update_PDFFileID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc OrganizationCasebook_Update_PDFUpdatedAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc OrganizationCasebook_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc OrganizationCasebook_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc OrganizationCasebook_ReadObject(Request_Int64) returns (Response) {}
-
-	//OrganizationCategoryType
-	rpc OrganizationCategoryType_Read(Request_Int64) returns (Response) {}
-	rpc OrganizationCategoryType_Create(RequestModel) returns (Response) {}
-	rpc OrganizationCategoryType_Update(RequestModel) returns (Response) {}
-	rpc OrganizationCategoryType_Save(RequestModel) returns (Response) {}
-	rpc OrganizationCategoryType_FindByExtID(RequestExtID) returns (Response) {}
-	rpc OrganizationCategoryType_Delete(Request_Int64) returns (Response) {}
-	rpc OrganizationCategoryType_Restore(Request_Int64) returns (Response) {}
-	rpc OrganizationCategoryType_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc OrganizationCategoryType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc OrganizationCategoryType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc OrganizationCategoryType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc OrganizationCategoryType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc OrganizationCategoryType_ReadObject(Request_Int64) returns (Response) {}
-
-	//OrganizationStateType
-	rpc OrganizationStateType_Read(Request_Int64) returns (Response) {}
-	rpc OrganizationStateType_Create(RequestModel) returns (Response) {}
-	rpc OrganizationStateType_Update(RequestModel) returns (Response) {}
-	rpc OrganizationStateType_Save(RequestModel) returns (Response) {}
-	rpc OrganizationStateType_Delete(Request_Int64) returns (Response) {}
-	rpc OrganizationStateType_Restore(Request_Int64) returns (Response) {}
-	rpc OrganizationStateType_Update_ActionIndividual(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc OrganizationStateType_Update_ActionOrganization(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc OrganizationStateType_Update_Code(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc OrganizationStateType_Update_Color(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc OrganizationStateType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc OrganizationStateType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc OrganizationStateType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc OrganizationStateType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc OrganizationStateType_Update_IsBankrupt(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc OrganizationStateType_Update_IsLiquidated(Request_Int64_Bool) returns (ResponseEmpty) {}
-	rpc OrganizationStateType_ReadObject(Request_Int64) returns (Response) {}
-
-	//PaymentDay
-	rpc PaymentDay_Read(Request_Int64) returns (Response) {}
-	rpc PaymentDay_Create(RequestModel) returns (Response) {}
-	rpc PaymentDay_Update(RequestModel) returns (Response) {}
-	rpc PaymentDay_Save(RequestModel) returns (Response) {}
-	rpc PaymentDay_FindByExtID(RequestExtID) returns (Response) {}
-	rpc PaymentDay_Delete(Request_Int64) returns (Response) {}
-	rpc PaymentDay_Restore(Request_Int64) returns (Response) {}
-	rpc PaymentDay_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc PaymentDay_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc PaymentDay_Update_DateFrom(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc PaymentDay_Update_DateTo(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc PaymentDay_Update_Day(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PaymentDay_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc PaymentDay_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc PaymentDay_ReadObject(Request_Int64) returns (Response) {}
-
-	//PaymentSchedule
-	rpc PaymentSchedule_Read(Request_Int64) returns (Response) {}
-	rpc PaymentSchedule_Create(RequestModel) returns (Response) {}
-	rpc PaymentSchedule_Update(RequestModel) returns (Response) {}
-	rpc PaymentSchedule_Save(RequestModel) returns (Response) {}
-	rpc PaymentSchedule_FindByExtID(RequestExtID) returns (Response) {}
-	rpc PaymentSchedule_Delete(Request_Int64) returns (Response) {}
-	rpc PaymentSchedule_Restore(Request_Int64) returns (Response) {}
-	rpc PaymentSchedule_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc PaymentSchedule_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc PaymentSchedule_Update_DateFrom(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc PaymentSchedule_Update_DateTo(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc PaymentSchedule_Update_Day(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PaymentSchedule_Update_Percent(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PaymentSchedule_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc PaymentSchedule_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc PaymentSchedule_ReadObject(Request_Int64) returns (Response) {}
-
-	//PenaltyCalculationItem
-	rpc PenaltyCalculationItem_Read(Request_Int64) returns (Response) {}
-	rpc PenaltyCalculationItem_Create(RequestModel) returns (Response) {}
-	rpc PenaltyCalculationItem_Update(RequestModel) returns (Response) {}
-	rpc PenaltyCalculationItem_Save(RequestModel) returns (Response) {}
-	rpc PenaltyCalculationItem_FindByExtID(RequestExtID) returns (Response) {}
-	rpc PenaltyCalculationItem_Delete(Request_Int64) returns (Response) {}
-	rpc PenaltyCalculationItem_Restore(Request_Int64) returns (Response) {}
-	rpc PenaltyCalculationItem_Update_BillingMonth(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_ContractID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_DateFrom(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_DateTo(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_DaysCount(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_DebtSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_DebtorCategoryID(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_Dividend(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_Divider(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_DocumentInvoiceID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_Flags(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_PaymentDueAt(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_PenaltyCalculationItemsTypeID(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_Percent(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_Sum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc PenaltyCalculationItem_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_Update_DebtCollectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItem_ReadObject(Request_Int64) returns (Response) {}
-
-	//PenaltyCalculationItemsType
-	rpc PenaltyCalculationItemsType_Read(Request_Int64) returns (Response) {}
-	rpc PenaltyCalculationItemsType_Create(RequestModel) returns (Response) {}
-	rpc PenaltyCalculationItemsType_Update(RequestModel) returns (Response) {}
-	rpc PenaltyCalculationItemsType_Save(RequestModel) returns (Response) {}
-	rpc PenaltyCalculationItemsType_Delete(Request_Int64) returns (Response) {}
-	rpc PenaltyCalculationItemsType_Restore(Request_Int64) returns (Response) {}
-	rpc PenaltyCalculationItemsType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItemsType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItemsType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItemsType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc PenaltyCalculationItemsType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc PenaltyCalculationItemsType_ReadObject(Request_Int64) returns (Response) {}
-
-	//PriorityType
-	rpc PriorityType_Read(Request_Int64) returns (Response) {}
-	rpc PriorityType_Create(RequestModel) returns (Response) {}
-	rpc PriorityType_Update(RequestModel) returns (Response) {}
-	rpc PriorityType_Save(RequestModel) returns (Response) {}
-	rpc PriorityType_Delete(Request_Int64) returns (Response) {}
-	rpc PriorityType_Restore(Request_Int64) returns (Response) {}
-	rpc PriorityType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PriorityType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc PriorityType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc PriorityType_Update_Value(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc PriorityType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc PriorityType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc PriorityType_ReadObject(Request_Int64) returns (Response) {}
-
-	//RepeatType
-	rpc RepeatType_Read(Request_Int64) returns (Response) {}
-	rpc RepeatType_Create(RequestModel) returns (Response) {}
-	rpc RepeatType_Update(RequestModel) returns (Response) {}
-	rpc RepeatType_Save(RequestModel) returns (Response) {}
-	rpc RepeatType_Delete(Request_Int64) returns (Response) {}
-	rpc RepeatType_Restore(Request_Int64) returns (Response) {}
-	rpc RepeatType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc RepeatType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc RepeatType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc RepeatType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc RepeatType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc RepeatType_ReadObject(Request_Int64) returns (Response) {}
-
-	//ServiceProvider
-	rpc ServiceProvider_Read(Request_Int64) returns (Response) {}
-	rpc ServiceProvider_Create(RequestModel) returns (Response) {}
-	rpc ServiceProvider_Update(RequestModel) returns (Response) {}
-	rpc ServiceProvider_Save(RequestModel) returns (Response) {}
-	rpc ServiceProvider_FindByExtID(RequestExtID) returns (Response) {}
-	rpc ServiceProvider_Delete(Request_Int64) returns (Response) {}
-	rpc ServiceProvider_Restore(Request_Int64) returns (Response) {}
-	rpc ServiceProvider_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ServiceProvider_Update_DateFrom(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc ServiceProvider_Update_DateTo(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc ServiceProvider_Update_OrganizationID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ServiceProvider_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc ServiceProvider_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ServiceProvider_ReadObject(Request_Int64) returns (Response) {}
-
-	//ServiceType
-	rpc ServiceType_Read(Request_Int64) returns (Response) {}
-	rpc ServiceType_Create(RequestModel) returns (Response) {}
-	rpc ServiceType_Update(RequestModel) returns (Response) {}
-	rpc ServiceType_Save(RequestModel) returns (Response) {}
-	rpc ServiceType_FindByExtID(RequestExtID) returns (Response) {}
-	rpc ServiceType_Delete(Request_Int64) returns (Response) {}
-	rpc ServiceType_Restore(Request_Int64) returns (Response) {}
-	rpc ServiceType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc ServiceType_Update_ConnectionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ServiceType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ServiceType_Update_FullName(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ServiceType_Update_Measure(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ServiceType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc ServiceType_Update_ServiceProviderID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc ServiceType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc ServiceType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc ServiceType_ReadObject(Request_Int64) returns (Response) {}
-
-	//StateDuty
-	rpc StateDuty_Read(Request_Int64) returns (Response) {}
-	rpc StateDuty_Create(RequestModel) returns (Response) {}
-	rpc StateDuty_Update(RequestModel) returns (Response) {}
-	rpc StateDuty_Save(RequestModel) returns (Response) {}
-	rpc StateDuty_Delete(Request_Int64) returns (Response) {}
-	rpc StateDuty_Restore(Request_Int64) returns (Response) {}
-	rpc StateDuty_Update_CourtID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDuty_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc StateDuty_Update_LawsuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDuty_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc StateDuty_Update_RequestDate(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc StateDuty_Update_RequestNumber(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc StateDuty_Update_Sum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc StateDuty_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc StateDuty_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc StateDuty_ReadObject(Request_Int64) returns (Response) {}
-
-	//StateDutyConsumption
-	rpc StateDutyConsumption_Read(Request_Int64) returns (Response) {}
-	rpc StateDutyConsumption_Create(RequestModel) returns (Response) {}
-	rpc StateDutyConsumption_Update(RequestModel) returns (Response) {}
-	rpc StateDutyConsumption_Save(RequestModel) returns (Response) {}
-	rpc StateDutyConsumption_Delete(Request_Int64) returns (Response) {}
-	rpc StateDutyConsumption_Restore(Request_Int64) returns (Response) {}
-	rpc StateDutyConsumption_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc StateDutyConsumption_Update_CourtSuitID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyConsumption_Update_StateDutyPaymentsPaymentID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyConsumption_Update_StateDutyPaymentsReturnID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyConsumption_Update_StateDutyRegistryID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyConsumption_Update_StateDutySum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc StateDutyConsumption_Update_StatusID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyConsumption_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc StateDutyConsumption_ReadObject(Request_Int64) returns (Response) {}
-
-	//StateDutyConsumptionsFile
-	rpc StateDutyConsumptionsFile_Read(Request_Int64_Int64) returns (Response) {}
-	rpc StateDutyConsumptionsFile_Create(RequestModel) returns (Response) {}
-	rpc StateDutyConsumptionsFile_Update(RequestModel) returns (Response) {}
-	rpc StateDutyConsumptionsFile_Save(RequestModel) returns (Response) {}
-	rpc StateDutyConsumptionsFile_Delete(Request_Int64_Int64) returns (Response) {}
-	rpc StateDutyConsumptionsFile_Restore(Request_Int64_Int64) returns (Response) {}
-	rpc StateDutyConsumptionsFile_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc StateDutyConsumptionsFile_Update_ConsumptionID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyConsumptionsFile_Update_FileID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyConsumptionsFile_ReadFromCache(Request_Int64_Int64) returns (Response) {}
-	rpc StateDutyConsumptionsFile_ReadObject(Request_Int64_Int64) returns (Response) {}
-
-	//StateDutyPaymentType
-	rpc StateDutyPaymentType_Read(Request_Int64) returns (Response) {}
-	rpc StateDutyPaymentType_Create(RequestModel) returns (Response) {}
-	rpc StateDutyPaymentType_Update(RequestModel) returns (Response) {}
-	rpc StateDutyPaymentType_Save(RequestModel) returns (Response) {}
-	rpc StateDutyPaymentType_Delete(Request_Int64) returns (Response) {}
-	rpc StateDutyPaymentType_Restore(Request_Int64) returns (Response) {}
-	rpc StateDutyPaymentType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc StateDutyPaymentType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc StateDutyPaymentType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc StateDutyPaymentType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc StateDutyPaymentType_ReadObject(Request_Int64) returns (Response) {}
-
-	//StateDutyPayment
-	rpc StateDutyPayment_Read(Request_Int64) returns (Response) {}
-	rpc StateDutyPayment_Create(RequestModel) returns (Response) {}
-	rpc StateDutyPayment_Update(RequestModel) returns (Response) {}
-	rpc StateDutyPayment_Save(RequestModel) returns (Response) {}
-	rpc StateDutyPayment_Delete(Request_Int64) returns (Response) {}
-	rpc StateDutyPayment_Restore(Request_Int64) returns (Response) {}
-	rpc StateDutyPayment_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc StateDutyPayment_Update_BranchID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyPayment_Update_CourtID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyPayment_Update_DocumentSum(Request_Int64_Float64) returns (ResponseEmpty) {}
-	rpc StateDutyPayment_Update_FileID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyPayment_Update_Number(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc StateDutyPayment_Update_PaymentDate(Request_Int64_Date) returns (ResponseEmpty) {}
-	rpc StateDutyPayment_Update_StateDutyPaymentTypeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyPayment_Update_TaxOfficeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyPayment_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc StateDutyPayment_ReadObject(Request_Int64) returns (Response) {}
-
-	//StateDutyRegistry
-	rpc StateDutyRegistry_Read(Request_Int64) returns (Response) {}
-	rpc StateDutyRegistry_Create(RequestModel) returns (Response) {}
-	rpc StateDutyRegistry_Update(RequestModel) returns (Response) {}
-	rpc StateDutyRegistry_Save(RequestModel) returns (Response) {}
-	rpc StateDutyRegistry_Delete(Request_Int64) returns (Response) {}
-	rpc StateDutyRegistry_Restore(Request_Int64) returns (Response) {}
-	rpc StateDutyRegistry_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc StateDutyRegistry_Update_BranchID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc StateDutyRegistry_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc StateDutyRegistry_ReadObject(Request_Int64) returns (Response) {}
-
-	//StateDutyStatus
-	rpc StateDutyStatus_Read(Request_Int64) returns (Response) {}
-	rpc StateDutyStatus_Create(RequestModel) returns (Response) {}
-	rpc StateDutyStatus_Update(RequestModel) returns (Response) {}
-	rpc StateDutyStatus_Save(RequestModel) returns (Response) {}
-	rpc StateDutyStatus_Delete(Request_Int64) returns (Response) {}
-	rpc StateDutyStatus_Restore(Request_Int64) returns (Response) {}
-	rpc StateDutyStatus_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc StateDutyStatus_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc StateDutyStatus_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc StateDutyStatus_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc StateDutyStatus_ReadObject(Request_Int64) returns (Response) {}
-
-	//TableName
-	rpc TableName_Read(Request_Int64) returns (Response) {}
-	rpc TableName_Create(RequestModel) returns (Response) {}
-	rpc TableName_Update(RequestModel) returns (Response) {}
-	rpc TableName_Save(RequestModel) returns (Response) {}
-	rpc TableName_Delete(Request_Int64) returns (Response) {}
-	rpc TableName_Restore(Request_Int64) returns (Response) {}
-	rpc TableName_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc TableName_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc TableName_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc TableName_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc TableName_ReadObject(Request_Int64) returns (Response) {}
-
-	//TaxOffice
-	rpc TaxOffice_Read(Request_Int64) returns (Response) {}
-	rpc TaxOffice_Create(RequestModel) returns (Response) {}
-	rpc TaxOffice_Update(RequestModel) returns (Response) {}
-	rpc TaxOffice_Save(RequestModel) returns (Response) {}
-	rpc TaxOffice_Delete(Request_Int64) returns (Response) {}
-	rpc TaxOffice_Restore(Request_Int64) returns (Response) {}
-	rpc TaxOffice_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc TaxOffice_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc TaxOffice_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc TaxOffice_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc TaxOffice_ReadObject(Request_Int64) returns (Response) {}
-
-	//UserRole
-	rpc UserRole_Read(Request_Int64) returns (Response) {}
-	rpc UserRole_Create(RequestModel) returns (Response) {}
-	rpc UserRole_Update(RequestModel) returns (Response) {}
-	rpc UserRole_Save(RequestModel) returns (Response) {}
-	rpc UserRole_Delete(Request_Int64) returns (Response) {}
-	rpc UserRole_Restore(Request_Int64) returns (Response) {}
-	rpc UserRole_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc UserRole_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc UserRole_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc UserRole_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc UserRole_ReadAll(Request_Empty) returns (ResponseMass) {}
-	rpc UserRole_ReadObject(Request_Int64) returns (Response) {}
-
-	//UserRolesMembership
-	rpc UserRolesMembership_Read(Request_Int64_Int64) returns (Response) {}
-	rpc UserRolesMembership_Create(RequestModel) returns (Response) {}
-	rpc UserRolesMembership_Update(RequestModel) returns (Response) {}
-	rpc UserRolesMembership_Save(RequestModel) returns (Response) {}
-	rpc UserRolesMembership_Delete(Request_Int64_Int64) returns (Response) {}
-	rpc UserRolesMembership_Restore(Request_Int64_Int64) returns (Response) {}
-	rpc UserRolesMembership_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc UserRolesMembership_Update_EmployeeID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc UserRolesMembership_Update_UserRoleID(Request_Int64_Int64) returns (ResponseEmpty) {}
-	rpc UserRolesMembership_ReadFromCache(Request_Int64_Int64) returns (Response) {}
-	rpc UserRolesMembership_FindMassBy_EmployeeID(Request_Int64) returns (ResponseMass) {}
-	rpc UserRolesMembership_FindMassBy_UserRoleID(Request_Int64) returns (ResponseMass) {}
-	rpc UserRolesMembership_ReadObject(Request_Int64_Int64) returns (Response) {}
-
-	//WhiteListReasonType
-	rpc WhiteListReasonType_Read(Request_Int64) returns (Response) {}
-	rpc WhiteListReasonType_Create(RequestModel) returns (Response) {}
-	rpc WhiteListReasonType_Update(RequestModel) returns (Response) {}
-	rpc WhiteListReasonType_Save(RequestModel) returns (Response) {}
-	rpc WhiteListReasonType_Delete(Request_Int64) returns (Response) {}
-	rpc WhiteListReasonType_Restore(Request_Int64) returns (Response) {}
-	rpc WhiteListReasonType_Update_Code(Request_Int64_Int32) returns (ResponseEmpty) {}
-	rpc WhiteListReasonType_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc WhiteListReasonType_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
-	rpc WhiteListReasonType_ReadFromCache(Request_Int64) returns (Response) {}
-	rpc WhiteListReasonType_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc WhiteListReasonType_ReadObject(Request_Int64) returns (Response) {}
-
+}
+
+// -------------------------- Request ----------------------------------------------
+
+// RequestId - параметры запроса на сервер
+message RequestId {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID   = 2; // id записи в БД
+}
+
+// RequestString - параметры запроса на сервер
+message RequestString {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1   = 2; // строка поиска
+}
+
+// RequestString3 - параметры запроса на сервер
+message RequestString3 {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1   = 2; // строка поиска
+    string String_2   = 3; // строка поиска
+    string String_3   = 4; // строка поиска
+}
+// RequestExtID - параметры запроса на сервер
+message RequestExtID {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ExtID   = 2; // ext_id записи в БД
+    int64 Connection_id	=3; // Connection_id записи в БД
+}
+
+// RequestExtIDString - параметры запроса на сервер
+message RequestExtIDString {
+    uint32 VersionModel= 1; //версия структуры модели
+    string ExtID   = 2; // ext_id записи в БД
+    int64 Connection_id	=3; // Connection_id записи в БД
+}
+
+// RequestModel - параметры запроса на сервер
+message RequestModel {
+    uint32 VersionModel= 1; //версия структуры модели
+    string ModelString = 2; //объект-модель в формате json
+}
+
+// RequestInnKpp - параметры запроса на сервер
+message RequestInnKpp {
+    uint32 VersionModel= 1; //версия структуры модели
+    string Inn   = 2; // ИНН
+    string Kpp	=3; // КПП
+}
+
+// RequestIdId - параметры запроса на сервер
+message RequestIdId {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID1   = 2; // id записи в БД
+    int64 ID2   = 3; // id записи в БД
+}
+
+// RequestIdIdId - параметры запроса на сервер
+message RequestIdIdId {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID1   = 2; // id записи в БД
+    int64 ID2   = 3; // id записи в БД
+    int64 ID3   = 4; // id записи в БД
+}
+
+// RequestDate - параметры запроса на сервер, передаётся Дата time.Time
+message RequestDate {
+    uint32 VersionModel= 1; //версия структуры модели
+    google.protobuf.Timestamp Date   = 2; // строка поиска
+}
+
+// RequestFloat64 - параметры запроса на сервер, передаётся float64
+message RequestFloat64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    double Float64   = 2; // строка поиска
+}
+
+// RequestFloat32 - параметры запроса на сервер, передаётся float32
+message RequestFloat32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    float Float32   = 2; // строка поиска
+}
+
+// RequestInt32 - параметры запроса на сервер, передаётся int32
+message RequestInt32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32   = 2; // строка поиска
+}
+
+// RequestBool - параметры запроса на сервер, передаётся bool
+message RequestBool {
+    uint32 VersionModel= 1; //версия структуры модели
+    bool Bool   = 2; // строка поиска
+}
+
+//----------------------------- Request_ID -------------------------------------------
+
+// RequestId_Date - параметры запроса на сервер, передаётся ID + Дата time.Time
+message RequestId_Date {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    google.protobuf.Timestamp Date = 3; // значение поиска
+}
+
+// RequestId_Float64 - параметры запроса на сервер, передаётся ID + float64
+message RequestId_Float64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    double Float64 = 3; // значение поиска
+}
+
+// RequestId_Float32 - параметры запроса на сервер, передаётся ID + float32
+message RequestId_Float32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    float Float32 = 3; // значение поиска
+}
+
+// RequestId_Int32 - параметры запроса на сервер, передаётся ID + int32
+message RequestId_Int32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    int32 Int32 = 3; // значение поиска
+}
+
+// RequestId_Int64 - параметры запроса на сервер, передаётся ID + int64
+message RequestId_Int64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    int64 Int64 = 3; // значение поиска
+}
+
+// RequestId_Bool - параметры запроса на сервер, передаётся ID + bool
+message RequestId_Bool {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    bool Bool = 3; // значение поиска
+}
+
+// RequestId_String - параметры запроса на сервер, передаётся ID + string
+message RequestId_String {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    string String_1 = 3; // строка поиска
+}
+
+//----------------------------- Request_Int32 -------------------------------------------
+
+// RequestInt32_Date - параметры запроса на сервер, передаётся int32 + Дата time.Time
+message RequestInt32_Date {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    google.protobuf.Timestamp Date = 3; // значение поиска
+}
+
+// RequestInt32_Float64 - параметры запроса на сервер, передаётся int32 + float64
+message RequestInt32_Float64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    double Float64 = 3; // значение поиска
+}
+
+// RequestInt32_Float32 - параметры запроса на сервер, передаётся int32 + float32
+message RequestInt32_Float32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    float Float32 = 3; // значение поиска
+}
+
+// RequestInt32_Int32 - параметры запроса на сервер, передаётся int32 + int32
+message RequestInt32_Int32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    int32 Int32_2 = 3; // значение поиска
+}
+
+// RequestInt32_Int64 - параметры запроса на сервер, передаётся int32 + int64
+message RequestInt32_Int64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    int64 Int64 = 3; // значение поиска
+}
+
+// RequestInt32_Bool - параметры запроса на сервер, передаётся int32 + bool
+message RequestInt32_Bool {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    bool Bool = 3; // значение поиска
+}
+
+// RequestInt32_String - параметры запроса на сервер, передаётся int32 + string
+message RequestInt32_String {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    string String_1 = 3; // строка поиска
+}
+
+//----------------------------- Request_String -------------------------------------------
+
+// RequestString_Date - параметры запроса на сервер, передаётся string + Дата time.Time
+message RequestString_Date {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// ID записи в БД
+    google.protobuf.Timestamp Date = 3; // значение поиска
+}
+
+// RequestString_Float64 - параметры запроса на сервер, передаётся string + float64
+message RequestString_Float64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    double Float64 = 3; // значение поиска
+}
+
+// RequestString_Float32 - параметры запроса на сервер, передаётся string + float32
+message RequestString_Float32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    float Float32 = 3; // значение поиска
+}
+
+// RequestString_Int32 - параметры запроса на сервер, передаётся string + int32
+message RequestString_Int32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    int32 Int32 = 3; // значение поиска
+}
+
+// RequestString_Int64 - параметры запроса на сервер, передаётся string + int64
+message RequestString_Int64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    int64 Int64 = 3; // значение поиска
+}
+
+// RequestString_Bool - параметры запроса на сервер, передаётся string + bool
+message RequestString_Bool {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    bool Bool = 3; // значение поиска
+}
+
+// RequestString_String - параметры запроса на сервер, передаётся string + string
+message RequestString_String {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    string String_2 = 3; // строка поиска
+}
+
+//-------------------------------------------------------------------------------------
+
+// Request_Model_MassString - модель и массив строк
+message Request_Model_MassString {
+    uint32 VersionModel= 1; //версия структуры модели
+    string ModelString = 2; //объект-модель в формате json
+    repeated string MassNames	= 3; //массив строк
 }
 
 // -------------------------- Response ----------------------------------------------
@@ -2074,241 +469,35 @@ message ResponseMass {
     repeated string MassModelString 	= 1; //массив объект-модель в формате json
 }
 
-// -------------------------- Request ----------------------------------------------
-
-// RequestId - параметры запроса на сервер
-message RequestId {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 ID   = 2; // id записи в БД
-}
-
-// RequestIdId - параметры запроса на сервер
-message RequestIdId {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 ID1   = 2; // id записи в БД
-    int64 ID2   = 3; // id записи в БД
-}
-
-// RequestIdIdId - параметры запроса на сервер
-message RequestIdIdId {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 ID1   = 2; // id записи в БД
-    int64 ID2   = 3; // id записи в БД
-    int64 ID3   = 4; // id записи в БД
-}
-
-// RequestString - параметры запроса на сервер
-message RequestString {
-    uint32 VersionModel= 1; //версия структуры модели
-    string StringFind   = 2; // строка поиска
-}
-
-// RequestString3 - параметры запроса на сервер
-message RequestString3 {
-    uint32 VersionModel  = 1; //версия структуры модели
-    string StringFind1   = 2; // строка поиска
-    string StringFind2   = 3; // строка поиска
-    string StringFind3   = 4; // строка поиска
-}
-
-// RequestExtID - параметры запроса на сервер
-message RequestExtID {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 ExtID   = 2; // ext_id записи в БД
-    int64 Connection_id	=3; // Connection_id записи в БД
-}
-
-// RequestExtIDString - параметры запроса на сервер
-message RequestExtIDString {
-    uint32 VersionModel= 1; //версия структуры модели
-    string ExtID   = 2; // ext_id записи в БД
-    int64 Connection_id	=3; // Connection_id записи в БД
-}
-
-// RequestModel - параметры запроса на сервер
-message RequestModel {
-    uint32 VersionModel= 1; //версия структуры модели
-    string ModelString = 2; //объект-модель в формате json
-}
-
-// RequestInnKpp - параметры запроса на сервер
-message RequestInnKpp {
-    uint32 VersionModel= 1; //версия структуры модели
-    string Inn   = 2; // ИНН
-    string Kpp	=3; // КПП
-}
-
-// Request_IdId - параметры запроса на сервер
-message Request_IdId {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 ID1   = 2; // id записи в БД
-    int64 ID2   = 3; // id записи в БД
-}
-
-// Request_IdIdId - параметры запроса на сервер
-message Request_IdIdId {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 ID1   = 2; // id записи в БД
-    int64 ID2   = 3; // id записи в БД
-    int64 ID3   = 4; // id записи в БД
-}
-
-// RequestDate - параметры запроса на сервер, передаётся Дата time.Time
-message RequestDate {
-    uint32 VersionModel= 1; //версия структуры модели
-    google.protobuf.Timestamp Date   = 2; // строка поиска
-}
-
-// RequestFloat64 - параметры запроса на сервер, передаётся float64
-message RequestFloat64 {
-    uint32 VersionModel= 1; //версия структуры модели
-    double Float64_1   = 2; // строка поиска
-}
-
-// RequestFloat32 - параметры запроса на сервер, передаётся float32
-message RequestFloat32 {
-    uint32 VersionModel= 1; //версия структуры модели
-    float Float32_1   = 2; // строка поиска
-}
-
-// RequestInt32 - параметры запроса на сервер, передаётся int32
-message RequestInt32 {
-    uint32 VersionModel= 1; //версия структуры модели
-    int32 Int32_1   = 2; // строка поиска
-}
-
-// RequestBool - параметры запроса на сервер, передаётся bool
-message RequestBool {
-    uint32 VersionModel= 1; //версия структуры модели
-    bool Bool_1   = 2; // строка поиска
-}
-
-// Request_Model_MassString - модель и массив строк
-message Request_Model_MassString {
-    uint32 VersionModel= 1; //версия структуры модели
-    string ModelString = 2; //объект-модель в формате json
-    repeated string MassNames	= 3; //массив строк
-}
-
-// Request_Int64 - параметры запроса на сервер
-message Request_Int64 {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 Int64_1   = 2; // id записи в БД
-}
-
-// Request_Int64_Int32 - параметры запроса на сервер
-message Request_Int64_Int32 {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 Int64_1   = 2; // id записи в БД
-    int32 Int32_1 = 3; // значение поиска
-}
-
-// Request_Int64_Int64 - параметры запроса на сервер
-message Request_Int64_Int64 {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 Int64_1   = 2; // id записи в БД
-    int64 Int64_2 = 3; // значение поиска
-}
-
-// Request_Int64_Date - параметры запроса на сервер
-message Request_Int64_Date {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 Int64_1   = 2; // id записи в БД
-    google.protobuf.Timestamp Date_1 = 3; // значение поиска
-}
-
-// Request_Int64_String - параметры запроса на сервер
-message Request_Int64_String {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 Int64_1   = 2; // id записи в БД
-    string String_1 = 3; // значение поиска
-}
-
-// Request_Int64_Bool - параметры запроса на сервер
-message Request_Int64_Bool {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 Int64_1   = 2; // id записи в БД
-    bool Bool_1 = 3; // значение поиска
-}
-
-// Request_Int64_Int64_Int64 - параметры запроса на сервер
-message Request_Int64_Int64_Int64 {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 Int64_1   = 2; // id записи в БД
-    int64 Int64_2 = 3; // значение поиска
-    int64 Int64_3 = 4; // значение поиска
-}
-
-// Request_Int64_Float64 - параметры запроса на сервер
-message Request_Int64_Float64 {
-    uint32 VersionModel= 1; //версия структуры модели
-    int64 Int64_1   = 2; // id записи в БД
-    double Float64_1 = 3; // значение поиска
-}
-
-message Request_String_String_Int64 {
-    uint32 VersionModel  = 1; //версия структуры модели
-    string String_1= 2; // строка поиска
-    string String_2= 3; // строка поиска
-    int64 Int64_1= 4; // число поиска
-
-}
-
-// Request_Empty - пустой запрос на сервер
 message Request_Empty {
     uint32 VersionModel  = 1; //версия структуры модели
 }
 
-// Request_Int32 - параметры запроса на сервер
-message Request_Int32 {
+// Request_Int64 - параметры запроса на сервер
+message Request_Int64 {
     uint32 VersionModel = 1; //версия структуры модели
-    int32 Int32_1 = 2; //значение поиска
+    int64 Int64_1 = 2; //id записи в БД
 }
 
-// Request_Model_Int64 - параметры запроса на сервер
-message Request_Model_Int64 {
+// Request_Int64_Date - параметры запроса на сервер
+message Request_Int64_Date {
     uint32 VersionModel = 1; //версия структуры модели
-    string ModelString = 2; //объект-модель в формате json
-    int64 Int64_1 = 3; //значение поиска
+    int64 Int64_1 = 2; //id записи в БД
+    google.protobuf.Timestamp Date_1 = 3; //значение поиска
 }
 
-// Request_Model_Int64_Int64 - параметры запроса на сервер
-message Request_Model_Int64_Int64 {
+// Request_Int64_String - параметры запроса на сервер
+message Request_Int64_String {
     uint32 VersionModel = 1; //версия структуры модели
-    string ModelString = 2; //объект-модель в формате json
-    int64 Int64_1 = 3; //значение поиска
-    int64 Int64_2 = 4; //значение поиска
+    int64 Int64_1 = 2; //id записи в БД
+    string String_1 = 3; //значение поиска
 }
 
-// Request_Model_Int64_Int64_Int64 - параметры запроса на сервер
-message Request_Model_Int64_Int64_Int64 {
-    uint32 VersionModel = 1; //версия структуры модели
-    string ModelString = 2; //объект-модель в формате json
-    int64 Int64_1 = 3; //значение поиска
-    int64 Int64_2 = 4; //значение поиска
-    int64 Int64_3 = 5; //значение поиска
-}
-
-// Request_Int64_Int64_Date - параметры запроса на сервер
-message Request_Int64_Int64_Date {
+// Request_Int64_Int64 - параметры запроса на сервер
+message Request_Int64_Int64 {
     uint32 VersionModel = 1; //версия структуры модели
     int64 Int64_1 = 2; //id записи в БД
     int64 Int64_2 = 3; //id записи в БД
-    google.protobuf.Timestamp Date_1 = 4; //значение поиска
-}
-
-// Request_Int64_Int64_Bool - параметры запроса на сервер
-message Request_Int64_Int64_Bool {
-    uint32 VersionModel = 1; //версия структуры модели
-    int64 Int64_1 = 2; //id записи в БД
-    int64 Int64_2 = 3; //id записи в БД
-    bool Bool = 4; //значение поиска
-}
-
-// Request_Int64_1 - параметры запроса на сервер
-message Request_Int64_1 {
-    uint32 VersionModel = 1; //версия структуры модели
-    int64 Int64_1 = 2; //значение поиска
 }
 
 // Request_Int64_Int64_String - параметры запроса на сервер
@@ -2317,6 +506,14 @@ message Request_Int64_Int64_String {
     int64 Int64_1 = 2; //id записи в БД
     int64 Int64_2 = 3; //id записи в БД
     string String_1 = 4; //значение поиска
+}
+
+// Request_Int64_Int64_Int64 - параметры запроса на сервер
+message Request_Int64_Int64_Int64 {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    int64 Int64_3 = 4; //значение поиска
 }
 
 // Request_Int64_Int64_Int64_Bool - параметры запроса на сервер
@@ -2363,6 +560,14 @@ message Request_Int64_Int64_Int32_Int64_String {
     int32 Int32_1 = 4; //id записи в БД
     int64 Int64_3 = 5; //id записи в БД
     string String_1 = 6; //значение поиска
+}
+
+// Request_Int64_Int64_Bool - параметры запроса на сервер
+message Request_Int64_Int64_Bool {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    bool Bool_1 = 4; //значение поиска
 }
 
 // Request_Int64_Int64_Int32 - параметры запроса на сервер
