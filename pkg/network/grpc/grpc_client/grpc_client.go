@@ -1,13 +1,13 @@
 package grpc_client
 
 import (
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter"
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client_func"
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc_nrpc"
-	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"context"
 	"errors"
+	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
+	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client_func"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc_nrpc"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/log"
 	"github.com/ManyakRus/starter/port_checker"

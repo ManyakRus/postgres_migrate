@@ -1,4 +1,4 @@
-SERVICENAME=tinkoff_invest
+SERVICENAME=postgres_migrate
 SERVICEURL=github.com/ManyakRus/$(SERVICENAME)
 
 FILEMAIN=./cmd/$(SERVICENAME)/main.go
