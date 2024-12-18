@@ -15,4 +15,4 @@
 /updates.bolt.db
 /log.jsonl
 /peers.pebble.db/
-/bin/tinkoff_invest
+/bin/postgres_migrate
