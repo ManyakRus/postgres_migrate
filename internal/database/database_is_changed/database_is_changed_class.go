@@ -241,7 +241,7 @@ FULL JOIN
 ON 
 	c.oid = pc.oid
 
-WHERE 1=1
+WHERE 0=1
 	OR pc."oid" <> c."oid"
 	OR pc.relname <> c.relname
 	OR pc.relnamespace <> c.relnamespace

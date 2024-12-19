@@ -27,179 +27,159 @@ func IsChangedAttribute() (bool, error) {
 	//
 	TextSQL := `
 	-- таблицы
-------------------------------- temp_pg_class_max --------------------------- 
-drop table if exists temp_pg_class_max; 
-CREATE TEMPORARY TABLE temp_pg_class_max ("oid" oid, version_id bigint);
-INSERT into temp_pg_class_max
+------------------------------- temp_pg_attribute_max --------------------------- 
+drop table if exists temp_pg_attribute_max; 
+CREATE TEMPORARY TABLE temp_pg_attribute_max ("attrelid" oid, attname name, version_id bigint);
+INSERT into temp_pg_attribute_max
 SELECT
-	pmpc."oid" ,
-	max(pmpc.version_id) as version_id
+	pmpa."attrelid",
+	pmpa."attname",
+	max(pmpa.version_id) as version_id
 FROM
-    SCHEMA_PM.postgres_migrate_pg_class as pmpc
+    SCHEMA_PM.postgres_migrate_pg_attribute as pmpa
+
+
+JOIN
+	SCHEMA_PM.postgres_migrate_pg_class as pmpc
+ON 
+	pmpc.oid = pmpa.attrelid
+
 
 JOIN
 	SCHEMA_PM.postgres_migrate_pg_namespace as pmpn
 ON 
 	pmpn.oid = pmpc.relnamespace
 
+
 WHERE 1=1
 	and pmpn.nspname = 'SCHEMA_BD'
 
 GROUP BY
-	pmpc."oid"
+	pmpa."attrelid",
+	pmpa."attname"
 ;
 
 
-------------------------------- temp_pm_pg_class --------------------------- 
-drop table if exists temp_pm_pg_class; 
-CREATE TEMPORARY TABLE temp_pm_pg_class (
-	"oid" oid,	
-	relname name,
-	relnamespace oid,
-	reltype oid,
-	reloftype oid,
-	relowner oid,
-	relam oid,
-	relfilenode oid,
-	reltablespace oid,
-	relpages int4,
-	reltuples float4,
-	relallvisible int4,
-	reltoastrelid oid,
-	relhasindex bool,
-	relisshared bool,
-	relpersistence char,
-	relkind char,
-	relnatts int2,
-	relchecks int2,
-	relhasrules bool,
-	relhastriggers bool,
-	relhassubclass bool,
-	relrowsecurity bool,
-	relforcerowsecurity bool,
-	relispopulated bool,
-	relreplident char,
-	relispartition bool,
-	relrewrite oid,
-	relfrozenxid xid,
-	relminmxid xid
+------------------------------- temp_pm_pg_attribute --------------------------- 
+drop table if exists temp_pm_pg_attribute; 
+CREATE TEMPORARY TABLE temp_pm_pg_attribute (
+	attrelid oid,
+	attname name,
+	atttypid oid,
+	attstattarget int4,
+	attlen int2,
+	attnum int2,
+	attndims int4,
+	attcacheoff int4,
+	atttypmod int4,
+	attbyval bool,
+	attstorage char,
+	attalign char,
+	attnotnull bool,
+	atthasdef bool,
+	atthasmissing bool,
+	attidentity char,
+	attgenerated char,
+	attisdropped bool,
+	attislocal bool,
+	attinhcount int4,
+	attcollation oid
 );
-INSERT into temp_pm_pg_class
+INSERT into temp_pm_pg_attribute
 SELECT
-	pmpc."oid",
-	pmpc.relname,
-	pmpc.relnamespace,
-	pmpc.reltype,
-	pmpc.reloftype,
-	pmpc.relowner,
-	pmpc.relam,
-	pmpc.relfilenode,
-	pmpc.reltablespace,
-	pmpc.relpages,
-	pmpc.reltuples,
-	pmpc.relallvisible,
-	pmpc.reltoastrelid,
-	pmpc.relhasindex,
-	pmpc.relisshared,
-	pmpc.relpersistence,
-	pmpc.relkind,
-	pmpc.relnatts,
-	pmpc.relchecks,
-	pmpc.relhasrules,
-	pmpc.relhastriggers,
-	pmpc.relhassubclass,
-	pmpc.relrowsecurity,
-	pmpc.relforcerowsecurity,
-	pmpc.relispopulated,
-	pmpc.relreplident,
-	pmpc.relispartition,
-	pmpc.relrewrite,
-	pmpc.relfrozenxid,
-	pmpc.relminmxid
+	pmpa.attrelid,
+	pmpa.attname,
+	pmpa.atttypid,
+	pmpa.attstattarget,
+	pmpa.attlen,
+	pmpa.attnum,
+	pmpa.attndims,
+	pmpa.attcacheoff,
+	pmpa.atttypmod,
+	pmpa.attbyval,
+	pmpa.attstorage,
+	pmpa.attalign,
+	pmpa.attnotnull,
+	pmpa.atthasdef,
+	pmpa.atthasmissing,
+	pmpa.attidentity,
+	pmpa.attgenerated,
+	pmpa.attisdropped,
+	pmpa.attislocal,
+	pmpa.attinhcount,
+	pmpa.attcollation
 		
 FROM
-    SCHEMA_PM.postgres_migrate_pg_class as pmpc
+    SCHEMA_PM.postgres_migrate_pg_attribute as pmpa
 	
 JOIN
-	temp_pg_class_max
+	temp_pg_attribute_max
 ON 
-	temp_pg_class_max.oid = pmpc.oid
-	and temp_pg_class_max.version_id = pmpc.version_id
+	temp_pg_attribute_max.attrelid = pmpa.attrelid
+	and temp_pg_attribute_max.attname = pmpa.attname
+	and temp_pg_attribute_max.version_id = pmpa.version_id
 
 WHERE 1=1
-	--and pmpn.nspname = 'SCHEMA_BD'
 
 ;
 
-------------------------------- temp_pg_class --------------------------- 
-drop table if exists temp_pg_class; 
-CREATE TEMPORARY TABLE temp_pg_class (
-	"oid" oid,	
-	relname name,
-	relnamespace oid,
-	reltype oid,
-	reloftype oid,
-	relowner oid,
-	relam oid,
-	relfilenode oid,
-	reltablespace oid,
-	relpages int4,
-	reltuples float4,
-	relallvisible int4,
-	reltoastrelid oid,
-	relhasindex bool,
-	relisshared bool,
-	relpersistence char,
-	relkind char,
-	relnatts int2,
-	relchecks int2,
-	relhasrules bool,
-	relhastriggers bool,
-	relhassubclass bool,
-	relrowsecurity bool,
-	relforcerowsecurity bool,
-	relispopulated bool,
-	relreplident char,
-	relispartition bool,
-	relrewrite oid,
-	relfrozenxid xid,
-	relminmxid xid
+------------------------------- temp_pg_attribute --------------------------- 
+drop table if exists temp_pg_attribute; 
+CREATE TEMPORARY TABLE temp_pg_attribute (
+	attrelid oid,
+	attname name,
+	atttypid oid,
+	attstattarget int4,
+	attlen int2,
+	attnum int2,
+	attndims int4,
+	attcacheoff int4,
+	atttypmod int4,
+	attbyval bool,
+	attstorage char,
+	attalign char,
+	attnotnull bool,
+	atthasdef bool,
+	atthasmissing bool,
+	attidentity char,
+	attgenerated char,
+	attisdropped bool,
+	attislocal bool,
+	attinhcount int4,
+	attcollation oid
 );
-INSERT into temp_pg_class as tc
+INSERT into temp_pg_attribute as tc
 SELECT
-	pc."oid",
-	pc.relname,
-	pc.relnamespace,
-	pc.reltype,
-	pc.reloftype,
-	pc.relowner,
-	pc.relam,
-	pc.relfilenode,
-	pc.reltablespace,
-	pc.relpages,
-	pc.reltuples,
-	pc.relallvisible,
-	pc.reltoastrelid,
-	pc.relhasindex,
-	pc.relisshared,
-	pc.relpersistence,
-	pc.relkind,
-	pc.relnatts,
-	pc.relchecks,
-	pc.relhasrules,
-	pc.relhastriggers,
-	pc.relhassubclass,
-	pc.relrowsecurity,
-	pc.relforcerowsecurity,
-	pc.relispopulated,
-	pc.relreplident,
-	pc.relispartition,
-	pc.relrewrite,
-	pc.relfrozenxid,
-	pc.relminmxid
+	pa.attrelid,
+	pa.attname,
+	pa.atttypid,
+	pa.attstattarget,
+	pa.attlen,
+	pa.attnum,
+	pa.attndims,
+	pa.attcacheoff,
+	pa.atttypmod,
+	pa.attbyval,
+	pa.attstorage,
+	pa.attalign,
+	pa.attnotnull,
+	pa.atthasdef,
+	pa.atthasmissing,
+	pa.attidentity,
+	pa.attgenerated,
+	pa.attisdropped,
+	pa.attislocal,
+	pa.attinhcount,
+	pa.attcollation
 		
 FROM
-    pg_catalog.pg_class as pc
+    pg_catalog.pg_attribute as pa
+
+
+JOIN
+	pg_catalog.pg_class as pc
+ON 
+	pc.oid = pa.attrelid
 
 
 JOIN
@@ -214,64 +194,57 @@ WHERE 1=1
 
 ------------------------------ сравнение -------------------------------------------
 SELECT
-	temp_pg_class.relname as name
+	temp_pg_attribute.attname as name
 FROM
-	temp_pm_pg_class
+	temp_pm_pg_attribute
 
 FULL JOIN
-	temp_pg_class
+	temp_pg_attribute
 ON 
-	temp_pg_class.oid = temp_pm_pg_class.oid
+	temp_pg_attribute.attrelid = temp_pm_pg_attribute.attrelid
+	and temp_pg_attribute.attname = temp_pm_pg_attribute.attname
 
 WHERE 
-	(temp_pg_class.oid IS NULL
+	(temp_pg_attribute.attrelid IS NULL
 	OR
-	temp_pm_pg_class.oid IS NULL
+	temp_pm_pg_attribute.attrelid IS NULL
 	)
 
 UNION
 
 SELECT
-	c.relname
+	a.attname
 FROM
-	temp_pm_pg_class as pc
+	temp_pm_pg_attribute as pa
 
 FULL JOIN
-	temp_pg_class as c
+	temp_pg_attribute as a
 ON 
-	c.oid = pc.oid
+	a.attrelid = pa.attrelid
+	and a.attname = pa.attname
 
-WHERE 1=1
-	OR pc."oid" <> c."oid"
-	OR pc.relname <> c.relname
-	OR pc.relnamespace <> c.relnamespace
-	OR pc.reltype <> c.reltype
-	OR pc.reloftype <> c.reloftype
-	OR pc.relowner <> c.relowner
-	OR pc.relam <> c.relam
-	--OR pc.relfilenode <> c.relfilenode
-	OR pc.reltablespace <> c.reltablespace
-	--OR pc.relpages <> c.relpages
-	--OR pc.reltuples <> c.reltuples
-	--OR pc.relallvisible <> c.relallvisible
-	OR pc.reltoastrelid <> c.reltoastrelid
-	OR pc.relhasindex <> c.relhasindex
-	OR pc.relisshared <> c.relisshared
-	OR pc.relpersistence <> c.relpersistence
-	OR pc.relkind <> c.relkind
-	OR pc.relnatts <> c.relnatts
-	OR pc.relchecks <> c.relchecks
-	OR pc.relhasrules <> c.relhasrules
-	OR pc.relhastriggers <> c.relhastriggers
-	OR pc.relhassubclass <> c.relhassubclass
-	OR pc.relrowsecurity <> c.relrowsecurity
-	OR pc.relforcerowsecurity <> c.relforcerowsecurity
-	OR pc.relispopulated <> c.relispopulated
-	OR pc.relreplident <> c.relreplident
-	OR pc.relispartition <> c.relispartition
-	OR pc.relrewrite <> c.relrewrite
-	--OR pc.relfrozenxid <> c.relfrozenxid
-	--OR pc.relminmxid <> c.relminmxid
+WHERE 0=1
+	OR pa.attrelid <> a.attrelid
+	OR pa.attname <> a.attname
+	OR pa.atttypid <> a.atttypid
+	--OR pa.attstattarget <> a.attstattarget
+	OR pa.attlen <> a.attlen
+	OR pa.attnum <> a.attnum
+	OR pa.attndims <> a.attndims
+	--OR pa.attcacheoff <> a.attcacheoff
+	OR pa.atttypmod <> a.atttypmod
+	OR pa.attbyval <> a.attbyval
+	OR pa.attstorage <> a.attstorage
+	OR pa.attalign <> a.attalign
+	OR pa.attnotnull <> a.attnotnull
+	OR pa.atthasdef <> a.atthasdef
+	OR pa.atthasmissing <> a.atthasmissing
+	OR pa.attidentity <> a.attidentity
+	OR pa.attgenerated <> a.attgenerated
+	OR pa.attisdropped <> a.attisdropped
+	OR pa.attislocal <> a.attislocal
+	--OR pa.attinhcount <> a.attinhcount
+	OR pa.attcollation <> a.attcollation
 
 `
 
