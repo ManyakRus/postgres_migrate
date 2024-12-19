@@ -11,9 +11,9 @@ import (
 	"time"
 )
 
-// IsChangedAttribute - проверка изменения метаданных
-func IsChangedAttribute() (bool, error) {
-	Otvet := false
+// IsChanged_Attribute - проверка изменения метаданных
+func IsChanged_Attribute() (int, error) {
+	Otvet := 0
 	var err error
 
 	//соединение
@@ -270,9 +270,7 @@ WHERE 0=1
 		return Otvet, err
 	}
 
-	if len(MassNames) > 0 {
-		Otvet = true
-	}
+	Otvet = len(MassNames)
 
 	return Otvet, err
 }

@@ -14,7 +14,7 @@ func TestIsChangedAttribute(t *testing.T) {
 	postgres_gorm.Connect()
 	defer postgres_gorm.CloseConnection()
 
-	Otvet, err := IsChangedAttribute()
+	Otvet, err := IsChanged_Attribute()
 	if err != nil {
 		t.Error(err)
 	}

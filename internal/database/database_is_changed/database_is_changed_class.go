@@ -11,9 +11,9 @@ import (
 	"time"
 )
 
-// IsChangedClass - проверка изменения метаданных
-func IsChangedClass() (bool, error) {
-	Otvet := false
+// IsChanged_Class - проверка изменения метаданных
+func IsChanged_Class() (int, error) {
+	Otvet := 0
 	var err error
 
 	//соединение
@@ -297,9 +297,7 @@ WHERE 0=1
 		return Otvet, err
 	}
 
-	if len(MassNames) > 0 {
-		Otvet = true
-	}
+	Otvet = len(MassNames)
 
 	return Otvet, err
 }

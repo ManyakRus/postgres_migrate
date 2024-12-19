@@ -7,16 +7,16 @@ import (
 	"testing"
 )
 
-func TestIsChangedClass(t *testing.T) {
+func TestIsChanged_Constraint(t *testing.T) {
 	config_main.LoadEnvTest()
 	config.FillSettings()
 
 	postgres_gorm.Connect()
 	defer postgres_gorm.CloseConnection()
 
-	Otvet, err := IsChanged_Class()
+	Otvet, err := IsChanged_Constraint()
 	if err != nil {
 		t.Error(err)
 	}
-	t.Log("IsChanged_Class(): ", Otvet)
+	t.Log("TestIsChanged_Constraint(): ", Otvet)
 }
