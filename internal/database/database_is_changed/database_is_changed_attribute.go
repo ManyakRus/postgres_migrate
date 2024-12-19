@@ -11,8 +11,8 @@ import (
 	"time"
 )
 
-// IsMetadataChanged - проверка изменения метаданных
-func IsMetadataChanged() (bool, error) {
+// IsChangedAttribute - проверка изменения метаданных
+func IsChangedAttribute() (bool, error) {
 	Otvet := false
 	var err error
 
@@ -33,7 +33,7 @@ CREATE TEMPORARY TABLE temp_pg_class_max ("oid" oid, version_id bigint);
 INSERT into temp_pg_class_max
 SELECT
 	pmpc."oid" ,
-	max(version_id) as version_id
+	max(pmpc.version_id) as version_id
 FROM
     SCHEMA_PM.postgres_migrate_pg_class as pmpc
 
@@ -43,7 +43,10 @@ ON
 	pmpn.oid = pmpc.relnamespace
 
 WHERE 1=1
-	and pmpn.nspname = "SCHEMA_BD"
+	and pmpn.nspname = 'SCHEMA_BD'
+
+GROUP BY
+	pmpc."oid"
 ;
 
 
@@ -121,9 +124,10 @@ JOIN
 	temp_pg_class_max
 ON 
 	temp_pg_class_max.oid = pmpc.oid
+	and temp_pg_class_max.version_id = pmpc.version_id
 
 WHERE 1=1
-	and pmpn.nspname = "SCHEMA_BD"
+	--and pmpn.nspname = 'SCHEMA_BD'
 
 ;
 
@@ -205,7 +209,7 @@ ON
 
 
 WHERE 1=1
-	and pn.nspname = "SCHEMA_BD"
+	and pn.nspname = 'SCHEMA_BD'
 ;
 
 ------------------------------ сравнение -------------------------------------------
@@ -235,7 +239,7 @@ FROM
 FULL JOIN
 	temp_pg_class as c
 ON 
-	temp_pg_class.oid = temp_pm_pg_class.oid
+	c.oid = pc.oid
 
 WHERE 1=1
 	OR pc."oid" <> c."oid"
@@ -245,11 +249,11 @@ WHERE 1=1
 	OR pc.reloftype <> c.reloftype
 	OR pc.relowner <> c.relowner
 	OR pc.relam <> c.relam
-	OR pc.relfilenode <> c.relfilenode
+	--OR pc.relfilenode <> c.relfilenode
 	OR pc.reltablespace <> c.reltablespace
-	OR pc.relpages <> c.relpages
-	OR pc.reltuples <> c.reltuples
-	OR pc.relallvisible <> c.relallvisible
+	--OR pc.relpages <> c.relpages
+	--OR pc.reltuples <> c.reltuples
+	--OR pc.relallvisible <> c.relallvisible
 	OR pc.reltoastrelid <> c.reltoastrelid
 	OR pc.relhasindex <> c.relhasindex
 	OR pc.relisshared <> c.relisshared
@@ -266,15 +270,16 @@ WHERE 1=1
 	OR pc.relreplident <> c.relreplident
 	OR pc.relispartition <> c.relispartition
 	OR pc.relrewrite <> c.relrewrite
-	OR pc.relfrozenxid <> c.relfrozenxid
-	OR pc.relminmxid <> c.relminmxid
+	--OR pc.relfrozenxid <> c.relfrozenxid
+	--OR pc.relminmxid <> c.relminmxid
 
 `
 
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_BD", config.Settings.DB_SCHEME_DATABASE)
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_PM", postgres_gorm.Settings.DB_SCHEMA)
 
-	tx = db.Raw(TextSQL)
+	tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
+	//tx = db.Raw(TextSQL)
 	err = tx.Error
 	if err != nil {
 		err = fmt.Errorf("db.Raw() error: %w", err)
@@ -284,7 +289,8 @@ WHERE 1=1
 
 	//
 	MassNames := make([]string, 0)
-	err = tx.Scan(&MassNames).Error
+	tx = tx.Scan(&MassNames)
+	err = tx.Error
 	if err != nil {
 		err = fmt.Errorf("tx.Scan() error: %w", err)
 		log.Error(err)

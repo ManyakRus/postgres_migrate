@@ -7,16 +7,16 @@ import (
 	"testing"
 )
 
-func TestIsMetadataChanged(t *testing.T) {
+func TestIsChangedAttribute(t *testing.T) {
 	config_main.LoadEnvTest()
 	config.FillSettings()
 
 	postgres_gorm.Connect()
 	defer postgres_gorm.CloseConnection()
 
-	Otvet, err := IsMetadataChanged()
+	Otvet, err := IsChangedAttribute()
 	if err != nil {
 		t.Error(err)
 	}
-	t.Log("IsMetadataChanged: ", Otvet)
+	t.Log("TestIsChangedAttribute(): ", Otvet)
 }
