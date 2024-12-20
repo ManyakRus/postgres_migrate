@@ -52,7 +52,7 @@ ON
 
 
 WHERE 1=1
-	and pmpn.nspname = 'SCHEMA_BD'
+	and pmpn.nspname = 'SCHEMA_DB'
 
 GROUP BY
 	pmpa."attrelid",
@@ -189,7 +189,7 @@ ON
 
 
 WHERE 1=1
-	and pn.nspname = 'SCHEMA_BD'
+	and pn.nspname = 'SCHEMA_DB'
 ;
 
 ------------------------------ сравнение -------------------------------------------
@@ -248,7 +248,7 @@ WHERE 0=1
 
 `
 
-	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_BD", config.Settings.DB_SCHEME_DATABASE)
+	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_DB", config.Settings.DB_SCHEME_DATABASE)
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_PM", postgres_gorm.Settings.DB_SCHEMA)
 
 	tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)

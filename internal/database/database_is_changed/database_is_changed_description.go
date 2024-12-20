@@ -40,12 +40,25 @@ FROM
     SCHEMA_PM.postgres_migrate_pg_description as pmpd
 
 JOIN
+	SCHEMA_PM.postgres_migrate_pg_class AS pg_class_objoid   
+ON 
+	pmpd.objoid   = pg_class_objoid.oid
+
+
+JOIN
+	SCHEMA_PM.postgres_migrate_pg_class AS pg_class_classoid 
+ON 
+	pmpd.classoid = pg_class_classoid.oid
+
+
+JOIN
 	SCHEMA_PM.postgres_migrate_pg_namespace as pmpn
 ON 
-	pmpn.oid = pmpd.classoid
+	pmpn.oid = pg_class_objoid.relnamespace
 
 WHERE 1=1
-	and pmpn.nspname = 'SCHEMA_BD'
+	and pg_class_classoid.relname = 'pg_class'
+	and pmpn.nspname = 'SCHEMA_DB'
 
 GROUP BY
 	pmpd.objoid,
@@ -81,7 +94,7 @@ ON
 	and temp_pg_description_max.version_id = pmpd.version_id
 
 WHERE 1=1
-	--and pmpn.nspname = 'SCHEMA_BD'
+	--and pmpn.nspname = 'SCHEMA_DB'
 
 ;
 
@@ -105,13 +118,25 @@ FROM
 
 
 JOIN
+	pg_catalog.pg_class AS pg_class_objoid   
+ON 
+	pd.objoid   = pg_class_objoid.oid
+
+
+JOIN
+	pg_catalog.pg_class AS pg_class_classoid 
+ON 
+	pd.classoid = pg_class_classoid.oid
+
+
+JOIN
 	pg_catalog.pg_namespace as pn
 ON 
-	pn.oid = pd.classoid
-
+	pn.oid = pg_class_objoid.relnamespace
 
 WHERE 1=1
-	and pn.nspname = 'SCHEMA_BD'
+	and pg_class_classoid.relname = 'pg_class'
+	and pn.nspname = 'SCHEMA_DB'
 ;
 
 ------------------------------ сравнение -------------------------------------------
@@ -155,7 +180,7 @@ WHERE 0=1
 
 `
 
-	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_BD", config.Settings.DB_SCHEME_DATABASE)
+	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_DB", config.Settings.DB_SCHEME_DATABASE)
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_PM", postgres_gorm.Settings.DB_SCHEMA)
 
 	tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
