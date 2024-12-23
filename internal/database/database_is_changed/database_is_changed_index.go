@@ -51,6 +51,9 @@ ON
 
 WHERE 1=1
 	and pmpn.nspname = 'SCHEMA_DB'
+	and pmpi.is_deleted = false
+	and pmpc.is_deleted = false
+	and pmpn.is_deleted = false
 
 GROUP BY
 	pmpi."indexrelid"

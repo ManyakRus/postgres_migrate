@@ -6,14 +6,15 @@ import (
 	"github.com/ManyakRus/postgres_migrate/internal/config"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/log"
+	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
 	"strings"
 	"time"
 )
 
 // Fill_attribute - проверка изменения метаданных
-func Fill_attribute() (int, error) {
-	Otvet := 0
+func Fill_attribute(VersionID int64) error {
+	//Otvet := 0
 	var err error
 
 	//соединение
@@ -193,31 +194,76 @@ WHERE 1=1
 ;
 
 ------------------------------ сравнение -------------------------------------------
-SELECT
-	temp_pg_attribute.attname as name
-FROM
-	temp_pm_pg_attribute
-
-FULL JOIN
-	temp_pg_attribute
-ON 
-	temp_pg_attribute.attrelid = temp_pm_pg_attribute.attrelid
-	and temp_pg_attribute.attname = temp_pm_pg_attribute.attname
-
-WHERE 
-	(temp_pg_attribute.attrelid IS NULL
-	OR
-	temp_pm_pg_attribute.attrelid IS NULL
-	)
-
-UNION
-
-SELECT
-	a.attname
+INSERT INTO SCHEMA_PM.postgres_migrate_pg_attribute
+(
+SELECT --новые строки
+	:version_id as version_id,
+	a.attrelid,
+	a.attname,
+	a.atttypid,
+	a.attstattarget,
+	a.attlen,
+	a.attnum,
+	a.attndims,
+	a.attcacheoff,
+	a.atttypmod,
+	a.attbyval,
+	a.attstorage,
+	a.attalign,
+	a.attnotnull,
+	a.atthasdef,
+	a.atthasmissing,
+	a.attidentity,
+	a.attgenerated,
+	a.attisdropped,
+	a.attislocal,
+	a.attinhcount,
+	a.attcollation,
+	false as is_deleted
 FROM
 	temp_pm_pg_attribute as pa
 
-FULL JOIN
+RIGHT JOIN
+	temp_pg_attribute as a
+ON 
+	a.attrelid = pa.attrelid
+	and a.attname = pa.attname
+
+WHERE 1=1
+	AND pa.attrelid IS NULL
+
+
+UNION ALL
+
+
+SELECT --изменённые строки
+	:version_id as version_id,
+	a.attrelid,
+	a.attname,
+	a.atttypid,
+	a.attstattarget,
+	a.attlen,
+	a.attnum,
+	a.attndims,
+	a.attcacheoff,
+	a.atttypmod,
+	a.attbyval,
+	a.attstorage,
+	a.attalign,
+	a.attnotnull,
+	a.atthasdef,
+	a.atthasmissing,
+	a.attidentity,
+	a.attgenerated,
+	a.attisdropped,
+	a.attislocal,
+	a.attinhcount,
+	a.attcollation,
+	false as is_deleted
+FROM
+	temp_pm_pg_attribute as pa
+
+JOIN
 	temp_pg_attribute as a
 ON 
 	a.attrelid = pa.attrelid
@@ -246,31 +292,75 @@ WHERE 0=1
 	--OR pa.attinhcount <> a.attinhcount
 	OR pa.attcollation <> a.attcollation
 
+
+UNION ALL
+
+
+SELECT --удалённые строки
+	:version_id as version_id,
+	pa.attrelid,
+	pa.attname,
+	pa.atttypid,
+	pa.attstattarget,
+	pa.attlen,
+	pa.attnum,
+	pa.attndims,
+	pa.attcacheoff,
+	pa.atttypmod,
+	pa.attbyval,
+	pa.attstorage,
+	pa.attalign,
+	pa.attnotnull,
+	pa.atthasdef,
+	pa.atthasmissing,
+	pa.attidentity,
+	pa.attgenerated,
+	pa.attisdropped,
+	pa.attislocal,
+	pa.attinhcount,
+	pa.attcollation,
+	true as is_deleted
+
+FROM
+	temp_pm_pg_attribute as pa
+
+LEFT JOIN
+	temp_pg_attribute as a
+ON 
+	a.attrelid = pa.attrelid
+	and a.attname = pa.attname
+
+WHERE 1=1
+	AND a.attrelid IS NULL
+)
+
 `
 
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_DB", config.Settings.DB_SCHEME_DATABASE)
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_PM", postgres_gorm.Settings.DB_SCHEMA)
+	TextSQL = strings.ReplaceAll(TextSQL, ":version_id", micro.StringFromInt64(VersionID))
 
-	tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
+	//tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
 	//tx = db.Raw(TextSQL)
+	tx = db.Exec(TextSQL)
 	err = tx.Error
 	if err != nil {
 		err = fmt.Errorf("db.Raw() error: %w", err)
 		log.Error(err)
-		return Otvet, err
+		return err
 	}
 
-	//
-	MassNames := make([]string, 0)
-	tx = tx.Scan(&MassNames)
-	err = tx.Error
-	if err != nil {
-		err = fmt.Errorf("tx.Scan() error: %w", err)
-		log.Error(err)
-		return Otvet, err
-	}
+	////
+	//MassNames := make([]string, 0)
+	//tx = tx.Scan(&MassNames)
+	//err = tx.Error
+	//if err != nil {
+	//	err = fmt.Errorf("tx.Scan() error: %w", err)
+	//	log.Error(err)
+	//	return err
+	//}
 
-	Otvet = len(MassNames)
+	//Otvet = len(MassNames)
 
-	return Otvet, err
+	return err
 }

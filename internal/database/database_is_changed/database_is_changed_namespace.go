@@ -39,6 +39,7 @@ FROM
 
 WHERE 1=1
 	and pmpn.nspname = 'SCHEMA_DB'
+	and pmpn.is_deleted = false
 
 GROUP BY
 	pmpn."oid"
