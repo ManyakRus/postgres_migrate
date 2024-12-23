@@ -46,7 +46,7 @@ ON
 
 
 JOIN
-	SCHEMA_PM.postgres_migrate_pg_class AS pg_class_classoid 
+	pg_catalog.pg_class AS pg_class_classoid 
 ON 
 	pmpd.classoid = pg_class_classoid.oid
 

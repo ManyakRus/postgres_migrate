@@ -8,7 +8,7 @@ import (
 )
 
 func TestFill_attribute(t *testing.T) {
-	t.SkipNow() //деструктивный тест
+	//t.SkipNow() //деструктивный тест
 
 	config_main.LoadEnvTest()
 	config.FillSettings()
