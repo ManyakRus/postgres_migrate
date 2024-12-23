@@ -1,4 +1,4 @@
-package files_tables
+package sql_tables
 
 import (
 	"context"
@@ -13,21 +13,21 @@ import (
 	"time"
 )
 
-// Start_Tables_create - добавляет текст SQL в Text
-func Start_Tables_create(Settings *config.SettingsINI, VersionID int64) (string, error) {
+// Start_Tables_delete - добавляет текст SQL в Text
+func Start_Tables_delete(Settings *config.SettingsINI, VersionID int64) (string, error) {
 	var err error
 	Otvet := ""
 
 	//найдём массив новых
-	MassClass, err := Find_MassClass(Settings, VersionID)
+	MassClass, err := Find_MassClass_Delete(Settings, VersionID)
 	if err != nil {
-		err = fmt.Errorf("Find_MassClass() error: %w", err)
+		err = fmt.Errorf("Find_MassClass_Create() error: %w", err)
 		log.Error(err)
 		return Otvet, err
 	}
 
 	//создадим файлы
-	Otvet1, err := TextSQL_Create(Settings, MassClass)
+	Otvet1, err := TextSQL_Delete(Settings, MassClass)
 	if err != nil {
 		err = fmt.Errorf("Create_files() error: %w", err)
 		log.Error(err)
@@ -40,8 +40,8 @@ func Start_Tables_create(Settings *config.SettingsINI, VersionID int64) (string,
 	return Otvet, err
 }
 
-// Find_MassClass - возвращает массив postgres_migrate_pg_class
-func Find_MassClass(Settings *config.SettingsINI, VersionID int64) ([]postgres_migrate_pg_class.PostgresMigratePgClass, error) {
+// Find_MassClass_Delete - возвращает массив postgres_migrate_pg_class
+func Find_MassClass_Delete(Settings *config.SettingsINI, VersionID int64) ([]postgres_migrate_pg_class.PostgresMigratePgClass, error) {
 	Otvet := make([]postgres_migrate_pg_class.PostgresMigratePgClass, 0)
 	var err error
 
@@ -282,13 +282,13 @@ SELECT --новые строки
 FROM
 	temp_pm_pg_class as pc
 
-RIGHT JOIN
+LEFT JOIN
 	temp_pg_class as c
 ON 
 	c.oid = pc.oid
 
 WHERE 1=1
-	AND pc.oid IS NULL
+	AND c.oid IS NULL
 
 
 
@@ -321,13 +321,13 @@ WHERE 1=1
 	return Otvet, err
 }
 
-// TextSQL_Create - возвращает текст SQL для создания таблиц
-func TextSQL_Create(Settings *config.SettingsINI, MassClass []postgres_migrate_pg_class.PostgresMigratePgClass) (string, error) {
+// TextSQL_Delete - возвращает текст SQL для создания таблиц
+func TextSQL_Delete(Settings *config.SettingsINI, MassClass []postgres_migrate_pg_class.PostgresMigratePgClass) (string, error) {
 	Otvet := ""
 	var err error
 
 	for _, v := range MassClass {
-		Otvet1 := `CREATE TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.Relname + `" ();` + "\n"
+		Otvet1 := `DROP TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.Relname + `";` + "\n"
 
 		Otvet = Otvet + Otvet1
 	}

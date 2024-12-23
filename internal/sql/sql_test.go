@@ -1,4 +1,4 @@
-package files
+package sql
 
 import (
 	"github.com/ManyakRus/postgres_migrate/internal/config"
