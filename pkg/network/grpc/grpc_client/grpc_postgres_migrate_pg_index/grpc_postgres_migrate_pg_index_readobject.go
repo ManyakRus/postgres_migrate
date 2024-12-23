@@ -25,10 +25,9 @@ func (crud Crud_GRPC) ReadObject(m *object_postgres_migrate_pg_index.ObjectPostg
 	// подготовка запроса
 	var versionModel = m.GetStructVersion()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64{}
+	Request := &grpc_proto.Request_Int64_Int64{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.VersionModel = versionModel
 

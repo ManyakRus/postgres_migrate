@@ -53,6 +53,90 @@ func (s *ServerGRPC) PostgresMigratePgClass_Read(ctx context.Context, Request *g
 	return &Otvet, err
 }
 
+// PostgresMigratePgClass_Delete - записывает в БД is_deleted = true и возвращает модель из БД
+func (s *ServerGRPC) PostgresMigratePgClass_Delete(ctx context.Context, Request *grpc_proto.Request_Int64_Int64) (*grpc_proto.Response, error) {
+	var Otvet grpc_proto.Response
+	var err error
+
+	//проверим контекст уже отменён
+	if ctx.Err() != nil {
+		err = ctx.Err()
+		return &Otvet, err
+	}
+
+	//проверим совпадения версии модели
+	VersionServer := postgres_migrate_pg_class.PostgresMigratePgClass{}.GetStructVersion()
+	VersionClient := Request.VersionModel
+	if VersionServer != VersionClient {
+		err = ErrorModelVersion(postgres_migrate_pg_class.PostgresMigratePgClass{})
+		return &Otvet, err
+	}
+
+	//запрос в БД
+	db := postgres_gorm.GetConnection()
+	Oid := Request.Int64_1
+	VersionID := Request.Int64_2
+	m := &postgres_migrate_pg_class.PostgresMigratePgClass{}
+	m.Oid = Oid
+	m.VersionID = VersionID
+
+	err = crud_postgres_migrate_pg_class.Delete_ctx(ctx, db, m)
+	if err != nil {
+		return &Otvet, err
+	}
+
+	//заполяем ответ
+	ModelString, err := m.GetJSON()
+	if err != nil {
+		return &Otvet, err
+	}
+	Otvet.ModelString = ModelString
+
+	return &Otvet, err
+}
+
+// PostgresMigratePgClass_Restore - записывает в БД is_deleted = false и возвращает модель из БД
+func (s *ServerGRPC) PostgresMigratePgClass_Restore(ctx context.Context, Request *grpc_proto.Request_Int64_Int64) (*grpc_proto.Response, error) {
+	var Otvet grpc_proto.Response
+	var err error
+
+	//проверим контекст уже отменён
+	if ctx.Err() != nil {
+		err = ctx.Err()
+		return &Otvet, err
+	}
+
+	//проверим совпадения версии модели
+	VersionServer := postgres_migrate_pg_class.PostgresMigratePgClass{}.GetStructVersion()
+	VersionClient := Request.VersionModel
+	if VersionServer != VersionClient {
+		err = ErrorModelVersion(postgres_migrate_pg_class.PostgresMigratePgClass{})
+		return &Otvet, err
+	}
+
+	//запрос в БД
+	db := postgres_gorm.GetConnection()
+	Oid := Request.Int64_1
+	VersionID := Request.Int64_2
+	m := &postgres_migrate_pg_class.PostgresMigratePgClass{}
+	m.Oid = Oid
+	m.VersionID = VersionID
+
+	err = crud_postgres_migrate_pg_class.Restore_ctx(ctx, db, m)
+	if err != nil {
+		return &Otvet, err
+	}
+
+	//заполяем ответ
+	ModelString, err := m.GetJSON()
+	if err != nil {
+		return &Otvet, err
+	}
+	Otvet.ModelString = ModelString
+
+	return &Otvet, err
+}
+
 // PostgresMigratePgClass_Create - создаёт новую запись в БД
 func (s *ServerGRPC) PostgresMigratePgClass_Create(ctx context.Context, Request *grpc_proto.RequestModel) (*grpc_proto.Response, error) {
 	var Otvet grpc_proto.Response

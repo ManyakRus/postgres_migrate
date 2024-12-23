@@ -15,8 +15,6 @@ import (
 )
 
 func TestServerGRPC_PostgresMigratePgAttribute_UpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -55,8 +53,6 @@ func TestServerGRPC_PostgresMigratePgAttribute_UpdateManyFields(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attalign(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -98,8 +94,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attalign(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attbyval(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -141,8 +135,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attbyval(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attcacheoff(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -184,8 +176,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attcacheoff(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attcollation(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -227,8 +217,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attcollation(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attgenerated(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -270,8 +258,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attgenerated(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Atthasdef(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -313,8 +299,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Atthasdef(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Atthasmissing(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -356,8 +340,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Atthasmissing(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attidentity(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -399,8 +381,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attidentity(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attinhcount(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -442,8 +422,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attinhcount(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attisdropped(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -485,8 +463,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attisdropped(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attislocal(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -528,8 +504,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attislocal(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attlen(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -571,8 +545,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attlen(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attname(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -614,8 +586,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attname(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attndims(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -657,8 +627,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attndims(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attnotnull(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -700,8 +668,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attnotnull(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attnum(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -743,8 +709,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attnum(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -786,8 +750,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attrelid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attstattarget(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -829,8 +791,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attstattarget(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Attstorage(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -872,8 +832,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Attstorage(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Atttypid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -915,8 +873,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Atttypid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_Atttypmod(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -958,8 +914,6 @@ func Test_server_PostgresMigratePgAttribute_Update_Atttypmod(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")

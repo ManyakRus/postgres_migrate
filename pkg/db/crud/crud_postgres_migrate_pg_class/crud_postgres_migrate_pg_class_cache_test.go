@@ -13,8 +13,6 @@ import (
 )
 
 func TestReadFromCache(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	var err error
 
 	config_main.LoadEnv()

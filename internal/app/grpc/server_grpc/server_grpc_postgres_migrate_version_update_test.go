@@ -15,8 +15,6 @@ import (
 )
 
 func TestServerGRPC_PostgresMigrateVersion_UpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -53,8 +51,6 @@ func TestServerGRPC_PostgresMigrateVersion_UpdateManyFields(t *testing.T) {
 }
 
 func Test_server_PostgresMigrateVersion_Update_Description(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -92,8 +88,6 @@ func Test_server_PostgresMigrateVersion_Update_Description(t *testing.T) {
 }
 
 func Test_server_PostgresMigrateVersion_Update_Name(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")

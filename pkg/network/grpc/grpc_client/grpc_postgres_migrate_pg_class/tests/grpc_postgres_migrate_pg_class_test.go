@@ -12,11 +12,10 @@ import (
 )
 
 // OID_Test - ID таблицы для тестирования
-const OID_Test = 0
-const VERSIONID_Test = 0
+const OID_Test = 678300790
+const VERSIONID_Test = 1
 
 func TestGetVersionModel(t *testing.T) {
-	t.SkipNow() //now rows in DB
 
 	crud := grpc_postgres_migrate_pg_class.Crud_GRPC{}
 	Otvet := crud.GetVersionModel()
@@ -26,8 +25,6 @@ func TestGetVersionModel(t *testing.T) {
 }
 
 func TestRead(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -48,8 +45,6 @@ func TestRead(t *testing.T) {
 }
 
 func TestCreate(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -68,8 +63,6 @@ func TestCreate(t *testing.T) {
 }
 
 func TestUpdate(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -91,8 +84,6 @@ func TestUpdate(t *testing.T) {
 }
 
 func TestSave(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -115,5 +106,54 @@ func TestSave(t *testing.T) {
 
 	if (Otvet.Oid == 0) || (Otvet.VersionID == 0) {
 		t.Error("TestSave() error: ID =0")
+	}
+}
+
+func TestDelete(t *testing.T) {
+	config_main.LoadEnv()
+	grpc_client.Connect()
+	defer grpc_client.CloseConnection()
+
+	crud := grpc_postgres_migrate_pg_class.Crud_GRPC{}
+	Otvet := postgres_migrate_pg_class.PostgresMigratePgClass{}
+	Otvet.Oid = OID_Test
+	Otvet.VersionID = VERSIONID_Test
+	err := crud.Read(&Otvet)
+	if err != nil {
+		t.Error("TestRead() error: ", err)
+	}
+
+	if Otvet.IsDeleted == false {
+		err = crud.Delete(&Otvet)
+		if err != nil {
+			t.Error("TestDelete() error: ", err)
+		}
+		if (Otvet.Oid == 0) || (Otvet.VersionID == 0) {
+			t.Error("TestDelete() error: ID =0")
+		}
+
+		err = crud.Restore(&Otvet)
+		if err != nil {
+			t.Error("TestDelete() error: ", err)
+		}
+		if (Otvet.Oid == 0) || (Otvet.VersionID == 0) {
+			t.Error("TestDelete() error: ID =0")
+		}
+	} else {
+		err = crud.Restore(&Otvet)
+		if err != nil {
+			t.Error("TestDelete() error: ", err)
+		}
+		if (Otvet.Oid == 0) || (Otvet.VersionID == 0) {
+			t.Error("TestDelete() error: ID =0")
+		}
+
+		err = crud.Delete(&Otvet)
+		if err != nil {
+			t.Error("TestDelete() error: ", err)
+		}
+		if (Otvet.Oid == 0) || (Otvet.VersionID == 0) {
+			t.Error("TestDelete() error: ID =0")
+		}
 	}
 }

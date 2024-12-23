@@ -16,7 +16,7 @@ import (
 )
 
 // ReadFromCache - возвращает модель из БД
-func (crud Crud_GRPC) ReadFromCache(Indexrelid int64, Indrelid int64, VersionID int64) (postgres_migrate_pg_index.PostgresMigratePgIndex, error) {
+func (crud Crud_GRPC) ReadFromCache(Indexrelid int64, VersionID int64) (postgres_migrate_pg_index.PostgresMigratePgIndex, error) {
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	var err error
 
@@ -26,10 +26,9 @@ func (crud Crud_GRPC) ReadFromCache(Indexrelid int64, Indrelid int64, VersionID 
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64{}
+	Request := &grpc_proto.Request_Int64_Int64{}
 	Request.Int64_1 = Indexrelid
-	Request.Int64_2 = Indrelid
-	Request.Int64_3 = VersionID
+	Request.Int64_2 = VersionID
 
 	Request.VersionModel = versionModel
 

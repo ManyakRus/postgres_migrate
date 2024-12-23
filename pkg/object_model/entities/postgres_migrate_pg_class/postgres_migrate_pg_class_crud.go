@@ -24,6 +24,8 @@ type ICrud_PostgresMigratePgClass interface {
 	Save(*PostgresMigratePgClass) error
 	Update(*PostgresMigratePgClass) error
 	Create(*PostgresMigratePgClass) error
+	Delete(*PostgresMigratePgClass) error
+	Restore(*PostgresMigratePgClass) error
 	ReadFromCache(Oid int64, VersionID int64) (PostgresMigratePgClass, error)
 	UpdateManyFields(*PostgresMigratePgClass, []string) error
 	Update_Oid(*PostgresMigratePgClass) error
@@ -164,6 +166,28 @@ func (m *PostgresMigratePgClass) Create() error {
 	}
 
 	err := Crud_PostgresMigratePgClass.Create(m)
+
+	return err
+}
+
+// Delete - устанавливает признак пометки удаления в БД
+func (m *PostgresMigratePgClass) Delete() error {
+	if Crud_PostgresMigratePgClass == nil {
+		return db_constants.ErrorCrudIsNotInit
+	}
+
+	err := Crud_PostgresMigratePgClass.Delete(m)
+
+	return err
+}
+
+// Restore - снимает признак пометки удаления в БД
+func (m *PostgresMigratePgClass) Restore() error {
+	if Crud_PostgresMigratePgClass == nil {
+		return db_constants.ErrorCrudIsNotInit
+	}
+
+	err := Crud_PostgresMigratePgClass.Restore(m)
 
 	return err
 }

@@ -13,8 +13,6 @@ import (
 )
 
 func TestReadFromCache(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	var err error
 
 	config_main.LoadEnv()
@@ -24,7 +22,6 @@ func TestReadFromCache(t *testing.T) {
 	//читаем из БД
 	m1 := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m1.Indexrelid = INDEXRELID_Test
-	m1.Indrelid = INDRELID_Test
 	m1.VersionID = VERSIONID_Test
 	err = Crud_DB{}.Read(&m1)
 	if err != nil {
@@ -32,7 +29,7 @@ func TestReadFromCache(t *testing.T) {
 	}
 
 	//читаем из Кеша
-	m2, err := Crud_DB{}.ReadFromCache(INDEXRELID_Test, INDRELID_Test, VERSIONID_Test)
+	m2, err := Crud_DB{}.ReadFromCache(INDEXRELID_Test, VERSIONID_Test)
 	if err != nil {
 		t.Errorf("TestReadFromCache() error: %v", err)
 	}

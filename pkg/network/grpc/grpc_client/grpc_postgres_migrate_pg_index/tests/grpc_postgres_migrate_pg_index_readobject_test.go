@@ -13,8 +13,6 @@ import (
 )
 
 func TestReadObject(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -22,7 +20,6 @@ func TestReadObject(t *testing.T) {
 	crud := grpc_postgres_migrate_pg_index.Crud_GRPC{}
 	Otvet := object_postgres_migrate_pg_index.ObjectPostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	err := crud.ReadObject(&Otvet)
 

@@ -5,6 +5,7 @@ package server_grpc
 
 import (
 	"context"
+	"encoding/json"
 	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"github.com/ManyakRus/postgres_migrate/pkg/constants"
 	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter"
@@ -15,12 +16,10 @@ import (
 )
 
 // PostgresMigratePgNamespace_ID_Test - ID таблицы для тестирования
-const PostgresMigratePgNamespace_OID_Test = 0
-const PostgresMigratePgNamespace_VERSIONID_Test = 0
+const PostgresMigratePgNamespace_OID_Test = 678300789
+const PostgresMigratePgNamespace_VERSIONID_Test = 1
 
 func Test_server_PostgresMigratePgNamespace_Read(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -42,9 +41,77 @@ func Test_server_PostgresMigratePgNamespace_Read(t *testing.T) {
 	}
 }
 
-func Test_server_PostgresMigratePgNamespace_Create(t *testing.T) {
-	t.SkipNow() //now rows in DB
+func Test_server_PostgresMigratePgNamespace_Delete(t *testing.T) {
+	config_main.LoadEnv()
+	crud_starter.InitCrudTransport_DB()
+	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
+	defer postgres_gorm.CloseConnection()
 
+	ctx := context.Background()
+	Request := grpc_proto.Request_Int64_Int64{}
+	Request.Int64_1 = PostgresMigratePgNamespace_OID_Test
+	Request.Int64_2 = PostgresMigratePgNamespace_VERSIONID_Test
+	Request.VersionModel = postgres_migrate_pg_namespace.PostgresMigratePgNamespace{}.GetStructVersion()
+
+	server1 := &ServerGRPC{}
+
+	//прочитаем
+	Response, err := server1.PostgresMigratePgNamespace_Read(ctx, &Request)
+	if err != nil {
+		t.Error("Test_server_PostgresMigratePgNamespace_Delete() error: ", err)
+	}
+	if Response.ModelString == "" {
+		t.Error("Test_server_PostgresMigratePgNamespace_Delete() error: ModelString=''")
+	}
+
+	Otvet := &postgres_migrate_pg_namespace.PostgresMigratePgNamespace{}
+	sModel := Response.ModelString
+	err = json.Unmarshal([]byte(sModel), Otvet)
+	if err != nil {
+		t.Error("Test_server_PostgresMigratePgNamespace_Delete() Unmarshal() error: ", err)
+	}
+
+	if Otvet.IsDeleted == false {
+		//пометим на удаление
+		_, err = server1.PostgresMigratePgNamespace_Delete(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgNamespace_Delete() error: ", err)
+		}
+		if Otvet.Oid == 0 {
+			t.Error("Test_server_PostgresMigratePgNamespace_Delete() error: ID =0")
+		}
+
+		//снимем пометку на удаление
+		_, err = server1.PostgresMigratePgNamespace_Restore(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgNamespace_Delete() error: ", err)
+		}
+		if Otvet.Oid == 0 {
+			t.Error("Test_server_PostgresMigratePgNamespace_Delete() error: ID =0")
+		}
+	} else {
+		//снимем пометку на удаление
+		_, err = server1.PostgresMigratePgNamespace_Restore(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgNamespace_Delete() error: ", err)
+		}
+		if Otvet.Oid == 0 {
+			t.Error("Test_server_PostgresMigratePgNamespace_Delete() error: ID =0")
+		}
+
+		//пометим на удаление
+		_, err = server1.PostgresMigratePgNamespace_Delete(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgNamespace_Delete() error: ", err)
+		}
+		if Otvet.Oid == 0 {
+			t.Error("Test_server_PostgresMigratePgNamespace_Delete() error: ID =0")
+		}
+	}
+
+}
+
+func Test_server_PostgresMigratePgNamespace_Create(t *testing.T) {
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -76,8 +143,6 @@ func Test_server_PostgresMigratePgNamespace_Create(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgNamespace_Update(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -117,8 +182,6 @@ func Test_server_PostgresMigratePgNamespace_Update(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgNamespace_Save(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")

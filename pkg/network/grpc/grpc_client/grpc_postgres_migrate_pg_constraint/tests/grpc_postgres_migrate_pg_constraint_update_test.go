@@ -12,8 +12,6 @@ import (
 )
 
 func TestCrud_GRPC_UpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -42,8 +40,6 @@ func TestCrud_GRPC_UpdateManyFields(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Condeferrable(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -73,8 +69,6 @@ func TestCrud_GRPC_Update_Condeferrable(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Condeferred(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -104,8 +98,6 @@ func TestCrud_GRPC_Update_Condeferred(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Conexclop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -135,8 +127,6 @@ func TestCrud_GRPC_Update_Conexclop(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Confdeltype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -166,8 +156,6 @@ func TestCrud_GRPC_Update_Confdeltype(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Conffeqop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -197,8 +185,6 @@ func TestCrud_GRPC_Update_Conffeqop(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Confkey(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -228,8 +214,6 @@ func TestCrud_GRPC_Update_Confkey(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Confmatchtype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -259,8 +243,6 @@ func TestCrud_GRPC_Update_Confmatchtype(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Confrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -290,8 +272,6 @@ func TestCrud_GRPC_Update_Confrelid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Confupdtype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -321,8 +301,6 @@ func TestCrud_GRPC_Update_Confupdtype(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Conindid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -352,8 +330,6 @@ func TestCrud_GRPC_Update_Conindid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Coninhcount(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -383,8 +359,6 @@ func TestCrud_GRPC_Update_Coninhcount(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Conislocal(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -414,8 +388,6 @@ func TestCrud_GRPC_Update_Conislocal(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Conkey(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -445,8 +417,6 @@ func TestCrud_GRPC_Update_Conkey(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Conname(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -476,8 +446,6 @@ func TestCrud_GRPC_Update_Conname(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Connamespace(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -507,8 +475,6 @@ func TestCrud_GRPC_Update_Connamespace(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Connoinherit(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -538,8 +504,6 @@ func TestCrud_GRPC_Update_Connoinherit(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Conparentid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -569,8 +533,6 @@ func TestCrud_GRPC_Update_Conparentid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Conpfeqop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -600,8 +562,6 @@ func TestCrud_GRPC_Update_Conpfeqop(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Conppeqop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -631,8 +591,6 @@ func TestCrud_GRPC_Update_Conppeqop(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Conrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -662,8 +620,6 @@ func TestCrud_GRPC_Update_Conrelid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Contype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -693,8 +649,6 @@ func TestCrud_GRPC_Update_Contype(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Contypid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -724,8 +678,6 @@ func TestCrud_GRPC_Update_Contypid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Convalidated(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -755,8 +707,6 @@ func TestCrud_GRPC_Update_Convalidated(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Oid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -786,8 +736,6 @@ func TestCrud_GRPC_Update_Oid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()

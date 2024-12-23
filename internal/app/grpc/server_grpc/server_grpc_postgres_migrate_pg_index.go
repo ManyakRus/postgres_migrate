@@ -12,7 +12,7 @@ import (
 )
 
 // PostgresMigratePgIndex_Read - читает и возвращает модель из БД
-func (s *ServerGRPC) PostgresMigratePgIndex_Read(ctx context.Context, Request *grpc_proto.Request_Int64_Int64_Int64) (*grpc_proto.Response, error) {
+func (s *ServerGRPC) PostgresMigratePgIndex_Read(ctx context.Context, Request *grpc_proto.Request_Int64_Int64) (*grpc_proto.Response, error) {
 	var Otvet grpc_proto.Response
 	var err error
 
@@ -33,14 +33,96 @@ func (s *ServerGRPC) PostgresMigratePgIndex_Read(ctx context.Context, Request *g
 	//запрос в БД
 	db := postgres_gorm.GetConnection()
 	Indexrelid := Request.Int64_1
-	Indrelid := Request.Int64_2
-	VersionID := Request.Int64_3
+	VersionID := Request.Int64_2
 	m := &postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = Indexrelid
-	m.Indrelid = Indrelid
 	m.VersionID = VersionID
 
 	err = crud_postgres_migrate_pg_index.Read_ctx(ctx, db, m)
+	if err != nil {
+		return &Otvet, err
+	}
+
+	//заполяем ответ
+	ModelString, err := m.GetJSON()
+	if err != nil {
+		return &Otvet, err
+	}
+	Otvet.ModelString = ModelString
+
+	return &Otvet, err
+}
+
+// PostgresMigratePgIndex_Delete - записывает в БД is_deleted = true и возвращает модель из БД
+func (s *ServerGRPC) PostgresMigratePgIndex_Delete(ctx context.Context, Request *grpc_proto.Request_Int64_Int64) (*grpc_proto.Response, error) {
+	var Otvet grpc_proto.Response
+	var err error
+
+	//проверим контекст уже отменён
+	if ctx.Err() != nil {
+		err = ctx.Err()
+		return &Otvet, err
+	}
+
+	//проверим совпадения версии модели
+	VersionServer := postgres_migrate_pg_index.PostgresMigratePgIndex{}.GetStructVersion()
+	VersionClient := Request.VersionModel
+	if VersionServer != VersionClient {
+		err = ErrorModelVersion(postgres_migrate_pg_index.PostgresMigratePgIndex{})
+		return &Otvet, err
+	}
+
+	//запрос в БД
+	db := postgres_gorm.GetConnection()
+	Indexrelid := Request.Int64_1
+	VersionID := Request.Int64_2
+	m := &postgres_migrate_pg_index.PostgresMigratePgIndex{}
+	m.Indexrelid = Indexrelid
+	m.VersionID = VersionID
+
+	err = crud_postgres_migrate_pg_index.Delete_ctx(ctx, db, m)
+	if err != nil {
+		return &Otvet, err
+	}
+
+	//заполяем ответ
+	ModelString, err := m.GetJSON()
+	if err != nil {
+		return &Otvet, err
+	}
+	Otvet.ModelString = ModelString
+
+	return &Otvet, err
+}
+
+// PostgresMigratePgIndex_Restore - записывает в БД is_deleted = false и возвращает модель из БД
+func (s *ServerGRPC) PostgresMigratePgIndex_Restore(ctx context.Context, Request *grpc_proto.Request_Int64_Int64) (*grpc_proto.Response, error) {
+	var Otvet grpc_proto.Response
+	var err error
+
+	//проверим контекст уже отменён
+	if ctx.Err() != nil {
+		err = ctx.Err()
+		return &Otvet, err
+	}
+
+	//проверим совпадения версии модели
+	VersionServer := postgres_migrate_pg_index.PostgresMigratePgIndex{}.GetStructVersion()
+	VersionClient := Request.VersionModel
+	if VersionServer != VersionClient {
+		err = ErrorModelVersion(postgres_migrate_pg_index.PostgresMigratePgIndex{})
+		return &Otvet, err
+	}
+
+	//запрос в БД
+	db := postgres_gorm.GetConnection()
+	Indexrelid := Request.Int64_1
+	VersionID := Request.Int64_2
+	m := &postgres_migrate_pg_index.PostgresMigratePgIndex{}
+	m.Indexrelid = Indexrelid
+	m.VersionID = VersionID
+
+	err = crud_postgres_migrate_pg_index.Restore_ctx(ctx, db, m)
 	if err != nil {
 		return &Otvet, err
 	}

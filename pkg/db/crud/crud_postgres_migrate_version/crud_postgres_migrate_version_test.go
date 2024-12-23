@@ -11,11 +11,9 @@ import (
 	"testing"
 )
 
-const ID_Test = 0
+const ID_Test = 1
 
 func TestRead(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -37,8 +35,6 @@ func TestRead(t *testing.T) {
 }
 
 func TestSave(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")

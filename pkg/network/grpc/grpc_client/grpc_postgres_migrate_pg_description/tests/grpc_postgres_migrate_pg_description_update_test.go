@@ -12,8 +12,6 @@ import (
 )
 
 func TestCrud_GRPC_UpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -44,8 +42,6 @@ func TestCrud_GRPC_UpdateManyFields(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Classoid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -79,8 +75,6 @@ func TestCrud_GRPC_Update_Classoid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Description(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -114,8 +108,6 @@ func TestCrud_GRPC_Update_Description(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Objoid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -149,8 +141,6 @@ func TestCrud_GRPC_Update_Objoid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Objsubid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -184,8 +174,6 @@ func TestCrud_GRPC_Update_Objsubid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()

@@ -15,7 +15,7 @@ import (
 )
 
 // PostgresMigratePgIndex_ReadFromCache - читает и возвращает модель из кеша или БД
-func (s *ServerGRPC) PostgresMigratePgIndex_ReadFromCache(ctx context.Context, Request *grpc_proto.Request_Int64_Int64_Int64) (*grpc_proto.Response, error) {
+func (s *ServerGRPC) PostgresMigratePgIndex_ReadFromCache(ctx context.Context, Request *grpc_proto.Request_Int64_Int64) (*grpc_proto.Response, error) {
 	var Otvet grpc_proto.Response
 	var err error
 
@@ -40,10 +40,9 @@ func (s *ServerGRPC) PostgresMigratePgIndex_ReadFromCache(ctx context.Context, R
 	//запрос в БД
 	db := postgres_gorm.GetConnection()
 	Indexrelid := Request.Int64_1
-	Indrelid := Request.Int64_2
-	VersionID := Request.Int64_3
+	VersionID := Request.Int64_2
 	Model := postgres_migrate_pg_index.PostgresMigratePgIndex{}
-	Model, err = crud_postgres_migrate_pg_index.ReadFromCache_ctx(ctx, db, Indexrelid, Indrelid, VersionID)
+	Model, err = crud_postgres_migrate_pg_index.ReadFromCache_ctx(ctx, db, Indexrelid, VersionID)
 	if err != nil {
 		return &Otvet, err
 	}

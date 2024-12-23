@@ -12,8 +12,6 @@ import (
 )
 
 func TestCrud_GRPC_UpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -43,8 +41,6 @@ func TestCrud_GRPC_UpdateManyFields(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attalign(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -76,8 +72,6 @@ func TestCrud_GRPC_Update_Attalign(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attbyval(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -109,8 +103,6 @@ func TestCrud_GRPC_Update_Attbyval(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attcacheoff(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -142,8 +134,6 @@ func TestCrud_GRPC_Update_Attcacheoff(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attcollation(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -175,8 +165,6 @@ func TestCrud_GRPC_Update_Attcollation(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attgenerated(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -208,8 +196,6 @@ func TestCrud_GRPC_Update_Attgenerated(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Atthasdef(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -241,8 +227,6 @@ func TestCrud_GRPC_Update_Atthasdef(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Atthasmissing(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -274,8 +258,6 @@ func TestCrud_GRPC_Update_Atthasmissing(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attidentity(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -307,8 +289,6 @@ func TestCrud_GRPC_Update_Attidentity(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attinhcount(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -340,8 +320,6 @@ func TestCrud_GRPC_Update_Attinhcount(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attisdropped(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -373,8 +351,6 @@ func TestCrud_GRPC_Update_Attisdropped(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attislocal(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -406,8 +382,6 @@ func TestCrud_GRPC_Update_Attislocal(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attlen(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -439,8 +413,6 @@ func TestCrud_GRPC_Update_Attlen(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attname(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -472,8 +444,6 @@ func TestCrud_GRPC_Update_Attname(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attndims(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -505,8 +475,6 @@ func TestCrud_GRPC_Update_Attndims(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attnotnull(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -538,8 +506,6 @@ func TestCrud_GRPC_Update_Attnotnull(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attnum(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -571,8 +537,6 @@ func TestCrud_GRPC_Update_Attnum(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -604,8 +568,6 @@ func TestCrud_GRPC_Update_Attrelid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attstattarget(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -637,8 +599,6 @@ func TestCrud_GRPC_Update_Attstattarget(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Attstorage(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -670,8 +630,6 @@ func TestCrud_GRPC_Update_Attstorage(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Atttypid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -703,8 +661,6 @@ func TestCrud_GRPC_Update_Atttypid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Atttypmod(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -736,8 +692,6 @@ func TestCrud_GRPC_Update_Atttypmod(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()

@@ -21,7 +21,8 @@ type Table_PostgresMigratePgIndex struct {
 	Indnkeyatts    int32  `json:"indnkeyatts" gorm:"column:indnkeyatts;default:0"`                   //Количество ключевых столбцов в индексе. «Ключевые столбцы» это обычные столбцы, в отличие от «включённых» столбцов.
 	Indoption      string `json:"indoption" gorm:"column:indoption;default:\"\""`                    //Это массив из indnatts значений, в которых хранятся битовые флаги для отдельных столбцов. Значение этих флагов определяется методом доступа конкретного индекса.
 	Indpred        string `json:"indpred" gorm:"column:indpred;default:null"`                        //Дерево выражения (в представлении nodeToString()) для предиката частичного индекса, либо NULL, если это не частичный индекс.
-	Indrelid       int64  `json:"indrelid" gorm:"column:indrelid;primaryKey;autoIncrement:true"`     //OID записи в postgres_migrate_pg_class для таблицы, к которой относится этот индекс
+	Indrelid       int64  `json:"indrelid" gorm:"column:indrelid;default:0"`                         //OID записи в postgres_migrate_pg_class для таблицы, к которой относится этот индекс
+	IsDeleted      bool   `json:"is_deleted" gorm:"column:is_deleted"`                               //Признак что оригинальная запись удалена
 	VersionID      int64  `json:"version_id" gorm:"column:version_id;primaryKey;autoIncrement:true"` //Версия изменений (ИД)
 
 }

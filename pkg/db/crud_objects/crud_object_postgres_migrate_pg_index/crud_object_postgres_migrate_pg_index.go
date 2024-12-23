@@ -49,7 +49,7 @@ func ReadObject_ctx(ctx context.Context, db *gorm.DB, m *object_postgres_migrate
 	Model := m.PostgresMigratePgIndex
 	err = crud_postgres_migrate_pg_index.Read_ctx(ctx, db, &Model)
 	if err != nil {
-		err = fmt.Errorf(m.TableNameDB()+" Read() Indexrelid: %v, Indrelid: %v, VersionID: %v, error: %w", m.Indexrelid, m.Indrelid, m.VersionID, err)
+		err = fmt.Errorf(m.TableNameDB()+" Read() Indexrelid: %v, VersionID: %v, error: %w", m.Indexrelid, m.VersionID, err)
 	}
 	m.PostgresMigratePgIndex = Model
 
@@ -59,7 +59,7 @@ func ReadObject_ctx(ctx context.Context, db *gorm.DB, m *object_postgres_migrate
 	Version.ID = VersionID
 	err = crud_postgres_migrate_version.Read_ctx(ctx, db, &Version)
 	if err != nil {
-		err = fmt.Errorf(Version.TableNameDB()+" Read() Indexrelid: %v, Indrelid: %v, VersionID: %v, error: %w", m.Indexrelid, m.Indrelid, m.VersionID, err)
+		err = fmt.Errorf(Version.TableNameDB()+" Read() Indexrelid: %v, VersionID: %v, error: %w", m.Indexrelid, m.VersionID, err)
 	}
 	m.Version = Version
 

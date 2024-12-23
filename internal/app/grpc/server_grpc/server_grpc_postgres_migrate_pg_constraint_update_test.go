@@ -15,8 +15,6 @@ import (
 )
 
 func TestServerGRPC_PostgresMigratePgConstraint_UpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -54,8 +52,6 @@ func TestServerGRPC_PostgresMigratePgConstraint_UpdateManyFields(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Condeferrable(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -95,8 +91,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Condeferrable(t *testing.T) 
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Condeferred(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -136,8 +130,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Condeferred(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Conexclop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -177,8 +169,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Conexclop(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Confdeltype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -218,8 +208,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Confdeltype(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Conffeqop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -259,8 +247,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Conffeqop(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Confkey(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -300,8 +286,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Confkey(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Confmatchtype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -341,8 +325,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Confmatchtype(t *testing.T) 
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Confrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -382,8 +364,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Confrelid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Confupdtype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -423,8 +403,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Confupdtype(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Conindid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -464,8 +442,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Conindid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Coninhcount(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -505,8 +481,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Coninhcount(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Conislocal(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -546,8 +520,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Conislocal(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Conkey(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -587,8 +559,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Conkey(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Conname(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -628,8 +598,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Conname(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Connamespace(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -669,8 +637,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Connamespace(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Connoinherit(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -710,8 +676,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Connoinherit(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Conparentid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -751,8 +715,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Conparentid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Conpfeqop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -792,8 +754,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Conpfeqop(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Conppeqop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -833,8 +793,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Conppeqop(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Conrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -874,8 +832,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Conrelid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Contype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -915,8 +871,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Contype(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Contypid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -956,8 +910,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Contypid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Convalidated(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -997,8 +949,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Convalidated(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_Oid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -1038,8 +988,6 @@ func Test_server_PostgresMigratePgConstraint_Update_Oid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgConstraint_Update_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")

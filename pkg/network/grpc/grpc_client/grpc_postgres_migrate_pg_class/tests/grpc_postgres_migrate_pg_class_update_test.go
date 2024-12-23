@@ -12,8 +12,6 @@ import (
 )
 
 func TestCrud_GRPC_UpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -42,8 +40,6 @@ func TestCrud_GRPC_UpdateManyFields(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Oid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -73,8 +69,6 @@ func TestCrud_GRPC_Update_Oid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relallvisible(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -104,8 +98,6 @@ func TestCrud_GRPC_Update_Relallvisible(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relam(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -135,8 +127,6 @@ func TestCrud_GRPC_Update_Relam(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relchecks(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -166,8 +156,6 @@ func TestCrud_GRPC_Update_Relchecks(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relfilenode(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -197,8 +185,6 @@ func TestCrud_GRPC_Update_Relfilenode(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relforcerowsecurity(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -228,8 +214,6 @@ func TestCrud_GRPC_Update_Relforcerowsecurity(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relfrozenxid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -259,8 +243,6 @@ func TestCrud_GRPC_Update_Relfrozenxid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relhasindex(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -290,8 +272,6 @@ func TestCrud_GRPC_Update_Relhasindex(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relhasrules(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -321,8 +301,6 @@ func TestCrud_GRPC_Update_Relhasrules(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relhassubclass(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -352,8 +330,6 @@ func TestCrud_GRPC_Update_Relhassubclass(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relhastriggers(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -383,8 +359,6 @@ func TestCrud_GRPC_Update_Relhastriggers(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relispartition(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -414,8 +388,6 @@ func TestCrud_GRPC_Update_Relispartition(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relispopulated(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -445,8 +417,6 @@ func TestCrud_GRPC_Update_Relispopulated(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relisshared(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -476,8 +446,6 @@ func TestCrud_GRPC_Update_Relisshared(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relkind(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -507,8 +475,6 @@ func TestCrud_GRPC_Update_Relkind(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relminmxid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -538,8 +504,6 @@ func TestCrud_GRPC_Update_Relminmxid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relname(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -569,8 +533,6 @@ func TestCrud_GRPC_Update_Relname(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relnamespace(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -600,8 +562,6 @@ func TestCrud_GRPC_Update_Relnamespace(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relnatts(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -631,8 +591,6 @@ func TestCrud_GRPC_Update_Relnatts(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Reloftype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -662,8 +620,6 @@ func TestCrud_GRPC_Update_Reloftype(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relowner(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -693,8 +649,6 @@ func TestCrud_GRPC_Update_Relowner(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relpages(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -724,8 +678,6 @@ func TestCrud_GRPC_Update_Relpages(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relpersistence(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -755,8 +707,6 @@ func TestCrud_GRPC_Update_Relpersistence(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relreplident(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -786,8 +736,6 @@ func TestCrud_GRPC_Update_Relreplident(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relrewrite(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -817,8 +765,6 @@ func TestCrud_GRPC_Update_Relrewrite(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Relrowsecurity(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -848,8 +794,6 @@ func TestCrud_GRPC_Update_Relrowsecurity(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Reltablespace(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -879,8 +823,6 @@ func TestCrud_GRPC_Update_Reltablespace(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Reltoastrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -910,8 +852,6 @@ func TestCrud_GRPC_Update_Reltoastrelid(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Reltuples(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -941,8 +881,6 @@ func TestCrud_GRPC_Update_Reltuples(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_Reltype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()
@@ -972,8 +910,6 @@ func TestCrud_GRPC_Update_Reltype(t *testing.T) {
 }
 
 func TestCrud_GRPC_Update_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	grpc_client.Connect()

@@ -12,8 +12,6 @@ import (
 )
 
 func TestUpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -37,8 +35,6 @@ func TestUpdateManyFields(t *testing.T) {
 }
 
 func TestUpdate_Oid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -66,8 +62,6 @@ func TestUpdate_Oid(t *testing.T) {
 }
 
 func TestUpdate_Relallvisible(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -95,8 +89,6 @@ func TestUpdate_Relallvisible(t *testing.T) {
 }
 
 func TestUpdate_Relam(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -124,8 +116,6 @@ func TestUpdate_Relam(t *testing.T) {
 }
 
 func TestUpdate_Relchecks(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -153,8 +143,6 @@ func TestUpdate_Relchecks(t *testing.T) {
 }
 
 func TestUpdate_Relfilenode(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -182,8 +170,6 @@ func TestUpdate_Relfilenode(t *testing.T) {
 }
 
 func TestUpdate_Relforcerowsecurity(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -211,8 +197,6 @@ func TestUpdate_Relforcerowsecurity(t *testing.T) {
 }
 
 func TestUpdate_Relfrozenxid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -240,8 +224,6 @@ func TestUpdate_Relfrozenxid(t *testing.T) {
 }
 
 func TestUpdate_Relhasindex(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -269,8 +251,6 @@ func TestUpdate_Relhasindex(t *testing.T) {
 }
 
 func TestUpdate_Relhasrules(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -298,8 +278,6 @@ func TestUpdate_Relhasrules(t *testing.T) {
 }
 
 func TestUpdate_Relhassubclass(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -327,8 +305,6 @@ func TestUpdate_Relhassubclass(t *testing.T) {
 }
 
 func TestUpdate_Relhastriggers(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -356,8 +332,6 @@ func TestUpdate_Relhastriggers(t *testing.T) {
 }
 
 func TestUpdate_Relispartition(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -385,8 +359,6 @@ func TestUpdate_Relispartition(t *testing.T) {
 }
 
 func TestUpdate_Relispopulated(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -414,8 +386,6 @@ func TestUpdate_Relispopulated(t *testing.T) {
 }
 
 func TestUpdate_Relisshared(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -443,8 +413,6 @@ func TestUpdate_Relisshared(t *testing.T) {
 }
 
 func TestUpdate_Relkind(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -472,8 +440,6 @@ func TestUpdate_Relkind(t *testing.T) {
 }
 
 func TestUpdate_Relminmxid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -501,8 +467,6 @@ func TestUpdate_Relminmxid(t *testing.T) {
 }
 
 func TestUpdate_Relname(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -530,8 +494,6 @@ func TestUpdate_Relname(t *testing.T) {
 }
 
 func TestUpdate_Relnamespace(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -559,8 +521,6 @@ func TestUpdate_Relnamespace(t *testing.T) {
 }
 
 func TestUpdate_Relnatts(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -588,8 +548,6 @@ func TestUpdate_Relnatts(t *testing.T) {
 }
 
 func TestUpdate_Reloftype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -617,8 +575,6 @@ func TestUpdate_Reloftype(t *testing.T) {
 }
 
 func TestUpdate_Relowner(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -646,8 +602,6 @@ func TestUpdate_Relowner(t *testing.T) {
 }
 
 func TestUpdate_Relpages(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -675,8 +629,6 @@ func TestUpdate_Relpages(t *testing.T) {
 }
 
 func TestUpdate_Relpersistence(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -704,8 +656,6 @@ func TestUpdate_Relpersistence(t *testing.T) {
 }
 
 func TestUpdate_Relreplident(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -733,8 +683,6 @@ func TestUpdate_Relreplident(t *testing.T) {
 }
 
 func TestUpdate_Relrewrite(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -762,8 +710,6 @@ func TestUpdate_Relrewrite(t *testing.T) {
 }
 
 func TestUpdate_Relrowsecurity(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -791,8 +737,6 @@ func TestUpdate_Relrowsecurity(t *testing.T) {
 }
 
 func TestUpdate_Reltablespace(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -820,8 +764,6 @@ func TestUpdate_Reltablespace(t *testing.T) {
 }
 
 func TestUpdate_Reltoastrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -849,8 +791,6 @@ func TestUpdate_Reltoastrelid(t *testing.T) {
 }
 
 func TestUpdate_Reltuples(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -878,8 +818,6 @@ func TestUpdate_Reltuples(t *testing.T) {
 }
 
 func TestUpdate_Reltype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -907,8 +845,6 @@ func TestUpdate_Reltype(t *testing.T) {
 }
 
 func TestUpdate_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")

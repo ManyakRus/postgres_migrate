@@ -25,6 +25,7 @@ type Table_PostgresMigratePgConstraint struct {
 	Contype       string `json:"contype" gorm:"column:contype;default:\"\""`                        //c = ограничение-проверка (check), f = внешний ключ (foreign key), p = первичный ключ (primary key), u = ограничение уникальности (unique), t = триггер ограничения (trigger), x = ограничение-исключение (exclusion)
 	Contypid      int64  `json:"contypid" gorm:"column:contypid;default:0"`                         //Домен, к которому относится это ограничение; 0, если это не ограничение домена
 	Convalidated  bool   `json:"convalidated" gorm:"column:convalidated"`                           //Было ли ограничение проверено? В настоящее время значение false возможно только для внешних ключей и ограничений CHECK
+	IsDeleted     bool   `json:"is_deleted" gorm:"column:is_deleted"`                               //Признак что оригинальная запись удалена
 	Oid           int64  `json:"oid" gorm:"column:oid;primaryKey;autoIncrement:true"`               //Идентификатор строки (скрытый атрибут; должен выбираться явно)
 	VersionID     int64  `json:"version_id" gorm:"column:version_id;primaryKey;autoIncrement:true"` //Версия изменений (ИД)
 

@@ -15,8 +15,6 @@ import (
 )
 
 func TestServerGRPC_PostgresMigratePgClass_UpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -54,8 +52,6 @@ func TestServerGRPC_PostgresMigratePgClass_UpdateManyFields(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Oid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -95,8 +91,6 @@ func Test_server_PostgresMigratePgClass_Update_Oid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relallvisible(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -136,8 +130,6 @@ func Test_server_PostgresMigratePgClass_Update_Relallvisible(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relam(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -177,8 +169,6 @@ func Test_server_PostgresMigratePgClass_Update_Relam(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relchecks(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -218,8 +208,6 @@ func Test_server_PostgresMigratePgClass_Update_Relchecks(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relfilenode(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -259,8 +247,6 @@ func Test_server_PostgresMigratePgClass_Update_Relfilenode(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relforcerowsecurity(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -300,8 +286,6 @@ func Test_server_PostgresMigratePgClass_Update_Relforcerowsecurity(t *testing.T)
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relfrozenxid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -341,8 +325,6 @@ func Test_server_PostgresMigratePgClass_Update_Relfrozenxid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relhasindex(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -382,8 +364,6 @@ func Test_server_PostgresMigratePgClass_Update_Relhasindex(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relhasrules(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -423,8 +403,6 @@ func Test_server_PostgresMigratePgClass_Update_Relhasrules(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relhassubclass(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -464,8 +442,6 @@ func Test_server_PostgresMigratePgClass_Update_Relhassubclass(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relhastriggers(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -505,8 +481,6 @@ func Test_server_PostgresMigratePgClass_Update_Relhastriggers(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relispartition(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -546,8 +520,6 @@ func Test_server_PostgresMigratePgClass_Update_Relispartition(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relispopulated(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -587,8 +559,6 @@ func Test_server_PostgresMigratePgClass_Update_Relispopulated(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relisshared(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -628,8 +598,6 @@ func Test_server_PostgresMigratePgClass_Update_Relisshared(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relkind(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -669,8 +637,6 @@ func Test_server_PostgresMigratePgClass_Update_Relkind(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relminmxid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -710,8 +676,6 @@ func Test_server_PostgresMigratePgClass_Update_Relminmxid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relname(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -751,8 +715,6 @@ func Test_server_PostgresMigratePgClass_Update_Relname(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relnamespace(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -792,8 +754,6 @@ func Test_server_PostgresMigratePgClass_Update_Relnamespace(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relnatts(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -833,8 +793,6 @@ func Test_server_PostgresMigratePgClass_Update_Relnatts(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Reloftype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -874,8 +832,6 @@ func Test_server_PostgresMigratePgClass_Update_Reloftype(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relowner(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -915,8 +871,6 @@ func Test_server_PostgresMigratePgClass_Update_Relowner(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relpages(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -956,8 +910,6 @@ func Test_server_PostgresMigratePgClass_Update_Relpages(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relpersistence(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -997,8 +949,6 @@ func Test_server_PostgresMigratePgClass_Update_Relpersistence(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relreplident(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -1038,8 +988,6 @@ func Test_server_PostgresMigratePgClass_Update_Relreplident(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relrewrite(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -1079,8 +1027,6 @@ func Test_server_PostgresMigratePgClass_Update_Relrewrite(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Relrowsecurity(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -1120,8 +1066,6 @@ func Test_server_PostgresMigratePgClass_Update_Relrowsecurity(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Reltablespace(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -1161,8 +1105,6 @@ func Test_server_PostgresMigratePgClass_Update_Reltablespace(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Reltoastrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -1202,8 +1144,6 @@ func Test_server_PostgresMigratePgClass_Update_Reltoastrelid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Reltuples(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -1243,8 +1183,6 @@ func Test_server_PostgresMigratePgClass_Update_Reltuples(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_Reltype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -1284,8 +1222,6 @@ func Test_server_PostgresMigratePgClass_Update_Reltype(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgClass_Update_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")

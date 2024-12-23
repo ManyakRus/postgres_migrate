@@ -18,7 +18,7 @@ import (
 var cache *expirable.LRU[string, postgres_migrate_pg_attribute.PostgresMigratePgAttribute]
 
 // CACHE_SIZE - количество элементов в кэше
-const CACHE_SIZE = 0
+const CACHE_SIZE = 211
 
 // CACHE_EXPIRE_MINUTES - время жизни элемента в кэше
 const CACHE_EXPIRE_MINUTES = 86400

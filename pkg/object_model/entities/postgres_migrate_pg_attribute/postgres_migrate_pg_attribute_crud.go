@@ -24,6 +24,8 @@ type ICrud_PostgresMigratePgAttribute interface {
 	Save(*PostgresMigratePgAttribute) error
 	Update(*PostgresMigratePgAttribute) error
 	Create(*PostgresMigratePgAttribute) error
+	Delete(*PostgresMigratePgAttribute) error
+	Restore(*PostgresMigratePgAttribute) error
 	ReadFromCache(Attname string, Attrelid int64, VersionID int64) (PostgresMigratePgAttribute, error)
 	UpdateManyFields(*PostgresMigratePgAttribute, []string) error
 	Update_Attalign(*PostgresMigratePgAttribute) error
@@ -155,6 +157,28 @@ func (m *PostgresMigratePgAttribute) Create() error {
 	}
 
 	err := Crud_PostgresMigratePgAttribute.Create(m)
+
+	return err
+}
+
+// Delete - устанавливает признак пометки удаления в БД
+func (m *PostgresMigratePgAttribute) Delete() error {
+	if Crud_PostgresMigratePgAttribute == nil {
+		return db_constants.ErrorCrudIsNotInit
+	}
+
+	err := Crud_PostgresMigratePgAttribute.Delete(m)
+
+	return err
+}
+
+// Restore - снимает признак пометки удаления в БД
+func (m *PostgresMigratePgAttribute) Restore() error {
+	if Crud_PostgresMigratePgAttribute == nil {
+		return db_constants.ErrorCrudIsNotInit
+	}
+
+	err := Crud_PostgresMigratePgAttribute.Restore(m)
 
 	return err
 }

@@ -12,8 +12,6 @@ import (
 )
 
 func TestUpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -23,7 +21,6 @@ func TestUpdateManyFields(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -38,8 +35,6 @@ func TestUpdateManyFields(t *testing.T) {
 }
 
 func TestUpdate_Indcheckxmin(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -49,7 +44,6 @@ func TestUpdate_Indcheckxmin(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -59,7 +53,6 @@ func TestUpdate_Indcheckxmin(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indcheckxmin = m.Indcheckxmin
 	err = crud.Update_Indcheckxmin(&Otvet)
@@ -69,8 +62,6 @@ func TestUpdate_Indcheckxmin(t *testing.T) {
 }
 
 func TestUpdate_Indclass(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -80,7 +71,6 @@ func TestUpdate_Indclass(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -90,7 +80,6 @@ func TestUpdate_Indclass(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indclass = m.Indclass
 	err = crud.Update_Indclass(&Otvet)
@@ -100,8 +89,6 @@ func TestUpdate_Indclass(t *testing.T) {
 }
 
 func TestUpdate_Indcollation(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -111,7 +98,6 @@ func TestUpdate_Indcollation(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -121,7 +107,6 @@ func TestUpdate_Indcollation(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indcollation = m.Indcollation
 	err = crud.Update_Indcollation(&Otvet)
@@ -131,8 +116,6 @@ func TestUpdate_Indcollation(t *testing.T) {
 }
 
 func TestUpdate_Indexprs(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -142,7 +125,6 @@ func TestUpdate_Indexprs(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -152,7 +134,6 @@ func TestUpdate_Indexprs(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indexprs = m.Indexprs
 	err = crud.Update_Indexprs(&Otvet)
@@ -162,8 +143,6 @@ func TestUpdate_Indexprs(t *testing.T) {
 }
 
 func TestUpdate_Indexrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -173,7 +152,6 @@ func TestUpdate_Indexrelid(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -183,7 +161,6 @@ func TestUpdate_Indexrelid(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indexrelid = m.Indexrelid
 	err = crud.Update_Indexrelid(&Otvet)
@@ -193,8 +170,6 @@ func TestUpdate_Indexrelid(t *testing.T) {
 }
 
 func TestUpdate_Indimmediate(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -204,7 +179,6 @@ func TestUpdate_Indimmediate(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -214,7 +188,6 @@ func TestUpdate_Indimmediate(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indimmediate = m.Indimmediate
 	err = crud.Update_Indimmediate(&Otvet)
@@ -224,8 +197,6 @@ func TestUpdate_Indimmediate(t *testing.T) {
 }
 
 func TestUpdate_Indisclustered(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -235,7 +206,6 @@ func TestUpdate_Indisclustered(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -245,7 +215,6 @@ func TestUpdate_Indisclustered(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indisclustered = m.Indisclustered
 	err = crud.Update_Indisclustered(&Otvet)
@@ -255,8 +224,6 @@ func TestUpdate_Indisclustered(t *testing.T) {
 }
 
 func TestUpdate_Indisexclusion(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -266,7 +233,6 @@ func TestUpdate_Indisexclusion(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -276,7 +242,6 @@ func TestUpdate_Indisexclusion(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indisexclusion = m.Indisexclusion
 	err = crud.Update_Indisexclusion(&Otvet)
@@ -286,8 +251,6 @@ func TestUpdate_Indisexclusion(t *testing.T) {
 }
 
 func TestUpdate_Indislive(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -297,7 +260,6 @@ func TestUpdate_Indislive(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -307,7 +269,6 @@ func TestUpdate_Indislive(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indislive = m.Indislive
 	err = crud.Update_Indislive(&Otvet)
@@ -317,8 +278,6 @@ func TestUpdate_Indislive(t *testing.T) {
 }
 
 func TestUpdate_Indisprimary(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -328,7 +287,6 @@ func TestUpdate_Indisprimary(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -338,7 +296,6 @@ func TestUpdate_Indisprimary(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indisprimary = m.Indisprimary
 	err = crud.Update_Indisprimary(&Otvet)
@@ -348,8 +305,6 @@ func TestUpdate_Indisprimary(t *testing.T) {
 }
 
 func TestUpdate_Indisready(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -359,7 +314,6 @@ func TestUpdate_Indisready(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -369,7 +323,6 @@ func TestUpdate_Indisready(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indisready = m.Indisready
 	err = crud.Update_Indisready(&Otvet)
@@ -379,8 +332,6 @@ func TestUpdate_Indisready(t *testing.T) {
 }
 
 func TestUpdate_Indisreplident(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -390,7 +341,6 @@ func TestUpdate_Indisreplident(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -400,7 +350,6 @@ func TestUpdate_Indisreplident(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indisreplident = m.Indisreplident
 	err = crud.Update_Indisreplident(&Otvet)
@@ -410,8 +359,6 @@ func TestUpdate_Indisreplident(t *testing.T) {
 }
 
 func TestUpdate_Indisunique(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -421,7 +368,6 @@ func TestUpdate_Indisunique(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -431,7 +377,6 @@ func TestUpdate_Indisunique(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indisunique = m.Indisunique
 	err = crud.Update_Indisunique(&Otvet)
@@ -441,8 +386,6 @@ func TestUpdate_Indisunique(t *testing.T) {
 }
 
 func TestUpdate_Indisvalid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -452,7 +395,6 @@ func TestUpdate_Indisvalid(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -462,7 +404,6 @@ func TestUpdate_Indisvalid(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indisvalid = m.Indisvalid
 	err = crud.Update_Indisvalid(&Otvet)
@@ -472,8 +413,6 @@ func TestUpdate_Indisvalid(t *testing.T) {
 }
 
 func TestUpdate_Indkey(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -483,7 +422,6 @@ func TestUpdate_Indkey(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -493,7 +431,6 @@ func TestUpdate_Indkey(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indkey = m.Indkey
 	err = crud.Update_Indkey(&Otvet)
@@ -503,8 +440,6 @@ func TestUpdate_Indkey(t *testing.T) {
 }
 
 func TestUpdate_Indnatts(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -514,7 +449,6 @@ func TestUpdate_Indnatts(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -524,7 +458,6 @@ func TestUpdate_Indnatts(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indnatts = m.Indnatts
 	err = crud.Update_Indnatts(&Otvet)
@@ -534,8 +467,6 @@ func TestUpdate_Indnatts(t *testing.T) {
 }
 
 func TestUpdate_Indnkeyatts(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -545,7 +476,6 @@ func TestUpdate_Indnkeyatts(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -555,7 +485,6 @@ func TestUpdate_Indnkeyatts(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indnkeyatts = m.Indnkeyatts
 	err = crud.Update_Indnkeyatts(&Otvet)
@@ -565,8 +494,6 @@ func TestUpdate_Indnkeyatts(t *testing.T) {
 }
 
 func TestUpdate_Indoption(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -576,7 +503,6 @@ func TestUpdate_Indoption(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -586,7 +512,6 @@ func TestUpdate_Indoption(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indoption = m.Indoption
 	err = crud.Update_Indoption(&Otvet)
@@ -596,8 +521,6 @@ func TestUpdate_Indoption(t *testing.T) {
 }
 
 func TestUpdate_Indpred(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -607,7 +530,6 @@ func TestUpdate_Indpred(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -617,7 +539,6 @@ func TestUpdate_Indpred(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indpred = m.Indpred
 	err = crud.Update_Indpred(&Otvet)
@@ -627,8 +548,6 @@ func TestUpdate_Indpred(t *testing.T) {
 }
 
 func TestUpdate_Indrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -638,7 +557,6 @@ func TestUpdate_Indrelid(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -648,7 +566,6 @@ func TestUpdate_Indrelid(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.Indrelid = m.Indrelid
 	err = crud.Update_Indrelid(&Otvet)
@@ -658,8 +575,6 @@ func TestUpdate_Indrelid(t *testing.T) {
 }
 
 func TestUpdate_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -669,7 +584,6 @@ func TestUpdate_VersionID(t *testing.T) {
 	crud := Crud_DB{}
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = INDEXRELID_Test
-	m.Indrelid = INDRELID_Test
 	m.VersionID = VERSIONID_Test
 	err := crud.Read(&m)
 	if err != nil {
@@ -679,7 +593,6 @@ func TestUpdate_VersionID(t *testing.T) {
 	//запишем в БД это же значение
 	Otvet := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	Otvet.Indexrelid = INDEXRELID_Test
-	Otvet.Indrelid = INDRELID_Test
 	Otvet.VersionID = VERSIONID_Test
 	Otvet.VersionID = m.VersionID
 	err = crud.Update_VersionID(&Otvet)

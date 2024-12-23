@@ -49,7 +49,7 @@ func Read_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_index.Pos
 
 	tx := db.WithContext(ctx)
 
-	tx = tx.Where(m, "Indexrelid", "Indrelid", "VersionID").Take(m)
+	tx = tx.Where(m, "Indexrelid", "VersionID").Take(m)
 	err = tx.Error
 	if err != nil {
 		err = fmt.Errorf(m.TableNameDB()+" Read() Indexrelid: %v, error: %w", m.Indexrelid, err)
@@ -103,7 +103,7 @@ func Update_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_index.P
 	}
 
 	// проверка ID
-	if m.Indexrelid == 0 || m.Indrelid == 0 || m.VersionID == 0 {
+	if m.Indexrelid == 0 || m.VersionID == 0 {
 		TextError := fmt.Sprint(m.TableNameDB()+" Update() ", TableName, " error: Indexrelid =0")
 		err = errors.New(TextError)
 		return err
@@ -134,7 +134,7 @@ func Create_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_index.P
 	}
 
 	// проверка ID
-	if m.Indexrelid != 0 || m.Indrelid != 0 || m.VersionID != 0 {
+	if m.Indexrelid != 0 || m.VersionID != 0 {
 		TextError := fmt.Sprint(m.TableNameDB()+" Create() ", TableName, " error: Indexrelid !=0")
 		err = errors.New(TextError)
 		return err
@@ -192,7 +192,7 @@ func create_update_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_
 	}
 
 	//удалим из кэша
-	cache.Remove(postgres_migrate_pg_index.StringIdentifier(m.Indexrelid, m.Indrelid, m.VersionID))
+	cache.Remove(postgres_migrate_pg_index.StringIdentifier(m.Indexrelid, m.VersionID))
 
 	//запишем NULL в пустые колонки
 	MapOmit := crud_functions.MapOmit_from_MassOmit(MassOmit)
@@ -204,6 +204,92 @@ func create_update_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_
 	err = tx.Error
 	if err != nil {
 		err = fmt.Errorf(m.TableNameDB()+" Create_Update() Indexrelid: %v, error: %w", m.Indexrelid, err)
+	}
+
+	return err
+}
+
+// Delete - записывает is_deleted = true
+func (crud Crud_DB) Delete(m *postgres_migrate_pg_index.PostgresMigratePgIndex) error {
+	var err error
+
+	ctxMain := contextmain.GetContext()
+	ctx, ctxCancelFunc := context.WithTimeout(ctxMain, time.Second*time.Duration(db_constants.TIMEOUT_DB_SECONDS))
+	defer ctxCancelFunc()
+
+	db := postgres_gorm.GetConnection()
+
+	err = Delete_ctx(ctx, db, m)
+	return err
+}
+
+// Delete_ctx - записывает is_deleted = true
+func Delete_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_index.PostgresMigratePgIndex) error {
+	var err error
+
+	if micro.ContextDone(ctx) == true {
+		err = context.Canceled
+		return err
+	}
+
+	m2 := postgres_migrate_pg_index.PostgresMigratePgIndex{}
+	m2.Indexrelid = m.Indexrelid
+	m2.VersionID = m.VersionID
+
+	err = Read_ctx(ctx, db, &m2)
+	if err != nil {
+		return err
+	}
+
+	m2.IsDeleted = true
+	m.IsDeleted = true
+
+	err = Save_ctx(ctx, db, &m2)
+	if err != nil {
+		err = fmt.Errorf(m.TableNameDB()+" Delete() Indexrelid: %v, error: %w", m.Indexrelid, err)
+	}
+
+	return err
+}
+
+// Restore - записывает is_deleted = true
+func (crud Crud_DB) Restore(m *postgres_migrate_pg_index.PostgresMigratePgIndex) error {
+	var err error
+
+	ctxMain := contextmain.GetContext()
+	ctx, ctxCancelFunc := context.WithTimeout(ctxMain, time.Second*time.Duration(db_constants.TIMEOUT_DB_SECONDS))
+	defer ctxCancelFunc()
+
+	db := postgres_gorm.GetConnection()
+
+	err = Restore_ctx(ctx, db, m)
+	return err
+}
+
+// Restore_ctx - записывает is_deleted = true
+func Restore_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_index.PostgresMigratePgIndex) error {
+	var err error
+
+	if micro.ContextDone(ctx) == true {
+		err = context.Canceled
+		return err
+	}
+
+	m2 := postgres_migrate_pg_index.PostgresMigratePgIndex{}
+	m2.Indexrelid = m.Indexrelid
+	m2.VersionID = m.VersionID
+
+	err = Read_ctx(ctx, db, &m2)
+	if err != nil {
+		return err
+	}
+
+	m2.IsDeleted = false
+	m.IsDeleted = false
+
+	err = Save_ctx(ctx, db, &m2)
+	if err != nil {
+		err = fmt.Errorf(m.TableNameDB()+" Restore() Indexrelid: %v, error: %w", m.Indexrelid, err)
 	}
 
 	return err

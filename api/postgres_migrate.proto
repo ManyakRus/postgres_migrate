@@ -18,6 +18,8 @@ service Postgres_migrate {
 	rpc PostgresMigratePgAttribute_Create(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgAttribute_Update(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgAttribute_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgAttribute_Delete(Request_String_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgAttribute_Restore(Request_String_Int64_Int64) returns (Response) {}
 	rpc PostgresMigratePgAttribute_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgAttribute_Update_Attalign(Request_String_Int64_Int64_String) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgAttribute_Update_Attbyval(Request_String_Int64_Int64_Bool) returns (ResponseEmpty) {}
@@ -49,6 +51,8 @@ service Postgres_migrate {
 	rpc PostgresMigratePgClass_Create(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgClass_Update(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgClass_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgClass_Delete(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgClass_Restore(Request_Int64_Int64) returns (Response) {}
 	rpc PostgresMigratePgClass_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Oid(Request_Int64_Int64) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Relallvisible(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
@@ -89,6 +93,8 @@ service Postgres_migrate {
 	rpc PostgresMigratePgConstraint_Create(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgConstraint_Update(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgConstraint_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgConstraint_Delete(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgConstraint_Restore(Request_Int64_Int64) returns (Response) {}
 	rpc PostgresMigratePgConstraint_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgConstraint_Update_Condeferrable(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgConstraint_Update_Condeferred(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
@@ -123,6 +129,8 @@ service Postgres_migrate {
 	rpc PostgresMigratePgDescription_Create(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgDescription_Update(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgDescription_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgDescription_Delete(Request_Int64_Int64_Int32_Int64) returns (Response) {}
+	rpc PostgresMigratePgDescription_Restore(Request_Int64_Int64_Int32_Int64) returns (Response) {}
 	rpc PostgresMigratePgDescription_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgDescription_Update_Classoid(Request_Int64_Int64_Int32_Int64) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgDescription_Update_Description(Request_Int64_Int64_Int32_Int64_String) returns (ResponseEmpty) {}
@@ -133,40 +141,44 @@ service Postgres_migrate {
 	rpc PostgresMigratePgDescription_ReadObject(Request_Int64_Int64_Int32_Int64) returns (Response) {}
 
 	//PostgresMigratePgIndex
-	rpc PostgresMigratePgIndex_Read(Request_Int64_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgIndex_Read(Request_Int64_Int64) returns (Response) {}
 	rpc PostgresMigratePgIndex_Create(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgIndex_Update(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgIndex_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgIndex_Delete(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgIndex_Restore(Request_Int64_Int64) returns (Response) {}
 	rpc PostgresMigratePgIndex_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indcheckxmin(Request_Int64_Int64_Int64_Bool) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indclass(Request_Int64_Int64_Int64_String) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indcollation(Request_Int64_Int64_Int64_String) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indexprs(Request_Int64_Int64_Int64_String) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indexrelid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indimmediate(Request_Int64_Int64_Int64_Bool) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indisclustered(Request_Int64_Int64_Int64_Bool) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indisexclusion(Request_Int64_Int64_Int64_Bool) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indislive(Request_Int64_Int64_Int64_Bool) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indisprimary(Request_Int64_Int64_Int64_Bool) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indisready(Request_Int64_Int64_Int64_Bool) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indisreplident(Request_Int64_Int64_Int64_Bool) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indisunique(Request_Int64_Int64_Int64_Bool) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indisvalid(Request_Int64_Int64_Int64_Bool) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indkey(Request_Int64_Int64_Int64_String) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indnatts(Request_Int64_Int64_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indnkeyatts(Request_Int64_Int64_Int64_Int32) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indoption(Request_Int64_Int64_Int64_String) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_Indpred(Request_Int64_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indcheckxmin(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indclass(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indcollation(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indexprs(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indexrelid(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indimmediate(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisclustered(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisexclusion(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indislive(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisprimary(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisready(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisreplident(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisunique(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisvalid(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indkey(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indnatts(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indnkeyatts(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indoption(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indpred(Request_Int64_Int64_String) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgIndex_Update_Indrelid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_Update_VersionID(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgIndex_ReadFromCache(Request_Int64_Int64_Int64) returns (Response) {}
-	rpc PostgresMigratePgIndex_ReadObject(Request_Int64_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgIndex_Update_VersionID(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_ReadFromCache(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgIndex_ReadObject(Request_Int64_Int64) returns (Response) {}
 
 	//PostgresMigratePgNamespace
 	rpc PostgresMigratePgNamespace_Read(Request_Int64_Int64) returns (Response) {}
 	rpc PostgresMigratePgNamespace_Create(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgNamespace_Update(RequestModel) returns (Response) {}
 	rpc PostgresMigratePgNamespace_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgNamespace_Delete(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgNamespace_Restore(Request_Int64_Int64) returns (Response) {}
 	rpc PostgresMigratePgNamespace_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgNamespace_Update_Nspacl(Request_Int64_Int64_String) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgNamespace_Update_Nspname(Request_Int64_Int64_String) returns (ResponseEmpty) {}
@@ -186,6 +198,7 @@ service Postgres_migrate {
 	rpc PostgresMigrateVersion_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
 	rpc PostgresMigrateVersion_ReadFromCache(Request_Int64) returns (Response) {}
 	rpc PostgresMigrateVersion_ReadObject(Request_Int64) returns (Response) {}
+
 }
 
 // -------------------------- Request ----------------------------------------------
@@ -500,6 +513,14 @@ message Request_Int64_Int64 {
     int64 Int64_2 = 3; //id записи в БД
 }
 
+// Request_Int64_Int64_Bool - параметры запроса на сервер
+message Request_Int64_Int64_Bool {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    bool Bool_1 = 4; //значение поиска
+}
+
 // Request_Int64_Int64_String - параметры запроса на сервер
 message Request_Int64_Int64_String {
     uint32 VersionModel = 1; //версия структуры модели
@@ -516,31 +537,12 @@ message Request_Int64_Int64_Int64 {
     int64 Int64_3 = 4; //значение поиска
 }
 
-// Request_Int64_Int64_Int64_Bool - параметры запроса на сервер
-message Request_Int64_Int64_Int64_Bool {
+// Request_Int64_Int64_Int32 - параметры запроса на сервер
+message Request_Int64_Int64_Int32 {
     uint32 VersionModel = 1; //версия структуры модели
     int64 Int64_1 = 2; //id записи в БД
     int64 Int64_2 = 3; //id записи в БД
-    int64 Int64_3 = 4; //id записи в БД
-    bool Bool_1 = 5; //значение поиска
-}
-
-// Request_Int64_Int64_Int64_String - параметры запроса на сервер
-message Request_Int64_Int64_Int64_String {
-    uint32 VersionModel = 1; //версия структуры модели
-    int64 Int64_1 = 2; //id записи в БД
-    int64 Int64_2 = 3; //id записи в БД
-    int64 Int64_3 = 4; //id записи в БД
-    string String_1 = 5; //значение поиска
-}
-
-// Request_Int64_Int64_Int64_Int32 - параметры запроса на сервер
-message Request_Int64_Int64_Int64_Int32 {
-    uint32 VersionModel = 1; //версия структуры модели
-    int64 Int64_1 = 2; //id записи в БД
-    int64 Int64_2 = 3; //id записи в БД
-    int64 Int64_3 = 4; //id записи в БД
-    int32 Int32_1 = 5; //значение поиска
+    int32 Int32_1 = 4; //значение поиска
 }
 
 // Request_Int64_Int64_Int32_Int64 - параметры запроса на сервер
@@ -562,20 +564,14 @@ message Request_Int64_Int64_Int32_Int64_String {
     string String_1 = 6; //значение поиска
 }
 
-// Request_Int64_Int64_Bool - параметры запроса на сервер
-message Request_Int64_Int64_Bool {
+// Request_Int64_Int64_Int32_Int64_Bool - параметры запроса на сервер
+message Request_Int64_Int64_Int32_Int64_Bool {
     uint32 VersionModel = 1; //версия структуры модели
     int64 Int64_1 = 2; //id записи в БД
     int64 Int64_2 = 3; //id записи в БД
-    bool Bool_1 = 4; //значение поиска
-}
-
-// Request_Int64_Int64_Int32 - параметры запроса на сервер
-message Request_Int64_Int64_Int32 {
-    uint32 VersionModel = 1; //версия структуры модели
-    int64 Int64_1 = 2; //id записи в БД
-    int64 Int64_2 = 3; //id записи в БД
-    int32 Int32_1 = 4; //значение поиска
+    int32 Int32_1 = 4; //id записи в БД
+    int64 Int64_3 = 5; //id записи в БД
+    bool Bool_1 = 6; //значение поиска
 }
 
 // Request_Int64_Int64_Float32 - параметры запроса на сервер

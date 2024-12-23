@@ -15,8 +15,6 @@ import (
 )
 
 func TestServerGRPC_PostgresMigratePgNamespace_UpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -54,8 +52,6 @@ func TestServerGRPC_PostgresMigratePgNamespace_UpdateManyFields(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgNamespace_Update_Nspacl(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -95,8 +91,6 @@ func Test_server_PostgresMigratePgNamespace_Update_Nspacl(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgNamespace_Update_Nspname(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -136,8 +130,6 @@ func Test_server_PostgresMigratePgNamespace_Update_Nspname(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgNamespace_Update_Nspowner(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -177,8 +169,6 @@ func Test_server_PostgresMigratePgNamespace_Update_Nspowner(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgNamespace_Update_Oid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -218,8 +208,6 @@ func Test_server_PostgresMigratePgNamespace_Update_Oid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgNamespace_Update_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")

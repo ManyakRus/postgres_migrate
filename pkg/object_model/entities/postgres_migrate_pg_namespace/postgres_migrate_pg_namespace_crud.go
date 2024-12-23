@@ -24,6 +24,8 @@ type ICrud_PostgresMigratePgNamespace interface {
 	Save(*PostgresMigratePgNamespace) error
 	Update(*PostgresMigratePgNamespace) error
 	Create(*PostgresMigratePgNamespace) error
+	Delete(*PostgresMigratePgNamespace) error
+	Restore(*PostgresMigratePgNamespace) error
 	ReadFromCache(Oid int64, VersionID int64) (PostgresMigratePgNamespace, error)
 	UpdateManyFields(*PostgresMigratePgNamespace, []string) error
 	Update_Nspacl(*PostgresMigratePgNamespace) error
@@ -138,6 +140,28 @@ func (m *PostgresMigratePgNamespace) Create() error {
 	}
 
 	err := Crud_PostgresMigratePgNamespace.Create(m)
+
+	return err
+}
+
+// Delete - устанавливает признак пометки удаления в БД
+func (m *PostgresMigratePgNamespace) Delete() error {
+	if Crud_PostgresMigratePgNamespace == nil {
+		return db_constants.ErrorCrudIsNotInit
+	}
+
+	err := Crud_PostgresMigratePgNamespace.Delete(m)
+
+	return err
+}
+
+// Restore - снимает признак пометки удаления в БД
+func (m *PostgresMigratePgNamespace) Restore() error {
+	if Crud_PostgresMigratePgNamespace == nil {
+		return db_constants.ErrorCrudIsNotInit
+	}
+
+	err := Crud_PostgresMigratePgNamespace.Restore(m)
 
 	return err
 }

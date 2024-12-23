@@ -63,10 +63,9 @@ func (crud Crud_GRPC) Update_Indcheckxmin(m *postgres_migrate_pg_index.PostgresM
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Bool{}
+	Request := &grpc_proto.Request_Int64_Int64_Bool{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Bool_1 = m.Indcheckxmin
 	Request.VersionModel = versionModel
@@ -101,10 +100,9 @@ func (crud Crud_GRPC) Update_Indclass(m *postgres_migrate_pg_index.PostgresMigra
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_String{}
+	Request := &grpc_proto.Request_Int64_Int64_String{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.String_1 = m.Indclass
 	Request.VersionModel = versionModel
@@ -139,10 +137,9 @@ func (crud Crud_GRPC) Update_Indcollation(m *postgres_migrate_pg_index.PostgresM
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_String{}
+	Request := &grpc_proto.Request_Int64_Int64_String{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.String_1 = m.Indcollation
 	Request.VersionModel = versionModel
@@ -177,10 +174,9 @@ func (crud Crud_GRPC) Update_Indexprs(m *postgres_migrate_pg_index.PostgresMigra
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_String{}
+	Request := &grpc_proto.Request_Int64_Int64_String{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.String_1 = m.Indexprs
 	Request.VersionModel = versionModel
@@ -215,10 +211,9 @@ func (crud Crud_GRPC) Update_Indexrelid(m *postgres_migrate_pg_index.PostgresMig
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64{}
+	Request := &grpc_proto.Request_Int64_Int64{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Int64_1 = m.Indexrelid
 	Request.VersionModel = versionModel
@@ -253,10 +248,9 @@ func (crud Crud_GRPC) Update_Indimmediate(m *postgres_migrate_pg_index.PostgresM
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Bool{}
+	Request := &grpc_proto.Request_Int64_Int64_Bool{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Bool_1 = m.Indimmediate
 	Request.VersionModel = versionModel
@@ -291,10 +285,9 @@ func (crud Crud_GRPC) Update_Indisclustered(m *postgres_migrate_pg_index.Postgre
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Bool{}
+	Request := &grpc_proto.Request_Int64_Int64_Bool{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Bool_1 = m.Indisclustered
 	Request.VersionModel = versionModel
@@ -329,10 +322,9 @@ func (crud Crud_GRPC) Update_Indisexclusion(m *postgres_migrate_pg_index.Postgre
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Bool{}
+	Request := &grpc_proto.Request_Int64_Int64_Bool{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Bool_1 = m.Indisexclusion
 	Request.VersionModel = versionModel
@@ -367,10 +359,9 @@ func (crud Crud_GRPC) Update_Indislive(m *postgres_migrate_pg_index.PostgresMigr
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Bool{}
+	Request := &grpc_proto.Request_Int64_Int64_Bool{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Bool_1 = m.Indislive
 	Request.VersionModel = versionModel
@@ -405,10 +396,9 @@ func (crud Crud_GRPC) Update_Indisprimary(m *postgres_migrate_pg_index.PostgresM
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Bool{}
+	Request := &grpc_proto.Request_Int64_Int64_Bool{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Bool_1 = m.Indisprimary
 	Request.VersionModel = versionModel
@@ -443,10 +433,9 @@ func (crud Crud_GRPC) Update_Indisready(m *postgres_migrate_pg_index.PostgresMig
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Bool{}
+	Request := &grpc_proto.Request_Int64_Int64_Bool{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Bool_1 = m.Indisready
 	Request.VersionModel = versionModel
@@ -481,10 +470,9 @@ func (crud Crud_GRPC) Update_Indisreplident(m *postgres_migrate_pg_index.Postgre
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Bool{}
+	Request := &grpc_proto.Request_Int64_Int64_Bool{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Bool_1 = m.Indisreplident
 	Request.VersionModel = versionModel
@@ -519,10 +507,9 @@ func (crud Crud_GRPC) Update_Indisunique(m *postgres_migrate_pg_index.PostgresMi
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Bool{}
+	Request := &grpc_proto.Request_Int64_Int64_Bool{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Bool_1 = m.Indisunique
 	Request.VersionModel = versionModel
@@ -557,10 +544,9 @@ func (crud Crud_GRPC) Update_Indisvalid(m *postgres_migrate_pg_index.PostgresMig
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Bool{}
+	Request := &grpc_proto.Request_Int64_Int64_Bool{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Bool_1 = m.Indisvalid
 	Request.VersionModel = versionModel
@@ -595,10 +581,9 @@ func (crud Crud_GRPC) Update_Indkey(m *postgres_migrate_pg_index.PostgresMigrate
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_String{}
+	Request := &grpc_proto.Request_Int64_Int64_String{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.String_1 = m.Indkey
 	Request.VersionModel = versionModel
@@ -633,10 +618,9 @@ func (crud Crud_GRPC) Update_Indnatts(m *postgres_migrate_pg_index.PostgresMigra
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Int32{}
+	Request := &grpc_proto.Request_Int64_Int64_Int32{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Int32_1 = m.Indnatts
 	Request.VersionModel = versionModel
@@ -671,10 +655,9 @@ func (crud Crud_GRPC) Update_Indnkeyatts(m *postgres_migrate_pg_index.PostgresMi
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_Int32{}
+	Request := &grpc_proto.Request_Int64_Int64_Int32{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.Int32_1 = m.Indnkeyatts
 	Request.VersionModel = versionModel
@@ -709,10 +692,9 @@ func (crud Crud_GRPC) Update_Indoption(m *postgres_migrate_pg_index.PostgresMigr
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_String{}
+	Request := &grpc_proto.Request_Int64_Int64_String{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.String_1 = m.Indoption
 	Request.VersionModel = versionModel
@@ -747,10 +729,9 @@ func (crud Crud_GRPC) Update_Indpred(m *postgres_migrate_pg_index.PostgresMigrat
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64_String{}
+	Request := &grpc_proto.Request_Int64_Int64_String{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
 	Request.String_1 = m.Indpred
 	Request.VersionModel = versionModel
@@ -787,10 +768,9 @@ func (crud Crud_GRPC) Update_Indrelid(m *postgres_migrate_pg_index.PostgresMigra
 
 	Request := &grpc_proto.Request_Int64_Int64_Int64{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
-	Request.Int64_2 = m.Indrelid
+	Request.Int64_3 = m.Indrelid
 	Request.VersionModel = versionModel
 
 	ctxMain := context.Background()
@@ -823,12 +803,11 @@ func (crud Crud_GRPC) Update_VersionID(m *postgres_migrate_pg_index.PostgresMigr
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int64{}
+	Request := &grpc_proto.Request_Int64_Int64{}
 	Request.Int64_1 = m.Indexrelid
-	Request.Int64_2 = m.Indrelid
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 
-	Request.Int64_3 = m.VersionID
+	Request.Int64_2 = m.VersionID
 	Request.VersionModel = versionModel
 
 	ctxMain := context.Background()

@@ -12,8 +12,6 @@ import (
 )
 
 func TestUpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -36,8 +34,6 @@ func TestUpdateManyFields(t *testing.T) {
 }
 
 func TestUpdate_Description(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -63,8 +59,6 @@ func TestUpdate_Description(t *testing.T) {
 }
 
 func TestUpdate_Name(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")

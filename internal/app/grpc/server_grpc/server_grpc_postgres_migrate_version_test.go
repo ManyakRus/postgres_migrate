@@ -15,11 +15,9 @@ import (
 )
 
 // PostgresMigrateVersion_ID_Test - ID таблицы для тестирования
-const PostgresMigrateVersion_ID_Test = 0
+const PostgresMigrateVersion_ID_Test = 1
 
 func Test_server_PostgresMigrateVersion_Read(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -41,8 +39,6 @@ func Test_server_PostgresMigrateVersion_Read(t *testing.T) {
 }
 
 func Test_server_PostgresMigrateVersion_Create(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -73,8 +69,6 @@ func Test_server_PostgresMigrateVersion_Create(t *testing.T) {
 }
 
 func Test_server_PostgresMigrateVersion_Update(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -113,8 +107,6 @@ func Test_server_PostgresMigrateVersion_Update(t *testing.T) {
 }
 
 func Test_server_PostgresMigrateVersion_Save(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")

@@ -24,7 +24,9 @@ type ICrud_PostgresMigratePgIndex interface {
 	Save(*PostgresMigratePgIndex) error
 	Update(*PostgresMigratePgIndex) error
 	Create(*PostgresMigratePgIndex) error
-	ReadFromCache(Indexrelid int64, Indrelid int64, VersionID int64) (PostgresMigratePgIndex, error)
+	Delete(*PostgresMigratePgIndex) error
+	Restore(*PostgresMigratePgIndex) error
+	ReadFromCache(Indexrelid int64, VersionID int64) (PostgresMigratePgIndex, error)
 	UpdateManyFields(*PostgresMigratePgIndex, []string) error
 	Update_Indcheckxmin(*PostgresMigratePgIndex) error
 	Update_Indclass(*PostgresMigratePgIndex) error
@@ -158,8 +160,30 @@ func (m *PostgresMigratePgIndex) Create() error {
 	return err
 }
 
+// Delete - устанавливает признак пометки удаления в БД
+func (m *PostgresMigratePgIndex) Delete() error {
+	if Crud_PostgresMigratePgIndex == nil {
+		return db_constants.ErrorCrudIsNotInit
+	}
+
+	err := Crud_PostgresMigratePgIndex.Delete(m)
+
+	return err
+}
+
+// Restore - снимает признак пометки удаления в БД
+func (m *PostgresMigratePgIndex) Restore() error {
+	if Crud_PostgresMigratePgIndex == nil {
+		return db_constants.ErrorCrudIsNotInit
+	}
+
+	err := Crud_PostgresMigratePgIndex.Restore(m)
+
+	return err
+}
+
 // ReadFromCache - находит запись в кэше или в БД по ID, и заполняет в объект
-func (m *PostgresMigratePgIndex) ReadFromCache(Indexrelid int64, Indrelid int64, VersionID int64) (PostgresMigratePgIndex, error) {
+func (m *PostgresMigratePgIndex) ReadFromCache(Indexrelid int64, VersionID int64) (PostgresMigratePgIndex, error) {
 	Otvet := PostgresMigratePgIndex{}
 	var err error
 
@@ -167,7 +191,7 @@ func (m *PostgresMigratePgIndex) ReadFromCache(Indexrelid int64, Indrelid int64,
 		return Otvet, db_constants.ErrorCrudIsNotInit
 	}
 
-	Otvet, err = Crud_PostgresMigratePgIndex.ReadFromCache(Indexrelid, Indrelid, VersionID)
+	Otvet, err = Crud_PostgresMigratePgIndex.ReadFromCache(Indexrelid, VersionID)
 
 	return Otvet, err
 }
@@ -193,10 +217,9 @@ func (m *PostgresMigratePgIndex) UpdateManyFields(MassNeedUpdateFields []string)
 // ---------------------------- конец CRUD операции ------------------------------------------------------------
 
 // StringIdentifier - возвращает строковое представление PrimaryKey
-func StringIdentifier(Indexrelid int64, Indrelid int64, VersionID int64) string {
+func StringIdentifier(Indexrelid int64, VersionID int64) string {
 	Otvet := ""
 	Otvet = Otvet + strconv.Itoa(int(Indexrelid)) + "_"
-	Otvet = Otvet + strconv.Itoa(int(Indrelid)) + "_"
 	Otvet = Otvet + strconv.Itoa(int(VersionID)) + "_"
 
 	return Otvet

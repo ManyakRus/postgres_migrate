@@ -223,3 +223,95 @@ func (crud Crud_GRPC) Save(m *postgres_migrate_pg_description.PostgresMigratePgD
 
 	return err
 }
+
+// Delete - устанавливает is_deleted = true в БД
+func (crud Crud_GRPC) Delete(m *postgres_migrate_pg_description.PostgresMigratePgDescription) error {
+	var err error
+
+	// подключение
+	grpc_client_func.Func_Connect_GRPC_NRPC.Connect_GRPC_NRPC()
+
+	// подготовка запроса
+	var VersionModel = crud.GetVersionModel()
+
+	Request := &grpc_proto.Request_Int64_Int64_Int32_Int64{}
+	Request.Int64_1 = m.Classoid
+	Request.Int64_2 = m.Objoid
+	Request.Int32_1 = m.Objsubid
+	Request.Int64_3 = m.VersionID
+
+	Request.VersionModel = VersionModel
+
+	ctxMain := context.Background()
+	ctx, ctxCancelFunc := context.WithTimeout(ctxMain, time.Second*time.Duration(grpc_constants.GetTimeoutSeconds()))
+	defer ctxCancelFunc()
+
+	// запрос
+	var Response *grpc_proto.Response
+	if grpc_nrpc.NeedNRPC == true {
+		//Response, err = nrpc_client.Client.PostgresMigratePgDescription_Delete(Request)
+	} else {
+		Response, err = grpc_client_func.Client.PostgresMigratePgDescription_Delete(ctx, Request)
+	}
+	if err != nil {
+		if grpc_client_func.IsErrorModelVersion(err) == true {
+			log.Panic(err)
+		}
+		return err
+	}
+
+	// ответ
+	sModel := Response.ModelString
+	err = json.Unmarshal([]byte(sModel), m)
+	if err != nil {
+		return err
+	}
+
+	return err
+}
+
+// Restore - устанавливает is_deleted = false в БД
+func (crud Crud_GRPC) Restore(m *postgres_migrate_pg_description.PostgresMigratePgDescription) error {
+	var err error
+
+	// подключение
+	grpc_client_func.Func_Connect_GRPC_NRPC.Connect_GRPC_NRPC()
+
+	// подготовка запроса
+	var VersionModel = crud.GetVersionModel()
+
+	Request := &grpc_proto.Request_Int64_Int64_Int32_Int64{}
+	Request.Int64_1 = m.Classoid
+	Request.Int64_2 = m.Objoid
+	Request.Int32_1 = m.Objsubid
+	Request.Int64_3 = m.VersionID
+
+	Request.VersionModel = VersionModel
+
+	ctxMain := context.Background()
+	ctx, ctxCancelFunc := context.WithTimeout(ctxMain, time.Second*time.Duration(grpc_constants.GetTimeoutSeconds()))
+	defer ctxCancelFunc()
+
+	// запрос
+	var Response *grpc_proto.Response
+	if grpc_nrpc.NeedNRPC == true {
+		//Response, err = nrpc_client.Client.PostgresMigratePgDescription_Restore(Request)
+	} else {
+		Response, err = grpc_client_func.Client.PostgresMigratePgDescription_Restore(ctx, Request)
+	}
+	if err != nil {
+		if grpc_client_func.IsErrorModelVersion(err) == true {
+			log.Panic(err)
+		}
+		return err
+	}
+
+	// ответ
+	sModel := Response.ModelString
+	err = json.Unmarshal([]byte(sModel), m)
+	if err != nil {
+		return err
+	}
+
+	return err
+}

@@ -15,8 +15,6 @@ import (
 )
 
 func Test_server_PostgresMigratePgClass_ReadFromCache(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")

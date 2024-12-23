@@ -24,6 +24,8 @@ type ICrud_PostgresMigratePgConstraint interface {
 	Save(*PostgresMigratePgConstraint) error
 	Update(*PostgresMigratePgConstraint) error
 	Create(*PostgresMigratePgConstraint) error
+	Delete(*PostgresMigratePgConstraint) error
+	Restore(*PostgresMigratePgConstraint) error
 	ReadFromCache(Oid int64, VersionID int64) (PostgresMigratePgConstraint, error)
 	UpdateManyFields(*PostgresMigratePgConstraint, []string) error
 	Update_Condeferrable(*PostgresMigratePgConstraint) error
@@ -158,6 +160,28 @@ func (m *PostgresMigratePgConstraint) Create() error {
 	}
 
 	err := Crud_PostgresMigratePgConstraint.Create(m)
+
+	return err
+}
+
+// Delete - устанавливает признак пометки удаления в БД
+func (m *PostgresMigratePgConstraint) Delete() error {
+	if Crud_PostgresMigratePgConstraint == nil {
+		return db_constants.ErrorCrudIsNotInit
+	}
+
+	err := Crud_PostgresMigratePgConstraint.Delete(m)
+
+	return err
+}
+
+// Restore - снимает признак пометки удаления в БД
+func (m *PostgresMigratePgConstraint) Restore() error {
+	if Crud_PostgresMigratePgConstraint == nil {
+		return db_constants.ErrorCrudIsNotInit
+	}
+
+	err := Crud_PostgresMigratePgConstraint.Restore(m)
 
 	return err
 }

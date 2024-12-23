@@ -5,6 +5,7 @@ package server_grpc
 
 import (
 	"context"
+	"encoding/json"
 	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"github.com/ManyakRus/postgres_migrate/pkg/constants"
 	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter"
@@ -15,13 +16,11 @@ import (
 )
 
 // PostgresMigratePgAttribute_ID_Test - ID таблицы для тестирования
-const PostgresMigratePgAttribute_ATTNAME_Test = ""
-const PostgresMigratePgAttribute_ATTRELID_Test = 0
-const PostgresMigratePgAttribute_VERSIONID_Test = 0
+const PostgresMigratePgAttribute_ATTNAME_Test = "attalign"
+const PostgresMigratePgAttribute_ATTRELID_Test = 678300790
+const PostgresMigratePgAttribute_VERSIONID_Test = 1
 
 func Test_server_PostgresMigratePgAttribute_Read(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -44,9 +43,78 @@ func Test_server_PostgresMigratePgAttribute_Read(t *testing.T) {
 	}
 }
 
-func Test_server_PostgresMigratePgAttribute_Create(t *testing.T) {
-	t.SkipNow() //now rows in DB
+func Test_server_PostgresMigratePgAttribute_Delete(t *testing.T) {
+	config_main.LoadEnv()
+	crud_starter.InitCrudTransport_DB()
+	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
+	defer postgres_gorm.CloseConnection()
 
+	ctx := context.Background()
+	Request := grpc_proto.Request_String_Int64_Int64{}
+	Request.String_1 = PostgresMigratePgAttribute_ATTNAME_Test
+	Request.Int64_1 = PostgresMigratePgAttribute_ATTRELID_Test
+	Request.Int64_2 = PostgresMigratePgAttribute_VERSIONID_Test
+	Request.VersionModel = postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}.GetStructVersion()
+
+	server1 := &ServerGRPC{}
+
+	//прочитаем
+	Response, err := server1.PostgresMigratePgAttribute_Read(ctx, &Request)
+	if err != nil {
+		t.Error("Test_server_PostgresMigratePgAttribute_Delete() error: ", err)
+	}
+	if Response.ModelString == "" {
+		t.Error("Test_server_PostgresMigratePgAttribute_Delete() error: ModelString=''")
+	}
+
+	Otvet := &postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}
+	sModel := Response.ModelString
+	err = json.Unmarshal([]byte(sModel), Otvet)
+	if err != nil {
+		t.Error("Test_server_PostgresMigratePgAttribute_Delete() Unmarshal() error: ", err)
+	}
+
+	if Otvet.IsDeleted == false {
+		//пометим на удаление
+		_, err = server1.PostgresMigratePgAttribute_Delete(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgAttribute_Delete() error: ", err)
+		}
+		if Otvet.Attname == "" {
+			t.Error("Test_server_PostgresMigratePgAttribute_Delete() error: ID =0")
+		}
+
+		//снимем пометку на удаление
+		_, err = server1.PostgresMigratePgAttribute_Restore(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgAttribute_Delete() error: ", err)
+		}
+		if Otvet.Attname == "" {
+			t.Error("Test_server_PostgresMigratePgAttribute_Delete() error: ID =0")
+		}
+	} else {
+		//снимем пометку на удаление
+		_, err = server1.PostgresMigratePgAttribute_Restore(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgAttribute_Delete() error: ", err)
+		}
+		if Otvet.Attname == "" {
+			t.Error("Test_server_PostgresMigratePgAttribute_Delete() error: ID =0")
+		}
+
+		//пометим на удаление
+		_, err = server1.PostgresMigratePgAttribute_Delete(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgAttribute_Delete() error: ", err)
+		}
+		if Otvet.Attname == "" {
+			t.Error("Test_server_PostgresMigratePgAttribute_Delete() error: ID =0")
+		}
+	}
+
+}
+
+func Test_server_PostgresMigratePgAttribute_Create(t *testing.T) {
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -79,8 +147,6 @@ func Test_server_PostgresMigratePgAttribute_Create(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Update(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -121,8 +187,6 @@ func Test_server_PostgresMigratePgAttribute_Update(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgAttribute_Save(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")

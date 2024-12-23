@@ -12,10 +12,9 @@ import (
 )
 
 // ID_Test - ID таблицы для тестирования
-const ID_Test = 0
+const ID_Test = 1
 
 func TestGetVersionModel(t *testing.T) {
-	t.SkipNow() //now rows in DB
 
 	crud := grpc_postgres_migrate_version.Crud_GRPC{}
 	Otvet := crud.GetVersionModel()
@@ -25,8 +24,6 @@ func TestGetVersionModel(t *testing.T) {
 }
 
 func TestRead(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -46,8 +43,6 @@ func TestRead(t *testing.T) {
 }
 
 func TestCreate(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -65,8 +60,6 @@ func TestCreate(t *testing.T) {
 }
 
 func TestUpdate(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()
@@ -87,8 +80,6 @@ func TestUpdate(t *testing.T) {
 }
 
 func TestSave(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()

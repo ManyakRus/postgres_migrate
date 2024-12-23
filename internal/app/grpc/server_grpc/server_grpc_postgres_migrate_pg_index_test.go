@@ -5,6 +5,7 @@ package server_grpc
 
 import (
 	"context"
+	"encoding/json"
 	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"github.com/ManyakRus/postgres_migrate/pkg/constants"
 	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter"
@@ -15,23 +16,19 @@ import (
 )
 
 // PostgresMigratePgIndex_ID_Test - ID таблицы для тестирования
-const PostgresMigratePgIndex_INDEXRELID_Test = 0
-const PostgresMigratePgIndex_INDRELID_Test = 0
-const PostgresMigratePgIndex_VERSIONID_Test = 0
+const PostgresMigratePgIndex_INDEXRELID_Test = 678300828
+const PostgresMigratePgIndex_VERSIONID_Test = 1
 
 func Test_server_PostgresMigratePgIndex_Read(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
 	defer postgres_gorm.CloseConnection()
 
 	ctx := context.Background()
-	Request := grpc_proto.Request_Int64_Int64_Int64{}
+	Request := grpc_proto.Request_Int64_Int64{}
 	Request.Int64_1 = PostgresMigratePgIndex_INDEXRELID_Test
-	Request.Int64_2 = PostgresMigratePgIndex_INDRELID_Test
-	Request.Int64_3 = PostgresMigratePgIndex_VERSIONID_Test
+	Request.Int64_2 = PostgresMigratePgIndex_VERSIONID_Test
 	Request.VersionModel = postgres_migrate_pg_index.PostgresMigratePgIndex{}.GetStructVersion()
 
 	server1 := &ServerGRPC{}
@@ -44,9 +41,77 @@ func Test_server_PostgresMigratePgIndex_Read(t *testing.T) {
 	}
 }
 
-func Test_server_PostgresMigratePgIndex_Create(t *testing.T) {
-	t.SkipNow() //now rows in DB
+func Test_server_PostgresMigratePgIndex_Delete(t *testing.T) {
+	config_main.LoadEnv()
+	crud_starter.InitCrudTransport_DB()
+	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
+	defer postgres_gorm.CloseConnection()
 
+	ctx := context.Background()
+	Request := grpc_proto.Request_Int64_Int64{}
+	Request.Int64_1 = PostgresMigratePgIndex_INDEXRELID_Test
+	Request.Int64_2 = PostgresMigratePgIndex_VERSIONID_Test
+	Request.VersionModel = postgres_migrate_pg_index.PostgresMigratePgIndex{}.GetStructVersion()
+
+	server1 := &ServerGRPC{}
+
+	//прочитаем
+	Response, err := server1.PostgresMigratePgIndex_Read(ctx, &Request)
+	if err != nil {
+		t.Error("Test_server_PostgresMigratePgIndex_Delete() error: ", err)
+	}
+	if Response.ModelString == "" {
+		t.Error("Test_server_PostgresMigratePgIndex_Delete() error: ModelString=''")
+	}
+
+	Otvet := &postgres_migrate_pg_index.PostgresMigratePgIndex{}
+	sModel := Response.ModelString
+	err = json.Unmarshal([]byte(sModel), Otvet)
+	if err != nil {
+		t.Error("Test_server_PostgresMigratePgIndex_Delete() Unmarshal() error: ", err)
+	}
+
+	if Otvet.IsDeleted == false {
+		//пометим на удаление
+		_, err = server1.PostgresMigratePgIndex_Delete(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgIndex_Delete() error: ", err)
+		}
+		if Otvet.Indexrelid == 0 {
+			t.Error("Test_server_PostgresMigratePgIndex_Delete() error: ID =0")
+		}
+
+		//снимем пометку на удаление
+		_, err = server1.PostgresMigratePgIndex_Restore(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgIndex_Delete() error: ", err)
+		}
+		if Otvet.Indexrelid == 0 {
+			t.Error("Test_server_PostgresMigratePgIndex_Delete() error: ID =0")
+		}
+	} else {
+		//снимем пометку на удаление
+		_, err = server1.PostgresMigratePgIndex_Restore(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgIndex_Delete() error: ", err)
+		}
+		if Otvet.Indexrelid == 0 {
+			t.Error("Test_server_PostgresMigratePgIndex_Delete() error: ID =0")
+		}
+
+		//пометим на удаление
+		_, err = server1.PostgresMigratePgIndex_Delete(ctx, &Request)
+		if err != nil {
+			t.Error("Test_server_PostgresMigratePgIndex_Delete() error: ", err)
+		}
+		if Otvet.Indexrelid == 0 {
+			t.Error("Test_server_PostgresMigratePgIndex_Delete() error: ID =0")
+		}
+	}
+
+}
+
+func Test_server_PostgresMigratePgIndex_Create(t *testing.T) {
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -55,7 +120,6 @@ func Test_server_PostgresMigratePgIndex_Create(t *testing.T) {
 	var ModelString string
 	m := postgres_migrate_pg_index.PostgresMigratePgIndex{}
 	m.Indexrelid = -1
-	m.Indrelid = -1
 	m.VersionID = -1
 	ModelString, err := m.GetJSON()
 	if err != nil {
@@ -79,18 +143,15 @@ func Test_server_PostgresMigratePgIndex_Create(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgIndex_Update(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
 	defer postgres_gorm.CloseConnection()
 
 	ctx := context.Background()
-	Request := grpc_proto.Request_Int64_Int64_Int64{}
+	Request := grpc_proto.Request_Int64_Int64{}
 	Request.Int64_1 = PostgresMigratePgIndex_INDEXRELID_Test
-	Request.Int64_2 = PostgresMigratePgIndex_INDRELID_Test
-	Request.Int64_3 = PostgresMigratePgIndex_VERSIONID_Test
+	Request.Int64_2 = PostgresMigratePgIndex_VERSIONID_Test
 	Request.VersionModel = postgres_migrate_pg_index.PostgresMigratePgIndex{}.GetStructVersion()
 
 	server1 := &ServerGRPC{}
@@ -121,18 +182,15 @@ func Test_server_PostgresMigratePgIndex_Update(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgIndex_Save(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
 	defer postgres_gorm.CloseConnection()
 
 	ctx := context.Background()
-	Request := grpc_proto.Request_Int64_Int64_Int64{}
+	Request := grpc_proto.Request_Int64_Int64{}
 	Request.Int64_1 = PostgresMigratePgIndex_INDEXRELID_Test
-	Request.Int64_2 = PostgresMigratePgIndex_INDRELID_Test
-	Request.Int64_3 = PostgresMigratePgIndex_VERSIONID_Test
+	Request.Int64_2 = PostgresMigratePgIndex_VERSIONID_Test
 	Request.VersionModel = postgres_migrate_pg_index.PostgresMigratePgIndex{}.GetStructVersion()
 
 	server1 := &ServerGRPC{}

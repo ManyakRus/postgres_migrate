@@ -11,13 +11,11 @@ import (
 	"testing"
 )
 
-const ATTNAME_Test = ""
-const ATTRELID_Test = 0
-const VERSIONID_Test = 0
+const ATTNAME_Test = "attalign"
+const ATTRELID_Test = 678300790
+const VERSIONID_Test = 1
 
 func TestRead(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -41,8 +39,6 @@ func TestRead(t *testing.T) {
 }
 
 func TestSave(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -67,5 +63,46 @@ func TestSave(t *testing.T) {
 		t.Error("TestSave() error: ", err)
 	}
 	t.Log(TableName+"_test.TestSave() Otvet: ", Otvet.Attname)
+
+}
+
+func TestDelete(t *testing.T) {
+	config_main.LoadEnv()
+
+	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
+	defer postgres_gorm.CloseConnection()
+
+	crud := Crud_DB{}
+	Otvet := postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}
+	Otvet.Attname = ATTNAME_Test
+	Otvet.Attrelid = ATTRELID_Test
+	Otvet.VersionID = VERSIONID_Test
+	err := crud.Read(&Otvet)
+	if err != nil {
+		t.Error("TestDelete() error: ", err)
+	}
+
+	if Otvet.IsDeleted == false {
+		err = crud.Delete(&Otvet)
+		if err != nil {
+			t.Error("TestDelete() error: ", err)
+		}
+
+		err = crud.Restore(&Otvet)
+		if err != nil {
+			t.Error("TestDelete() error: ", err)
+		}
+	} else {
+		err = crud.Restore(&Otvet)
+		if err != nil {
+			t.Error("TestDelete() error: ", err)
+		}
+
+		err = crud.Delete(&Otvet)
+		if err != nil {
+			t.Error("TestDelete() error: ", err)
+		}
+
+	}
 
 }

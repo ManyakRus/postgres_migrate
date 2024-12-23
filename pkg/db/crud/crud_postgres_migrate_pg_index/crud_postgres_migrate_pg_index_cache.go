@@ -29,7 +29,7 @@ func init() {
 }
 
 // ReadFromCache - находит запись в кеше или в БД по ID
-func (crud Crud_DB) ReadFromCache(Indexrelid int64, Indrelid int64, VersionID int64) (postgres_migrate_pg_index.PostgresMigratePgIndex, error) {
+func (crud Crud_DB) ReadFromCache(Indexrelid int64, VersionID int64) (postgres_migrate_pg_index.PostgresMigratePgIndex, error) {
 	var Otvet postgres_migrate_pg_index.PostgresMigratePgIndex
 	var err error
 
@@ -39,18 +39,18 @@ func (crud Crud_DB) ReadFromCache(Indexrelid int64, Indrelid int64, VersionID in
 
 	db := postgres_gorm.GetConnection()
 
-	Otvet, err = ReadFromCache_ctx(ctx, db, Indexrelid, Indrelid, VersionID)
+	Otvet, err = ReadFromCache_ctx(ctx, db, Indexrelid, VersionID)
 
 	return Otvet, err
 }
 
 // ReadFromCache_ctx - находит запись в кеше или в БД по ID
-func ReadFromCache_ctx(ctx context.Context, db *gorm.DB, Indexrelid int64, Indrelid int64, VersionID int64) (postgres_migrate_pg_index.PostgresMigratePgIndex, error) {
+func ReadFromCache_ctx(ctx context.Context, db *gorm.DB, Indexrelid int64, VersionID int64) (postgres_migrate_pg_index.PostgresMigratePgIndex, error) {
 	var Otvet postgres_migrate_pg_index.PostgresMigratePgIndex
 	var err error
 
 	// поищем сначала в кэше
-	Identifier := (postgres_migrate_pg_index.StringIdentifier(Indexrelid, Indrelid, VersionID))
+	Identifier := (postgres_migrate_pg_index.StringIdentifier(Indexrelid, VersionID))
 	Otvet, ok := cache.Get(Identifier)
 	if ok {
 		return Otvet, nil
@@ -58,7 +58,6 @@ func ReadFromCache_ctx(ctx context.Context, db *gorm.DB, Indexrelid int64, Indre
 
 	// поищем в БД
 	Otvet.Indexrelid = Indexrelid
-	Otvet.Indrelid = Indrelid
 	Otvet.VersionID = VersionID
 
 	err = Read_ctx(ctx, db, &Otvet)

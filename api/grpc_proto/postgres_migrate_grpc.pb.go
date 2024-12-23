@@ -27,6 +27,8 @@ type PostgresMigrateClient interface {
 	PostgresMigratePgAttribute_Create(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgAttribute_Update(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgAttribute_Save(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgAttribute_Delete(ctx context.Context, in *Request_String_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgAttribute_Restore(ctx context.Context, in *Request_String_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgAttribute_UpdateManyFields(ctx context.Context, in *Request_Model_MassString, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attalign(ctx context.Context, in *Request_String_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attbyval(ctx context.Context, in *Request_String_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
@@ -57,6 +59,8 @@ type PostgresMigrateClient interface {
 	PostgresMigratePgClass_Create(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgClass_Update(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgClass_Save(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgClass_Delete(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgClass_Restore(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgClass_UpdateManyFields(ctx context.Context, in *Request_Model_MassString, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Oid(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relallvisible(ctx context.Context, in *Request_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error)
@@ -96,6 +100,8 @@ type PostgresMigrateClient interface {
 	PostgresMigratePgConstraint_Create(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgConstraint_Update(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgConstraint_Save(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgConstraint_Delete(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgConstraint_Restore(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgConstraint_UpdateManyFields(ctx context.Context, in *Request_Model_MassString, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgConstraint_Update_Condeferrable(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgConstraint_Update_Condeferred(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
@@ -129,6 +135,8 @@ type PostgresMigrateClient interface {
 	PostgresMigratePgDescription_Create(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgDescription_Update(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgDescription_Save(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgDescription_Delete(ctx context.Context, in *Request_Int64_Int64_Int32_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgDescription_Restore(ctx context.Context, in *Request_Int64_Int64_Int32_Int64, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgDescription_UpdateManyFields(ctx context.Context, in *Request_Model_MassString, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgDescription_Update_Classoid(ctx context.Context, in *Request_Int64_Int64_Int32_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgDescription_Update_Description(ctx context.Context, in *Request_Int64_Int64_Int32_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
@@ -138,39 +146,43 @@ type PostgresMigrateClient interface {
 	PostgresMigratePgDescription_ReadFromCache(ctx context.Context, in *Request_Int64_Int64_Int32_Int64, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgDescription_ReadObject(ctx context.Context, in *Request_Int64_Int64_Int32_Int64, opts ...grpc.CallOption) (*Response, error)
 	// PostgresMigratePgIndex
-	PostgresMigratePgIndex_Read(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgIndex_Read(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgIndex_Create(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgIndex_Update(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgIndex_Save(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgIndex_Delete(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgIndex_Restore(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgIndex_UpdateManyFields(ctx context.Context, in *Request_Model_MassString, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indcheckxmin(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indclass(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indcollation(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indexprs(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indexrelid(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indimmediate(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisclustered(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisexclusion(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indislive(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisprimary(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisready(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisreplident(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisunique(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisvalid(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indkey(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indnatts(ctx context.Context, in *Request_Int64_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indnkeyatts(ctx context.Context, in *Request_Int64_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indoption(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indpred(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indcheckxmin(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indclass(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indcollation(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indexprs(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indexrelid(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indimmediate(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisclustered(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisexclusion(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indislive(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisprimary(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisready(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisreplident(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisunique(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisvalid(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indkey(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indnatts(ctx context.Context, in *Request_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indnkeyatts(ctx context.Context, in *Request_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indoption(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indpred(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgIndex_Update_Indrelid(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_VersionID(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_ReadFromCache(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
-	PostgresMigratePgIndex_ReadObject(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgIndex_Update_VersionID(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_ReadFromCache(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgIndex_ReadObject(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
 	// PostgresMigratePgNamespace
 	PostgresMigratePgNamespace_Read(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgNamespace_Create(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgNamespace_Update(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgNamespace_Save(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgNamespace_Delete(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgNamespace_Restore(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgNamespace_UpdateManyFields(ctx context.Context, in *Request_Model_MassString, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgNamespace_Update_Nspacl(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgNamespace_Update_Nspname(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
@@ -229,6 +241,24 @@ func (c *postgresMigrateClient) PostgresMigratePgAttribute_Update(ctx context.Co
 func (c *postgresMigrateClient) PostgresMigratePgAttribute_Save(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error) {
 	out := new(Response)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgAttribute_Save", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgAttribute_Delete(ctx context.Context, in *Request_String_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgAttribute_Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgAttribute_Restore(ctx context.Context, in *Request_String_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgAttribute_Restore", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -490,6 +520,24 @@ func (c *postgresMigrateClient) PostgresMigratePgClass_Update(ctx context.Contex
 func (c *postgresMigrateClient) PostgresMigratePgClass_Save(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error) {
 	out := new(Response)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgClass_Save", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgClass_Delete(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgClass_Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgClass_Restore(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgClass_Restore", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -838,6 +886,24 @@ func (c *postgresMigrateClient) PostgresMigratePgConstraint_Save(ctx context.Con
 	return out, nil
 }
 
+func (c *postgresMigrateClient) PostgresMigratePgConstraint_Delete(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgConstraint_Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgConstraint_Restore(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgConstraint_Restore", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *postgresMigrateClient) PostgresMigratePgConstraint_UpdateManyFields(ctx context.Context, in *Request_Model_MassString, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgConstraint_UpdateManyFields", in, out, opts...)
@@ -1126,6 +1192,24 @@ func (c *postgresMigrateClient) PostgresMigratePgDescription_Save(ctx context.Co
 	return out, nil
 }
 
+func (c *postgresMigrateClient) PostgresMigratePgDescription_Delete(ctx context.Context, in *Request_Int64_Int64_Int32_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgDescription_Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgDescription_Restore(ctx context.Context, in *Request_Int64_Int64_Int32_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgDescription_Restore", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *postgresMigrateClient) PostgresMigratePgDescription_UpdateManyFields(ctx context.Context, in *Request_Model_MassString, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgDescription_UpdateManyFields", in, out, opts...)
@@ -1198,7 +1282,7 @@ func (c *postgresMigrateClient) PostgresMigratePgDescription_ReadObject(ctx cont
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Read(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Read(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
 	out := new(Response)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Read", in, out, opts...)
 	if err != nil {
@@ -1234,6 +1318,24 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Save(ctx context.Context,
 	return out, nil
 }
 
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Delete(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Restore(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Restore", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *postgresMigrateClient) PostgresMigratePgIndex_UpdateManyFields(ctx context.Context, in *Request_Model_MassString, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_UpdateManyFields", in, out, opts...)
@@ -1243,7 +1345,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_UpdateManyFields(ctx cont
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indcheckxmin(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indcheckxmin(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indcheckxmin", in, out, opts...)
 	if err != nil {
@@ -1252,7 +1354,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indcheckxmin(ctx c
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indclass(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indclass(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indclass", in, out, opts...)
 	if err != nil {
@@ -1261,7 +1363,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indclass(ctx conte
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indcollation(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indcollation(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indcollation", in, out, opts...)
 	if err != nil {
@@ -1270,7 +1372,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indcollation(ctx c
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indexprs(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indexprs(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indexprs", in, out, opts...)
 	if err != nil {
@@ -1279,7 +1381,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indexprs(ctx conte
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indexrelid(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indexrelid(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indexrelid", in, out, opts...)
 	if err != nil {
@@ -1288,7 +1390,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indexrelid(ctx con
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indimmediate(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indimmediate(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indimmediate", in, out, opts...)
 	if err != nil {
@@ -1297,7 +1399,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indimmediate(ctx c
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisclustered(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisclustered(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisclustered", in, out, opts...)
 	if err != nil {
@@ -1306,7 +1408,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisclustered(ctx
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisexclusion(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisexclusion(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisexclusion", in, out, opts...)
 	if err != nil {
@@ -1315,7 +1417,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisexclusion(ctx
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indislive(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indislive(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indislive", in, out, opts...)
 	if err != nil {
@@ -1324,7 +1426,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indislive(ctx cont
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisprimary(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisprimary(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisprimary", in, out, opts...)
 	if err != nil {
@@ -1333,7 +1435,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisprimary(ctx c
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisready(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisready(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisready", in, out, opts...)
 	if err != nil {
@@ -1342,7 +1444,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisready(ctx con
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisreplident(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisreplident(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisreplident", in, out, opts...)
 	if err != nil {
@@ -1351,7 +1453,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisreplident(ctx
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisunique(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisunique(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisunique", in, out, opts...)
 	if err != nil {
@@ -1360,7 +1462,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisunique(ctx co
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisvalid(ctx context.Context, in *Request_Int64_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisvalid(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisvalid", in, out, opts...)
 	if err != nil {
@@ -1369,7 +1471,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indisvalid(ctx con
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indkey(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indkey(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indkey", in, out, opts...)
 	if err != nil {
@@ -1378,7 +1480,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indkey(ctx context
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indnatts(ctx context.Context, in *Request_Int64_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indnatts(ctx context.Context, in *Request_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indnatts", in, out, opts...)
 	if err != nil {
@@ -1387,7 +1489,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indnatts(ctx conte
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indnkeyatts(ctx context.Context, in *Request_Int64_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indnkeyatts(ctx context.Context, in *Request_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indnkeyatts", in, out, opts...)
 	if err != nil {
@@ -1396,7 +1498,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indnkeyatts(ctx co
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indoption(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indoption(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indoption", in, out, opts...)
 	if err != nil {
@@ -1405,7 +1507,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indoption(ctx cont
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indpred(ctx context.Context, in *Request_Int64_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indpred(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indpred", in, out, opts...)
 	if err != nil {
@@ -1423,7 +1525,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_Indrelid(ctx conte
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_VersionID(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_VersionID(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_VersionID", in, out, opts...)
 	if err != nil {
@@ -1432,7 +1534,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_Update_VersionID(ctx cont
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_ReadFromCache(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_ReadFromCache(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
 	out := new(Response)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_ReadFromCache", in, out, opts...)
 	if err != nil {
@@ -1441,7 +1543,7 @@ func (c *postgresMigrateClient) PostgresMigratePgIndex_ReadFromCache(ctx context
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgIndex_ReadObject(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+func (c *postgresMigrateClient) PostgresMigratePgIndex_ReadObject(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
 	out := new(Response)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgIndex_ReadObject", in, out, opts...)
 	if err != nil {
@@ -1480,6 +1582,24 @@ func (c *postgresMigrateClient) PostgresMigratePgNamespace_Update(ctx context.Co
 func (c *postgresMigrateClient) PostgresMigratePgNamespace_Save(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error) {
 	out := new(Response)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgNamespace_Save", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgNamespace_Delete(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgNamespace_Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgNamespace_Restore(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgNamespace_Restore", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1648,6 +1768,8 @@ type PostgresMigrateServer interface {
 	PostgresMigratePgAttribute_Create(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgAttribute_Update(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgAttribute_Save(context.Context, *RequestModel) (*Response, error)
+	PostgresMigratePgAttribute_Delete(context.Context, *Request_String_Int64_Int64) (*Response, error)
+	PostgresMigratePgAttribute_Restore(context.Context, *Request_String_Int64_Int64) (*Response, error)
 	PostgresMigratePgAttribute_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attalign(context.Context, *Request_String_Int64_Int64_String) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attbyval(context.Context, *Request_String_Int64_Int64_Bool) (*ResponseEmpty, error)
@@ -1678,6 +1800,8 @@ type PostgresMigrateServer interface {
 	PostgresMigratePgClass_Create(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgClass_Update(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgClass_Save(context.Context, *RequestModel) (*Response, error)
+	PostgresMigratePgClass_Delete(context.Context, *Request_Int64_Int64) (*Response, error)
+	PostgresMigratePgClass_Restore(context.Context, *Request_Int64_Int64) (*Response, error)
 	PostgresMigratePgClass_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Oid(context.Context, *Request_Int64_Int64) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relallvisible(context.Context, *Request_Int64_Int64_Int32) (*ResponseEmpty, error)
@@ -1717,6 +1841,8 @@ type PostgresMigrateServer interface {
 	PostgresMigratePgConstraint_Create(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgConstraint_Update(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgConstraint_Save(context.Context, *RequestModel) (*Response, error)
+	PostgresMigratePgConstraint_Delete(context.Context, *Request_Int64_Int64) (*Response, error)
+	PostgresMigratePgConstraint_Restore(context.Context, *Request_Int64_Int64) (*Response, error)
 	PostgresMigratePgConstraint_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error)
 	PostgresMigratePgConstraint_Update_Condeferrable(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
 	PostgresMigratePgConstraint_Update_Condeferred(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
@@ -1750,6 +1876,8 @@ type PostgresMigrateServer interface {
 	PostgresMigratePgDescription_Create(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgDescription_Update(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgDescription_Save(context.Context, *RequestModel) (*Response, error)
+	PostgresMigratePgDescription_Delete(context.Context, *Request_Int64_Int64_Int32_Int64) (*Response, error)
+	PostgresMigratePgDescription_Restore(context.Context, *Request_Int64_Int64_Int32_Int64) (*Response, error)
 	PostgresMigratePgDescription_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error)
 	PostgresMigratePgDescription_Update_Classoid(context.Context, *Request_Int64_Int64_Int32_Int64) (*ResponseEmpty, error)
 	PostgresMigratePgDescription_Update_Description(context.Context, *Request_Int64_Int64_Int32_Int64_String) (*ResponseEmpty, error)
@@ -1759,39 +1887,43 @@ type PostgresMigrateServer interface {
 	PostgresMigratePgDescription_ReadFromCache(context.Context, *Request_Int64_Int64_Int32_Int64) (*Response, error)
 	PostgresMigratePgDescription_ReadObject(context.Context, *Request_Int64_Int64_Int32_Int64) (*Response, error)
 	// PostgresMigratePgIndex
-	PostgresMigratePgIndex_Read(context.Context, *Request_Int64_Int64_Int64) (*Response, error)
+	PostgresMigratePgIndex_Read(context.Context, *Request_Int64_Int64) (*Response, error)
 	PostgresMigratePgIndex_Create(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgIndex_Update(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgIndex_Save(context.Context, *RequestModel) (*Response, error)
+	PostgresMigratePgIndex_Delete(context.Context, *Request_Int64_Int64) (*Response, error)
+	PostgresMigratePgIndex_Restore(context.Context, *Request_Int64_Int64) (*Response, error)
 	PostgresMigratePgIndex_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indcheckxmin(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indclass(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indcollation(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indexprs(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indexrelid(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indimmediate(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisclustered(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisexclusion(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indislive(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisprimary(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisready(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisreplident(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisunique(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indisvalid(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indkey(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indnatts(context.Context, *Request_Int64_Int64_Int64_Int32) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indnkeyatts(context.Context, *Request_Int64_Int64_Int64_Int32) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indoption(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_Indpred(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indcheckxmin(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indclass(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indcollation(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indexprs(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indexrelid(context.Context, *Request_Int64_Int64) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indimmediate(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisclustered(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisexclusion(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indislive(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisprimary(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisready(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisreplident(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisunique(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indisvalid(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indkey(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indnatts(context.Context, *Request_Int64_Int64_Int32) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indnkeyatts(context.Context, *Request_Int64_Int64_Int32) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indoption(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_Update_Indpred(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error)
 	PostgresMigratePgIndex_Update_Indrelid(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_Update_VersionID(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
-	PostgresMigratePgIndex_ReadFromCache(context.Context, *Request_Int64_Int64_Int64) (*Response, error)
-	PostgresMigratePgIndex_ReadObject(context.Context, *Request_Int64_Int64_Int64) (*Response, error)
+	PostgresMigratePgIndex_Update_VersionID(context.Context, *Request_Int64_Int64) (*ResponseEmpty, error)
+	PostgresMigratePgIndex_ReadFromCache(context.Context, *Request_Int64_Int64) (*Response, error)
+	PostgresMigratePgIndex_ReadObject(context.Context, *Request_Int64_Int64) (*Response, error)
 	// PostgresMigratePgNamespace
 	PostgresMigratePgNamespace_Read(context.Context, *Request_Int64_Int64) (*Response, error)
 	PostgresMigratePgNamespace_Create(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgNamespace_Update(context.Context, *RequestModel) (*Response, error)
 	PostgresMigratePgNamespace_Save(context.Context, *RequestModel) (*Response, error)
+	PostgresMigratePgNamespace_Delete(context.Context, *Request_Int64_Int64) (*Response, error)
+	PostgresMigratePgNamespace_Restore(context.Context, *Request_Int64_Int64) (*Response, error)
 	PostgresMigratePgNamespace_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error)
 	PostgresMigratePgNamespace_Update_Nspacl(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error)
 	PostgresMigratePgNamespace_Update_Nspname(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error)
@@ -1828,6 +1960,12 @@ func (UnimplementedPostgresMigrateServer) PostgresMigratePgAttribute_Update(cont
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgAttribute_Save(context.Context, *RequestModel) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgAttribute_Save not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgAttribute_Delete(context.Context, *Request_String_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgAttribute_Delete not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgAttribute_Restore(context.Context, *Request_String_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgAttribute_Restore not implemented")
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgAttribute_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgAttribute_UpdateManyFields not implemented")
@@ -1915,6 +2053,12 @@ func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Update(context.
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Save(context.Context, *RequestModel) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgClass_Save not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Delete(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgClass_Delete not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Restore(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgClass_Restore not implemented")
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgClass_UpdateManyFields not implemented")
@@ -2030,6 +2174,12 @@ func (UnimplementedPostgresMigrateServer) PostgresMigratePgConstraint_Update(con
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgConstraint_Save(context.Context, *RequestModel) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgConstraint_Save not implemented")
 }
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgConstraint_Delete(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgConstraint_Delete not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgConstraint_Restore(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgConstraint_Restore not implemented")
+}
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgConstraint_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgConstraint_UpdateManyFields not implemented")
 }
@@ -2126,6 +2276,12 @@ func (UnimplementedPostgresMigrateServer) PostgresMigratePgDescription_Update(co
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgDescription_Save(context.Context, *RequestModel) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgDescription_Save not implemented")
 }
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgDescription_Delete(context.Context, *Request_Int64_Int64_Int32_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgDescription_Delete not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgDescription_Restore(context.Context, *Request_Int64_Int64_Int32_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgDescription_Restore not implemented")
+}
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgDescription_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgDescription_UpdateManyFields not implemented")
 }
@@ -2150,7 +2306,7 @@ func (UnimplementedPostgresMigrateServer) PostgresMigratePgDescription_ReadFromC
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgDescription_ReadObject(context.Context, *Request_Int64_Int64_Int32_Int64) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgDescription_ReadObject not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Read(context.Context, *Request_Int64_Int64_Int64) (*Response, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Read(context.Context, *Request_Int64_Int64) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Read not implemented")
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Create(context.Context, *RequestModel) (*Response, error) {
@@ -2162,76 +2318,82 @@ func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update(context.
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Save(context.Context, *RequestModel) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Save not implemented")
 }
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Delete(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Delete not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Restore(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Restore not implemented")
+}
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_UpdateManyFields not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indcheckxmin(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indcheckxmin(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indcheckxmin not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indclass(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indclass(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indclass not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indcollation(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indcollation(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indcollation not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indexprs(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indexprs(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indexprs not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indexrelid(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indexrelid(context.Context, *Request_Int64_Int64) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indexrelid not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indimmediate(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indimmediate(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indimmediate not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisclustered(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisclustered(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indisclustered not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisexclusion(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisexclusion(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indisexclusion not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indislive(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indislive(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indislive not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisprimary(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisprimary(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indisprimary not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisready(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisready(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indisready not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisreplident(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisreplident(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indisreplident not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisunique(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisunique(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indisunique not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisvalid(context.Context, *Request_Int64_Int64_Int64_Bool) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indisvalid(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indisvalid not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indkey(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indkey(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indkey not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indnatts(context.Context, *Request_Int64_Int64_Int64_Int32) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indnatts(context.Context, *Request_Int64_Int64_Int32) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indnatts not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indnkeyatts(context.Context, *Request_Int64_Int64_Int64_Int32) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indnkeyatts(context.Context, *Request_Int64_Int64_Int32) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indnkeyatts not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indoption(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indoption(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indoption not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indpred(context.Context, *Request_Int64_Int64_Int64_String) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indpred(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indpred not implemented")
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_Indrelid(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_Indrelid not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_VersionID(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_Update_VersionID(context.Context, *Request_Int64_Int64) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_Update_VersionID not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_ReadFromCache(context.Context, *Request_Int64_Int64_Int64) (*Response, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_ReadFromCache(context.Context, *Request_Int64_Int64) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_ReadFromCache not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_ReadObject(context.Context, *Request_Int64_Int64_Int64) (*Response, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgIndex_ReadObject(context.Context, *Request_Int64_Int64) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgIndex_ReadObject not implemented")
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgNamespace_Read(context.Context, *Request_Int64_Int64) (*Response, error) {
@@ -2245,6 +2407,12 @@ func (UnimplementedPostgresMigrateServer) PostgresMigratePgNamespace_Update(cont
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgNamespace_Save(context.Context, *RequestModel) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgNamespace_Save not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgNamespace_Delete(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgNamespace_Delete not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgNamespace_Restore(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgNamespace_Restore not implemented")
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgNamespace_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgNamespace_UpdateManyFields not implemented")
@@ -2378,6 +2546,42 @@ func _PostgresMigrate_PostgresMigratePgAttribute_Save_Handler(srv interface{}, c
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PostgresMigrateServer).PostgresMigratePgAttribute_Save(ctx, req.(*RequestModel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgAttribute_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_String_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgAttribute_Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgAttribute_Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgAttribute_Delete(ctx, req.(*Request_String_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgAttribute_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_String_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgAttribute_Restore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgAttribute_Restore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgAttribute_Restore(ctx, req.(*Request_String_Int64_Int64))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2900,6 +3104,42 @@ func _PostgresMigrate_PostgresMigratePgClass_Save_Handler(srv interface{}, ctx c
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PostgresMigrateServer).PostgresMigratePgClass_Save(ctx, req.(*RequestModel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgClass_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgClass_Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgClass_Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgClass_Delete(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgClass_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgClass_Restore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgClass_Restore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgClass_Restore(ctx, req.(*Request_Int64_Int64))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3588,6 +3828,42 @@ func _PostgresMigrate_PostgresMigratePgConstraint_Save_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostgresMigrate_PostgresMigratePgConstraint_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgConstraint_Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgConstraint_Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgConstraint_Delete(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgConstraint_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgConstraint_Restore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgConstraint_Restore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgConstraint_Restore(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PostgresMigrate_PostgresMigratePgConstraint_UpdateManyFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Request_Model_MassString)
 	if err := dec(in); err != nil {
@@ -4164,6 +4440,42 @@ func _PostgresMigrate_PostgresMigratePgDescription_Save_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostgresMigrate_PostgresMigratePgDescription_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64_Int32_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgDescription_Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgDescription_Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgDescription_Delete(ctx, req.(*Request_Int64_Int64_Int32_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgDescription_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64_Int32_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgDescription_Restore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgDescription_Restore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgDescription_Restore(ctx, req.(*Request_Int64_Int64_Int32_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PostgresMigrate_PostgresMigratePgDescription_UpdateManyFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Request_Model_MassString)
 	if err := dec(in); err != nil {
@@ -4309,7 +4621,7 @@ func _PostgresMigrate_PostgresMigratePgDescription_ReadObject_Handler(srv interf
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64)
+	in := new(Request_Int64_Int64)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4321,7 +4633,7 @@ func _PostgresMigrate_PostgresMigratePgIndex_Read_Handler(srv interface{}, ctx c
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Read",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Read(ctx, req.(*Request_Int64_Int64_Int64))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Read(ctx, req.(*Request_Int64_Int64))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4380,6 +4692,42 @@ func _PostgresMigrate_PostgresMigratePgIndex_Save_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostgresMigrate_PostgresMigratePgIndex_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Delete(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgIndex_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Restore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Restore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Restore(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PostgresMigrate_PostgresMigratePgIndex_UpdateManyFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Request_Model_MassString)
 	if err := dec(in); err != nil {
@@ -4399,7 +4747,7 @@ func _PostgresMigrate_PostgresMigratePgIndex_UpdateManyFields_Handler(srv interf
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indcheckxmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Bool)
+	in := new(Request_Int64_Int64_Bool)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4411,13 +4759,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indcheckxmin_Handler(srv int
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indcheckxmin",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indcheckxmin(ctx, req.(*Request_Int64_Int64_Int64_Bool))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indcheckxmin(ctx, req.(*Request_Int64_Int64_Bool))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indclass_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_String)
+	in := new(Request_Int64_Int64_String)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4429,13 +4777,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indclass_Handler(srv interfa
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indclass",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indclass(ctx, req.(*Request_Int64_Int64_Int64_String))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indclass(ctx, req.(*Request_Int64_Int64_String))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indcollation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_String)
+	in := new(Request_Int64_Int64_String)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4447,13 +4795,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indcollation_Handler(srv int
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indcollation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indcollation(ctx, req.(*Request_Int64_Int64_Int64_String))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indcollation(ctx, req.(*Request_Int64_Int64_String))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indexprs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_String)
+	in := new(Request_Int64_Int64_String)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4465,13 +4813,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indexprs_Handler(srv interfa
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indexprs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indexprs(ctx, req.(*Request_Int64_Int64_Int64_String))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indexprs(ctx, req.(*Request_Int64_Int64_String))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indexrelid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64)
+	in := new(Request_Int64_Int64)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4483,13 +4831,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indexrelid_Handler(srv inter
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indexrelid",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indexrelid(ctx, req.(*Request_Int64_Int64_Int64))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indexrelid(ctx, req.(*Request_Int64_Int64))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indimmediate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Bool)
+	in := new(Request_Int64_Int64_Bool)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4501,13 +4849,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indimmediate_Handler(srv int
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indimmediate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indimmediate(ctx, req.(*Request_Int64_Int64_Int64_Bool))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indimmediate(ctx, req.(*Request_Int64_Int64_Bool))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisclustered_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Bool)
+	in := new(Request_Int64_Int64_Bool)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4519,13 +4867,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisclustered_Handler(srv i
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisclustered",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisclustered(ctx, req.(*Request_Int64_Int64_Int64_Bool))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisclustered(ctx, req.(*Request_Int64_Int64_Bool))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisexclusion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Bool)
+	in := new(Request_Int64_Int64_Bool)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4537,13 +4885,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisexclusion_Handler(srv i
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisexclusion",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisexclusion(ctx, req.(*Request_Int64_Int64_Int64_Bool))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisexclusion(ctx, req.(*Request_Int64_Int64_Bool))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indislive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Bool)
+	in := new(Request_Int64_Int64_Bool)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4555,13 +4903,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indislive_Handler(srv interf
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indislive",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indislive(ctx, req.(*Request_Int64_Int64_Int64_Bool))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indislive(ctx, req.(*Request_Int64_Int64_Bool))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisprimary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Bool)
+	in := new(Request_Int64_Int64_Bool)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4573,13 +4921,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisprimary_Handler(srv int
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisprimary",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisprimary(ctx, req.(*Request_Int64_Int64_Int64_Bool))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisprimary(ctx, req.(*Request_Int64_Int64_Bool))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisready_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Bool)
+	in := new(Request_Int64_Int64_Bool)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4591,13 +4939,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisready_Handler(srv inter
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisready",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisready(ctx, req.(*Request_Int64_Int64_Int64_Bool))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisready(ctx, req.(*Request_Int64_Int64_Bool))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisreplident_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Bool)
+	in := new(Request_Int64_Int64_Bool)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4609,13 +4957,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisreplident_Handler(srv i
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisreplident",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisreplident(ctx, req.(*Request_Int64_Int64_Int64_Bool))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisreplident(ctx, req.(*Request_Int64_Int64_Bool))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisunique_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Bool)
+	in := new(Request_Int64_Int64_Bool)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4627,13 +4975,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisunique_Handler(srv inte
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisunique",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisunique(ctx, req.(*Request_Int64_Int64_Int64_Bool))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisunique(ctx, req.(*Request_Int64_Int64_Bool))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisvalid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Bool)
+	in := new(Request_Int64_Int64_Bool)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4645,13 +4993,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indisvalid_Handler(srv inter
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indisvalid",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisvalid(ctx, req.(*Request_Int64_Int64_Int64_Bool))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indisvalid(ctx, req.(*Request_Int64_Int64_Bool))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indkey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_String)
+	in := new(Request_Int64_Int64_String)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4663,13 +5011,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indkey_Handler(srv interface
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indkey",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indkey(ctx, req.(*Request_Int64_Int64_Int64_String))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indkey(ctx, req.(*Request_Int64_Int64_String))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indnatts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Int32)
+	in := new(Request_Int64_Int64_Int32)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4681,13 +5029,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indnatts_Handler(srv interfa
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indnatts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indnatts(ctx, req.(*Request_Int64_Int64_Int64_Int32))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indnatts(ctx, req.(*Request_Int64_Int64_Int32))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indnkeyatts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_Int32)
+	in := new(Request_Int64_Int64_Int32)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4699,13 +5047,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indnkeyatts_Handler(srv inte
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indnkeyatts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indnkeyatts(ctx, req.(*Request_Int64_Int64_Int64_Int32))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indnkeyatts(ctx, req.(*Request_Int64_Int64_Int32))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indoption_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_String)
+	in := new(Request_Int64_Int64_String)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4717,13 +5065,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indoption_Handler(srv interf
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indoption",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indoption(ctx, req.(*Request_Int64_Int64_Int64_String))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indoption(ctx, req.(*Request_Int64_Int64_String))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_Indpred_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64_String)
+	in := new(Request_Int64_Int64_String)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4735,7 +5083,7 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indpred_Handler(srv interfac
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_Indpred",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indpred(ctx, req.(*Request_Int64_Int64_Int64_String))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_Indpred(ctx, req.(*Request_Int64_Int64_String))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4759,7 +5107,7 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_Indrelid_Handler(srv interfa
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_Update_VersionID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64)
+	in := new(Request_Int64_Int64)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4771,13 +5119,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_Update_VersionID_Handler(srv interf
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_Update_VersionID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_VersionID(ctx, req.(*Request_Int64_Int64_Int64))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_Update_VersionID(ctx, req.(*Request_Int64_Int64))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_ReadFromCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64)
+	in := new(Request_Int64_Int64)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4789,13 +5137,13 @@ func _PostgresMigrate_PostgresMigratePgIndex_ReadFromCache_Handler(srv interface
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_ReadFromCache",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_ReadFromCache(ctx, req.(*Request_Int64_Int64_Int64))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_ReadFromCache(ctx, req.(*Request_Int64_Int64))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresMigrate_PostgresMigratePgIndex_ReadObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int64)
+	in := new(Request_Int64_Int64)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -4807,7 +5155,7 @@ func _PostgresMigrate_PostgresMigratePgIndex_ReadObject_Handler(srv interface{},
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgIndex_ReadObject",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_ReadObject(ctx, req.(*Request_Int64_Int64_Int64))
+		return srv.(PostgresMigrateServer).PostgresMigratePgIndex_ReadObject(ctx, req.(*Request_Int64_Int64))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4880,6 +5228,42 @@ func _PostgresMigrate_PostgresMigratePgNamespace_Save_Handler(srv interface{}, c
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PostgresMigrateServer).PostgresMigratePgNamespace_Save(ctx, req.(*RequestModel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgNamespace_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgNamespace_Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgNamespace_Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgNamespace_Delete(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgNamespace_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgNamespace_Restore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgNamespace_Restore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgNamespace_Restore(ctx, req.(*Request_Int64_Int64))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -5214,6 +5598,14 @@ var PostgresMigrate_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PostgresMigrate_PostgresMigratePgAttribute_Save_Handler,
 		},
 		{
+			MethodName: "PostgresMigratePgAttribute_Delete",
+			Handler:    _PostgresMigrate_PostgresMigratePgAttribute_Delete_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgAttribute_Restore",
+			Handler:    _PostgresMigrate_PostgresMigratePgAttribute_Restore_Handler,
+		},
+		{
 			MethodName: "PostgresMigratePgAttribute_UpdateManyFields",
 			Handler:    _PostgresMigrate_PostgresMigratePgAttribute_UpdateManyFields_Handler,
 		},
@@ -5328,6 +5720,14 @@ var PostgresMigrate_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PostgresMigratePgClass_Save",
 			Handler:    _PostgresMigrate_PostgresMigratePgClass_Save_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgClass_Delete",
+			Handler:    _PostgresMigrate_PostgresMigratePgClass_Delete_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgClass_Restore",
+			Handler:    _PostgresMigrate_PostgresMigratePgClass_Restore_Handler,
 		},
 		{
 			MethodName: "PostgresMigratePgClass_UpdateManyFields",
@@ -5482,6 +5882,14 @@ var PostgresMigrate_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PostgresMigrate_PostgresMigratePgConstraint_Save_Handler,
 		},
 		{
+			MethodName: "PostgresMigratePgConstraint_Delete",
+			Handler:    _PostgresMigrate_PostgresMigratePgConstraint_Delete_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgConstraint_Restore",
+			Handler:    _PostgresMigrate_PostgresMigratePgConstraint_Restore_Handler,
+		},
+		{
 			MethodName: "PostgresMigratePgConstraint_UpdateManyFields",
 			Handler:    _PostgresMigrate_PostgresMigratePgConstraint_UpdateManyFields_Handler,
 		},
@@ -5610,6 +6018,14 @@ var PostgresMigrate_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PostgresMigrate_PostgresMigratePgDescription_Save_Handler,
 		},
 		{
+			MethodName: "PostgresMigratePgDescription_Delete",
+			Handler:    _PostgresMigrate_PostgresMigratePgDescription_Delete_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgDescription_Restore",
+			Handler:    _PostgresMigrate_PostgresMigratePgDescription_Restore_Handler,
+		},
+		{
 			MethodName: "PostgresMigratePgDescription_UpdateManyFields",
 			Handler:    _PostgresMigrate_PostgresMigratePgDescription_UpdateManyFields_Handler,
 		},
@@ -5656,6 +6072,14 @@ var PostgresMigrate_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PostgresMigratePgIndex_Save",
 			Handler:    _PostgresMigrate_PostgresMigratePgIndex_Save_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgIndex_Delete",
+			Handler:    _PostgresMigrate_PostgresMigratePgIndex_Delete_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgIndex_Restore",
+			Handler:    _PostgresMigrate_PostgresMigratePgIndex_Restore_Handler,
 		},
 		{
 			MethodName: "PostgresMigratePgIndex_UpdateManyFields",
@@ -5768,6 +6192,14 @@ var PostgresMigrate_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PostgresMigratePgNamespace_Save",
 			Handler:    _PostgresMigrate_PostgresMigratePgNamespace_Save_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgNamespace_Delete",
+			Handler:    _PostgresMigrate_PostgresMigratePgNamespace_Delete_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgNamespace_Restore",
+			Handler:    _PostgresMigrate_PostgresMigratePgNamespace_Restore_Handler,
 		},
 		{
 			MethodName: "PostgresMigratePgNamespace_UpdateManyFields",

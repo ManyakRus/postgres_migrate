@@ -15,8 +15,6 @@ import (
 )
 
 func TestServerGRPC_PostgresMigratePgDescription_UpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -56,8 +54,6 @@ func TestServerGRPC_PostgresMigratePgDescription_UpdateManyFields(t *testing.T) 
 }
 
 func Test_server_PostgresMigratePgDescription_Update_Classoid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -101,8 +97,6 @@ func Test_server_PostgresMigratePgDescription_Update_Classoid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgDescription_Update_Description(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -146,8 +140,6 @@ func Test_server_PostgresMigratePgDescription_Update_Description(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgDescription_Update_Objoid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -191,8 +183,6 @@ func Test_server_PostgresMigratePgDescription_Update_Objoid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgDescription_Update_Objsubid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -236,8 +226,6 @@ func Test_server_PostgresMigratePgDescription_Update_Objsubid(t *testing.T) {
 }
 
 func Test_server_PostgresMigratePgDescription_Update_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")

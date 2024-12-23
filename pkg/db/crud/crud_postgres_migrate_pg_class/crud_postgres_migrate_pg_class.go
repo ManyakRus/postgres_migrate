@@ -208,3 +208,89 @@ func create_update_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_
 
 	return err
 }
+
+// Delete - записывает is_deleted = true
+func (crud Crud_DB) Delete(m *postgres_migrate_pg_class.PostgresMigratePgClass) error {
+	var err error
+
+	ctxMain := contextmain.GetContext()
+	ctx, ctxCancelFunc := context.WithTimeout(ctxMain, time.Second*time.Duration(db_constants.TIMEOUT_DB_SECONDS))
+	defer ctxCancelFunc()
+
+	db := postgres_gorm.GetConnection()
+
+	err = Delete_ctx(ctx, db, m)
+	return err
+}
+
+// Delete_ctx - записывает is_deleted = true
+func Delete_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_class.PostgresMigratePgClass) error {
+	var err error
+
+	if micro.ContextDone(ctx) == true {
+		err = context.Canceled
+		return err
+	}
+
+	m2 := postgres_migrate_pg_class.PostgresMigratePgClass{}
+	m2.Oid = m.Oid
+	m2.VersionID = m.VersionID
+
+	err = Read_ctx(ctx, db, &m2)
+	if err != nil {
+		return err
+	}
+
+	m2.IsDeleted = true
+	m.IsDeleted = true
+
+	err = Save_ctx(ctx, db, &m2)
+	if err != nil {
+		err = fmt.Errorf(m.TableNameDB()+" Delete() Oid: %v, error: %w", m.Oid, err)
+	}
+
+	return err
+}
+
+// Restore - записывает is_deleted = true
+func (crud Crud_DB) Restore(m *postgres_migrate_pg_class.PostgresMigratePgClass) error {
+	var err error
+
+	ctxMain := contextmain.GetContext()
+	ctx, ctxCancelFunc := context.WithTimeout(ctxMain, time.Second*time.Duration(db_constants.TIMEOUT_DB_SECONDS))
+	defer ctxCancelFunc()
+
+	db := postgres_gorm.GetConnection()
+
+	err = Restore_ctx(ctx, db, m)
+	return err
+}
+
+// Restore_ctx - записывает is_deleted = true
+func Restore_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_class.PostgresMigratePgClass) error {
+	var err error
+
+	if micro.ContextDone(ctx) == true {
+		err = context.Canceled
+		return err
+	}
+
+	m2 := postgres_migrate_pg_class.PostgresMigratePgClass{}
+	m2.Oid = m.Oid
+	m2.VersionID = m.VersionID
+
+	err = Read_ctx(ctx, db, &m2)
+	if err != nil {
+		return err
+	}
+
+	m2.IsDeleted = false
+	m.IsDeleted = false
+
+	err = Save_ctx(ctx, db, &m2)
+	if err != nil {
+		err = fmt.Errorf(m.TableNameDB()+" Restore() Oid: %v, error: %w", m.Oid, err)
+	}
+
+	return err
+}

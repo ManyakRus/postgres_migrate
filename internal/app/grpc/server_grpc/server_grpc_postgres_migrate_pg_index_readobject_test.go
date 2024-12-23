@@ -16,18 +16,15 @@ import (
 )
 
 func Test_server_PostgresMigratePgIndex_ReadObject(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	crud_starter.InitCrudTransport_DB()
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
 	defer postgres_gorm.CloseConnection()
 
 	ctx := context.Background()
-	Request := grpc_proto.Request_Int64_Int64_Int64{}
+	Request := grpc_proto.Request_Int64_Int64{}
 	Request.Int64_1 = PostgresMigratePgIndex_INDEXRELID_Test
-	Request.Int64_2 = PostgresMigratePgIndex_INDRELID_Test
-	Request.Int64_3 = PostgresMigratePgIndex_VERSIONID_Test
+	Request.Int64_2 = PostgresMigratePgIndex_VERSIONID_Test
 	Request.VersionModel = object_postgres_migrate_pg_index.ObjectPostgresMigratePgIndex{}.GetStructVersion()
 
 	server1 := &ServerGRPC{}

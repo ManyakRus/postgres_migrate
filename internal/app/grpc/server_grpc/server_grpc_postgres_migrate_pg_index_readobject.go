@@ -12,7 +12,7 @@ import (
 )
 
 // PostgresMigratePgIndex_ReadObject - читает и возвращает модель из БД
-func (s *ServerGRPC) PostgresMigratePgIndex_ReadObject(ctx context.Context, Request *grpc_proto.Request_Int64_Int64_Int64) (*grpc_proto.Response, error) {
+func (s *ServerGRPC) PostgresMigratePgIndex_ReadObject(ctx context.Context, Request *grpc_proto.Request_Int64_Int64) (*grpc_proto.Response, error) {
 	var Otvet grpc_proto.Response
 	var err error
 
@@ -33,11 +33,9 @@ func (s *ServerGRPC) PostgresMigratePgIndex_ReadObject(ctx context.Context, Requ
 	//запрос в БД
 	db := postgres_gorm.GetConnection()
 	Indexrelid := Request.Int64_1
-	Indrelid := Request.Int64_2
-	VersionID := Request.Int64_3
+	VersionID := Request.Int64_2
 	m := &object_postgres_migrate_pg_index.ObjectPostgresMigratePgIndex{}
 	m.Indexrelid = Indexrelid
-	m.Indrelid = Indrelid
 	m.VersionID = VersionID
 
 	err = crud_object_postgres_migrate_pg_index.ReadObject_ctx(ctx, db, m)

@@ -12,8 +12,6 @@ import (
 )
 
 func TestUpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -38,8 +36,6 @@ func TestUpdateManyFields(t *testing.T) {
 }
 
 func TestUpdate_Attalign(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -69,8 +65,6 @@ func TestUpdate_Attalign(t *testing.T) {
 }
 
 func TestUpdate_Attbyval(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -100,8 +94,6 @@ func TestUpdate_Attbyval(t *testing.T) {
 }
 
 func TestUpdate_Attcacheoff(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -131,8 +123,6 @@ func TestUpdate_Attcacheoff(t *testing.T) {
 }
 
 func TestUpdate_Attcollation(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -162,8 +152,6 @@ func TestUpdate_Attcollation(t *testing.T) {
 }
 
 func TestUpdate_Attgenerated(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -193,8 +181,6 @@ func TestUpdate_Attgenerated(t *testing.T) {
 }
 
 func TestUpdate_Atthasdef(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -224,8 +210,6 @@ func TestUpdate_Atthasdef(t *testing.T) {
 }
 
 func TestUpdate_Atthasmissing(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -255,8 +239,6 @@ func TestUpdate_Atthasmissing(t *testing.T) {
 }
 
 func TestUpdate_Attidentity(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -286,8 +268,6 @@ func TestUpdate_Attidentity(t *testing.T) {
 }
 
 func TestUpdate_Attinhcount(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -317,8 +297,6 @@ func TestUpdate_Attinhcount(t *testing.T) {
 }
 
 func TestUpdate_Attisdropped(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -348,8 +326,6 @@ func TestUpdate_Attisdropped(t *testing.T) {
 }
 
 func TestUpdate_Attislocal(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -379,8 +355,6 @@ func TestUpdate_Attislocal(t *testing.T) {
 }
 
 func TestUpdate_Attlen(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -410,8 +384,6 @@ func TestUpdate_Attlen(t *testing.T) {
 }
 
 func TestUpdate_Attname(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -441,8 +413,6 @@ func TestUpdate_Attname(t *testing.T) {
 }
 
 func TestUpdate_Attndims(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -472,8 +442,6 @@ func TestUpdate_Attndims(t *testing.T) {
 }
 
 func TestUpdate_Attnotnull(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -503,8 +471,6 @@ func TestUpdate_Attnotnull(t *testing.T) {
 }
 
 func TestUpdate_Attnum(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -534,8 +500,6 @@ func TestUpdate_Attnum(t *testing.T) {
 }
 
 func TestUpdate_Attrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -565,8 +529,6 @@ func TestUpdate_Attrelid(t *testing.T) {
 }
 
 func TestUpdate_Attstattarget(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -596,8 +558,6 @@ func TestUpdate_Attstattarget(t *testing.T) {
 }
 
 func TestUpdate_Attstorage(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -627,8 +587,6 @@ func TestUpdate_Attstorage(t *testing.T) {
 }
 
 func TestUpdate_Atttypid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -658,8 +616,6 @@ func TestUpdate_Atttypid(t *testing.T) {
 }
 
 func TestUpdate_Atttypmod(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -689,8 +645,6 @@ func TestUpdate_Atttypmod(t *testing.T) {
 }
 
 func TestUpdate_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")

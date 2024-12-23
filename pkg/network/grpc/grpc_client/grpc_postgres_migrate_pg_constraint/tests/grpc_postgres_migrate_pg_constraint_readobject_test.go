@@ -13,8 +13,6 @@ import (
 )
 
 func TestReadObject(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 	grpc_client.Connect()
 	defer grpc_client.CloseConnection()

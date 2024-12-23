@@ -4,6 +4,7 @@ package table_postgres_migrate_pg_description
 type Table_PostgresMigratePgDescription struct {
 	Classoid    int64  `json:"classoid" gorm:"column:classoid;primaryKey;autoIncrement:true"`     //OID системного каталога, к которому относится этот объект
 	Description string `json:"description" gorm:"column:description;default:\"\""`                //Произвольный текст, служащий описанием данного объекта
+	IsDeleted   bool   `json:"is_deleted" gorm:"column:is_deleted"`                               //Признак что оригинальная запись удалена
 	Objoid      int64  `json:"objoid" gorm:"column:objoid;primaryKey;autoIncrement:true"`         //OID объекта, к которому относится это описание
 	Objsubid    int32  `json:"objsubid" gorm:"column:objsubid;primaryKey;autoIncrement:true"`     //Для комментария к столбцу таблицы это номер столбца (objoid и classoid указывают на саму таблицу). Для всех других типов объектов это поле содержит ноль.
 	VersionID   int64  `json:"version_id" gorm:"column:version_id;primaryKey;autoIncrement:true"` //Версия изменений (ИД)

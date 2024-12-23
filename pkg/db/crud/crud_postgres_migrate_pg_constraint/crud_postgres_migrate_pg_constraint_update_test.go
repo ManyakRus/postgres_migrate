@@ -12,8 +12,6 @@ import (
 )
 
 func TestUpdateManyFields(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName_SingularTableName(constants.SERVICE_NAME + "_test")
@@ -37,8 +35,6 @@ func TestUpdateManyFields(t *testing.T) {
 }
 
 func TestUpdate_Condeferrable(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -66,8 +62,6 @@ func TestUpdate_Condeferrable(t *testing.T) {
 }
 
 func TestUpdate_Condeferred(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -95,8 +89,6 @@ func TestUpdate_Condeferred(t *testing.T) {
 }
 
 func TestUpdate_Conexclop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -124,8 +116,6 @@ func TestUpdate_Conexclop(t *testing.T) {
 }
 
 func TestUpdate_Confdeltype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -153,8 +143,6 @@ func TestUpdate_Confdeltype(t *testing.T) {
 }
 
 func TestUpdate_Conffeqop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -182,8 +170,6 @@ func TestUpdate_Conffeqop(t *testing.T) {
 }
 
 func TestUpdate_Confkey(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -211,8 +197,6 @@ func TestUpdate_Confkey(t *testing.T) {
 }
 
 func TestUpdate_Confmatchtype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -240,8 +224,6 @@ func TestUpdate_Confmatchtype(t *testing.T) {
 }
 
 func TestUpdate_Confrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -269,8 +251,6 @@ func TestUpdate_Confrelid(t *testing.T) {
 }
 
 func TestUpdate_Confupdtype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -298,8 +278,6 @@ func TestUpdate_Confupdtype(t *testing.T) {
 }
 
 func TestUpdate_Conindid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -327,8 +305,6 @@ func TestUpdate_Conindid(t *testing.T) {
 }
 
 func TestUpdate_Coninhcount(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -356,8 +332,6 @@ func TestUpdate_Coninhcount(t *testing.T) {
 }
 
 func TestUpdate_Conislocal(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -385,8 +359,6 @@ func TestUpdate_Conislocal(t *testing.T) {
 }
 
 func TestUpdate_Conkey(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -414,8 +386,6 @@ func TestUpdate_Conkey(t *testing.T) {
 }
 
 func TestUpdate_Conname(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -443,8 +413,6 @@ func TestUpdate_Conname(t *testing.T) {
 }
 
 func TestUpdate_Connamespace(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -472,8 +440,6 @@ func TestUpdate_Connamespace(t *testing.T) {
 }
 
 func TestUpdate_Connoinherit(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -501,8 +467,6 @@ func TestUpdate_Connoinherit(t *testing.T) {
 }
 
 func TestUpdate_Conparentid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -530,8 +494,6 @@ func TestUpdate_Conparentid(t *testing.T) {
 }
 
 func TestUpdate_Conpfeqop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -559,8 +521,6 @@ func TestUpdate_Conpfeqop(t *testing.T) {
 }
 
 func TestUpdate_Conppeqop(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -588,8 +548,6 @@ func TestUpdate_Conppeqop(t *testing.T) {
 }
 
 func TestUpdate_Conrelid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -617,8 +575,6 @@ func TestUpdate_Conrelid(t *testing.T) {
 }
 
 func TestUpdate_Contype(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -646,8 +602,6 @@ func TestUpdate_Contype(t *testing.T) {
 }
 
 func TestUpdate_Contypid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -675,8 +629,6 @@ func TestUpdate_Contypid(t *testing.T) {
 }
 
 func TestUpdate_Convalidated(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -704,8 +656,6 @@ func TestUpdate_Convalidated(t *testing.T) {
 }
 
 func TestUpdate_Oid(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
@@ -733,8 +683,6 @@ func TestUpdate_Oid(t *testing.T) {
 }
 
 func TestUpdate_VersionID(t *testing.T) {
-	t.SkipNow() //now rows in DB
-
 	config_main.LoadEnv()
 
 	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
