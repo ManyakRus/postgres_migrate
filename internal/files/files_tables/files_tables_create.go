@@ -1,9 +1,10 @@
-package files_class
+package files_tables
 
 import (
 	"context"
 	"fmt"
 	"github.com/ManyakRus/postgres_migrate/internal/config"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_class"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/log"
 	"github.com/ManyakRus/starter/micro"
@@ -12,9 +13,36 @@ import (
 	"time"
 )
 
-// Class_create - проверка изменения метаданных
-func Class_create(VersionID int64) error {
-	//Otvet := 0
+// Start_Tables_create - добавляет текст SQL в Text
+func Start_Tables_create(Settings *config.SettingsINI, VersionID int64) (string, error) {
+	var err error
+	Otvet := ""
+
+	//найдём массив новых
+	MassClass, err := Find_MassClass(Settings, VersionID)
+	if err != nil {
+		err = fmt.Errorf("Find_MassClass() error: %w", err)
+		log.Error(err)
+		return Otvet, err
+	}
+
+	//создадим файлы
+	Otvet1, err := TextSQL_Create(Settings, MassClass)
+	if err != nil {
+		err = fmt.Errorf("Create_files() error: %w", err)
+		log.Error(err)
+		return Otvet, err
+	}
+
+	//
+	Otvet = Otvet + Otvet1
+
+	return Otvet, err
+}
+
+// Find_MassClass - возвращает массив postgres_migrate_pg_class
+func Find_MassClass(Settings *config.SettingsINI, VersionID int64) ([]postgres_migrate_pg_class.PostgresMigratePgClass, error) {
+	Otvet := make([]postgres_migrate_pg_class.PostgresMigratePgClass, 0)
 	var err error
 
 	//соединение
@@ -46,6 +74,8 @@ WHERE 1=1
 	and pmpn.nspname = 'SCHEMA_DB'
 	and pmpc.is_deleted = false
 	and pmpn.is_deleted = false
+	and pmpc.relpersistence = 'p' --постоянная таблица (permanent)
+	and pmpc.relkind = 'r' --обычная таблица
 
 GROUP BY
 	pmpc."oid"
@@ -129,7 +159,6 @@ ON
 	and temp_pg_class_max.version_id = pmpc.version_id
 
 WHERE 1=1
-	--and pmpn.nspname = 'SCHEMA_DB'
 
 ;
 
@@ -212,11 +241,11 @@ ON
 
 WHERE 1=1
 	and pn.nspname = 'SCHEMA_DB'
+	and pc.relpersistence = 'p' --постоянная таблица (permanent)
+	and pc.relkind = 'r' --обычная таблица
 ;
 
 ------------------------------ сравнение -------------------------------------------
-INSERT INTO SCHEMA_PM.postgres_migrate_pg_class
-(
 SELECT --новые строки
 	:version_id as version_id,
 	c."oid",
@@ -262,159 +291,46 @@ WHERE 1=1
 	AND pc.oid IS NULL
 
 
-UNION ALL
-
-
-SELECT --изменённые строки
-	:version_id as version_id,
-	c."oid",
-	c.relname,
-	c.relnamespace,
-	c.reltype,
-	c.reloftype,
-	c.relowner,
-	c.relam,
-	c.relfilenode,
-	c.reltablespace,
-	c.relpages,
-	c.reltuples,
-	c.relallvisible,
-	c.reltoastrelid,
-	c.relhasindex,
-	c.relisshared,
-	c.relpersistence,
-	c.relkind,
-	c.relnatts,
-	c.relchecks,
-	c.relhasrules,
-	c.relhastriggers,
-	c.relhassubclass,
-	c.relrowsecurity,
-	c.relforcerowsecurity,
-	c.relispopulated,
-	c.relreplident,
-	c.relispartition,
-	c.relrewrite,
-	c.relfrozenxid,
-	c.relminmxid,
-	false as is_deleted
-FROM
-	temp_pm_pg_class as pc
-
-JOIN
-	temp_pg_class as c
-ON 
-	c.oid = pc.oid
-
-WHERE 0=1
-	OR pc."oid" <> c."oid"
-	OR pc.relname <> c.relname
-	OR pc.relnamespace <> c.relnamespace
-	OR pc.reltype <> c.reltype
-	OR pc.reloftype <> c.reloftype
-	OR pc.relowner <> c.relowner
-	OR pc.relam <> c.relam
-	--OR pc.relfilenode <> c.relfilenode
-	OR pc.reltablespace <> c.reltablespace
-	--OR pc.relpages <> c.relpages
-	--OR pc.reltuples <> c.reltuples
-	--OR pc.relallvisible <> c.relallvisible
-	OR pc.reltoastrelid <> c.reltoastrelid
-	OR pc.relhasindex <> c.relhasindex
-	OR pc.relisshared <> c.relisshared
-	OR pc.relpersistence <> c.relpersistence
-	OR pc.relkind <> c.relkind
-	OR pc.relnatts <> c.relnatts
-	OR pc.relchecks <> c.relchecks
-	OR pc.relhasrules <> c.relhasrules
-	OR pc.relhastriggers <> c.relhastriggers
-	OR pc.relhassubclass <> c.relhassubclass
-	OR pc.relrowsecurity <> c.relrowsecurity
-	OR pc.relforcerowsecurity <> c.relforcerowsecurity
-	OR pc.relispopulated <> c.relispopulated
-	OR pc.relreplident <> c.relreplident
-	OR pc.relispartition <> c.relispartition
-	OR pc.relrewrite <> c.relrewrite
-	--OR pc.relfrozenxid <> c.relfrozenxid
-	--OR pc.relminmxid <> c.relminmxid
-
-
-UNION ALL
-
-
-SELECT --удалённые строки
-	:version_id as version_id,
-	c."oid",
-	c.relname,
-	c.relnamespace,
-	c.reltype,
-	c.reloftype,
-	c.relowner,
-	c.relam,
-	c.relfilenode,
-	c.reltablespace,
-	c.relpages,
-	c.reltuples,
-	c.relallvisible,
-	c.reltoastrelid,
-	c.relhasindex,
-	c.relisshared,
-	c.relpersistence,
-	c.relkind,
-	c.relnatts,
-	c.relchecks,
-	c.relhasrules,
-	c.relhastriggers,
-	c.relhassubclass,
-	c.relrowsecurity,
-	c.relforcerowsecurity,
-	c.relispopulated,
-	c.relreplident,
-	c.relispartition,
-	c.relrewrite,
-	c.relfrozenxid,
-	c.relminmxid,
-	false as is_deleted
-
-FROM
-	temp_pm_pg_class as pc
-
-LEFT JOIN
-	temp_pg_class as c
-ON 
-	c.oid = pc.oid
-
-WHERE 1=1
-	AND c.oid IS NULL
-)
 
 `
 
-	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_DB", config.Settings.DB_SCHEME_DATABASE)
+	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_DB", Settings.DB_SCHEME_DATABASE)
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_PM", postgres_gorm.Settings.DB_SCHEMA)
 	TextSQL = strings.ReplaceAll(TextSQL, ":version_id", micro.StringFromInt64(VersionID))
 
-	//tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
-	//tx = db.Raw(TextSQL)
-	tx = db.Exec(TextSQL)
+	tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
 	err = tx.Error
 	if err != nil {
 		err = fmt.Errorf("db.Raw() error: %w", err)
 		log.Error(err)
-		return err
+		return Otvet, err
 	}
 
-	////
-	//MassNames := make([]string, 0)
-	//tx = tx.Scan(&MassNames)
-	//err = tx.Error
-	//if err != nil {
-	//	err = fmt.Errorf("tx.Scan() error: %w", err)
-	//	log.Error(err)
-	//	return err
-	//}
+	//
+	//MassClass := make([]postgres_migrate_pg_class.PostgresMigratePgClass, 0)
+	tx = tx.Scan(&Otvet)
+	err = tx.Error
+	if err != nil {
+		err = fmt.Errorf("tx.Scan() error: %w", err)
+		log.Error(err)
+		return Otvet, err
+	}
 
 	//Otvet = len(MassNames)
 
-	return err
+	return Otvet, err
+}
+
+// TextSQL_Create - возвращает текст SQL для создания таблиц
+func TextSQL_Create(Settings *config.SettingsINI, MassClass []postgres_migrate_pg_class.PostgresMigratePgClass) (string, error) {
+	Otvet := ""
+	var err error
+
+	for _, v := range MassClass {
+		Otvet1 := `CREATE TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.Relname + `" ();` + "\n"
+
+		Otvet = Otvet + Otvet1
+	}
+
+	return Otvet, err
 }
