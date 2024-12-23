@@ -68,7 +68,7 @@ type PostgresMigrateClient interface {
 	PostgresMigratePgClass_Update_Relchecks(ctx context.Context, in *Request_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relfilenode(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relforcerowsecurity(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgClass_Update_Relfrozenxid(ctx context.Context, in *Request_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgClass_Update_Relfrozenxid(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relhasindex(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relhasrules(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relhassubclass(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
@@ -77,7 +77,7 @@ type PostgresMigrateClient interface {
 	PostgresMigratePgClass_Update_Relispopulated(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relisshared(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relkind(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
-	PostgresMigratePgClass_Update_Relminmxid(ctx context.Context, in *Request_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgClass_Update_Relminmxid(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relname(ctx context.Context, in *Request_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relnamespace(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relnatts(ctx context.Context, in *Request_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error)
@@ -607,7 +607,7 @@ func (c *postgresMigrateClient) PostgresMigratePgClass_Update_Relforcerowsecurit
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgClass_Update_Relfrozenxid(ctx context.Context, in *Request_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgClass_Update_Relfrozenxid(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgClass_Update_Relfrozenxid", in, out, opts...)
 	if err != nil {
@@ -688,7 +688,7 @@ func (c *postgresMigrateClient) PostgresMigratePgClass_Update_Relkind(ctx contex
 	return out, nil
 }
 
-func (c *postgresMigrateClient) PostgresMigratePgClass_Update_Relminmxid(ctx context.Context, in *Request_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+func (c *postgresMigrateClient) PostgresMigratePgClass_Update_Relminmxid(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgClass_Update_Relminmxid", in, out, opts...)
 	if err != nil {
@@ -1809,7 +1809,7 @@ type PostgresMigrateServer interface {
 	PostgresMigratePgClass_Update_Relchecks(context.Context, *Request_Int64_Int64_Int32) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relfilenode(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relforcerowsecurity(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
-	PostgresMigratePgClass_Update_Relfrozenxid(context.Context, *Request_Int64_Int64_Int32) (*ResponseEmpty, error)
+	PostgresMigratePgClass_Update_Relfrozenxid(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relhasindex(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relhasrules(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relhassubclass(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
@@ -1818,7 +1818,7 @@ type PostgresMigrateServer interface {
 	PostgresMigratePgClass_Update_Relispopulated(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relisshared(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relkind(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error)
-	PostgresMigratePgClass_Update_Relminmxid(context.Context, *Request_Int64_Int64_Int32) (*ResponseEmpty, error)
+	PostgresMigratePgClass_Update_Relminmxid(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relname(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relnamespace(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
 	PostgresMigratePgClass_Update_Relnatts(context.Context, *Request_Int64_Int64_Int32) (*ResponseEmpty, error)
@@ -2081,7 +2081,7 @@ func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Update_Relfilen
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Update_Relforcerowsecurity(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgClass_Update_Relforcerowsecurity not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Update_Relfrozenxid(context.Context, *Request_Int64_Int64_Int32) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Update_Relfrozenxid(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgClass_Update_Relfrozenxid not implemented")
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Update_Relhasindex(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
@@ -2108,7 +2108,7 @@ func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Update_Relissha
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Update_Relkind(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgClass_Update_Relkind not implemented")
 }
-func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Update_Relminmxid(context.Context, *Request_Int64_Int64_Int32) (*ResponseEmpty, error) {
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Update_Relminmxid(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgClass_Update_Relminmxid not implemented")
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgClass_Update_Relname(context.Context, *Request_Int64_Int64_String) (*ResponseEmpty, error) {
@@ -3271,7 +3271,7 @@ func _PostgresMigrate_PostgresMigratePgClass_Update_Relforcerowsecurity_Handler(
 }
 
 func _PostgresMigrate_PostgresMigratePgClass_Update_Relfrozenxid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int32)
+	in := new(Request_Int64_Int64_Int64)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3283,7 +3283,7 @@ func _PostgresMigrate_PostgresMigratePgClass_Update_Relfrozenxid_Handler(srv int
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgClass_Update_Relfrozenxid",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgClass_Update_Relfrozenxid(ctx, req.(*Request_Int64_Int64_Int32))
+		return srv.(PostgresMigrateServer).PostgresMigratePgClass_Update_Relfrozenxid(ctx, req.(*Request_Int64_Int64_Int64))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3433,7 +3433,7 @@ func _PostgresMigrate_PostgresMigratePgClass_Update_Relkind_Handler(srv interfac
 }
 
 func _PostgresMigrate_PostgresMigratePgClass_Update_Relminmxid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request_Int64_Int64_Int32)
+	in := new(Request_Int64_Int64_Int64)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -3445,7 +3445,7 @@ func _PostgresMigrate_PostgresMigratePgClass_Update_Relminmxid_Handler(srv inter
 		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgClass_Update_Relminmxid",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresMigrateServer).PostgresMigratePgClass_Update_Relminmxid(ctx, req.(*Request_Int64_Int64_Int32))
+		return srv.(PostgresMigrateServer).PostgresMigratePgClass_Update_Relminmxid(ctx, req.(*Request_Int64_Int64_Int64))
 	}
 	return interceptor(ctx, in, info, handler)
 }

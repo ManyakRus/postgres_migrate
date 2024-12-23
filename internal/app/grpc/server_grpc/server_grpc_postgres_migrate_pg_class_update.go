@@ -296,7 +296,7 @@ func (s *ServerGRPC) PostgresMigratePgClass_Update_Relforcerowsecurity(ctx conte
 }
 
 // PostgresMigratePgClass_Update_Relfrozenxid - изменяет колонку Relfrozenxid в базе данных
-func (s *ServerGRPC) PostgresMigratePgClass_Update_Relfrozenxid(ctx context.Context, Request *grpc_proto.Request_Int64_Int64_Int32) (*grpc_proto.ResponseEmpty, error) {
+func (s *ServerGRPC) PostgresMigratePgClass_Update_Relfrozenxid(ctx context.Context, Request *grpc_proto.Request_Int64_Int64_Int64) (*grpc_proto.ResponseEmpty, error) {
 	var Otvet grpc_proto.ResponseEmpty
 	var err error
 
@@ -322,7 +322,7 @@ func (s *ServerGRPC) PostgresMigratePgClass_Update_Relfrozenxid(ctx context.Cont
 	db := postgres_gorm.GetConnection()
 	Oid := Request.Int64_1
 	VersionID := Request.Int64_2
-	Relfrozenxid := Request.Int32_1
+	Relfrozenxid := Request.Int64_3
 	m := &postgres_migrate_pg_class.PostgresMigratePgClass{}
 	m.Oid = Oid
 	m.VersionID = VersionID
@@ -665,7 +665,7 @@ func (s *ServerGRPC) PostgresMigratePgClass_Update_Relkind(ctx context.Context, 
 }
 
 // PostgresMigratePgClass_Update_Relminmxid - изменяет колонку Relminmxid в базе данных
-func (s *ServerGRPC) PostgresMigratePgClass_Update_Relminmxid(ctx context.Context, Request *grpc_proto.Request_Int64_Int64_Int32) (*grpc_proto.ResponseEmpty, error) {
+func (s *ServerGRPC) PostgresMigratePgClass_Update_Relminmxid(ctx context.Context, Request *grpc_proto.Request_Int64_Int64_Int64) (*grpc_proto.ResponseEmpty, error) {
 	var Otvet grpc_proto.ResponseEmpty
 	var err error
 
@@ -691,7 +691,7 @@ func (s *ServerGRPC) PostgresMigratePgClass_Update_Relminmxid(ctx context.Contex
 	db := postgres_gorm.GetConnection()
 	Oid := Request.Int64_1
 	VersionID := Request.Int64_2
-	Relminmxid := Request.Int32_1
+	Relminmxid := Request.Int64_3
 	m := &postgres_migrate_pg_class.PostgresMigratePgClass{}
 	m.Oid = Oid
 	m.VersionID = VersionID

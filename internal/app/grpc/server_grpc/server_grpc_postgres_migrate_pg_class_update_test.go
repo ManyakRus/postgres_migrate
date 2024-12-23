@@ -313,10 +313,10 @@ func Test_server_PostgresMigratePgClass_Update_Relfrozenxid(t *testing.T) {
 	}
 
 	//запишем в БД это же значение
-	Request2 := grpc_proto.Request_Int64_Int64_Int32{}
+	Request2 := grpc_proto.Request_Int64_Int64_Int64{}
 	Request2.Int64_1 = PostgresMigratePgClass_OID_Test
 	Request2.Int64_2 = PostgresMigratePgClass_VERSIONID_Test
-	Request2.Int32_1 = m.Relfrozenxid
+	Request2.Int64_3 = m.Relfrozenxid
 	Request2.VersionModel = postgres_migrate_pg_class.PostgresMigratePgClass{}.GetStructVersion()
 	_, err = server1.PostgresMigratePgClass_Update_Relfrozenxid(ctx, &Request2)
 	if err != nil {
@@ -664,10 +664,10 @@ func Test_server_PostgresMigratePgClass_Update_Relminmxid(t *testing.T) {
 	}
 
 	//запишем в БД это же значение
-	Request2 := grpc_proto.Request_Int64_Int64_Int32{}
+	Request2 := grpc_proto.Request_Int64_Int64_Int64{}
 	Request2.Int64_1 = PostgresMigratePgClass_OID_Test
 	Request2.Int64_2 = PostgresMigratePgClass_VERSIONID_Test
-	Request2.Int32_1 = m.Relminmxid
+	Request2.Int64_3 = m.Relminmxid
 	Request2.VersionModel = postgres_migrate_pg_class.PostgresMigratePgClass{}.GetStructVersion()
 	_, err = server1.PostgresMigratePgClass_Update_Relminmxid(ctx, &Request2)
 	if err != nil {

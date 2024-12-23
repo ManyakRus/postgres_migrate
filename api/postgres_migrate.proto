@@ -60,7 +60,7 @@ service Postgres_migrate {
 	rpc PostgresMigratePgClass_Update_Relchecks(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Relfilenode(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Relforcerowsecurity(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgClass_Update_Relfrozenxid(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relfrozenxid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Relhasindex(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Relhasrules(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Relhassubclass(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
@@ -69,7 +69,7 @@ service Postgres_migrate {
 	rpc PostgresMigratePgClass_Update_Relispopulated(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Relisshared(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Relkind(Request_Int64_Int64_String) returns (ResponseEmpty) {}
-	rpc PostgresMigratePgClass_Update_Relminmxid(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relminmxid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Relname(Request_Int64_Int64_String) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Relnamespace(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgClass_Update_Relnatts(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}

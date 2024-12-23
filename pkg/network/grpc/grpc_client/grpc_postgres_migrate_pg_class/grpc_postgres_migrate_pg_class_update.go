@@ -285,11 +285,11 @@ func (crud Crud_GRPC) Update_Relfrozenxid(m *postgres_migrate_pg_class.PostgresM
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int32{}
+	Request := &grpc_proto.Request_Int64_Int64_Int64{}
 	Request.Int64_1 = m.Oid
 	Request.Int64_2 = m.VersionID
 
-	Request.Int32_1 = m.Relfrozenxid
+	Request.Int64_3 = m.Relfrozenxid
 	Request.VersionModel = versionModel
 
 	ctxMain := context.Background()
@@ -618,11 +618,11 @@ func (crud Crud_GRPC) Update_Relminmxid(m *postgres_migrate_pg_class.PostgresMig
 	// подготовка запроса
 	var versionModel = crud.GetVersionModel()
 
-	Request := &grpc_proto.Request_Int64_Int64_Int32{}
+	Request := &grpc_proto.Request_Int64_Int64_Int64{}
 	Request.Int64_1 = m.Oid
 	Request.Int64_2 = m.VersionID
 
-	Request.Int32_1 = m.Relminmxid
+	Request.Int64_3 = m.Relminmxid
 	Request.VersionModel = versionModel
 
 	ctxMain := context.Background()
