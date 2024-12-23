@@ -27,7 +27,6 @@ func Fill_attribute(VersionID int64) error {
 
 	//
 	TextSQL := `
-	-- таблицы
 ------------------------------- temp_pg_attribute_max --------------------------- 
 drop table if exists temp_pg_attribute_max; 
 CREATE TEMPORARY TABLE temp_pg_attribute_max ("attrelid" oid, attname name, version_id bigint);

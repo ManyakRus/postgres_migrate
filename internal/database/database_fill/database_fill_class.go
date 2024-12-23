@@ -1,4 +1,4 @@
-package database_is_changed
+package database_fill
 
 import (
 	"context"
@@ -6,14 +6,15 @@ import (
 	"github.com/ManyakRus/postgres_migrate/internal/config"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/log"
+	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
 	"strings"
 	"time"
 )
 
-// IsChanged_Class - проверка изменения метаданных
-func IsChanged_Class() (int, error) {
-	Otvet := 0
+// Fill_class - проверка изменения метаданных
+func Fill_class(VersionID int64) error {
+	//Otvet := 0
 	var err error
 
 	//соединение
@@ -214,30 +215,93 @@ WHERE 1=1
 ;
 
 ------------------------------ сравнение -------------------------------------------
-SELECT
-	temp_pg_class.relname as name
-FROM
-	temp_pm_pg_class
-
-FULL JOIN
-	temp_pg_class
-ON 
-	temp_pg_class.oid = temp_pm_pg_class.oid
-
-WHERE 
-	(temp_pg_class.oid IS NULL
-	OR
-	temp_pm_pg_class.oid IS NULL
-	)
-
-UNION
-
-SELECT
-	c.relname
+INSERT INTO SCHEMA_PM.postgres_migrate_pg_class
+(
+SELECT --новые строки
+	:version_id as version_id,
+	c."oid",
+	c.relname,
+	c.relnamespace,
+	c.reltype,
+	c.reloftype,
+	c.relowner,
+	c.relam,
+	c.relfilenode,
+	c.reltablespace,
+	c.relpages,
+	c.reltuples,
+	c.relallvisible,
+	c.reltoastrelid,
+	c.relhasindex,
+	c.relisshared,
+	c.relpersistence,
+	c.relkind,
+	c.relnatts,
+	c.relchecks,
+	c.relhasrules,
+	c.relhastriggers,
+	c.relhassubclass,
+	c.relrowsecurity,
+	c.relforcerowsecurity,
+	c.relispopulated,
+	c.relreplident,
+	c.relispartition,
+	c.relrewrite,
+	c.relfrozenxid,
+	c.relminmxid,
+	false as is_deleted
 FROM
 	temp_pm_pg_class as pc
 
-FULL JOIN
+RIGHT JOIN
+	temp_pg_class as c
+ON 
+	c.oid = pc.oid
+
+WHERE 1=1
+	AND pc.oid IS NULL
+
+
+UNION ALL
+
+
+SELECT --изменённые строки
+	:version_id as version_id,
+	c."oid",
+	c.relname,
+	c.relnamespace,
+	c.reltype,
+	c.reloftype,
+	c.relowner,
+	c.relam,
+	c.relfilenode,
+	c.reltablespace,
+	c.relpages,
+	c.reltuples,
+	c.relallvisible,
+	c.reltoastrelid,
+	c.relhasindex,
+	c.relisshared,
+	c.relpersistence,
+	c.relkind,
+	c.relnatts,
+	c.relchecks,
+	c.relhasrules,
+	c.relhastriggers,
+	c.relhassubclass,
+	c.relrowsecurity,
+	c.relforcerowsecurity,
+	c.relispopulated,
+	c.relreplident,
+	c.relispartition,
+	c.relrewrite,
+	c.relfrozenxid,
+	c.relminmxid,
+	false as is_deleted
+FROM
+	temp_pm_pg_class as pc
+
+JOIN
 	temp_pg_class as c
 ON 
 	c.oid = pc.oid
@@ -274,31 +338,83 @@ WHERE 0=1
 	--OR pc.relfrozenxid <> c.relfrozenxid
 	--OR pc.relminmxid <> c.relminmxid
 
+
+UNION ALL
+
+
+SELECT --удалённые строки
+	:version_id as version_id,
+	c."oid",
+	c.relname,
+	c.relnamespace,
+	c.reltype,
+	c.reloftype,
+	c.relowner,
+	c.relam,
+	c.relfilenode,
+	c.reltablespace,
+	c.relpages,
+	c.reltuples,
+	c.relallvisible,
+	c.reltoastrelid,
+	c.relhasindex,
+	c.relisshared,
+	c.relpersistence,
+	c.relkind,
+	c.relnatts,
+	c.relchecks,
+	c.relhasrules,
+	c.relhastriggers,
+	c.relhassubclass,
+	c.relrowsecurity,
+	c.relforcerowsecurity,
+	c.relispopulated,
+	c.relreplident,
+	c.relispartition,
+	c.relrewrite,
+	c.relfrozenxid,
+	c.relminmxid,
+	false as is_deleted
+
+FROM
+	temp_pm_pg_class as pc
+
+LEFT JOIN
+	temp_pg_class as c
+ON 
+	c.oid = pc.oid
+
+WHERE 1=1
+	AND c.oid IS NULL
+)
+
 `
 
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_DB", config.Settings.DB_SCHEME_DATABASE)
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_PM", postgres_gorm.Settings.DB_SCHEMA)
+	TextSQL = strings.ReplaceAll(TextSQL, ":version_id", micro.StringFromInt64(VersionID))
 
-	tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
+	//tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
 	//tx = db.Raw(TextSQL)
+	tx = db.Exec(TextSQL)
 	err = tx.Error
 	if err != nil {
 		err = fmt.Errorf("db.Raw() error: %w", err)
 		log.Error(err)
-		return Otvet, err
+		return err
 	}
 
-	//
-	MassNames := make([]string, 0)
-	tx = tx.Scan(&MassNames)
-	err = tx.Error
-	if err != nil {
-		err = fmt.Errorf("tx.Scan() error: %w", err)
-		log.Error(err)
-		return Otvet, err
-	}
+	////
+	//MassNames := make([]string, 0)
+	//tx = tx.Scan(&MassNames)
+	//err = tx.Error
+	//if err != nil {
+	//	err = fmt.Errorf("tx.Scan() error: %w", err)
+	//	log.Error(err)
+	//	return err
+	//}
 
-	Otvet = len(MassNames)
+	//Otvet = len(MassNames)
 
-	return Otvet, err
+	return err
 }
