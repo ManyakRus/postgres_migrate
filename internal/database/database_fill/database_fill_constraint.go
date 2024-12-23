@@ -1,4 +1,4 @@
-package database_is_changed
+package database_fill
 
 import (
 	"context"
@@ -6,14 +6,15 @@ import (
 	"github.com/ManyakRus/postgres_migrate/internal/config"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/log"
+	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
 	"strings"
 	"time"
 )
 
-// IsChanged_Constraint - проверка изменения метаданных
-func IsChanged_Constraint() (int, error) {
-	Otvet := 0
+// Fill_constraint - проверка изменения метаданных
+func Fill_constraint(VersionID int64) error {
+	//Otvet := 0
 	var err error
 
 	//соединение
@@ -25,8 +26,7 @@ func IsChanged_Constraint() (int, error) {
 	tx := db.WithContext(ctx)
 
 	//
-	TextSQL :=
-		`
+	TextSQL := `
 ------------------------------- temp_pg_constraint_max --------------------------- 
 drop table if exists temp_pg_constraint_max; 
 CREATE TEMPORARY TABLE temp_pg_constraint_max ("oid" oid, version_id bigint);
@@ -191,30 +191,81 @@ WHERE 1=1
 ;
 
 ------------------------------ сравнение -------------------------------------------
-SELECT
-	temp_pg_constraint.conname as name
-FROM
-	temp_pm_pg_constraint
-
-FULL JOIN
-	temp_pg_constraint
-ON 
-	temp_pg_constraint.oid = temp_pm_pg_constraint.oid
-
-WHERE 
-	(temp_pg_constraint.oid IS NULL
-	OR
-	temp_pm_pg_constraint.oid IS NULL
-	)
-
-UNION
-
-SELECT
-	c.conname
+INSERT INTO SCHEMA_PM.postgres_migrate_pg_constraint
+(
+SELECT --новые строки
+	:version_id as version_id,
+	c."oid",
+	c.conname,
+	c.connamespace,
+	c.contype,
+	c.condeferrable,
+	c.condeferred,
+	c.convalidated,
+	c.conrelid,
+	c.contypid,
+	c.conindid,
+	c.conparentid,
+	c.confrelid,
+	c.confupdtype,
+	c.confdeltype,
+	c.confmatchtype,
+	c.conislocal,
+	c.coninhcount,
+	c.connoinherit,
+	c.conkey,
+	c.confkey,
+	c.conpfeqop,
+	c.conppeqop,
+	c.conffeqop,
+	c.conexclop,
+	false as is_deleted
 FROM
 	temp_pm_pg_constraint as pc
 
-FULL JOIN
+RIGHT JOIN
+	temp_pg_constraint as c
+ON 
+	c.oid = pc.oid
+
+WHERE 1=1
+	AND pc.oid IS NULL
+
+
+UNION ALL
+
+
+SELECT --изменённые строки
+	:version_id as version_id,
+	c."oid",
+	c.conname,
+	c.connamespace,
+	c.contype,
+	c.condeferrable,
+	c.condeferred,
+	c.convalidated,
+	c.conrelid,
+	c.contypid,
+	c.conindid,
+	c.conparentid,
+	c.confrelid,
+	c.confupdtype,
+	c.confdeltype,
+	c.confmatchtype,
+	c.conislocal,
+	c.coninhcount,
+	c.connoinherit,
+	c.conkey,
+	c.confkey,
+	c.conpfeqop,
+	c.conppeqop,
+	c.conffeqop,
+	c.conexclop,
+	false as is_deleted
+FROM
+	temp_pm_pg_constraint as pc
+
+JOIN
 	temp_pg_constraint as c
 ON 
 	c.oid = pc.oid
@@ -245,31 +296,77 @@ WHERE 0=1
 	OR pc.conffeqop <> c.conffeqop
 	OR pc.conexclop <> c.conexclop
 
+
+UNION ALL
+
+
+SELECT --удалённые строки
+	:version_id as version_id,
+	c."oid",
+	c.conname,
+	c.connamespace,
+	c.contype,
+	c.condeferrable,
+	c.condeferred,
+	c.convalidated,
+	c.conrelid,
+	c.contypid,
+	c.conindid,
+	c.conparentid,
+	c.confrelid,
+	c.confupdtype,
+	c.confdeltype,
+	c.confmatchtype,
+	c.conislocal,
+	c.coninhcount,
+	c.connoinherit,
+	c.conkey,
+	c.confkey,
+	c.conpfeqop,
+	c.conppeqop,
+	c.conffeqop,
+	c.conexclop,
+	false as is_deleted
+
+FROM
+	temp_pm_pg_constraint as pc
+
+LEFT JOIN
+	temp_pg_constraint as c
+ON 
+	c.oid = pc.oid
+
+WHERE 1=1
+	AND c.oid IS NULL
+)
+
 `
 
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_DB", config.Settings.DB_SCHEME_DATABASE)
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_PM", postgres_gorm.Settings.DB_SCHEMA)
+	TextSQL = strings.ReplaceAll(TextSQL, ":version_id", micro.StringFromInt64(VersionID))
 
-	tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
+	//tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
 	//tx = db.Raw(TextSQL)
+	tx = db.Exec(TextSQL)
 	err = tx.Error
 	if err != nil {
 		err = fmt.Errorf("db.Raw() error: %w", err)
 		log.Error(err)
-		return Otvet, err
+		return err
 	}
 
-	//
-	MassNames := make([]string, 0)
-	tx = tx.Scan(&MassNames)
-	err = tx.Error
-	if err != nil {
-		err = fmt.Errorf("tx.Scan() error: %w", err)
-		log.Error(err)
-		return Otvet, err
-	}
+	////
+	//MassNames := make([]string, 0)
+	//tx = tx.Scan(&MassNames)
+	//err = tx.Error
+	//if err != nil {
+	//	err = fmt.Errorf("tx.Scan() error: %w", err)
+	//	log.Error(err)
+	//	return err
+	//}
 
-	Otvet = len(MassNames)
+	//Otvet = len(MassNames)
 
-	return Otvet, err
+	return err
 }

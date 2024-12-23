@@ -42,4 +42,6 @@ func Start() {
 		return
 	}
 
+	//создадим файлы .sql
+
 }

@@ -1,4 +1,4 @@
-package database_is_changed
+package database_fill
 
 import (
 	"context"
@@ -6,14 +6,15 @@ import (
 	"github.com/ManyakRus/postgres_migrate/internal/config"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/log"
+	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
 	"strings"
 	"time"
 )
 
-// IsChanged_Index - проверка изменения метаданных
-func IsChanged_Index() (int, error) {
-	Otvet := 0
+// Fill_index - проверка изменения метаданных
+func Fill_index(VersionID int64) error {
+	//Otvet := 0
 	var err error
 
 	//соединение
@@ -187,31 +188,75 @@ WHERE 1=1
 	and pn.nspname = 'SCHEMA_DB'
 ;
 
+
 ------------------------------ сравнение -------------------------------------------
-SELECT
-	temp_pg_index.indexrelid as id
-FROM
-	temp_pm_pg_index
-
-FULL JOIN
-	temp_pg_index
-ON 
-	temp_pg_index.indexrelid = temp_pm_pg_index.indexrelid
-
-WHERE 
-	(temp_pg_index.indexrelid IS NULL
-	OR
-	temp_pm_pg_index.indexrelid IS NULL
-	)
-
-UNION
-
-SELECT
-	i.indexrelid
+INSERT INTO SCHEMA_PM.postgres_migrate_pg_index
+(
+SELECT --новые строки
+	:version_id as version_id,
+	i.indexrelid,
+	i.indrelid,
+	i.indnatts,
+	i.indnkeyatts,
+	i.indisunique,
+	i.indisprimary,
+	i.indisexclusion,
+	i.indimmediate,
+	i.indisclustered,
+	i.indisvalid,
+	i.indcheckxmin,
+	i.indisready,
+	i.indislive,
+	i.indisreplident,
+	i.indkey,
+	i.indcollation,
+	i.indclass,
+	i.indoption,
+	i.indexprs,
+	i.indpred,
+	false as is_deleted
 FROM
 	temp_pm_pg_index as pi
 
-FULL JOIN
+RIGHT JOIN
+	temp_pg_index as i
+ON 
+	i.indexrelid = pi.indexrelid
+
+WHERE 1=1
+	AND pi.indexrelid IS NULL
+
+
+UNION ALL
+
+
+SELECT --изменённые строки
+	:version_id as version_id,
+	i.indexrelid,
+	i.indrelid,
+	i.indnatts,
+	i.indnkeyatts,
+	i.indisunique,
+	i.indisprimary,
+	i.indisexclusion,
+	i.indimmediate,
+	i.indisclustered,
+	i.indisvalid,
+	i.indcheckxmin,
+	i.indisready,
+	i.indislive,
+	i.indisreplident,
+	i.indkey,
+	i.indcollation,
+	i.indclass,
+	i.indoption,
+	i.indexprs,
+	i.indpred,
+	false as is_deleted
+FROM
+	temp_pm_pg_index as pi
+
+JOIN
 	temp_pg_index as i
 ON 
 	i.indexrelid = pi.indexrelid
@@ -238,31 +283,73 @@ WHERE 0=1
 	--OR pi.indexprs <> i.indexprs
 	--OR pi.indpred <> i.indpred
 
+
+UNION ALL
+
+
+SELECT --удалённые строки
+	:version_id as version_id,
+	pi.indexrelid,
+	pi.indrelid,
+	pi.indnatts,
+	pi.indnkeyatts,
+	pi.indisunique,
+	pi.indisprimary,
+	pi.indisexclusion,
+	pi.indimmediate,
+	pi.indisclustered,
+	pi.indisvalid,
+	pi.indcheckxmin,
+	pi.indisready,
+	pi.indislive,
+	pi.indisreplident,
+	pi.indkey,
+	pi.indcollation,
+	pi.indclass,
+	pi.indoption,
+	pi.indexprs,
+	pi.indpred,
+	false as is_deleted
+
+FROM
+	temp_pm_pg_index as pi
+
+LEFT JOIN
+	temp_pg_index as i
+ON 
+	i.indexrelid = pi.indexrelid
+
+WHERE 1=1
+	AND i.indexrelid IS NULL
+)
+
 `
 
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_DB", config.Settings.DB_SCHEME_DATABASE)
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_PM", postgres_gorm.Settings.DB_SCHEMA)
+	TextSQL = strings.ReplaceAll(TextSQL, ":version_id", micro.StringFromInt64(VersionID))
 
-	tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
+	//tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
 	//tx = db.Raw(TextSQL)
+	tx = db.Exec(TextSQL)
 	err = tx.Error
 	if err != nil {
 		err = fmt.Errorf("db.Raw() error: %w", err)
 		log.Error(err)
-		return Otvet, err
+		return err
 	}
 
-	//
-	MassNames := make([]int, 0)
-	tx = tx.Scan(&MassNames)
-	err = tx.Error
-	if err != nil {
-		err = fmt.Errorf("tx.Scan() error: %w", err)
-		log.Error(err)
-		return Otvet, err
-	}
+	////
+	//MassNames := make([]string, 0)
+	//tx = tx.Scan(&MassNames)
+	//err = tx.Error
+	//if err != nil {
+	//	err = fmt.Errorf("tx.Scan() error: %w", err)
+	//	log.Error(err)
+	//	return err
+	//}
 
-	Otvet = len(MassNames)
+	//Otvet = len(MassNames)
 
-	return Otvet, err
+	return err
 }

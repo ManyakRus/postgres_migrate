@@ -1,4 +1,4 @@
-package database_is_changed
+package database_fill
 
 import (
 	"context"
@@ -6,14 +6,15 @@ import (
 	"github.com/ManyakRus/postgres_migrate/internal/config"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/log"
+	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
 	"strings"
 	"time"
 )
 
-// IsChanged_Description - проверка изменения метаданных
-func IsChanged_Description() (int, error) {
-	Otvet := 0
+// Fill_description - проверка изменения метаданных
+func Fill_description(VersionID int64) error {
+	//Otvet := 0
 	var err error
 
 	//соединение
@@ -25,8 +26,7 @@ func IsChanged_Description() (int, error) {
 	tx := db.WithContext(ctx)
 
 	//
-	TextSQL :=
-		`
+	TextSQL := `
 ------------------------------- temp_pg_description_max --------------------------- 
 drop table if exists temp_pg_description_max; 
 CREATE TEMPORARY TABLE temp_pg_description_max ("objoid" oid, classoid oid, objsubid int4, version_id bigint);
@@ -141,33 +141,45 @@ WHERE 1=1
 	and pn.nspname = 'SCHEMA_DB'
 ;
 
+
 ------------------------------ сравнение -------------------------------------------
-SELECT
-	d.description as name
+INSERT INTO SCHEMA_PM.postgres_migrate_pg_description
+(
+SELECT --новые строки
+	:version_id as version_id,
+	d.objoid,
+	d.classoid,
+	d.objsubid,
+	d.description,
+	false as is_deleted
 FROM
 	temp_pm_pg_description as pd
 
-FULL JOIN
+RIGHT JOIN
 	temp_pg_description as d
 ON 
 	d.objoid = pd.objoid
 	and d.classoid = pd.classoid
 	and d.objsubid = pd.objsubid
 
-WHERE 
-	(d.objoid IS NULL
-	OR
-	pd.objoid IS NULL
-	)
+WHERE 1=1
+	AND pd.objoid IS NULL
 
-UNION
 
-SELECT
-	d.description
+UNION ALL
+
+
+SELECT --изменённые строки
+	:version_id as version_id,
+	d.objoid,
+	d.classoid,
+	d.objsubid,
+	d.description,
+	false as is_deleted
 FROM
 	temp_pm_pg_description as pd
 
-FULL JOIN
+JOIN
 	temp_pg_description as d
 ON 
 	d.objoid = pd.objoid
@@ -180,31 +192,59 @@ WHERE 0=1
 	OR pd.objsubid <> d.objsubid
 	OR pd.description <> d.description
 
+
+UNION ALL
+
+
+SELECT --удалённые строки
+	:version_id as version_id,
+	pd.objoid,
+	pd.classoid,
+	pd.objsubid,
+	pd.description,
+	false as is_deleted
+
+FROM
+	temp_pm_pg_description as pd
+
+LEFT JOIN
+	temp_pg_description as d
+ON 
+	d.objoid = pd.objoid
+	and d.classoid = pd.classoid
+	and d.objsubid = pd.objsubid
+
+WHERE 1=1
+	AND d.objoid IS NULL
+)
+
 `
 
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_DB", config.Settings.DB_SCHEME_DATABASE)
 	TextSQL = strings.ReplaceAll(TextSQL, "SCHEMA_PM", postgres_gorm.Settings.DB_SCHEMA)
+	TextSQL = strings.ReplaceAll(TextSQL, ":version_id", micro.StringFromInt64(VersionID))
 
-	tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
+	//tx = postgres_gorm.RawMultipleSQL(tx, TextSQL)
 	//tx = db.Raw(TextSQL)
+	tx = db.Exec(TextSQL)
 	err = tx.Error
 	if err != nil {
 		err = fmt.Errorf("db.Raw() error: %w", err)
 		log.Error(err)
-		return Otvet, err
+		return err
 	}
 
-	//
-	MassNames := make([]string, 0)
-	tx = tx.Scan(&MassNames)
-	err = tx.Error
-	if err != nil {
-		err = fmt.Errorf("tx.Scan() error: %w", err)
-		log.Error(err)
-		return Otvet, err
-	}
+	////
+	//MassNames := make([]string, 0)
+	//tx = tx.Scan(&MassNames)
+	//err = tx.Error
+	//if err != nil {
+	//	err = fmt.Errorf("tx.Scan() error: %w", err)
+	//	log.Error(err)
+	//	return err
+	//}
 
-	Otvet = len(MassNames)
+	//Otvet = len(MassNames)
 
-	return Otvet, err
+	return err
 }
