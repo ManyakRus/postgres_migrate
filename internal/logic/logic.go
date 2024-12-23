@@ -34,6 +34,8 @@ func Start() {
 	}
 	log.Infof("Saved new version id: %v, name: %v", Version.ID, Version.Name)
 
+	//создадим файлы .sql
+
 	//заполним все таблицы postgres_migrate
 	err = database_fill.Fill_All(Version.ID)
 	if err != nil {
@@ -41,7 +43,5 @@ func Start() {
 		log.Error(err)
 		return
 	}
-
-	//создадим файлы .sql
 
 }
