@@ -59,8 +59,8 @@ ON
 WHERE 1=1
 	and pg_class_classoid.relname = 'pg_class'
 	and pmpn.nspname = 'SCHEMA_DB'
-	and pmpd.is_deleted = false
-	and pmpn.is_deleted = false
+	--and pmpd.is_deleted = false
+	--and pmpn.is_deleted = false
 
 GROUP BY
 	pmpd.objoid,

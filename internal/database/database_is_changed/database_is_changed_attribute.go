@@ -53,9 +53,9 @@ ON
 
 WHERE 1=1
 	and pmpn.nspname = 'SCHEMA_DB'
-	and pmpa.is_deleted = false
-	and pmpc.is_deleted = false
-	and pmpn.is_deleted = false
+	--and pmpa.is_deleted = false
+	--and pmpc.is_deleted = false
+	--and pmpn.is_deleted = false
 
 GROUP BY
 	pmpa."attrelid",
@@ -86,7 +86,8 @@ CREATE TEMPORARY TABLE temp_pm_pg_attribute (
 	attisdropped bool,
 	attislocal bool,
 	attinhcount int4,
-	attcollation oid
+	attcollation oid,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_attribute
 SELECT
@@ -110,7 +111,8 @@ SELECT
 	pmpa.attisdropped,
 	pmpa.attislocal,
 	pmpa.attinhcount,
-	pmpa.attcollation
+	pmpa.attcollation,
+	pmpa.is_deleted
 		
 FROM
     SCHEMA_PM.postgres_migrate_pg_attribute as pmpa
@@ -206,12 +208,14 @@ FULL JOIN
 ON 
 	temp_pg_attribute.attrelid = temp_pm_pg_attribute.attrelid
 	and temp_pg_attribute.attname = temp_pm_pg_attribute.attname
+	
 
 WHERE 
 	(temp_pg_attribute.attrelid IS NULL
 	OR
 	temp_pm_pg_attribute.attrelid IS NULL
 	)
+	and COALESCE(temp_pg_attribute.is_deleted, false) = false
 
 UNION
 
