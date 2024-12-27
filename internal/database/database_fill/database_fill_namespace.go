@@ -39,7 +39,7 @@ FROM
 
 WHERE 1=1
 	and pmpn.nspname = 'SCHEMA_DB'
-	and pmpn.is_deleted = false
+	--and pmpn.is_deleted = false
 
 GROUP BY
 	pmpn."oid"
@@ -52,15 +52,16 @@ CREATE TEMPORARY TABLE temp_pm_pg_namespace (
 	"oid" oid,
 	nspname name,
 	nspowner oid,
-	nspacl _aclitem
+	nspacl _aclitem,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_namespace
 SELECT
 	pmpn."oid",
 	pmpn.nspname,
 	pmpn.nspowner,
-	pmpn.nspacl
-		
+	pmpn.nspacl,
+	pmpn.is_deleted		
 FROM
     SCHEMA_PM.postgres_migrate_pg_namespace as pmpn
 	
@@ -115,7 +116,11 @@ ON
 	n.oid = pn.oid
 
 WHERE 1=1
-	AND pn.oid IS NULL
+	AND (pn.oid IS NULL
+		OR COALESCE(pn.is_deleted, false) = true
+		)
+
+	
 
 
 UNION ALL
@@ -135,6 +140,7 @@ JOIN
 	temp_pg_namespace as n
 ON 
 	n.oid = pn.oid
+	and pn.is_deleted = false
 
 WHERE 0=1
 	OR pn."oid" <> n."oid" 
@@ -164,6 +170,7 @@ ON
 
 WHERE 1=1
 	AND n.oid IS NULL
+	AND pn.is_deleted = false
 )
 
 `

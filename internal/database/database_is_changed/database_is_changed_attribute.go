@@ -215,9 +215,11 @@ WHERE
 	OR
 	temp_pm_pg_attribute.attrelid IS NULL
 	)
-	and COALESCE(temp_pg_attribute.is_deleted, false) = false
+	and COALESCE(temp_pm_pg_attribute.is_deleted, false) = false
+
 
 UNION
+
 
 SELECT
 	a.attname
@@ -252,6 +254,7 @@ WHERE 0=1
 	OR pa.attislocal <> a.attislocal
 	--OR pa.attinhcount <> a.attinhcount
 	OR pa.attcollation <> a.attcollation
+	OR pa.is_deleted = true
 
 `
 

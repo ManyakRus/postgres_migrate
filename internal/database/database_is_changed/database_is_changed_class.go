@@ -83,7 +83,8 @@ CREATE TEMPORARY TABLE temp_pm_pg_class (
 	relispartition bool,
 	relrewrite oid,
 	relfrozenxid xid,
-	relminmxid xid
+	relminmxid xid,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_class
 SELECT
@@ -116,7 +117,8 @@ SELECT
 	pmpc.relispartition,
 	pmpc.relrewrite,
 	pmpc.relfrozenxid,
-	pmpc.relminmxid
+	pmpc.relminmxid,
+	pmpc.is_deleted
 		
 FROM
     SCHEMA_PM.postgres_migrate_pg_class as pmpc
@@ -229,6 +231,7 @@ WHERE
 	OR
 	temp_pm_pg_class.oid IS NULL
 	)
+	and COALESCE(temp_pm_pg_class.is_deleted, false) = false
 
 UNION
 
@@ -273,6 +276,7 @@ WHERE 0=1
 	OR pc.relrewrite <> c.relrewrite
 	--OR pc.relfrozenxid <> c.relfrozenxid
 	--OR pc.relminmxid <> c.relminmxid
+	OR pc.is_deleted = true
 
 `
 

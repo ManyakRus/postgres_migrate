@@ -81,7 +81,8 @@ CREATE TEMPORARY TABLE temp_pm_pg_index (
 	indclass oidvector,
 	indoption int2vector,
 	indexprs pg_node_tree,
-	indpred pg_node_tree
+	indpred pg_node_tree,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_index
 SELECT
@@ -104,8 +105,8 @@ SELECT
 	pmpi.indclass,
 	pmpi.indoption,
 	pmpi.indexprs,
-	pmpi.indpred
-		
+	pmpi.indpred,
+	pmpi.is_deleted	
 FROM
     SCHEMA_PM.postgres_migrate_pg_index as pmpi
 	
@@ -203,8 +204,11 @@ WHERE
 	OR
 	temp_pm_pg_index.indexrelid IS NULL
 	)
+	and COALESCE(temp_pm_pg_index.is_deleted, false) = false
+
 
 UNION
+
 
 SELECT
 	i.indexrelid
@@ -237,6 +241,7 @@ WHERE 0=1
 	--OR pi.indoption <> i.indoption
 	--OR pi.indexprs <> i.indexprs
 	--OR pi.indpred <> i.indpred
+	OR pi.is_deleted = true
 
 `
 

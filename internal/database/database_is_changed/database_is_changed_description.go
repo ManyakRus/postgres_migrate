@@ -75,14 +75,16 @@ CREATE TEMPORARY TABLE temp_pm_pg_description (
 	objoid oid,
 	classoid oid,
 	objsubid int4,
-	description text
+	description text,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_description
 SELECT
 	pmpd.objoid,
 	pmpd.classoid,
 	pmpd.objsubid,
-	pmpd.description
+	pmpd.description,
+	pmpd.is_deleted
 		
 FROM
     SCHEMA_PM.postgres_migrate_pg_description as pmpd
@@ -159,6 +161,7 @@ WHERE
 	OR
 	pd.objoid IS NULL
 	)
+	and COALESCE(pd.is_deleted, false) = false
 
 UNION
 
@@ -179,6 +182,7 @@ WHERE 0=1
 	OR pd.classoid <> d.classoid
 	OR pd.objsubid <> d.objsubid
 	OR pd.description <> d.description
+	OR pd.is_deleted = true
 
 `
 

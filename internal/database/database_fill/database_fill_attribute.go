@@ -83,7 +83,8 @@ CREATE TEMPORARY TABLE temp_pm_pg_attribute (
 	attisdropped bool,
 	attislocal bool,
 	attinhcount int4,
-	attcollation oid
+	attcollation oid,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_attribute
 SELECT
@@ -107,7 +108,8 @@ SELECT
 	pmpa.attisdropped,
 	pmpa.attislocal,
 	pmpa.attinhcount,
-	pmpa.attcollation
+	pmpa.attcollation,
+	pmpa.is_deleted
 		
 FROM
     SCHEMA_PM.postgres_migrate_pg_attribute as pmpa
@@ -229,7 +231,9 @@ ON
 	and a.attname = pa.attname
 
 WHERE 1=1
-	AND pa.attrelid IS NULL
+	AND (pa.attrelid IS NULL
+		OR COALESCE(pa.is_deleted, false) = true
+		)
 
 
 UNION ALL
@@ -267,6 +271,7 @@ JOIN
 ON 
 	a.attrelid = pa.attrelid
 	and a.attname = pa.attname
+	and pa.is_deleted = false
 
 WHERE 0=1
 	OR pa.attrelid <> a.attrelid
@@ -331,6 +336,7 @@ ON
 
 WHERE 1=1
 	AND a.attrelid IS NULL
+	AND pa.is_deleted = false
 )
 
 `

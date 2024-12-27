@@ -59,8 +59,8 @@ ON
 WHERE 1=1
 	and pg_class_classoid.relname = 'pg_class'
 	and pmpn.nspname = 'SCHEMA_DB'
-	and pmpd.is_deleted = false
-	and pmpn.is_deleted = false
+	--and pmpd.is_deleted = false
+	--and pmpn.is_deleted = false
 
 GROUP BY
 	pmpd.objoid,
@@ -75,14 +75,16 @@ CREATE TEMPORARY TABLE temp_pm_pg_description (
 	objoid oid,
 	classoid oid,
 	objsubid int4,
-	description text
+	description text,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_description
 SELECT
 	pmpd.objoid,
 	pmpd.classoid,
 	pmpd.objsubid,
-	pmpd.description
+	pmpd.description,
+	pmpd.is_deleted
 		
 FROM
     SCHEMA_PM.postgres_migrate_pg_description as pmpd
@@ -163,7 +165,9 @@ ON
 	and d.objsubid = pd.objsubid
 
 WHERE 1=1
-	AND pd.objoid IS NULL
+	AND (pd.objoid IS NULL
+		OR COALESCE(pd.is_deleted, false) = true
+		)
 
 
 UNION ALL
@@ -185,6 +189,7 @@ ON
 	d.objoid = pd.objoid
 	and d.classoid = pd.classoid
 	and d.objsubid = pd.objsubid
+	and pd.is_deleted = false
 
 WHERE 0=1
 	OR pd.objoid <> d.objoid
@@ -216,6 +221,7 @@ ON
 
 WHERE 1=1
 	AND d.objoid IS NULL
+	AND pd.is_deleted = false
 )
 
 `

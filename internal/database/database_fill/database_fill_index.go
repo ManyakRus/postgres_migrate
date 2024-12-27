@@ -51,9 +51,9 @@ ON
 
 WHERE 1=1
 	and pmpn.nspname = 'SCHEMA_DB'
-	and pmpi.is_deleted = false
-	and pmpc.is_deleted = false
-	and pmpn.is_deleted = false
+	--and pmpi.is_deleted = false
+	--and pmpc.is_deleted = false
+	--and pmpn.is_deleted = false
 
 GROUP BY
 	pmpi."indexrelid"
@@ -82,7 +82,8 @@ CREATE TEMPORARY TABLE temp_pm_pg_index (
 	indclass oidvector,
 	indoption int2vector,
 	indexprs pg_node_tree,
-	indpred pg_node_tree
+	indpred pg_node_tree,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_index
 SELECT
@@ -105,7 +106,8 @@ SELECT
 	pmpi.indclass,
 	pmpi.indoption,
 	pmpi.indexprs,
-	pmpi.indpred
+	pmpi.indpred,
+	pmpi.is_deleted
 		
 FROM
     SCHEMA_PM.postgres_migrate_pg_index as pmpi
@@ -224,7 +226,9 @@ ON
 	i.indexrelid = pi.indexrelid
 
 WHERE 1=1
-	AND pi.indexrelid IS NULL
+	AND (pi.indexrelid IS NULL
+		OR COALESCE(pi.is_deleted, false) = true
+		)
 
 
 UNION ALL
@@ -260,6 +264,7 @@ JOIN
 	temp_pg_index as i
 ON 
 	i.indexrelid = pi.indexrelid
+	and pi.is_deleted = false
 
 WHERE 0=1
 	OR pi.indexrelid <> i.indexrelid
@@ -318,6 +323,7 @@ LEFT JOIN
 	temp_pg_index as i
 ON 
 	i.indexrelid = pi.indexrelid
+	AND pi.is_deleted = false
 
 WHERE 1=1
 	AND i.indexrelid IS NULL

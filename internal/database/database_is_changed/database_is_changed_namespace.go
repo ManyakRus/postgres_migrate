@@ -51,14 +51,16 @@ CREATE TEMPORARY TABLE temp_pm_pg_namespace (
 	"oid" oid,
 	nspname name,
 	nspowner oid,
-	nspacl _aclitem
+	nspacl _aclitem,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_namespace
 SELECT
 	pmpn."oid",
 	pmpn.nspname,
 	pmpn.nspowner,
-	pmpn.nspacl
+	pmpn.nspacl,
+	pmpn.is_deleted
 		
 FROM
     SCHEMA_PM.postgres_migrate_pg_namespace as pmpn
@@ -111,6 +113,7 @@ WHERE
 	OR
 	temp_pm_pg_namespace.oid IS NULL
 	)
+	and COALESCE(temp_pm_pg_namespace.is_deleted, false) = false
 
 UNION
 
@@ -129,6 +132,7 @@ WHERE 0=1
 	OR pn.nspname <> n.nspname
 	--OR pn.nspowner <> n.nspowner
 	--OR pn.nspacl <> n.nspacl
+	OR pn.is_deleted = true
 
 `
 

@@ -78,7 +78,8 @@ CREATE TEMPORARY TABLE temp_pm_pg_constraint (
 	conpfeqop _oid,
 	conppeqop _oid,
 	conffeqop _oid,
-	conexclop _oid
+	conexclop _oid,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_constraint
 SELECT
@@ -105,7 +106,8 @@ SELECT
 	pmpc.conpfeqop,
 	pmpc.conppeqop,
 	pmpc.conffeqop,
-	pmpc.conexclop
+	pmpc.conexclop,
+	pmpc.is_deleted
 		
 FROM
     SCHEMA_PM.postgres_migrate_pg_constraint as pmpc
@@ -206,6 +208,7 @@ WHERE
 	OR
 	temp_pm_pg_constraint.oid IS NULL
 	)
+	and COALESCE(temp_pm_pg_constraint.is_deleted, false) = false
 
 UNION
 
@@ -244,6 +247,7 @@ WHERE 0=1
 	OR pc.conppeqop <> c.conppeqop
 	OR pc.conffeqop <> c.conffeqop
 	OR pc.conexclop <> c.conexclop
+	OR pc.is_deleted = true
 
 `
 

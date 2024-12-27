@@ -44,8 +44,8 @@ ON
 
 WHERE 1=1
 	and pmpn.nspname = 'SCHEMA_DB'
-	and pmpc.is_deleted = false
-	and pmpn.is_deleted = false
+	--and pmpc.is_deleted = false
+	--and pmpn.is_deleted = false
 
 GROUP BY
 	pmpc."oid"
@@ -84,7 +84,8 @@ CREATE TEMPORARY TABLE temp_pm_pg_class (
 	relispartition bool,
 	relrewrite oid,
 	relfrozenxid xid,
-	relminmxid xid
+	relminmxid xid,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_class
 SELECT
@@ -117,7 +118,8 @@ SELECT
 	pmpc.relispartition,
 	pmpc.relrewrite,
 	pmpc.relfrozenxid,
-	pmpc.relminmxid
+	pmpc.relminmxid,
+	pmpc.is_deleted
 		
 FROM
     SCHEMA_PM.postgres_migrate_pg_class as pmpc
@@ -259,7 +261,9 @@ ON
 	c.oid = pc.oid
 
 WHERE 1=1
-	AND pc.oid IS NULL
+	AND (pc.oid IS NULL
+		OR COALESCE(pc.is_deleted, false) = true
+		)
 
 
 UNION ALL
@@ -305,6 +309,7 @@ JOIN
 	temp_pg_class as c
 ON 
 	c.oid = pc.oid
+	and pc.is_deleted = false
 
 WHERE 0=1
 	OR pc."oid" <> c."oid"
@@ -386,6 +391,7 @@ ON
 
 WHERE 1=1
 	AND c.oid IS NULL
+	AND pc.is_deleted = false
 )
 
 `
