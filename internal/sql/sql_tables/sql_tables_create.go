@@ -114,7 +114,8 @@ CREATE TEMPORARY TABLE temp_pm_pg_class (
 	relispartition bool,
 	relrewrite oid,
 	relfrozenxid xid,
-	relminmxid xid
+	relminmxid xid,
+	is_deleted bool
 );
 INSERT into temp_pm_pg_class
 SELECT
@@ -147,7 +148,8 @@ SELECT
 	pmpc.relispartition,
 	pmpc.relrewrite,
 	pmpc.relfrozenxid,
-	pmpc.relminmxid
+	pmpc.relminmxid,
+	pmpc.is_deleted
 		
 FROM
     SCHEMA_PM.postgres_migrate_pg_class as pmpc
@@ -280,12 +282,14 @@ SELECT --новые строки
 	c.relminmxid,
 	false as is_deleted
 FROM
-	temp_pm_pg_class as pc
-
-RIGHT JOIN
 	temp_pg_class as c
+
+LEFT JOIN
+	temp_pm_pg_class as pc
 ON 
-	c.oid = pc.oid
+	pc.oid = c.oid
+	and pc.is_deleted = false 
+	
 
 WHERE 1=1
 	AND pc.oid IS NULL
