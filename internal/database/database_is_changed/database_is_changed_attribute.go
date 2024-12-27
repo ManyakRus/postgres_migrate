@@ -86,7 +86,8 @@ CREATE TEMPORARY TABLE temp_pm_pg_attribute (
 	attislocal bool,
 	attinhcount int4,
 	attcollation oid,
-	is_deleted bool
+	is_deleted bool,
+	attmissingval Text
 );
 INSERT into temp_pm_pg_attribute
 SELECT
@@ -111,7 +112,8 @@ SELECT
 	pmpa.attislocal,
 	pmpa.attinhcount,
 	pmpa.attcollation,
-	pmpa.is_deleted
+	pmpa.is_deleted,
+	pmpa.attmissingval
 		
 FROM
     SCHEMA_PM.postgres_migrate_pg_attribute as pmpa
@@ -150,40 +152,42 @@ CREATE TEMPORARY TABLE temp_pg_attribute (
 	attisdropped bool,
 	attislocal bool,
 	attinhcount int4,
-	attcollation oid
+	attcollation oid,
+	attmissingval Text
 );
 INSERT into temp_pg_attribute as tc
 SELECT
-	pa.attrelid,
-	pa.attname,
-	pa.atttypid,
-	pa.attstattarget,
-	pa.attlen,
-	pa.attnum,
-	pa.attndims,
-	pa.attcacheoff,
-	pa.atttypmod,
-	pa.attbyval,
-	pa.attstorage,
-	pa.attalign,
-	pa.attnotnull,
-	pa.atthasdef,
-	pa.atthasmissing,
-	pa.attidentity,
-	pa.attgenerated,
-	pa.attisdropped,
-	pa.attislocal,
-	pa.attinhcount,
-	pa.attcollation
+	a.attrelid,
+	a.attname,
+	a.atttypid,
+	a.attstattarget,
+	a.attlen,
+	a.attnum,
+	a.attndims,
+	a.attcacheoff,
+	a.atttypmod,
+	a.attbyval,
+	a.attstorage,
+	a.attalign,
+	a.attnotnull,
+	a.atthasdef,
+	a.atthasmissing,
+	a.attidentity,
+	a.attgenerated,
+	a.attisdropped,
+	a.attislocal,
+	a.attinhcount,
+	a.attcollation,
+	a.attmissingval::Text as attmissingval
 		
 FROM
-    pg_catalog.pg_attribute as pa
+    pg_catalog.pg_attribute as a
 
 
 JOIN
 	pg_catalog.pg_class as pc
 ON 
-	pc.oid = pa.attrelid
+	pc.oid = a.attrelid
 
 
 JOIN
@@ -198,23 +202,23 @@ WHERE 1=1
 
 ------------------------------ сравнение -------------------------------------------
 SELECT
-	temp_pg_attribute.attname as name
+	a.attname as name
 FROM
-	temp_pm_pg_attribute
+	temp_pm_pg_attribute as pa
 
 FULL JOIN
-	temp_pg_attribute
+	temp_pg_attribute as a
 ON 
-	temp_pg_attribute.attrelid = temp_pm_pg_attribute.attrelid
-	and temp_pg_attribute.attname = temp_pm_pg_attribute.attname
+	a.attrelid = pa.attrelid
+	and a.attname = pa.attname
 	
 
 WHERE 
-	(temp_pg_attribute.attrelid IS NULL
+	(a.attrelid IS NULL
 	OR
-	temp_pm_pg_attribute.attrelid IS NULL
+	pa.attrelid IS NULL
 	)
-	and COALESCE(temp_pm_pg_attribute.is_deleted, false) = false
+	and COALESCE(pa.is_deleted, false) = false
 
 
 UNION
@@ -253,7 +257,9 @@ WHERE 0=1
 	OR pa.attislocal <> a.attislocal
 	--OR pa.attinhcount <> a.attinhcount
 	OR pa.attcollation <> a.attcollation
+	OR pa.attmissingval <> a.attmissingval
 	OR pa.is_deleted = true
+
 
 `
 

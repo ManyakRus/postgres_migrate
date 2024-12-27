@@ -84,35 +84,36 @@ CREATE TEMPORARY TABLE temp_pm_pg_attribute (
 	attislocal bool,
 	attinhcount int4,
 	attcollation oid,
-	is_deleted bool
+	is_deleted bool,
+	attmissingval Text
 );
 INSERT into temp_pm_pg_attribute
 SELECT
-	pmpa.attrelid,
-	pmpa.attname,
-	pmpa.atttypid,
-	pmpa.attstattarget,
-	pmpa.attlen,
-	pmpa.attnum,
-	pmpa.attndims,
-	pmpa.attcacheoff,
-	pmpa.atttypmod,
-	pmpa.attbyval,
-	pmpa.attstorage,
-	pmpa.attalign,
-	pmpa.attnotnull,
-	pmpa.atthasdef,
-	pmpa.atthasmissing,
-	pmpa.attidentity,
-	pmpa.attgenerated,
-	pmpa.attisdropped,
-	pmpa.attislocal,
-	pmpa.attinhcount,
-	pmpa.attcollation,
-	pmpa.is_deleted
-		
+	pa.attrelid,
+	pa.attname,
+	pa.atttypid,
+	pa.attstattarget,
+	pa.attlen,
+	pa.attnum,
+	pa.attndims,
+	pa.attcacheoff,
+	pa.atttypmod,
+	pa.attbyval,
+	pa.attstorage,
+	pa.attalign,
+	pa.attnotnull,
+	pa.atthasdef,
+	pa.atthasmissing,
+	pa.attidentity,
+	pa.attgenerated,
+	pa.attisdropped,
+	pa.attislocal,
+	pa.attinhcount,
+	pa.attcollation,
+	pa.is_deleted,
+	pa.attmissingval
 FROM
-    SCHEMA_PM.postgres_migrate_pg_attribute as pmpa
+    SCHEMA_PM.postgres_migrate_pg_attribute as pa
 	
 JOIN
 	temp_pg_attribute_max
@@ -148,40 +149,41 @@ CREATE TEMPORARY TABLE temp_pg_attribute (
 	attisdropped bool,
 	attislocal bool,
 	attinhcount int4,
-	attcollation oid
+	attcollation oid,
+	attmissingval Text
 );
 INSERT into temp_pg_attribute as tc
 SELECT
-	pa.attrelid,
-	pa.attname,
-	pa.atttypid,
-	pa.attstattarget,
-	pa.attlen,
-	pa.attnum,
-	pa.attndims,
-	pa.attcacheoff,
-	pa.atttypmod,
-	pa.attbyval,
-	pa.attstorage,
-	pa.attalign,
-	pa.attnotnull,
-	pa.atthasdef,
-	pa.atthasmissing,
-	pa.attidentity,
-	pa.attgenerated,
-	pa.attisdropped,
-	pa.attislocal,
-	pa.attinhcount,
-	pa.attcollation
-		
+	a.attrelid,
+	a.attname,
+	a.atttypid,
+	a.attstattarget,
+	a.attlen,
+	a.attnum,
+	a.attndims,
+	a.attcacheoff,
+	a.atttypmod,
+	a.attbyval,
+	a.attstorage,
+	a.attalign,
+	a.attnotnull,
+	a.atthasdef,
+	a.atthasmissing,
+	a.attidentity,
+	a.attgenerated,
+	a.attisdropped,
+	a.attislocal,
+	a.attinhcount,
+	a.attcollation,
+	a.attmissingval::Text
 FROM
-    pg_catalog.pg_attribute as pa
+    pg_catalog.pg_attribute as a
 
 
 JOIN
 	pg_catalog.pg_class as pc
 ON 
-	pc.oid = pa.attrelid
+	pc.oid = a.attrelid
 
 
 JOIN
@@ -220,7 +222,8 @@ SELECT --новые строки
 	a.attislocal,
 	a.attinhcount,
 	a.attcollation,
-	false as is_deleted
+	false as is_deleted,
+	a.attmissingval::Text
 FROM
 	temp_pm_pg_attribute as pa
 
@@ -262,7 +265,8 @@ SELECT --изменённые строки
 	a.attislocal,
 	a.attinhcount,
 	a.attcollation,
-	false as is_deleted
+	false as is_deleted,
+	a.attmissingval::Text
 FROM
 	temp_pm_pg_attribute as pa
 
@@ -295,6 +299,7 @@ WHERE 0=1
 	OR pa.attislocal <> a.attislocal
 	--OR pa.attinhcount <> a.attinhcount
 	OR pa.attcollation <> a.attcollation
+	OR pa.attmissingval <> a.attmissingval
 
 
 UNION ALL
@@ -323,7 +328,8 @@ SELECT --удалённые строки
 	pa.attislocal,
 	pa.attinhcount,
 	pa.attcollation,
-	true as is_deleted
+	true as is_deleted,
+	a.attmissingval::Text
 
 FROM
 	temp_pm_pg_attribute as pa
