@@ -4,9 +4,9 @@
 package tests
 
 import (
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client"
 	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client/grpc_postgres_migrate_pg_description"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_description"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client"
 	"github.com/ManyakRus/starter/config_main"
 	"testing"
 )
@@ -43,7 +43,7 @@ func TestRead(t *testing.T) {
 		t.Error("TestRead() error: ", err)
 	}
 
-	if (Otvet.Classoid == 0) || (Otvet.Objoid == 0) || (Otvet.Objsubid == 0) || (Otvet.VersionID == 0) {
+	if (Otvet.Classoid == 0) ||  (Otvet.Objoid == 0) ||  (Otvet.Objsubid == 0) ||  (Otvet.VersionID == 0) {
 		t.Error("TestRead() error: ID =0")
 	}
 }
@@ -114,7 +114,7 @@ func TestSave(t *testing.T) {
 		t.Error("TestSave() error: ", err)
 	}
 
-	if (Otvet.Classoid == 0) || (Otvet.Objoid == 0) || (Otvet.Objsubid == 0) || (Otvet.VersionID == 0) {
+	if (Otvet.Classoid == 0) ||  (Otvet.Objoid == 0) ||  (Otvet.Objsubid == 0) ||  (Otvet.VersionID == 0) {
 		t.Error("TestSave() error: ID =0")
 	}
 }
@@ -140,7 +140,7 @@ func TestDelete(t *testing.T) {
 		if err != nil {
 			t.Error("TestDelete() error: ", err)
 		}
-		if (Otvet.Classoid == 0) || (Otvet.Objoid == 0) || (Otvet.Objsubid == 0) || (Otvet.VersionID == 0) {
+		if (Otvet.Classoid == 0) ||  (Otvet.Objoid == 0) ||  (Otvet.Objsubid == 0) ||  (Otvet.VersionID == 0) {
 			t.Error("TestDelete() error: ID =0")
 		}
 
@@ -148,7 +148,7 @@ func TestDelete(t *testing.T) {
 		if err != nil {
 			t.Error("TestDelete() error: ", err)
 		}
-		if (Otvet.Classoid == 0) || (Otvet.Objoid == 0) || (Otvet.Objsubid == 0) || (Otvet.VersionID == 0) {
+		if (Otvet.Classoid == 0) ||  (Otvet.Objoid == 0) ||  (Otvet.Objsubid == 0) ||  (Otvet.VersionID == 0) {
 			t.Error("TestDelete() error: ID =0")
 		}
 	} else {
@@ -156,7 +156,7 @@ func TestDelete(t *testing.T) {
 		if err != nil {
 			t.Error("TestDelete() error: ", err)
 		}
-		if (Otvet.Classoid == 0) || (Otvet.Objoid == 0) || (Otvet.Objsubid == 0) || (Otvet.VersionID == 0) {
+		if (Otvet.Classoid == 0) ||  (Otvet.Objoid == 0) ||  (Otvet.Objsubid == 0) ||  (Otvet.VersionID == 0) {
 			t.Error("TestDelete() error: ID =0")
 		}
 
@@ -164,7 +164,7 @@ func TestDelete(t *testing.T) {
 		if err != nil {
 			t.Error("TestDelete() error: ", err)
 		}
-		if (Otvet.Classoid == 0) || (Otvet.Objoid == 0) || (Otvet.Objsubid == 0) || (Otvet.VersionID == 0) {
+		if (Otvet.Classoid == 0) ||  (Otvet.Objoid == 0) ||  (Otvet.Objsubid == 0) ||  (Otvet.VersionID == 0) {
 			t.Error("TestDelete() error: ID =0")
 		}
 	}

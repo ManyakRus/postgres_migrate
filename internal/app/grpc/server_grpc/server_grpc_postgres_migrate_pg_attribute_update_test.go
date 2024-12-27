@@ -4,11 +4,11 @@
 package server_grpc
 
 import (
-	"context"
-	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"github.com/ManyakRus/postgres_migrate/pkg/constants"
 	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter"
+	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_attribute"
+	"context"
 	"github.com/ManyakRus/starter/config_main"
 	"github.com/ManyakRus/starter/postgres_gorm"
 	"testing"
@@ -541,6 +541,47 @@ func Test_server_PostgresMigratePgAttribute_Update_Attlen(t *testing.T) {
 	_, err = server1.PostgresMigratePgAttribute_Update_Attlen(ctx, &Request2)
 	if err != nil {
 		t.Error("Test_server_PostgresMigratePgAttribute_Update_Attlen() Update_Attlen() error: ", err)
+	}
+}
+
+func Test_server_PostgresMigratePgAttribute_Update_Attmissingval(t *testing.T) {
+	config_main.LoadEnv()
+	crud_starter.InitCrudTransport_DB()
+	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
+	defer postgres_gorm.CloseConnection()
+
+	server1 := &ServerGRPC{}
+	ctx := context.Background()
+
+	//прочитаем из БД
+	Request := grpc_proto.Request_String_Int64_Int64{}
+	Request.String_1 = PostgresMigratePgAttribute_ATTNAME_Test
+	Request.Int64_1 = PostgresMigratePgAttribute_ATTRELID_Test
+	Request.Int64_2 = PostgresMigratePgAttribute_VERSIONID_Test
+	Request.VersionModel = postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}.GetStructVersion()
+	Response1, err := server1.PostgresMigratePgAttribute_Read(ctx, &Request)
+	if err != nil {
+		t.Error("Test_server_PostgresMigratePgAttribute_Update_Attmissingval() Read() error: ", err)
+	}
+	if Response1.ModelString == "" {
+		t.Error("Test_server_PostgresMigratePgAttribute_Update_Attmissingval() Read() error: ModelString=''")
+	}
+	m := postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}
+	err = m.GetModelFromJSON(Response1.ModelString)
+	if err != nil {
+		t.Error("Test_server_PostgresMigratePgAttribute_Update_Attmissingval() GetModelFromJSON() error: ", err)
+	}
+
+	//запишем в БД это же значение
+	Request2 := grpc_proto.Request_String_Int64_Int64_String{}
+	Request2.String_1 = PostgresMigratePgAttribute_ATTNAME_Test
+	Request2.Int64_1 = PostgresMigratePgAttribute_ATTRELID_Test
+	Request2.Int64_2 = PostgresMigratePgAttribute_VERSIONID_Test
+	Request2.String_2 = m.Attmissingval
+	Request2.VersionModel = postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}.GetStructVersion()
+	_, err = server1.PostgresMigratePgAttribute_Update_Attmissingval(ctx, &Request2)
+	if err != nil {
+		t.Error("Test_server_PostgresMigratePgAttribute_Update_Attmissingval() Update_Attmissingval() error: ", err)
 	}
 }
 

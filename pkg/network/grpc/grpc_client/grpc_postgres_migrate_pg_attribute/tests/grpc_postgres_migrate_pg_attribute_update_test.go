@@ -4,9 +4,9 @@
 package tests
 
 import (
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client"
 	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client/grpc_postgres_migrate_pg_attribute"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_attribute"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client"
 	"github.com/ManyakRus/starter/config_main"
 	"testing"
 )
@@ -35,7 +35,7 @@ func TestCrud_GRPC_UpdateManyFields(t *testing.T) {
 		t.Error("TestCrud_GRPC_UpdateManyFields() error: ", err)
 	}
 
-	if (Otvet.Attname == "") || (Otvet.Attrelid == 0) || (Otvet.VersionID == 0) {
+	if (Otvet.Attname == "") ||  (Otvet.Attrelid == 0) ||  (Otvet.VersionID == 0) {
 		t.Error("TestCrud_GRPC_UpdateManyFields() error: ID =0")
 	}
 }
@@ -409,6 +409,37 @@ func TestCrud_GRPC_Update_Attlen(t *testing.T) {
 	err = crud.Update_Attlen(&Otvet)
 	if err != nil {
 		t.Error("TestCrud_GRPC_Update_Attlen() Update() error: ", err)
+	}
+}
+
+func TestCrud_GRPC_Update_Attmissingval(t *testing.T) {
+	config_main.LoadEnv()
+
+	grpc_client.Connect()
+	defer grpc_client.CloseConnection()
+
+	crud := grpc_postgres_migrate_pg_attribute.Crud_GRPC{}
+
+	//прочитаем из БД
+	m := postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}
+	m.Attname = ATTNAME_Test
+	m.Attrelid = ATTRELID_Test
+	m.VersionID = VERSIONID_Test
+	err := crud.Read(&m)
+
+	if err != nil {
+		t.Error("TestCrud_GRPC_Update_Attmissingval() Read() error: ", err)
+	}
+
+	//запишем в БД это же значение
+	Otvet := postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}
+	Otvet.Attname = m.Attname
+	Otvet.Attrelid = m.Attrelid
+	Otvet.VersionID = m.VersionID
+	Otvet.Attmissingval = m.Attmissingval
+	err = crud.Update_Attmissingval(&Otvet)
+	if err != nil {
+		t.Error("TestCrud_GRPC_Update_Attmissingval() Update() error: ", err)
 	}
 }
 

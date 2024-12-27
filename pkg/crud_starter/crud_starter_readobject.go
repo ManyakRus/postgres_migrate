@@ -30,7 +30,7 @@ import (
 )
 
 // InitCrudTransport_ReadObject_DB - заполняет объекты crud для работы с БД напрямую
-func InitCrudTransport_ReadObject_DB() {
+func InitCrudTransport_ReadObject_DB() { 
 
 	crud_starter_postgres_migrate_pg_attribute.SetCrudReadObjectInterface(crud_object_postgres_migrate_pg_attribute.Crud_DB{})
 	crud_starter_postgres_migrate_pg_class.SetCrudReadObjectInterface(crud_object_postgres_migrate_pg_class.Crud_DB{})
@@ -42,7 +42,7 @@ func InitCrudTransport_ReadObject_DB() {
 }
 
 // InitCrudTransport_ReadObject_GRPC - заполняет объекты crud для работы с БД напрямую
-func InitCrudTransport_ReadObject_GRPC() {
+func InitCrudTransport_ReadObject_GRPC() { 
 
 	crud_starter_postgres_migrate_pg_attribute.SetCrudReadObjectInterface(grpc_postgres_migrate_pg_attribute.Crud_GRPC{})
 	crud_starter_postgres_migrate_pg_class.SetCrudReadObjectInterface(grpc_postgres_migrate_pg_class.Crud_GRPC{})

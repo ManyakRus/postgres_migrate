@@ -4,11 +4,11 @@
 package crud_object_postgres_migrate_pg_description
 
 import (
-	"context"
-	"fmt"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_description"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/objects/object_postgres_migrate_pg_description"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_description"
+	"context"
+	"fmt"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"

@@ -2,7 +2,8 @@ package postgres_migrate_pg_description
 
 import (
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-)
+	)
+
 
 // Update_Classoid - изменяет объект в БД по ID, присваивает Classoid
 func (m *PostgresMigratePgDescription) Update_Classoid() error {

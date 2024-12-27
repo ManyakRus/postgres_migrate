@@ -4,11 +4,11 @@
 package server_grpc
 
 import (
-	"context"
-	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_attribute"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
+	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_attribute"
+	"context"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/postgres_gorm"
 	"time"
@@ -559,6 +559,49 @@ func (s *ServerGRPC) PostgresMigratePgAttribute_Update_Attlen(ctx context.Contex
 
 	m.Attlen = Attlen
 	err = crud_postgres_migrate_pg_attribute.Update_Attlen_ctx(ctx, db, m)
+	if err != nil {
+		return &Otvet, err
+	}
+
+	return &Otvet, err
+}
+
+// PostgresMigratePgAttribute_Update_Attmissingval - изменяет колонку Attmissingval в базе данных
+func (s *ServerGRPC) PostgresMigratePgAttribute_Update_Attmissingval(ctx context.Context, Request *grpc_proto.Request_String_Int64_Int64_String) (*grpc_proto.ResponseEmpty, error) {
+	var Otvet grpc_proto.ResponseEmpty
+	var err error
+
+	//проверим контекст уже отменён
+	if ctx.Err() != nil {
+		err = ctx.Err()
+		return &Otvet, err
+	}
+
+	//проверим совпадения версии модели
+	VersionServer := postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}.GetStructVersion()
+	VersionClient := Request.VersionModel
+	if VersionServer != VersionClient {
+		err = ErrorModelVersion(postgres_migrate_pg_attribute.PostgresMigratePgAttribute{})
+		return &Otvet, err
+	}
+
+	ctxMain := contextmain.GetContext()
+	ctx, ctxCancelFunc := context.WithTimeout(ctxMain, time.Second*time.Duration(db_constants.TIMEOUT_DB_SECONDS))
+	defer ctxCancelFunc()
+
+	//запрос в БД
+	db := postgres_gorm.GetConnection()
+	Attname := Request.String_1
+	Attrelid := Request.Int64_1
+	VersionID := Request.Int64_2
+	Attmissingval := Request.String_2
+	m := &postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}
+	m.Attname = Attname
+	m.Attrelid = Attrelid
+	m.VersionID = VersionID
+
+	m.Attmissingval = Attmissingval
+	err = crud_postgres_migrate_pg_attribute.Update_Attmissingval_ctx(ctx, db, m)
 	if err != nil {
 		return &Otvet, err
 	}

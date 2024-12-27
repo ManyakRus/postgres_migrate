@@ -4,12 +4,12 @@
 package postgres_migrate_pg_attribute
 
 import (
-	"encoding/json"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/calc_struct_version"
+	"strconv"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/calc_struct_version"
+	"encoding/json"
 	"github.com/vmihailenco/msgpack/v5"
 	"reflect"
-	"strconv"
 )
 
 // versionPostgresMigratePgAttribute - версия структуры модели, с учётом имен и типов полей
@@ -40,6 +40,7 @@ type ICrud_PostgresMigratePgAttribute interface {
 	Update_Attisdropped(*PostgresMigratePgAttribute) error
 	Update_Attislocal(*PostgresMigratePgAttribute) error
 	Update_Attlen(*PostgresMigratePgAttribute) error
+	Update_Attmissingval(*PostgresMigratePgAttribute) error
 	Update_Attname(*PostgresMigratePgAttribute) error
 	Update_Attndims(*PostgresMigratePgAttribute) error
 	Update_Attnotnull(*PostgresMigratePgAttribute) error
@@ -122,7 +123,7 @@ func (m *PostgresMigratePgAttribute) Read() error {
 	if Crud_PostgresMigratePgAttribute == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgAttribute.Read(m)
 
 	return err
@@ -133,7 +134,7 @@ func (m *PostgresMigratePgAttribute) Save() error {
 	if Crud_PostgresMigratePgAttribute == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgAttribute.Save(m)
 
 	return err
@@ -144,7 +145,7 @@ func (m *PostgresMigratePgAttribute) Update() error {
 	if Crud_PostgresMigratePgAttribute == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgAttribute.Update(m)
 
 	return err
@@ -155,7 +156,7 @@ func (m *PostgresMigratePgAttribute) Create() error {
 	if Crud_PostgresMigratePgAttribute == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgAttribute.Create(m)
 
 	return err
@@ -166,7 +167,7 @@ func (m *PostgresMigratePgAttribute) Delete() error {
 	if Crud_PostgresMigratePgAttribute == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgAttribute.Delete(m)
 
 	return err
@@ -177,7 +178,7 @@ func (m *PostgresMigratePgAttribute) Restore() error {
 	if Crud_PostgresMigratePgAttribute == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgAttribute.Restore(m)
 
 	return err

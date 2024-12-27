@@ -33,6 +33,7 @@ service Postgres_migrate {
 	rpc PostgresMigratePgAttribute_Update_Attisdropped(Request_String_Int64_Int64_Bool) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgAttribute_Update_Attislocal(Request_String_Int64_Int64_Bool) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgAttribute_Update_Attlen(Request_String_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attmissingval(Request_String_Int64_Int64_String) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgAttribute_Update_Attname(Request_String_Int64_Int64) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgAttribute_Update_Attndims(Request_String_Int64_Int64_Int32) returns (ResponseEmpty) {}
 	rpc PostgresMigratePgAttribute_Update_Attnotnull(Request_String_Int64_Int64_Bool) returns (ResponseEmpty) {}

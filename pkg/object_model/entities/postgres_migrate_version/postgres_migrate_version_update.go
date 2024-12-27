@@ -2,7 +2,8 @@ package postgres_migrate_version
 
 import (
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-)
+	)
+
 
 // Update_Description - изменяет объект в БД по ID, присваивает Description
 func (m *PostgresMigrateVersion) Update_Description() error {

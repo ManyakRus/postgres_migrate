@@ -4,11 +4,11 @@
 package crud_postgres_migrate_pg_description
 
 import (
+	"fmt"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_description"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"context"
 	"errors"
-	"fmt"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_description"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
@@ -41,7 +41,7 @@ func UpdateManyFields_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 		return err
 	}
 
-	if (m.Classoid == 0) || (m.Objoid == 0) || (m.Objsubid == 0) || (m.VersionID == 0) {
+	if (m.Classoid == 0) ||  (m.Objoid == 0) ||  (m.Objsubid == 0) ||  (m.VersionID == 0) {
 		err = errors.New(m.TableNameDB() + ` UpdateManyFields() error: ID=0`)
 		return err
 	}
@@ -75,8 +75,8 @@ func Update_Classoid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Classoid == 0) || (m.Objoid == 0) || (m.Objsubid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Classoid() error: Classoid=0`)
+	if (m.Classoid == 0) ||  (m.Objoid == 0) ||  (m.Objsubid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Classoid() error: Classoid=0`)
 		return err
 	}
 
@@ -123,8 +123,8 @@ func Update_Description_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Classoid == 0) || (m.Objoid == 0) || (m.Objsubid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Description() error: Classoid=0`)
+	if (m.Classoid == 0) ||  (m.Objoid == 0) ||  (m.Objsubid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Description() error: Classoid=0`)
 		return err
 	}
 
@@ -171,8 +171,8 @@ func Update_Objoid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_
 	}
 
 	//ID не должен быть =0
-	if (m.Classoid == 0) || (m.Objoid == 0) || (m.Objsubid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Objoid() error: Classoid=0`)
+	if (m.Classoid == 0) ||  (m.Objoid == 0) ||  (m.Objsubid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Objoid() error: Classoid=0`)
 		return err
 	}
 
@@ -219,8 +219,8 @@ func Update_Objsubid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Classoid == 0) || (m.Objoid == 0) || (m.Objsubid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Objsubid() error: Classoid=0`)
+	if (m.Classoid == 0) ||  (m.Objoid == 0) ||  (m.Objsubid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Objsubid() error: Classoid=0`)
 		return err
 	}
 
@@ -267,8 +267,8 @@ func Update_VersionID_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Classoid == 0) || (m.Objoid == 0) || (m.Objsubid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_VersionID() error: Classoid=0`)
+	if (m.Classoid == 0) ||  (m.Objoid == 0) ||  (m.Objsubid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_VersionID() error: Classoid=0`)
 		return err
 	}
 

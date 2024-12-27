@@ -383,6 +383,35 @@ func TestUpdate_Attlen(t *testing.T) {
 	}
 }
 
+func TestUpdate_Attmissingval(t *testing.T) {
+	config_main.LoadEnv()
+
+	postgres_gorm.Connect_WithApplicationName(constants.SERVICE_NAME + "_test")
+	defer postgres_gorm.CloseConnection()
+
+	//прочитаем из БД
+	crud := Crud_DB{}
+	m := postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}
+	m.Attname = ATTNAME_Test
+	m.Attrelid = ATTRELID_Test
+	m.VersionID = VERSIONID_Test
+	err := crud.Read(&m)
+	if err != nil {
+		t.Error("TestUpdate_Attmissingval() Read() error: ", err)
+	}
+
+	//запишем в БД это же значение
+	Otvet := postgres_migrate_pg_attribute.PostgresMigratePgAttribute{}
+	Otvet.Attname = ATTNAME_Test
+	Otvet.Attrelid = ATTRELID_Test
+	Otvet.VersionID = VERSIONID_Test
+	Otvet.Attmissingval = m.Attmissingval
+	err = crud.Update_Attmissingval(&Otvet)
+	if err != nil {
+		t.Error("TestUpdate_Attmissingval() Update() error: ", err)
+	}
+}
+
 func TestUpdate_Attname(t *testing.T) {
 	config_main.LoadEnv()
 

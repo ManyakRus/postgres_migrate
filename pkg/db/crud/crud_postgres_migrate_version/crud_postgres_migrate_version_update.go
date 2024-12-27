@@ -4,11 +4,11 @@
 package crud_postgres_migrate_version
 
 import (
+	"fmt"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_version"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"context"
 	"errors"
-	"fmt"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_version"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
@@ -41,7 +41,7 @@ func UpdateManyFields_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 		return err
 	}
 
-	if m.ID == 0 {
+	if (m.ID == 0) {
 		err = errors.New(m.TableNameDB() + ` UpdateManyFields() error: ID=0`)
 		return err
 	}
@@ -75,8 +75,8 @@ func Update_Description_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if m.ID == 0 {
-		err = errors.New(m.TableNameDB() + ` Update_Description() error: ID=0`)
+	if (m.ID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Description() error: ID=0`)
 		return err
 	}
 
@@ -123,8 +123,8 @@ func Update_Name_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_versi
 	}
 
 	//ID не должен быть =0
-	if m.ID == 0 {
-		err = errors.New(m.TableNameDB() + ` Update_Name() error: ID=0`)
+	if (m.ID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Name() error: ID=0`)
 		return err
 	}
 

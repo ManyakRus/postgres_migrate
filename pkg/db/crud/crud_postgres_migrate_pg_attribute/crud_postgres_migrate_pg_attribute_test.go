@@ -32,7 +32,7 @@ func TestRead(t *testing.T) {
 	}
 
 	if Otvet.Attname != ATTNAME_Test {
-		t.Error(TableName+"_test.TestRead() error ID != ", ATTNAME_Test)
+		t.Error(TableName + "_test.TestRead() error ID != ", ATTNAME_Test)
 	} else {
 		t.Log(TableName+"_test.TestRead() Otvet: ", Otvet.Attname)
 	}
@@ -55,7 +55,7 @@ func TestSave(t *testing.T) {
 	}
 
 	if Otvet.Attname != ATTNAME_Test {
-		t.Error(TableName+"_test.TestSave() error ID != ", ATTNAME_Test)
+		t.Error(TableName + "_test.TestSave() error ID != ", ATTNAME_Test)
 	}
 
 	err = crud.Save(&Otvet)

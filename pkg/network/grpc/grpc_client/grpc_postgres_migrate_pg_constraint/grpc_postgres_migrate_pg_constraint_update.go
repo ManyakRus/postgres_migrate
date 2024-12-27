@@ -4,14 +4,14 @@
 package grpc_postgres_migrate_pg_constraint
 
 import (
-	"context"
-	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client_func"
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc_nrpc"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_constraint"
-	"github.com/ManyakRus/starter/log"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc_nrpc"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client_func"
+	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
+	"context"
 	"time"
+	"github.com/ManyakRus/starter/log"
 )
 
 // UpdateManyFields - обновляет несколько полей в базе данных, по ИД

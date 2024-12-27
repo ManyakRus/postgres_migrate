@@ -30,7 +30,7 @@ func TestRead(t *testing.T) {
 	}
 
 	if Otvet.Indexrelid != INDEXRELID_Test {
-		t.Error(TableName+"_test.TestRead() error ID != ", INDEXRELID_Test)
+		t.Error(TableName + "_test.TestRead() error ID != ", INDEXRELID_Test)
 	} else {
 		t.Log(TableName+"_test.TestRead() Otvet: ", Otvet.Indexrelid)
 	}
@@ -52,7 +52,7 @@ func TestSave(t *testing.T) {
 	}
 
 	if Otvet.Indexrelid != INDEXRELID_Test {
-		t.Error(TableName+"_test.TestSave() error ID != ", INDEXRELID_Test)
+		t.Error(TableName + "_test.TestSave() error ID != ", INDEXRELID_Test)
 	}
 
 	err = crud.Save(&Otvet)

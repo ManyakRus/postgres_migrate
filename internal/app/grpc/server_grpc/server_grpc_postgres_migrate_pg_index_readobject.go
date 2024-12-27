@@ -4,10 +4,10 @@
 package server_grpc
 
 import (
-	"context"
-	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/crud_objects/crud_object_postgres_migrate_pg_index"
+	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/objects/object_postgres_migrate_pg_index"
+	"context"
 	"github.com/ManyakRus/starter/postgres_gorm"
 )
 
@@ -52,3 +52,4 @@ func (s *ServerGRPC) PostgresMigratePgIndex_ReadObject(ctx context.Context, Requ
 
 	return &Otvet, err
 }
+

@@ -30,7 +30,7 @@ import (
 )
 
 // InitCrudTransport_DB - заполняет объекты crud для работы с БД напрямую
-func InitCrudTransport_DB() {
+func InitCrudTransport_DB() { 
 	initCrudTransport_manual_DB()
 	InitCrudTransport_ReadObject_DB()
 

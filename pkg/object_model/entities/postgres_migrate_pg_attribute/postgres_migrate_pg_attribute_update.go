@@ -2,7 +2,8 @@ package postgres_migrate_pg_attribute
 
 import (
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-)
+	)
+
 
 // Update_Attalign - изменяет объект в БД по ID, присваивает Attalign
 func (m *PostgresMigratePgAttribute) Update_Attalign() error {
@@ -132,6 +133,17 @@ func (m *PostgresMigratePgAttribute) Update_Attlen() error {
 	}
 
 	err := Crud_PostgresMigratePgAttribute.Update_Attlen(m)
+
+	return err
+}
+
+// Update_Attmissingval - изменяет объект в БД по ID, присваивает Attmissingval
+func (m *PostgresMigratePgAttribute) Update_Attmissingval() error {
+	if Crud_PostgresMigratePgAttribute == nil {
+		return db_constants.ErrorCrudIsNotInit
+	}
+
+	err := Crud_PostgresMigratePgAttribute.Update_Attmissingval(m)
 
 	return err
 }

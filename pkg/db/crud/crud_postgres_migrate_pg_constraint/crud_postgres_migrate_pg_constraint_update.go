@@ -4,11 +4,11 @@
 package crud_postgres_migrate_pg_constraint
 
 import (
+	"fmt"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_constraint"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"context"
 	"errors"
-	"fmt"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_constraint"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
@@ -41,7 +41,7 @@ func UpdateManyFields_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 		return err
 	}
 
-	if (m.Oid == 0) || (m.VersionID == 0) {
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
 		err = errors.New(m.TableNameDB() + ` UpdateManyFields() error: ID=0`)
 		return err
 	}
@@ -75,8 +75,8 @@ func Update_Condeferrable_ctx(ctx context.Context, db *gorm.DB, m *postgres_migr
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Condeferrable() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Condeferrable() error: Oid=0`)
 		return err
 	}
 
@@ -123,8 +123,8 @@ func Update_Condeferred_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Condeferred() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Condeferred() error: Oid=0`)
 		return err
 	}
 
@@ -171,8 +171,8 @@ func Update_Conexclop_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Conexclop() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Conexclop() error: Oid=0`)
 		return err
 	}
 
@@ -219,8 +219,8 @@ func Update_Confdeltype_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Confdeltype() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Confdeltype() error: Oid=0`)
 		return err
 	}
 
@@ -267,8 +267,8 @@ func Update_Conffeqop_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Conffeqop() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Conffeqop() error: Oid=0`)
 		return err
 	}
 
@@ -315,8 +315,8 @@ func Update_Confkey_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Confkey() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Confkey() error: Oid=0`)
 		return err
 	}
 
@@ -363,8 +363,8 @@ func Update_Confmatchtype_ctx(ctx context.Context, db *gorm.DB, m *postgres_migr
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Confmatchtype() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Confmatchtype() error: Oid=0`)
 		return err
 	}
 
@@ -411,8 +411,8 @@ func Update_Confrelid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Confrelid() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Confrelid() error: Oid=0`)
 		return err
 	}
 
@@ -459,8 +459,8 @@ func Update_Confupdtype_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Confupdtype() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Confupdtype() error: Oid=0`)
 		return err
 	}
 
@@ -507,8 +507,8 @@ func Update_Conindid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Conindid() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Conindid() error: Oid=0`)
 		return err
 	}
 
@@ -555,8 +555,8 @@ func Update_Coninhcount_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Coninhcount() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Coninhcount() error: Oid=0`)
 		return err
 	}
 
@@ -603,8 +603,8 @@ func Update_Conislocal_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Conislocal() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Conislocal() error: Oid=0`)
 		return err
 	}
 
@@ -651,8 +651,8 @@ func Update_Conkey_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Conkey() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Conkey() error: Oid=0`)
 		return err
 	}
 
@@ -699,8 +699,8 @@ func Update_Conname_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Conname() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Conname() error: Oid=0`)
 		return err
 	}
 
@@ -747,8 +747,8 @@ func Update_Connamespace_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Connamespace() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Connamespace() error: Oid=0`)
 		return err
 	}
 
@@ -795,8 +795,8 @@ func Update_Connoinherit_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Connoinherit() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Connoinherit() error: Oid=0`)
 		return err
 	}
 
@@ -843,8 +843,8 @@ func Update_Conparentid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Conparentid() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Conparentid() error: Oid=0`)
 		return err
 	}
 
@@ -891,8 +891,8 @@ func Update_Conpfeqop_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Conpfeqop() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Conpfeqop() error: Oid=0`)
 		return err
 	}
 
@@ -939,8 +939,8 @@ func Update_Conppeqop_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Conppeqop() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Conppeqop() error: Oid=0`)
 		return err
 	}
 
@@ -987,8 +987,8 @@ func Update_Conrelid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Conrelid() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Conrelid() error: Oid=0`)
 		return err
 	}
 
@@ -1035,8 +1035,8 @@ func Update_Contype_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Contype() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Contype() error: Oid=0`)
 		return err
 	}
 
@@ -1083,8 +1083,8 @@ func Update_Contypid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Contypid() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Contypid() error: Oid=0`)
 		return err
 	}
 
@@ -1131,8 +1131,8 @@ func Update_Convalidated_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Convalidated() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Convalidated() error: Oid=0`)
 		return err
 	}
 
@@ -1179,8 +1179,8 @@ func Update_Oid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_con
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_Oid() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_Oid() error: Oid=0`)
 		return err
 	}
 
@@ -1227,8 +1227,8 @@ func Update_VersionID_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) || (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB() + ` Update_VersionID() error: Oid=0`)
+	if (m.Oid == 0) ||  (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB()+` Update_VersionID() error: Oid=0`)
 		return err
 	}
 

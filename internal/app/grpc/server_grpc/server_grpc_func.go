@@ -1,8 +1,8 @@
 package server_grpc
 
 import (
-	"errors"
 	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_constants"
+	"errors"
 	"github.com/ManyakRus/starter/micro"
 )
 

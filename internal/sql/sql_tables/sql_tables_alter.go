@@ -14,8 +14,8 @@ import (
 
 // TableNameAlter - хранит старое и новое название таблиц
 type TableNameAlter struct {
-	TableName    string
-	TableNameOld string
+	TableName     string
+	TableName_Old string
 }
 
 // Start_Tables_alter - добавляет текст SQL в Text
@@ -303,7 +303,7 @@ func TextSQL_Alter(Settings *config.SettingsINI, MassNames []TableNameAlter) (st
 	var err error
 
 	for _, v := range MassNames {
-		Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableNameOld + `" RENAME TO "` + v.TableName + `";` + "\n"
+		Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName_Old + `" RENAME TO "` + v.TableName + `";` + "\n"
 
 		Otvet = Otvet + Otvet1
 	}

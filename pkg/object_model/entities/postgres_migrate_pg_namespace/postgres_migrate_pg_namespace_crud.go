@@ -4,12 +4,12 @@
 package postgres_migrate_pg_namespace
 
 import (
-	"encoding/json"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/calc_struct_version"
+	"strconv"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/calc_struct_version"
+	"encoding/json"
 	"github.com/vmihailenco/msgpack/v5"
 	"reflect"
-	"strconv"
 )
 
 // versionPostgresMigratePgNamespace - версия структуры модели, с учётом имен и типов полей
@@ -105,7 +105,7 @@ func (m *PostgresMigratePgNamespace) Read() error {
 	if Crud_PostgresMigratePgNamespace == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgNamespace.Read(m)
 
 	return err
@@ -116,7 +116,7 @@ func (m *PostgresMigratePgNamespace) Save() error {
 	if Crud_PostgresMigratePgNamespace == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgNamespace.Save(m)
 
 	return err
@@ -127,7 +127,7 @@ func (m *PostgresMigratePgNamespace) Update() error {
 	if Crud_PostgresMigratePgNamespace == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgNamespace.Update(m)
 
 	return err
@@ -138,7 +138,7 @@ func (m *PostgresMigratePgNamespace) Create() error {
 	if Crud_PostgresMigratePgNamespace == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgNamespace.Create(m)
 
 	return err
@@ -149,7 +149,7 @@ func (m *PostgresMigratePgNamespace) Delete() error {
 	if Crud_PostgresMigratePgNamespace == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgNamespace.Delete(m)
 
 	return err
@@ -160,7 +160,7 @@ func (m *PostgresMigratePgNamespace) Restore() error {
 	if Crud_PostgresMigratePgNamespace == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-
+	
 	err := Crud_PostgresMigratePgNamespace.Restore(m)
 
 	return err

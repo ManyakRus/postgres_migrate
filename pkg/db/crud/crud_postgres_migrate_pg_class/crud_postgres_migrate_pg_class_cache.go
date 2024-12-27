@@ -4,21 +4,21 @@
 package crud_postgres_migrate_pg_class
 
 import (
-	"context"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_class"
-	"github.com/ManyakRus/starter/contextmain"
-	"github.com/ManyakRus/starter/postgres_gorm"
-	"github.com/hashicorp/golang-lru/v2/expirable"
-	"gorm.io/gorm"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
+	"context"
 	"time"
+	"github.com/ManyakRus/starter/contextmain"
+	"github.com/hashicorp/golang-lru/v2/expirable"
+	"github.com/ManyakRus/starter/postgres_gorm"
+	"gorm.io/gorm"
 )
 
 // cache - кэш с данными
 var cache *expirable.LRU[string, postgres_migrate_pg_class.PostgresMigratePgClass]
 
 // CACHE_SIZE - количество элементов в кэше
-const CACHE_SIZE = 0
+const CACHE_SIZE = 30
 
 // CACHE_EXPIRE_MINUTES - время жизни элемента в кэше
 const CACHE_EXPIRE_MINUTES = 86400

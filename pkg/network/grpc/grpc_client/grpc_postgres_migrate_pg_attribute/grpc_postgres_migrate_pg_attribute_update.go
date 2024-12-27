@@ -4,14 +4,14 @@
 package grpc_postgres_migrate_pg_attribute
 
 import (
-	"context"
-	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client_func"
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc_nrpc"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_attribute"
-	"github.com/ManyakRus/starter/log"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc_nrpc"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client_func"
+	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
+	"context"
 	"time"
+	"github.com/ManyakRus/starter/log"
 )
 
 // UpdateManyFields - обновляет несколько полей в базе данных, по ИД
@@ -498,6 +498,44 @@ func (crud Crud_GRPC) Update_Attlen(m *postgres_migrate_pg_attribute.PostgresMig
 		//_, err = nrpc_client.Client.PostgresMigratePgAttribute_Update_Attlen(Request)
 	} else {
 		_, err = grpc_client_func.Client.PostgresMigratePgAttribute_Update_Attlen(ctx, Request)
+	}
+	if err != nil {
+		if grpc_client_func.IsErrorModelVersion(err) == true {
+			log.Panic(err)
+		}
+		return err
+	}
+
+	return err
+}
+
+// Update_Attmissingval - изменяет 1 поле Attmissingval в базе данных
+func (crud Crud_GRPC) Update_Attmissingval(m *postgres_migrate_pg_attribute.PostgresMigratePgAttribute) error {
+	var err error
+
+	// подключение
+	grpc_client_func.Func_Connect_GRPC_NRPC.Connect_GRPC_NRPC()
+
+	// подготовка запроса
+	var versionModel = crud.GetVersionModel()
+
+	Request := &grpc_proto.Request_String_Int64_Int64_String{}
+	Request.String_1 = m.Attname
+	Request.Int64_1 = m.Attrelid
+	Request.Int64_2 = m.VersionID
+
+	Request.String_2 = m.Attmissingval
+	Request.VersionModel = versionModel
+
+	ctxMain := context.Background()
+	ctx, ctxCancelFunc := context.WithTimeout(ctxMain, time.Second*time.Duration(grpc_constants.GetTimeoutSeconds()))
+	defer ctxCancelFunc()
+
+	// запрос
+	if grpc_nrpc.NeedNRPC == true {
+		//_, err = nrpc_client.Client.PostgresMigratePgAttribute_Update_Attmissingval(Request)
+	} else {
+		_, err = grpc_client_func.Client.PostgresMigratePgAttribute_Update_Attmissingval(ctx, Request)
 	}
 	if err != nil {
 		if grpc_client_func.IsErrorModelVersion(err) == true {

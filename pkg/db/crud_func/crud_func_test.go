@@ -1,8 +1,8 @@
 package crud_func
 
 import (
-	"errors"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
+	"errors"
 	"testing"
 )
 

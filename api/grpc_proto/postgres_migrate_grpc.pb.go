@@ -42,6 +42,7 @@ type PostgresMigrateClient interface {
 	PostgresMigratePgAttribute_Update_Attisdropped(ctx context.Context, in *Request_String_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attislocal(ctx context.Context, in *Request_String_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attlen(ctx context.Context, in *Request_String_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgAttribute_Update_Attmissingval(ctx context.Context, in *Request_String_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attname(ctx context.Context, in *Request_String_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attndims(ctx context.Context, in *Request_String_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attnotnull(ctx context.Context, in *Request_String_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
@@ -376,6 +377,15 @@ func (c *postgresMigrateClient) PostgresMigratePgAttribute_Update_Attislocal(ctx
 func (c *postgresMigrateClient) PostgresMigratePgAttribute_Update_Attlen(ctx context.Context, in *Request_String_Int64_Int64_Int32, opts ...grpc.CallOption) (*ResponseEmpty, error) {
 	out := new(ResponseEmpty)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgAttribute_Update_Attlen", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgAttribute_Update_Attmissingval(ctx context.Context, in *Request_String_Int64_Int64_String, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+	out := new(ResponseEmpty)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgAttribute_Update_Attmissingval", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1783,6 +1793,7 @@ type PostgresMigrateServer interface {
 	PostgresMigratePgAttribute_Update_Attisdropped(context.Context, *Request_String_Int64_Int64_Bool) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attislocal(context.Context, *Request_String_Int64_Int64_Bool) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attlen(context.Context, *Request_String_Int64_Int64_Int32) (*ResponseEmpty, error)
+	PostgresMigratePgAttribute_Update_Attmissingval(context.Context, *Request_String_Int64_Int64_String) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attname(context.Context, *Request_String_Int64_Int64) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attndims(context.Context, *Request_String_Int64_Int64_Int32) (*ResponseEmpty, error)
 	PostgresMigratePgAttribute_Update_Attnotnull(context.Context, *Request_String_Int64_Int64_Bool) (*ResponseEmpty, error)
@@ -2005,6 +2016,9 @@ func (UnimplementedPostgresMigrateServer) PostgresMigratePgAttribute_Update_Atti
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgAttribute_Update_Attlen(context.Context, *Request_String_Int64_Int64_Int32) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgAttribute_Update_Attlen not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgAttribute_Update_Attmissingval(context.Context, *Request_String_Int64_Int64_String) (*ResponseEmpty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgAttribute_Update_Attmissingval not implemented")
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgAttribute_Update_Attname(context.Context, *Request_String_Int64_Int64) (*ResponseEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgAttribute_Update_Attname not implemented")
@@ -2816,6 +2830,24 @@ func _PostgresMigrate_PostgresMigratePgAttribute_Update_Attlen_Handler(srv inter
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PostgresMigrateServer).PostgresMigratePgAttribute_Update_Attlen(ctx, req.(*Request_String_Int64_Int64_Int32))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgAttribute_Update_Attmissingval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_String_Int64_Int64_String)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgAttribute_Update_Attmissingval(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgAttribute_Update_Attmissingval",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgAttribute_Update_Attmissingval(ctx, req.(*Request_String_Int64_Int64_String))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -5656,6 +5688,10 @@ var PostgresMigrate_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PostgresMigratePgAttribute_Update_Attlen",
 			Handler:    _PostgresMigrate_PostgresMigratePgAttribute_Update_Attlen_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgAttribute_Update_Attmissingval",
+			Handler:    _PostgresMigrate_PostgresMigratePgAttribute_Update_Attmissingval_Handler,
 		},
 		{
 			MethodName: "PostgresMigratePgAttribute_Update_Attname",
