@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/ManyakRus/postgres_migrate/internal/config"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_attribute"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/log"
 	"github.com/ManyakRus/starter/micro"
@@ -13,15 +12,8 @@ import (
 	"time"
 )
 
-// AttributeSQL - структура для атрибутов и дополнительных данных
-type AttributeSQL struct {
-	TableName string
-	TypeName  string
-	postgres_migrate_pg_attribute.PostgresMigratePgAttribute
-}
-
-// Start_Tables_create - добавляет текст SQL в Text
-func Start_Tables_create(Settings *config.SettingsINI, VersionID int64) (string, error) {
+// Start_Attributes_create - добавляет текст SQL в Text
+func Start_Attributes_create(Settings *config.SettingsINI, VersionID int64) (string, error) {
 	var err error
 	Otvet := ""
 
@@ -234,30 +226,30 @@ WHERE 1=1
 
 ------------------------------ сравнение -------------------------------------------
 SELECT
-	temp_pg_attribute.attname as name
-FROM
-	temp_pm_pg_attribute
+	a.attrelid,
+	a.attname,
+	a.atttypid,
+	a.attstattarget,
+	a.attlen,
+	a.attnum,
+	a.attndims,
+	a.attcacheoff,
+	a.atttypmod,
+	a.attbyval,
+	a.attstorage,
+	a.attalign,
+	a.attnotnull,
+	a.atthasdef,
+	a.atthasmissing,
+	a.attidentity,
+	a.attgenerated,
+	a.attisdropped,
+	a.attislocal,
+	a.attinhcount,
+	a.attcollation,
 
-FULL JOIN
-	temp_pg_attribute
-ON 
-	temp_pg_attribute.attrelid = temp_pm_pg_attribute.attrelid
-	and temp_pg_attribute.attname = temp_pm_pg_attribute.attname
-	
-
-WHERE 
-	(temp_pg_attribute.attrelid IS NULL
-	OR
-	temp_pm_pg_attribute.attrelid IS NULL
-	)
-	and COALESCE(temp_pm_pg_attribute.is_deleted, false) = false
-
-
-UNION
-
-
-SELECT
-	a.attname
+	c.relname as TableName,
+	t.typname as TypeName
 FROM
 	temp_pm_pg_attribute as pa
 
@@ -266,6 +258,77 @@ FULL JOIN
 ON 
 	a.attrelid = pa.attrelid
 	and a.attname = pa.attname
+	
+
+LEFT JOIN
+	pg_catalog.pg_class as c
+ON 
+	pc.oid = pa.attrelid
+
+
+LEFT JOIN
+	pg_catalog.pg_type as t
+ON
+	t.oid = pa.atttypid
+
+
+WHERE 
+	(a.attrelid IS NULL
+	OR
+	pa.attrelid IS NULL
+	)
+	and COALESCE(pa.is_deleted, false) = false
+
+
+UNION
+
+
+SELECT
+	a.attrelid,
+	a.attname,
+	a.atttypid,
+	a.attstattarget,
+	a.attlen,
+	a.attnum,
+	a.attndims,
+	a.attcacheoff,
+	a.atttypmod,
+	a.attbyval,
+	a.attstorage,
+	a.attalign,
+	a.attnotnull,
+	a.atthasdef,
+	a.atthasmissing,
+	a.attidentity,
+	a.attgenerated,
+	a.attisdropped,
+	a.attislocal,
+	a.attinhcount,
+	a.attcollation,
+
+	c.relname as TableName,
+	t.typname as TypeName
+FROM
+	temp_pm_pg_attribute as pa
+
+FULL JOIN
+	temp_pg_attribute as a
+ON 
+	a.attrelid = pa.attrelid
+	and a.attname = pa.attname
+
+
+LEFT JOIN
+	pg_catalog.pg_class as c
+ON 
+	pc.oid = pa.attrelid
+
+
+LEFT JOIN
+	pg_catalog.pg_type as t
+ON
+	t.oid = pa.atttypid
+
 
 WHERE 0=1
 	OR pa.attrelid <> a.attrelid
@@ -328,8 +391,14 @@ func TextSQL_Create(Settings *config.SettingsINI, MassAttribute []AttributeSQL) 
 	var err error
 
 	for _, v := range MassAttribute {
+		//длина текста
+		TextLength := ""
+		if v.Atttypmod > 0 {
+			TextLength = "(" + micro.StringFromInt32(v.Atttypmod) + ")"
+		}
+
 		//
-		Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ADD " + v.Attname + " " + v.TypeName + ";\n"
+		Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ADD COLUMN " + v.Attname + " " + v.TypeName + TextLength + ";\n"
 
 		Otvet = Otvet + Otvet1
 	}
