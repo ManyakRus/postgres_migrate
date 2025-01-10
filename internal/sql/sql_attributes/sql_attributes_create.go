@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/ManyakRus/postgres_migrate/internal/config"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_attribute"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/log"
 	"github.com/ManyakRus/starter/micro"
@@ -11,6 +12,14 @@ import (
 	"strings"
 	"time"
 )
+
+// AttributeSQL - структура для атрибутов и дополнительных данных
+type AttributeSQL struct {
+	TableName     string `json:"TableName" gorm:"column:TableName"`
+	TypeName      string `json:"TypeName" gorm:"column:TypeName"`
+	CollationName string `json:"CollationName" gorm:"column:CollationName"`
+	postgres_migrate_pg_attribute.PostgresMigratePgAttribute
+}
 
 // Start_Attributes_create - добавляет текст SQL в Text
 func Start_Attributes_create(Settings *config.SettingsINI, VersionID int64) (string, error) {
@@ -313,7 +322,8 @@ SELECT
 	a.attmissingval::Text as attmissingval,
 
 	c.relname as TableName,
-	t.typname as TypeName
+	t.typname as TypeName,
+	pc.callname as CollationName
 FROM
 	temp_pm_pg_attribute as pa
 
@@ -334,6 +344,12 @@ LEFT JOIN
 	pg_catalog.pg_type as t
 ON
 	t.oid = pa.atttypid
+
+
+LEFT JOIN
+	pg_catalog.pg_collation as pc
+ON
+	pc.oid = pa.attcollation
 
 
 WHERE 0=1
@@ -405,7 +421,13 @@ func TextSQL_Create(Settings *config.SettingsINI, MassAttribute []AttributeSQL) 
 		}
 
 		//
-		Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ADD COLUMN " + v.Attname + " " + v.TypeName + TextLength + ";\n"
+		TextCollation := ""
+		if v.CollationName != "" {
+			TextCollation = " COLLATE " + v.CollationName
+		}
+
+		//
+		Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ADD COLUMN " + v.Attname + " " + v.TypeName + TextLength + TextCollation + ";\n"
 
 		Otvet = Otvet + Otvet1
 	}

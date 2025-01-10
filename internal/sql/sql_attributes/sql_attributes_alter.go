@@ -16,13 +16,16 @@ import (
 // AttributeAlter - хранит старое и новое название таблиц
 type AttributeAlter struct {
 	TableName                 string
-	AttributeName_Old         string
-	TypeName                  string
-	TypeName_Old              string
-	AttributeLength_Old       string
-	AttributeHasMissing_Old   bool
-	AttributeMissingValue_Old string
+	AttributeName_Old         string `json:"AttributeName_Old" gorm:"column:AttributeName_Old"`
+	TypeName                  string `json:"TypeName" gorm:"column:TypeName"`
+	TypeName_Old              string `json:"TypeName_Old" gorm:"column:TypeName_Old"`
+	AttributeLength_Old       string `json:"AttributeLength_Old" gorm:"column:AttributeLength_Old"`
+	AttributeHasMissing_Old   bool   `json:"AttributeHasMissing_Old" gorm:"column:AttributeHasMissing_Old"`
+	AttributeMissingValue_Old string `json:"AttributeMissingValue_Old" gorm:"column:AttributeMissingValue_Old"`
+	AttributeNotNull_Old      bool   `json:"AttributeNotNull_Old" gorm:"column:AttributeNotNull_Old"`
 	postgres_migrate_pg_attribute.PostgresMigratePgAttribute
+	AttributeIdentity_Old  string `json:"AttributeIdentity_Old" gorm:"column:AttributeIdentity_Old"`
+	AttributeGenerated_Old string `json:"AttributeGenerated_Old" gorm:"column:AttributeGenerated_Old"`
 }
 
 // Start_Attributes_alter - добавляет текст SQL в Text
@@ -272,7 +275,10 @@ SELECT
 	pa.attname as AttributeName_Old,
 	pa.atttypmod as AttributeLength_Old,
 	pa.atthasmissing as AttributeHasMissing_Old,
-	pa.attmissingval as AttributeMissingValue_Old
+	pa.attmissingval as AttributeMissingValue_Old,
+	pa.attnotnull as AttributeNotNull_Old,
+	pa.Attidentity as AttributeIdentity_Old,
+	pa.attgenerated as AttributeGenerated_Old
 
 FROM
 	temp_pm_pg_attribute as pa
@@ -384,12 +390,97 @@ func TextSQL_Alter(Settings *config.SettingsINI, MassNames []AttributeAlter) (st
 		}
 
 		//DEFAULT
-		if v.TypeName != v.TypeName_Old {
-			Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ALTER COLUMN " + v.Attname + " TYPE " + v.TypeName + TextLength + ";\n"
+		if v.Atthasmissing != v.AttributeHasMissing_Old {
+			if v.Atthasmissing == false {
+				Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ALTER COLUMN " + v.Attname + " DROP DEFAULT " + ";\n"
+				Otvet = Otvet + Otvet1
+			} else {
+				TextDefault := Find_TextDefault_from_missingval(v.Attmissingval)
+				Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ALTER COLUMN " + v.Attname + " SET DEFAULT " + TextDefault + ";\n"
+				Otvet = Otvet + Otvet1
+			}
+		}
+
+		if v.Attmissingval != v.AttributeMissingValue_Old {
+			TextDefault := Find_TextDefault_from_missingval(v.Attmissingval)
+			Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ALTER COLUMN " + v.Attname + " SET DEFAULT " + TextDefault + ";\n"
 			Otvet = Otvet + Otvet1
+		}
+
+		//not null
+		if v.Attnotnull != v.AttributeNotNull_Old {
+			if v.Attnotnull == true {
+				Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ALTER COLUMN " + v.Attname + " SET NOT NULL" + ";\n"
+				Otvet = Otvet + Otvet1
+			} else {
+				Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ALTER COLUMN " + v.Attname + " DROP NOT NULL" + ";\n"
+				Otvet = Otvet + Otvet1
+			}
+		}
+
+		//IDENTITY
+		if v.Attidentity != v.AttributeIdentity_Old {
+			if v.Attidentity == "" {
+				Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ALTER COLUMN " + v.Attname + " DROP IDENTITY" + ";\n"
+				Otvet = Otvet + Otvet1
+			} else {
+				TextIdentity := Find_TextTextIdentity(v.Attidentity)
+				Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ALTER COLUMN " + v.Attname + " SET GENERATED " + TextIdentity + ";\n"
+				Otvet = Otvet + Otvet1
+			}
+		}
+
+		//GENERATED
+		if v.Attgenerated != v.AttributeGenerated_Old {
+			if v.Attgenerated == "" {
+				Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ALTER COLUMN " + v.Attname + " DROP IDENTITY" + ";\n"
+				Otvet = Otvet + Otvet1
+			} else {
+				TextIdentity := Find_TextTextIdentity(v.Attidentity)
+				Otvet1 := `ALTER TABLE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.TableName + `"` + " ALTER COLUMN " + v.Attname + " SET GENERATED " + TextIdentity + ";\n"
+				Otvet = Otvet + Otvet1
+			}
 		}
 
 	}
 
 	return Otvet, err
+}
+
+// Find_TextDefault_from_missingval - возвращает значение по умолчанию из строки "{f}"
+func Find_TextDefault_from_missingval(Value string) string {
+	Otvet := ""
+
+	if Value == "NULL" {
+		return Otvet
+	}
+
+	if Value == "" {
+		return Otvet
+	}
+
+	//
+	Otvet = micro.StringBetween(Value, "{", "}")
+
+	return Otvet
+}
+
+// Find_TextTextIdentity -
+// Пустой символ (”) указывает, что это не столбец идентификации.
+// Символ a указывает, что значение генерируется всегда, а
+// d — что значение генерируется по умолчанию.
+func Find_TextTextIdentity(Attidentity string) string {
+	Otvet := ""
+
+	switch Attidentity {
+	case "a":
+		Otvet = "ALWAYS"
+	case "d":
+		Otvet = "DEFAULT"
+	default:
+		err := fmt.Errorf("Find_TextTextIdentity() error: Unknown Attidentity: %s", Attidentity)
+		log.Panic(err)
+	}
+
+	return Otvet
 }
