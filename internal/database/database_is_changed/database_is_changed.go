@@ -60,8 +60,16 @@ func IsChanged_any() (string, error) {
 		return Otvet, err
 	}
 
+	//sequence
+	Count_Sequence, err := IsChanged_Sequence()
+	if err != nil {
+		err = fmt.Errorf("IsChanged_Sequence() error: %w", err)
+		log.Error(err)
+		return Otvet, err
+	}
+
 	//
-	if Count_Attribute == 0 && Count_Class == 0 && Count_Constraint == 0 && Count_Description == 0 && Count_Index == 0 && Count_Namespace == 0 {
+	if Count_Attribute == 0 && Count_Class == 0 && Count_Constraint == 0 && Count_Description == 0 && Count_Index == 0 && Count_Namespace == 0 && Count_Sequence == 0 {
 		return Otvet, err
 	}
 

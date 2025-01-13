@@ -57,5 +57,13 @@ func Fill_All(VersionID int64) error {
 		return err
 	}
 
+	//sequence
+	err = Fill_sequence(VersionID)
+	if err != nil {
+		err = fmt.Errorf("Fill_sequence() error: %w", err)
+		log.Error(err)
+		return err
+	}
+
 	return err
 }
