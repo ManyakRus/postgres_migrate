@@ -192,6 +192,25 @@ type PostgresMigrateClient interface {
 	PostgresMigratePgNamespace_Update_VersionID(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
 	PostgresMigratePgNamespace_ReadFromCache(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigratePgNamespace_ReadObject(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	// PostgresMigratePgSequence
+	PostgresMigratePgSequence_Read(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgSequence_Create(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgSequence_Update(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgSequence_Save(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgSequence_Delete(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgSequence_Restore(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgSequence_UpdateManyFields(ctx context.Context, in *Request_Model_MassString, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqcache(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqcycle(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqincrement(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqmax(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqmin(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqrelid(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqstart(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqtypid(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_VersionID(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_ReadFromCache(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
+	PostgresMigratePgSequence_ReadObject(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error)
 	// PostgresMigrateVersion
 	PostgresMigrateVersion_Read(ctx context.Context, in *Request_Int64, opts ...grpc.CallOption) (*Response, error)
 	PostgresMigrateVersion_Create(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error)
@@ -1688,6 +1707,168 @@ func (c *postgresMigrateClient) PostgresMigratePgNamespace_ReadObject(ctx contex
 	return out, nil
 }
 
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Read(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Read", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Create(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Create", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Update(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Save(ctx context.Context, in *RequestModel, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Save", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Delete(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Restore(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Restore", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_UpdateManyFields(ctx context.Context, in *Request_Model_MassString, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+	out := new(ResponseEmpty)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_UpdateManyFields", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Update_Seqcache(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+	out := new(ResponseEmpty)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqcache", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Update_Seqcycle(ctx context.Context, in *Request_Int64_Int64_Bool, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+	out := new(ResponseEmpty)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqcycle", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Update_Seqincrement(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+	out := new(ResponseEmpty)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqincrement", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Update_Seqmax(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+	out := new(ResponseEmpty)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqmax", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Update_Seqmin(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+	out := new(ResponseEmpty)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqmin", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Update_Seqrelid(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+	out := new(ResponseEmpty)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqrelid", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Update_Seqstart(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+	out := new(ResponseEmpty)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqstart", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Update_Seqtypid(ctx context.Context, in *Request_Int64_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+	out := new(ResponseEmpty)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqtypid", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_Update_VersionID(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*ResponseEmpty, error) {
+	out := new(ResponseEmpty)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_VersionID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_ReadFromCache(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_ReadFromCache", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresMigrateClient) PostgresMigratePgSequence_ReadObject(ctx context.Context, in *Request_Int64_Int64, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigratePgSequence_ReadObject", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *postgresMigrateClient) PostgresMigrateVersion_Read(ctx context.Context, in *Request_Int64, opts ...grpc.CallOption) (*Response, error) {
 	out := new(Response)
 	err := c.cc.Invoke(ctx, "/grpc.Postgres_migrate/PostgresMigrateVersion_Read", in, out, opts...)
@@ -1943,6 +2124,25 @@ type PostgresMigrateServer interface {
 	PostgresMigratePgNamespace_Update_VersionID(context.Context, *Request_Int64_Int64) (*ResponseEmpty, error)
 	PostgresMigratePgNamespace_ReadFromCache(context.Context, *Request_Int64_Int64) (*Response, error)
 	PostgresMigratePgNamespace_ReadObject(context.Context, *Request_Int64_Int64) (*Response, error)
+	// PostgresMigratePgSequence
+	PostgresMigratePgSequence_Read(context.Context, *Request_Int64_Int64) (*Response, error)
+	PostgresMigratePgSequence_Create(context.Context, *RequestModel) (*Response, error)
+	PostgresMigratePgSequence_Update(context.Context, *RequestModel) (*Response, error)
+	PostgresMigratePgSequence_Save(context.Context, *RequestModel) (*Response, error)
+	PostgresMigratePgSequence_Delete(context.Context, *Request_Int64_Int64) (*Response, error)
+	PostgresMigratePgSequence_Restore(context.Context, *Request_Int64_Int64) (*Response, error)
+	PostgresMigratePgSequence_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqcache(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqcycle(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqincrement(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqmax(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqmin(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqrelid(context.Context, *Request_Int64_Int64) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqstart(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_Seqtypid(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_Update_VersionID(context.Context, *Request_Int64_Int64) (*ResponseEmpty, error)
+	PostgresMigratePgSequence_ReadFromCache(context.Context, *Request_Int64_Int64) (*Response, error)
+	PostgresMigratePgSequence_ReadObject(context.Context, *Request_Int64_Int64) (*Response, error)
 	// PostgresMigrateVersion
 	PostgresMigrateVersion_Read(context.Context, *Request_Int64) (*Response, error)
 	PostgresMigrateVersion_Create(context.Context, *RequestModel) (*Response, error)
@@ -2451,6 +2651,60 @@ func (UnimplementedPostgresMigrateServer) PostgresMigratePgNamespace_ReadFromCac
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigratePgNamespace_ReadObject(context.Context, *Request_Int64_Int64) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgNamespace_ReadObject not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Read(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Read not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Create(context.Context, *RequestModel) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Create not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Update(context.Context, *RequestModel) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Update not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Save(context.Context, *RequestModel) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Save not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Delete(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Delete not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Restore(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Restore not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_UpdateManyFields(context.Context, *Request_Model_MassString) (*ResponseEmpty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_UpdateManyFields not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Update_Seqcache(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Update_Seqcache not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Update_Seqcycle(context.Context, *Request_Int64_Int64_Bool) (*ResponseEmpty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Update_Seqcycle not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Update_Seqincrement(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Update_Seqincrement not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Update_Seqmax(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Update_Seqmax not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Update_Seqmin(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Update_Seqmin not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Update_Seqrelid(context.Context, *Request_Int64_Int64) (*ResponseEmpty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Update_Seqrelid not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Update_Seqstart(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Update_Seqstart not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Update_Seqtypid(context.Context, *Request_Int64_Int64_Int64) (*ResponseEmpty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Update_Seqtypid not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_Update_VersionID(context.Context, *Request_Int64_Int64) (*ResponseEmpty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_Update_VersionID not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_ReadFromCache(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_ReadFromCache not implemented")
+}
+func (UnimplementedPostgresMigrateServer) PostgresMigratePgSequence_ReadObject(context.Context, *Request_Int64_Int64) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigratePgSequence_ReadObject not implemented")
 }
 func (UnimplementedPostgresMigrateServer) PostgresMigrateVersion_Read(context.Context, *Request_Int64) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostgresMigrateVersion_Read not implemented")
@@ -5444,6 +5698,330 @@ func _PostgresMigrate_PostgresMigratePgNamespace_ReadObject_Handler(srv interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostgresMigrate_PostgresMigratePgSequence_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Read(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Read",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Read(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestModel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Create",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Create(ctx, req.(*RequestModel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestModel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update(ctx, req.(*RequestModel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Save_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestModel)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Save(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Save",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Save(ctx, req.(*RequestModel))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Delete(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Restore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Restore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Restore(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_UpdateManyFields_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Model_MassString)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_UpdateManyFields(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_UpdateManyFields",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_UpdateManyFields(ctx, req.(*Request_Model_MassString))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Update_Seqcache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqcache(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqcache",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqcache(ctx, req.(*Request_Int64_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Update_Seqcycle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64_Bool)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqcycle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqcycle",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqcycle(ctx, req.(*Request_Int64_Int64_Bool))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Update_Seqincrement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqincrement(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqincrement",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqincrement(ctx, req.(*Request_Int64_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Update_Seqmax_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqmax(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqmax",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqmax(ctx, req.(*Request_Int64_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Update_Seqmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqmin",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqmin(ctx, req.(*Request_Int64_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Update_Seqrelid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqrelid(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqrelid",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqrelid(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Update_Seqstart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqstart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqstart",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqstart(ctx, req.(*Request_Int64_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Update_Seqtypid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqtypid(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_Seqtypid",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_Seqtypid(ctx, req.(*Request_Int64_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_Update_VersionID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_VersionID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_Update_VersionID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_Update_VersionID(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_ReadFromCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_ReadFromCache(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_ReadFromCache",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_ReadFromCache(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresMigrate_PostgresMigratePgSequence_ReadObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Request_Int64_Int64)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_ReadObject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc.Postgres_migrate/PostgresMigratePgSequence_ReadObject",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresMigrateServer).PostgresMigratePgSequence_ReadObject(ctx, req.(*Request_Int64_Int64))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PostgresMigrate_PostgresMigrateVersion_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Request_Int64)
 	if err := dec(in); err != nil {
@@ -6268,6 +6846,78 @@ var PostgresMigrate_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PostgresMigratePgNamespace_ReadObject",
 			Handler:    _PostgresMigrate_PostgresMigratePgNamespace_ReadObject_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Read",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Read_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Create",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Create_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Update",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Update_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Save",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Save_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Delete",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Delete_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Restore",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Restore_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_UpdateManyFields",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_UpdateManyFields_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Update_Seqcache",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Update_Seqcache_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Update_Seqcycle",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Update_Seqcycle_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Update_Seqincrement",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Update_Seqincrement_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Update_Seqmax",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Update_Seqmax_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Update_Seqmin",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Update_Seqmin_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Update_Seqrelid",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Update_Seqrelid_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Update_Seqstart",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Update_Seqstart_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Update_Seqtypid",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Update_Seqtypid_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_Update_VersionID",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_Update_VersionID_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_ReadFromCache",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_ReadFromCache_Handler,
+		},
+		{
+			MethodName: "PostgresMigratePgSequence_ReadObject",
+			Handler:    _PostgresMigrate_PostgresMigratePgSequence_ReadObject_Handler,
 		},
 		{
 			MethodName: "PostgresMigrateVersion_Read",

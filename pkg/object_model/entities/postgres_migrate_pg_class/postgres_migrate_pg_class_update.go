@@ -2,8 +2,7 @@ package postgres_migrate_pg_class
 
 import (
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	)
-
+)
 
 // Update_Oid - изменяет объект в БД по ID, присваивает Oid
 func (m *PostgresMigratePgClass) Update_Oid() error {

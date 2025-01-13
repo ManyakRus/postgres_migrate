@@ -4,9 +4,9 @@
 package tests
 
 import (
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client"
 	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client/grpc_postgres_migrate_pg_namespace"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_namespace"
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client"
 	"github.com/ManyakRus/starter/config_main"
 	"testing"
 )
@@ -34,7 +34,7 @@ func TestCrud_GRPC_UpdateManyFields(t *testing.T) {
 		t.Error("TestCrud_GRPC_UpdateManyFields() error: ", err)
 	}
 
-	if (Otvet.Oid == 0) ||  (Otvet.VersionID == 0) {
+	if (Otvet.Oid == 0) || (Otvet.VersionID == 0) {
 		t.Error("TestCrud_GRPC_UpdateManyFields() error: ID =0")
 	}
 }

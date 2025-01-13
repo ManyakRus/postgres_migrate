@@ -4,13 +4,13 @@
 package crud_object_postgres_migrate_pg_class
 
 import (
-	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_version"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_version"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/objects/object_postgres_migrate_pg_class"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_class"
 	"context"
 	"fmt"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_class"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_version"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_version"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/objects/object_postgres_migrate_pg_class"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
@@ -54,7 +54,7 @@ func ReadObject_ctx(ctx context.Context, db *gorm.DB, m *object_postgres_migrate
 	m.PostgresMigratePgClass = Model
 
 	//VersionID
-	Version:= postgres_migrate_version.PostgresMigrateVersion{}
+	Version := postgres_migrate_version.PostgresMigrateVersion{}
 	VersionID := m.VersionID
 	Version.ID = VersionID
 	err = crud_postgres_migrate_version.Read_ctx(ctx, db, &Version)

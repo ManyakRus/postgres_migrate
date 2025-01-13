@@ -1,9 +1,9 @@
 package object_postgres_migrate_pg_description
 
 import (
+	"encoding/json"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/calc_struct_version"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	"encoding/json"
 	"reflect"
 )
 

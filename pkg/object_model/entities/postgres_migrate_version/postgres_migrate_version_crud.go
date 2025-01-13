@@ -4,9 +4,9 @@
 package postgres_migrate_version
 
 import (
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/calc_struct_version"
 	"encoding/json"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/calc_struct_version"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"github.com/vmihailenco/msgpack/v5"
 	"reflect"
 )
@@ -99,7 +99,7 @@ func (m *PostgresMigrateVersion) Read() error {
 	if Crud_PostgresMigrateVersion == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigrateVersion.Read(m)
 
 	return err
@@ -110,7 +110,7 @@ func (m *PostgresMigrateVersion) Save() error {
 	if Crud_PostgresMigrateVersion == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigrateVersion.Save(m)
 
 	return err
@@ -121,7 +121,7 @@ func (m *PostgresMigrateVersion) Update() error {
 	if Crud_PostgresMigrateVersion == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigrateVersion.Update(m)
 
 	return err
@@ -132,7 +132,7 @@ func (m *PostgresMigrateVersion) Create() error {
 	if Crud_PostgresMigrateVersion == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigrateVersion.Create(m)
 
 	return err

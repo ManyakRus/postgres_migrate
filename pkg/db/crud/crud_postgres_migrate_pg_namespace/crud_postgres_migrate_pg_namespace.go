@@ -4,17 +4,17 @@
 package crud_postgres_migrate_pg_namespace
 
 import (
-	"github.com/ManyakRus/postgres_migrate/pkg/db/crud_functions"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_namespace"
 	"context"
 	"errors"
 	"fmt"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/crud_functions"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_namespace"
+	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
-	"time"
-	"github.com/ManyakRus/starter/contextmain"
 	"gorm.io/gorm"
+	"time"
 )
 
 // TableName - имя таблицы в БД Postgres

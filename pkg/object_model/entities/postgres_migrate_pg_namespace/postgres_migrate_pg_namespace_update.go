@@ -2,8 +2,7 @@ package postgres_migrate_pg_namespace
 
 import (
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	)
-
+)
 
 // Update_Nspacl - изменяет объект в БД по ID, присваивает Nspacl
 func (m *PostgresMigratePgNamespace) Update_Nspacl() error {

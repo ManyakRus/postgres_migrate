@@ -4,10 +4,10 @@
 package server_grpc
 
 import (
-	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_index"
-	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_index"
 	"context"
+	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_index"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_index"
 	"github.com/ManyakRus/starter/postgres_gorm"
 )
 

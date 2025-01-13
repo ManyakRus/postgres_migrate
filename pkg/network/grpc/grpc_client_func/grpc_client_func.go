@@ -1,9 +1,9 @@
 package grpc_client_func
 
 import (
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_constants"
 	"strings"
 )
 

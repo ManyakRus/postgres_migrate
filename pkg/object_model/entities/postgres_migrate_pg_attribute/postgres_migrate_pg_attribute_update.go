@@ -2,8 +2,7 @@ package postgres_migrate_pg_attribute
 
 import (
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	)
-
+)
 
 // Update_Attalign - изменяет объект в БД по ID, присваивает Attalign
 func (m *PostgresMigratePgAttribute) Update_Attalign() error {

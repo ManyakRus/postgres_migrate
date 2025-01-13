@@ -189,6 +189,26 @@ service Postgres_migrate {
 	rpc PostgresMigratePgNamespace_ReadFromCache(Request_Int64_Int64) returns (Response) {}
 	rpc PostgresMigratePgNamespace_ReadObject(Request_Int64_Int64) returns (Response) {}
 
+	//PostgresMigratePgSequence
+	rpc PostgresMigratePgSequence_Read(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgSequence_Create(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgSequence_Update(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgSequence_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgSequence_Delete(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgSequence_Restore(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgSequence_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgSequence_Update_Seqcache(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgSequence_Update_Seqcycle(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgSequence_Update_Seqincrement(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgSequence_Update_Seqmax(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgSequence_Update_Seqmin(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgSequence_Update_Seqrelid(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgSequence_Update_Seqstart(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgSequence_Update_Seqtypid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgSequence_Update_VersionID(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgSequence_ReadFromCache(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgSequence_ReadObject(Request_Int64_Int64) returns (Response) {}
+
 	//PostgresMigrateVersion
 	rpc PostgresMigrateVersion_Read(Request_Int64) returns (Response) {}
 	rpc PostgresMigrateVersion_Create(RequestModel) returns (Response) {}
@@ -522,20 +542,20 @@ message Request_Int64_Int64_Bool {
     bool Bool_1 = 4; //значение поиска
 }
 
-// Request_Int64_Int64_String - параметры запроса на сервер
-message Request_Int64_Int64_String {
-    uint32 VersionModel = 1; //версия структуры модели
-    int64 Int64_1 = 2; //id записи в БД
-    int64 Int64_2 = 3; //id записи в БД
-    string String_1 = 4; //значение поиска
-}
-
 // Request_Int64_Int64_Int64 - параметры запроса на сервер
 message Request_Int64_Int64_Int64 {
     uint32 VersionModel = 1; //версия структуры модели
     int64 Int64_1 = 2; //id записи в БД
     int64 Int64_2 = 3; //id записи в БД
     int64 Int64_3 = 4; //значение поиска
+}
+
+// Request_Int64_Int64_String - параметры запроса на сервер
+message Request_Int64_Int64_String {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    string String_1 = 4; //значение поиска
 }
 
 // Request_Int64_Int64_Int32 - параметры запроса на сервер

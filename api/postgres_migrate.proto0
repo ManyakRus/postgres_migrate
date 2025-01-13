@@ -1,0 +1,628 @@
+syntax = "proto3";
+
+/*
+    Файл содержит описание сервиса Postgres_migrate
+*/
+
+package grpc;
+
+option go_package = "./grpc_proto";
+
+import "google/protobuf/timestamp.proto";
+
+// Postgres_migrate - сервис обмена с Базой данных
+service Postgres_migrate {
+
+	//PostgresMigratePgAttribute
+	rpc PostgresMigratePgAttribute_Read(Request_String_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgAttribute_Create(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgAttribute_Update(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgAttribute_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgAttribute_Delete(Request_String_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgAttribute_Restore(Request_String_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgAttribute_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attalign(Request_String_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attbyval(Request_String_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attcacheoff(Request_String_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attcollation(Request_String_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attgenerated(Request_String_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Atthasdef(Request_String_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Atthasmissing(Request_String_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attidentity(Request_String_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attinhcount(Request_String_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attisdropped(Request_String_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attislocal(Request_String_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attlen(Request_String_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attmissingval(Request_String_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attname(Request_String_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attndims(Request_String_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attnotnull(Request_String_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attnum(Request_String_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attrelid(Request_String_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attstattarget(Request_String_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Attstorage(Request_String_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Atttypid(Request_String_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_Atttypmod(Request_String_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_Update_VersionID(Request_String_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgAttribute_ReadFromCache(Request_String_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgAttribute_ReadObject(Request_String_Int64_Int64) returns (Response) {}
+
+	//PostgresMigratePgClass
+	rpc PostgresMigratePgClass_Read(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgClass_Create(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgClass_Update(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgClass_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgClass_Delete(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgClass_Restore(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgClass_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Oid(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relallvisible(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relam(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relchecks(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relfilenode(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relforcerowsecurity(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relfrozenxid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relhasindex(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relhasrules(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relhassubclass(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relhastriggers(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relispartition(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relispopulated(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relisshared(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relkind(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relminmxid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relname(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relnamespace(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relnatts(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Reloftype(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relowner(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relpages(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relpersistence(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relreplident(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relrewrite(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Relrowsecurity(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Reltablespace(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Reltoastrelid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Reltuples(Request_Int64_Int64_Float32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_Reltype(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_Update_VersionID(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgClass_ReadFromCache(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgClass_ReadObject(Request_Int64_Int64) returns (Response) {}
+
+	//PostgresMigratePgConstraint
+	rpc PostgresMigratePgConstraint_Read(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgConstraint_Create(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgConstraint_Update(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgConstraint_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgConstraint_Delete(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgConstraint_Restore(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgConstraint_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Condeferrable(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Condeferred(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Conexclop(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Confdeltype(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Conffeqop(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Confkey(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Confmatchtype(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Confrelid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Confupdtype(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Conindid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Coninhcount(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Conislocal(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Conkey(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Conname(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Connamespace(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Connoinherit(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Conparentid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Conpfeqop(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Conppeqop(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Conrelid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Contype(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Contypid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Convalidated(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_Oid(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_Update_VersionID(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgConstraint_ReadFromCache(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgConstraint_ReadObject(Request_Int64_Int64) returns (Response) {}
+
+	//PostgresMigratePgDescription
+	rpc PostgresMigratePgDescription_Read(Request_Int64_Int64_Int32_Int64) returns (Response) {}
+	rpc PostgresMigratePgDescription_Create(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgDescription_Update(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgDescription_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgDescription_Delete(Request_Int64_Int64_Int32_Int64) returns (Response) {}
+	rpc PostgresMigratePgDescription_Restore(Request_Int64_Int64_Int32_Int64) returns (Response) {}
+	rpc PostgresMigratePgDescription_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgDescription_Update_Classoid(Request_Int64_Int64_Int32_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgDescription_Update_Description(Request_Int64_Int64_Int32_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgDescription_Update_Objoid(Request_Int64_Int64_Int32_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgDescription_Update_Objsubid(Request_Int64_Int64_Int32_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgDescription_Update_VersionID(Request_Int64_Int64_Int32_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgDescription_ReadFromCache(Request_Int64_Int64_Int32_Int64) returns (Response) {}
+	rpc PostgresMigratePgDescription_ReadObject(Request_Int64_Int64_Int32_Int64) returns (Response) {}
+
+	//PostgresMigratePgIndex
+	rpc PostgresMigratePgIndex_Read(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgIndex_Create(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgIndex_Update(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgIndex_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgIndex_Delete(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgIndex_Restore(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgIndex_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indcheckxmin(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indclass(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indcollation(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indexprs(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indexrelid(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indimmediate(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisclustered(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisexclusion(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indislive(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisprimary(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisready(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisreplident(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisunique(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indisvalid(Request_Int64_Int64_Bool) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indkey(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indnatts(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indnkeyatts(Request_Int64_Int64_Int32) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indoption(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indpred(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_Indrelid(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_Update_VersionID(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgIndex_ReadFromCache(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgIndex_ReadObject(Request_Int64_Int64) returns (Response) {}
+
+	//PostgresMigratePgNamespace
+	rpc PostgresMigratePgNamespace_Read(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgNamespace_Create(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgNamespace_Update(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgNamespace_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigratePgNamespace_Delete(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgNamespace_Restore(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgNamespace_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgNamespace_Update_Nspacl(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgNamespace_Update_Nspname(Request_Int64_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgNamespace_Update_Nspowner(Request_Int64_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgNamespace_Update_Oid(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgNamespace_Update_VersionID(Request_Int64_Int64) returns (ResponseEmpty) {}
+	rpc PostgresMigratePgNamespace_ReadFromCache(Request_Int64_Int64) returns (Response) {}
+	rpc PostgresMigratePgNamespace_ReadObject(Request_Int64_Int64) returns (Response) {}
+
+	//PostgresMigrateVersion
+	rpc PostgresMigrateVersion_Read(Request_Int64) returns (Response) {}
+	rpc PostgresMigrateVersion_Create(RequestModel) returns (Response) {}
+	rpc PostgresMigrateVersion_Update(RequestModel) returns (Response) {}
+	rpc PostgresMigrateVersion_Save(RequestModel) returns (Response) {}
+	rpc PostgresMigrateVersion_UpdateManyFields(Request_Model_MassString) returns (ResponseEmpty) {}
+	rpc PostgresMigrateVersion_Update_Description(Request_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigrateVersion_Update_Name(Request_Int64_String) returns (ResponseEmpty) {}
+	rpc PostgresMigrateVersion_ReadFromCache(Request_Int64) returns (Response) {}
+	rpc PostgresMigrateVersion_ReadObject(Request_Int64) returns (Response) {}
+
+}
+
+// -------------------------- Request ----------------------------------------------
+
+// RequestId - параметры запроса на сервер
+message RequestId {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID   = 2; // id записи в БД
+}
+
+// RequestString - параметры запроса на сервер
+message RequestString {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1   = 2; // строка поиска
+}
+
+// RequestString3 - параметры запроса на сервер
+message RequestString3 {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1   = 2; // строка поиска
+    string String_2   = 3; // строка поиска
+    string String_3   = 4; // строка поиска
+}
+// RequestExtID - параметры запроса на сервер
+message RequestExtID {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ExtID   = 2; // ext_id записи в БД
+    int64 Connection_id	=3; // Connection_id записи в БД
+}
+
+// RequestExtIDString - параметры запроса на сервер
+message RequestExtIDString {
+    uint32 VersionModel= 1; //версия структуры модели
+    string ExtID   = 2; // ext_id записи в БД
+    int64 Connection_id	=3; // Connection_id записи в БД
+}
+
+// RequestModel - параметры запроса на сервер
+message RequestModel {
+    uint32 VersionModel= 1; //версия структуры модели
+    string ModelString = 2; //объект-модель в формате json
+}
+
+// RequestInnKpp - параметры запроса на сервер
+message RequestInnKpp {
+    uint32 VersionModel= 1; //версия структуры модели
+    string Inn   = 2; // ИНН
+    string Kpp	=3; // КПП
+}
+
+// RequestIdId - параметры запроса на сервер
+message RequestIdId {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID1   = 2; // id записи в БД
+    int64 ID2   = 3; // id записи в БД
+}
+
+// RequestIdIdId - параметры запроса на сервер
+message RequestIdIdId {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID1   = 2; // id записи в БД
+    int64 ID2   = 3; // id записи в БД
+    int64 ID3   = 4; // id записи в БД
+}
+
+// RequestDate - параметры запроса на сервер, передаётся Дата time.Time
+message RequestDate {
+    uint32 VersionModel= 1; //версия структуры модели
+    google.protobuf.Timestamp Date   = 2; // строка поиска
+}
+
+// RequestFloat64 - параметры запроса на сервер, передаётся float64
+message RequestFloat64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    double Float64   = 2; // строка поиска
+}
+
+// RequestFloat32 - параметры запроса на сервер, передаётся float32
+message RequestFloat32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    float Float32   = 2; // строка поиска
+}
+
+// RequestInt32 - параметры запроса на сервер, передаётся int32
+message RequestInt32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32   = 2; // строка поиска
+}
+
+// RequestBool - параметры запроса на сервер, передаётся bool
+message RequestBool {
+    uint32 VersionModel= 1; //версия структуры модели
+    bool Bool   = 2; // строка поиска
+}
+
+//----------------------------- Request_ID -------------------------------------------
+
+// RequestId_Date - параметры запроса на сервер, передаётся ID + Дата time.Time
+message RequestId_Date {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    google.protobuf.Timestamp Date = 3; // значение поиска
+}
+
+// RequestId_Float64 - параметры запроса на сервер, передаётся ID + float64
+message RequestId_Float64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    double Float64 = 3; // значение поиска
+}
+
+// RequestId_Float32 - параметры запроса на сервер, передаётся ID + float32
+message RequestId_Float32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    float Float32 = 3; // значение поиска
+}
+
+// RequestId_Int32 - параметры запроса на сервер, передаётся ID + int32
+message RequestId_Int32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    int32 Int32 = 3; // значение поиска
+}
+
+// RequestId_Int64 - параметры запроса на сервер, передаётся ID + int64
+message RequestId_Int64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    int64 Int64 = 3; // значение поиска
+}
+
+// RequestId_Bool - параметры запроса на сервер, передаётся ID + bool
+message RequestId_Bool {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    bool Bool = 3; // значение поиска
+}
+
+// RequestId_String - параметры запроса на сервер, передаётся ID + string
+message RequestId_String {
+    uint32 VersionModel= 1; //версия структуры модели
+    int64 ID = 2; 	// id записи в БД
+    string String_1 = 3; // строка поиска
+}
+
+//----------------------------- Request_Int32 -------------------------------------------
+
+// RequestInt32_Date - параметры запроса на сервер, передаётся int32 + Дата time.Time
+message RequestInt32_Date {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    google.protobuf.Timestamp Date = 3; // значение поиска
+}
+
+// RequestInt32_Float64 - параметры запроса на сервер, передаётся int32 + float64
+message RequestInt32_Float64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    double Float64 = 3; // значение поиска
+}
+
+// RequestInt32_Float32 - параметры запроса на сервер, передаётся int32 + float32
+message RequestInt32_Float32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    float Float32 = 3; // значение поиска
+}
+
+// RequestInt32_Int32 - параметры запроса на сервер, передаётся int32 + int32
+message RequestInt32_Int32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    int32 Int32_2 = 3; // значение поиска
+}
+
+// RequestInt32_Int64 - параметры запроса на сервер, передаётся int32 + int64
+message RequestInt32_Int64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    int64 Int64 = 3; // значение поиска
+}
+
+// RequestInt32_Bool - параметры запроса на сервер, передаётся int32 + bool
+message RequestInt32_Bool {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    bool Bool = 3; // значение поиска
+}
+
+// RequestInt32_String - параметры запроса на сервер, передаётся int32 + string
+message RequestInt32_String {
+    uint32 VersionModel= 1; //версия структуры модели
+    int32 Int32 = 2; 	// id записи в БД
+    string String_1 = 3; // строка поиска
+}
+
+//----------------------------- Request_String -------------------------------------------
+
+// RequestString_Date - параметры запроса на сервер, передаётся string + Дата time.Time
+message RequestString_Date {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// ID записи в БД
+    google.protobuf.Timestamp Date = 3; // значение поиска
+}
+
+// RequestString_Float64 - параметры запроса на сервер, передаётся string + float64
+message RequestString_Float64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    double Float64 = 3; // значение поиска
+}
+
+// RequestString_Float32 - параметры запроса на сервер, передаётся string + float32
+message RequestString_Float32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    float Float32 = 3; // значение поиска
+}
+
+// RequestString_Int32 - параметры запроса на сервер, передаётся string + int32
+message RequestString_Int32 {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    int32 Int32 = 3; // значение поиска
+}
+
+// RequestString_Int64 - параметры запроса на сервер, передаётся string + int64
+message RequestString_Int64 {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    int64 Int64 = 3; // значение поиска
+}
+
+// RequestString_Bool - параметры запроса на сервер, передаётся string + bool
+message RequestString_Bool {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    bool Bool = 3; // значение поиска
+}
+
+// RequestString_String - параметры запроса на сервер, передаётся string + string
+message RequestString_String {
+    uint32 VersionModel= 1; //версия структуры модели
+    string String_1 = 2; 	// id записи в БД
+    string String_2 = 3; // строка поиска
+}
+
+//-------------------------------------------------------------------------------------
+
+// Request_Model_MassString - модель и массив строк
+message Request_Model_MassString {
+    uint32 VersionModel= 1; //версия структуры модели
+    string ModelString = 2; //объект-модель в формате json
+    repeated string MassNames	= 3; //массив строк
+}
+
+// -------------------------- Response ----------------------------------------------
+
+// Response - возвращает строка json Модель
+message Response {
+    string ModelString 	= 1; //объект-модель в формате json
+}
+
+// ResponseFloat64 - возвращает float64
+message ResponseFloat64 {
+    double Otvet 	= 1; //Ответ - число
+}
+
+// ResponseInt64 - возвращает int64
+message ResponseInt64 {
+    int64 Otvet 	= 1; //Ответ - число
+}
+
+// Response - параметры ответа на клиент
+message ResponseEmpty {
+}
+
+// Response - параметры ответа на клиент
+message ResponseMass {
+    repeated string MassModelString 	= 1; //массив объект-модель в формате json
+}
+
+message Request_Empty {
+    uint32 VersionModel  = 1; //версия структуры модели
+}
+
+// Request_Int64 - параметры запроса на сервер
+message Request_Int64 {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+}
+
+// Request_Int64_Date - параметры запроса на сервер
+message Request_Int64_Date {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    google.protobuf.Timestamp Date_1 = 3; //значение поиска
+}
+
+// Request_Int64_String - параметры запроса на сервер
+message Request_Int64_String {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    string String_1 = 3; //значение поиска
+}
+
+// Request_Int64_Int64 - параметры запроса на сервер
+message Request_Int64_Int64 {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+}
+
+// Request_Int64_Int64_Bool - параметры запроса на сервер
+message Request_Int64_Int64_Bool {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    bool Bool_1 = 4; //значение поиска
+}
+
+// Request_Int64_Int64_String - параметры запроса на сервер
+message Request_Int64_Int64_String {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    string String_1 = 4; //значение поиска
+}
+
+// Request_Int64_Int64_Int64 - параметры запроса на сервер
+message Request_Int64_Int64_Int64 {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    int64 Int64_3 = 4; //значение поиска
+}
+
+// Request_Int64_Int64_Int32 - параметры запроса на сервер
+message Request_Int64_Int64_Int32 {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    int32 Int32_1 = 4; //значение поиска
+}
+
+// Request_Int64_Int64_Int32_Int64 - параметры запроса на сервер
+message Request_Int64_Int64_Int32_Int64 {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    int32 Int32_1 = 4; //id записи в БД
+    int64 Int64_3 = 5; //id записи в БД
+}
+
+// Request_Int64_Int64_Int32_Int64_String - параметры запроса на сервер
+message Request_Int64_Int64_Int32_Int64_String {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    int32 Int32_1 = 4; //id записи в БД
+    int64 Int64_3 = 5; //id записи в БД
+    string String_1 = 6; //значение поиска
+}
+
+// Request_Int64_Int64_Int32_Int64_Bool - параметры запроса на сервер
+message Request_Int64_Int64_Int32_Int64_Bool {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    int32 Int32_1 = 4; //id записи в БД
+    int64 Int64_3 = 5; //id записи в БД
+    bool Bool_1 = 6; //значение поиска
+}
+
+// Request_Int64_Int64_Float32 - параметры запроса на сервер
+message Request_Int64_Int64_Float32 {
+    uint32 VersionModel = 1; //версия структуры модели
+    int64 Int64_1 = 2; //id записи в БД
+    int64 Int64_2 = 3; //id записи в БД
+    float Float32_1 = 4; //значение поиска
+}
+
+// Request_String_Int64_Int64 - параметры запроса на сервер
+message Request_String_Int64_Int64 {
+    uint32 VersionModel = 1; //версия структуры модели
+    string String_1 = 2; //id записи в БД
+    int64 Int64_1 = 3; //id записи в БД
+    int64 Int64_2 = 4; //id записи в БД
+}
+
+// Request_String_Int64_Int64_String - параметры запроса на сервер
+message Request_String_Int64_Int64_String {
+    uint32 VersionModel = 1; //версия структуры модели
+    string String_1 = 2; //id записи в БД
+    int64 Int64_1 = 3; //id записи в БД
+    int64 Int64_2 = 4; //id записи в БД
+    string String_2 = 5; //значение поиска
+}
+
+// Request_String_Int64_Int64_Bool - параметры запроса на сервер
+message Request_String_Int64_Int64_Bool {
+    uint32 VersionModel = 1; //версия структуры модели
+    string String_1 = 2; //id записи в БД
+    int64 Int64_1 = 3; //id записи в БД
+    int64 Int64_2 = 4; //id записи в БД
+    bool Bool_1 = 5; //значение поиска
+}
+
+// Request_String_Int64_Int64_Int32 - параметры запроса на сервер
+message Request_String_Int64_Int64_Int32 {
+    uint32 VersionModel = 1; //версия структуры модели
+    string String_1 = 2; //id записи в БД
+    int64 Int64_1 = 3; //id записи в БД
+    int64 Int64_2 = 4; //id записи в БД
+    int32 Int32_1 = 5; //значение поиска
+}
+
+// Request_String_Int64_Int64_Int64 - параметры запроса на сервер
+message Request_String_Int64_Int64_Int64 {
+    uint32 VersionModel = 1; //версия структуры модели
+    string String_1 = 2; //id записи в БД
+    int64 Int64_1 = 3; //id записи в БД
+    int64 Int64_2 = 4; //id записи в БД
+    int64 Int64_3 = 5; //значение поиска
+}

@@ -5,9 +5,9 @@ package tests
 
 import (
 	"github.com/ManyakRus/postgres_migrate/pkg/db/crud_func"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client"
 	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client/grpc_postgres_migrate_pg_description"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/objects/object_postgres_migrate_pg_description"
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client"
 	"github.com/ManyakRus/starter/config_main"
 	"testing"
 )

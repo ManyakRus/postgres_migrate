@@ -25,6 +25,9 @@ build:
 	go fmt ./...
 	./make_version.sh
 	go build -race -o $(FILEAPP) $(FILEMAIN)
+fmt:
+	clear
+	go fmt ./...
 lint:
 	clear
 	go fmt ./...

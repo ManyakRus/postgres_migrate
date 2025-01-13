@@ -28,7 +28,7 @@ func TestRead(t *testing.T) {
 	}
 
 	if Otvet.ID != ID_Test {
-		t.Error(TableName + "_test.TestRead() error ID != ", ID_Test)
+		t.Error(TableName+"_test.TestRead() error ID != ", ID_Test)
 	} else {
 		t.Log(TableName+"_test.TestRead() Otvet: ", Otvet.ID)
 	}
@@ -49,7 +49,7 @@ func TestSave(t *testing.T) {
 	}
 
 	if Otvet.ID != ID_Test {
-		t.Error(TableName + "_test.TestSave() error ID != ", ID_Test)
+		t.Error(TableName+"_test.TestSave() error ID != ", ID_Test)
 	}
 
 	err = crud.Save(&Otvet)

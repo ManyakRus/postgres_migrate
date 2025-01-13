@@ -4,9 +4,9 @@
 package tests
 
 import (
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client"
 	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client/grpc_postgres_migrate_pg_constraint"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_constraint"
-	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client"
 	"github.com/ManyakRus/starter/config_main"
 	"testing"
 )
@@ -24,7 +24,7 @@ func TestReadFromCache(t *testing.T) {
 		t.Error("ReadFromCache() error: ", err)
 	}
 
-	if (Otvet.Oid == 0) ||  (Otvet.VersionID == 0) {
+	if (Otvet.Oid == 0) || (Otvet.VersionID == 0) {
 		t.Error("ReadFromCache() error: ID =0")
 	}
 }

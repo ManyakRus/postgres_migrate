@@ -4,11 +4,11 @@
 package server_grpc
 
 import (
+	"context"
+	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_attribute"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_attribute"
-	"context"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/postgres_gorm"
 	"time"

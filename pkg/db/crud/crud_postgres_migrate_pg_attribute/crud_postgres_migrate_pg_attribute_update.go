@@ -4,11 +4,11 @@
 package crud_postgres_migrate_pg_attribute
 
 import (
-	"fmt"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_attribute"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"context"
 	"errors"
+	"fmt"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_attribute"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
@@ -41,7 +41,7 @@ func UpdateManyFields_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 		return err
 	}
 
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
 		err = errors.New(m.TableNameDB() + ` UpdateManyFields() error: ID=0`)
 		return err
 	}
@@ -75,8 +75,8 @@ func Update_Attalign_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attalign() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attalign() error: Attname=0`)
 		return err
 	}
 
@@ -123,8 +123,8 @@ func Update_Attbyval_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attbyval() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attbyval() error: Attname=0`)
 		return err
 	}
 
@@ -171,8 +171,8 @@ func Update_Attcacheoff_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attcacheoff() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attcacheoff() error: Attname=0`)
 		return err
 	}
 
@@ -219,8 +219,8 @@ func Update_Attcollation_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attcollation() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attcollation() error: Attname=0`)
 		return err
 	}
 
@@ -267,8 +267,8 @@ func Update_Attgenerated_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attgenerated() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attgenerated() error: Attname=0`)
 		return err
 	}
 
@@ -315,8 +315,8 @@ func Update_Atthasdef_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Atthasdef() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Atthasdef() error: Attname=0`)
 		return err
 	}
 
@@ -363,8 +363,8 @@ func Update_Atthasmissing_ctx(ctx context.Context, db *gorm.DB, m *postgres_migr
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Atthasmissing() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Atthasmissing() error: Attname=0`)
 		return err
 	}
 
@@ -411,8 +411,8 @@ func Update_Attidentity_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attidentity() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attidentity() error: Attname=0`)
 		return err
 	}
 
@@ -459,8 +459,8 @@ func Update_Attinhcount_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attinhcount() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attinhcount() error: Attname=0`)
 		return err
 	}
 
@@ -507,8 +507,8 @@ func Update_Attisdropped_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attisdropped() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attisdropped() error: Attname=0`)
 		return err
 	}
 
@@ -555,8 +555,8 @@ func Update_Attislocal_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attislocal() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attislocal() error: Attname=0`)
 		return err
 	}
 
@@ -603,8 +603,8 @@ func Update_Attlen_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attlen() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attlen() error: Attname=0`)
 		return err
 	}
 
@@ -651,8 +651,8 @@ func Update_Attmissingval_ctx(ctx context.Context, db *gorm.DB, m *postgres_migr
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attmissingval() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attmissingval() error: Attname=0`)
 		return err
 	}
 
@@ -699,8 +699,8 @@ func Update_Attname_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attname() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attname() error: Attname=0`)
 		return err
 	}
 
@@ -747,8 +747,8 @@ func Update_Attndims_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attndims() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attndims() error: Attname=0`)
 		return err
 	}
 
@@ -795,8 +795,8 @@ func Update_Attnotnull_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attnotnull() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attnotnull() error: Attname=0`)
 		return err
 	}
 
@@ -843,8 +843,8 @@ func Update_Attnum_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attnum() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attnum() error: Attname=0`)
 		return err
 	}
 
@@ -891,8 +891,8 @@ func Update_Attrelid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attrelid() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attrelid() error: Attname=0`)
 		return err
 	}
 
@@ -939,8 +939,8 @@ func Update_Attstattarget_ctx(ctx context.Context, db *gorm.DB, m *postgres_migr
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attstattarget() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attstattarget() error: Attname=0`)
 		return err
 	}
 
@@ -987,8 +987,8 @@ func Update_Attstorage_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Attstorage() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Attstorage() error: Attname=0`)
 		return err
 	}
 
@@ -1035,8 +1035,8 @@ func Update_Atttypid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Atttypid() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Atttypid() error: Attname=0`)
 		return err
 	}
 
@@ -1083,8 +1083,8 @@ func Update_Atttypmod_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Atttypmod() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Atttypmod() error: Attname=0`)
 		return err
 	}
 
@@ -1131,8 +1131,8 @@ func Update_VersionID_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Attname == "") ||  (m.Attrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_VersionID() error: Attname=0`)
+	if (m.Attname == "") || (m.Attrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_VersionID() error: Attname=0`)
 		return err
 	}
 

@@ -4,9 +4,9 @@
 package tests
 
 import (
-	"github.com/ManyakRus/postgres_migrate/pkg/db/crud_func"
-	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter"
 	"github.com/ManyakRus/postgres_migrate/pkg/constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/crud_func"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/crud_objects/crud_object_postgres_migrate_pg_attribute"
 	"github.com/ManyakRus/postgres_migrate/pkg/object_model/objects/object_postgres_migrate_pg_attribute"
 	"github.com/ManyakRus/starter/config_main"

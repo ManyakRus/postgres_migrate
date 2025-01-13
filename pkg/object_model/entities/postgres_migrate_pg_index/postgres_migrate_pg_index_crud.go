@@ -4,12 +4,12 @@
 package postgres_migrate_pg_index
 
 import (
-	"strconv"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/calc_struct_version"
 	"encoding/json"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/calc_struct_version"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"github.com/vmihailenco/msgpack/v5"
 	"reflect"
+	"strconv"
 )
 
 // versionPostgresMigratePgIndex - версия структуры модели, с учётом имен и типов полей
@@ -121,7 +121,7 @@ func (m *PostgresMigratePgIndex) Read() error {
 	if Crud_PostgresMigratePgIndex == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgIndex.Read(m)
 
 	return err
@@ -132,7 +132,7 @@ func (m *PostgresMigratePgIndex) Save() error {
 	if Crud_PostgresMigratePgIndex == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgIndex.Save(m)
 
 	return err
@@ -143,7 +143,7 @@ func (m *PostgresMigratePgIndex) Update() error {
 	if Crud_PostgresMigratePgIndex == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgIndex.Update(m)
 
 	return err
@@ -154,7 +154,7 @@ func (m *PostgresMigratePgIndex) Create() error {
 	if Crud_PostgresMigratePgIndex == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgIndex.Create(m)
 
 	return err
@@ -165,7 +165,7 @@ func (m *PostgresMigratePgIndex) Delete() error {
 	if Crud_PostgresMigratePgIndex == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgIndex.Delete(m)
 
 	return err
@@ -176,7 +176,7 @@ func (m *PostgresMigratePgIndex) Restore() error {
 	if Crud_PostgresMigratePgIndex == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgIndex.Restore(m)
 
 	return err

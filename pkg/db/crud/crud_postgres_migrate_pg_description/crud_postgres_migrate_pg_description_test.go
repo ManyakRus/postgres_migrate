@@ -34,7 +34,7 @@ func TestRead(t *testing.T) {
 	}
 
 	if Otvet.Classoid != CLASSOID_Test {
-		t.Error(TableName + "_test.TestRead() error ID != ", CLASSOID_Test)
+		t.Error(TableName+"_test.TestRead() error ID != ", CLASSOID_Test)
 	} else {
 		t.Log(TableName+"_test.TestRead() Otvet: ", Otvet.Classoid)
 	}
@@ -58,7 +58,7 @@ func TestSave(t *testing.T) {
 	}
 
 	if Otvet.Classoid != CLASSOID_Test {
-		t.Error(TableName + "_test.TestSave() error ID != ", CLASSOID_Test)
+		t.Error(TableName+"_test.TestSave() error ID != ", CLASSOID_Test)
 	}
 
 	err = crud.Save(&Otvet)

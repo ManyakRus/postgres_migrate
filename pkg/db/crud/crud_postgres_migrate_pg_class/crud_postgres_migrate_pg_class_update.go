@@ -4,11 +4,11 @@
 package crud_postgres_migrate_pg_class
 
 import (
-	"fmt"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_class"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"context"
 	"errors"
+	"fmt"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_class"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
@@ -41,7 +41,7 @@ func UpdateManyFields_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 		return err
 	}
 
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
+	if (m.Oid == 0) || (m.VersionID == 0) {
 		err = errors.New(m.TableNameDB() + ` UpdateManyFields() error: ID=0`)
 		return err
 	}
@@ -75,8 +75,8 @@ func Update_Oid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_cla
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Oid() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Oid() error: Oid=0`)
 		return err
 	}
 
@@ -123,8 +123,8 @@ func Update_Relallvisible_ctx(ctx context.Context, db *gorm.DB, m *postgres_migr
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relallvisible() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relallvisible() error: Oid=0`)
 		return err
 	}
 
@@ -171,8 +171,8 @@ func Update_Relam_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_c
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relam() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relam() error: Oid=0`)
 		return err
 	}
 
@@ -219,8 +219,8 @@ func Update_Relchecks_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relchecks() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relchecks() error: Oid=0`)
 		return err
 	}
 
@@ -267,8 +267,8 @@ func Update_Relfilenode_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relfilenode() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relfilenode() error: Oid=0`)
 		return err
 	}
 
@@ -315,8 +315,8 @@ func Update_Relforcerowsecurity_ctx(ctx context.Context, db *gorm.DB, m *postgre
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relforcerowsecurity() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relforcerowsecurity() error: Oid=0`)
 		return err
 	}
 
@@ -363,8 +363,8 @@ func Update_Relfrozenxid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relfrozenxid() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relfrozenxid() error: Oid=0`)
 		return err
 	}
 
@@ -411,8 +411,8 @@ func Update_Relhasindex_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relhasindex() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relhasindex() error: Oid=0`)
 		return err
 	}
 
@@ -459,8 +459,8 @@ func Update_Relhasrules_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relhasrules() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relhasrules() error: Oid=0`)
 		return err
 	}
 
@@ -507,8 +507,8 @@ func Update_Relhassubclass_ctx(ctx context.Context, db *gorm.DB, m *postgres_mig
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relhassubclass() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relhassubclass() error: Oid=0`)
 		return err
 	}
 
@@ -555,8 +555,8 @@ func Update_Relhastriggers_ctx(ctx context.Context, db *gorm.DB, m *postgres_mig
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relhastriggers() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relhastriggers() error: Oid=0`)
 		return err
 	}
 
@@ -603,8 +603,8 @@ func Update_Relispartition_ctx(ctx context.Context, db *gorm.DB, m *postgres_mig
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relispartition() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relispartition() error: Oid=0`)
 		return err
 	}
 
@@ -651,8 +651,8 @@ func Update_Relispopulated_ctx(ctx context.Context, db *gorm.DB, m *postgres_mig
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relispopulated() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relispopulated() error: Oid=0`)
 		return err
 	}
 
@@ -699,8 +699,8 @@ func Update_Relisshared_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relisshared() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relisshared() error: Oid=0`)
 		return err
 	}
 
@@ -747,8 +747,8 @@ func Update_Relkind_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relkind() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relkind() error: Oid=0`)
 		return err
 	}
 
@@ -795,8 +795,8 @@ func Update_Relminmxid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relminmxid() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relminmxid() error: Oid=0`)
 		return err
 	}
 
@@ -843,8 +843,8 @@ func Update_Relname_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relname() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relname() error: Oid=0`)
 		return err
 	}
 
@@ -891,8 +891,8 @@ func Update_Relnamespace_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relnamespace() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relnamespace() error: Oid=0`)
 		return err
 	}
 
@@ -939,8 +939,8 @@ func Update_Relnatts_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relnatts() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relnatts() error: Oid=0`)
 		return err
 	}
 
@@ -987,8 +987,8 @@ func Update_Reloftype_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Reloftype() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Reloftype() error: Oid=0`)
 		return err
 	}
 
@@ -1035,8 +1035,8 @@ func Update_Relowner_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relowner() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relowner() error: Oid=0`)
 		return err
 	}
 
@@ -1083,8 +1083,8 @@ func Update_Relpages_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relpages() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relpages() error: Oid=0`)
 		return err
 	}
 
@@ -1131,8 +1131,8 @@ func Update_Relpersistence_ctx(ctx context.Context, db *gorm.DB, m *postgres_mig
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relpersistence() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relpersistence() error: Oid=0`)
 		return err
 	}
 
@@ -1179,8 +1179,8 @@ func Update_Relreplident_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relreplident() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relreplident() error: Oid=0`)
 		return err
 	}
 
@@ -1227,8 +1227,8 @@ func Update_Relrewrite_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relrewrite() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relrewrite() error: Oid=0`)
 		return err
 	}
 
@@ -1275,8 +1275,8 @@ func Update_Relrowsecurity_ctx(ctx context.Context, db *gorm.DB, m *postgres_mig
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Relrowsecurity() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Relrowsecurity() error: Oid=0`)
 		return err
 	}
 
@@ -1323,8 +1323,8 @@ func Update_Reltablespace_ctx(ctx context.Context, db *gorm.DB, m *postgres_migr
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Reltablespace() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Reltablespace() error: Oid=0`)
 		return err
 	}
 
@@ -1371,8 +1371,8 @@ func Update_Reltoastrelid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migr
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Reltoastrelid() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Reltoastrelid() error: Oid=0`)
 		return err
 	}
 
@@ -1419,8 +1419,8 @@ func Update_Reltuples_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Reltuples() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Reltuples() error: Oid=0`)
 		return err
 	}
 
@@ -1467,8 +1467,8 @@ func Update_Reltype_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Reltype() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Reltype() error: Oid=0`)
 		return err
 	}
 
@@ -1515,8 +1515,8 @@ func Update_VersionID_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Oid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_VersionID() error: Oid=0`)
+	if (m.Oid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_VersionID() error: Oid=0`)
 		return err
 	}
 

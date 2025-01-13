@@ -4,10 +4,10 @@
 package server_grpc
 
 import (
-	"github.com/ManyakRus/postgres_migrate/pkg/db/crud_objects/crud_object_postgres_migrate_pg_namespace"
-	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/objects/object_postgres_migrate_pg_namespace"
 	"context"
+	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/crud_objects/crud_object_postgres_migrate_pg_namespace"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/objects/object_postgres_migrate_pg_namespace"
 	"github.com/ManyakRus/starter/postgres_gorm"
 )
 
@@ -52,4 +52,3 @@ func (s *ServerGRPC) PostgresMigratePgNamespace_ReadObject(ctx context.Context, 
 
 	return &Otvet, err
 }
-

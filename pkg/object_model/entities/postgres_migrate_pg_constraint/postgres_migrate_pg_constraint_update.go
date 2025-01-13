@@ -2,8 +2,7 @@ package postgres_migrate_pg_constraint
 
 import (
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	)
-
+)
 
 // Update_Condeferrable - изменяет объект в БД по ID, присваивает Condeferrable
 func (m *PostgresMigratePgConstraint) Update_Condeferrable() error {

@@ -4,11 +4,11 @@
 package crud_postgres_migrate_pg_index
 
 import (
-	"fmt"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_index"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"context"
 	"errors"
+	"fmt"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/entities/postgres_migrate_pg_index"
 	"github.com/ManyakRus/starter/contextmain"
 	"github.com/ManyakRus/starter/micro"
 	"github.com/ManyakRus/starter/postgres_gorm"
@@ -41,7 +41,7 @@ func UpdateManyFields_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 		return err
 	}
 
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
 		err = errors.New(m.TableNameDB() + ` UpdateManyFields() error: ID=0`)
 		return err
 	}
@@ -75,8 +75,8 @@ func Update_Indcheckxmin_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indcheckxmin() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indcheckxmin() error: Indexrelid=0`)
 		return err
 	}
 
@@ -123,8 +123,8 @@ func Update_Indclass_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indclass() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indclass() error: Indexrelid=0`)
 		return err
 	}
 
@@ -171,8 +171,8 @@ func Update_Indcollation_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indcollation() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indcollation() error: Indexrelid=0`)
 		return err
 	}
 
@@ -219,8 +219,8 @@ func Update_Indexprs_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indexprs() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indexprs() error: Indexrelid=0`)
 		return err
 	}
 
@@ -267,8 +267,8 @@ func Update_Indexrelid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indexrelid() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indexrelid() error: Indexrelid=0`)
 		return err
 	}
 
@@ -315,8 +315,8 @@ func Update_Indimmediate_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indimmediate() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indimmediate() error: Indexrelid=0`)
 		return err
 	}
 
@@ -363,8 +363,8 @@ func Update_Indisclustered_ctx(ctx context.Context, db *gorm.DB, m *postgres_mig
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indisclustered() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indisclustered() error: Indexrelid=0`)
 		return err
 	}
 
@@ -411,8 +411,8 @@ func Update_Indisexclusion_ctx(ctx context.Context, db *gorm.DB, m *postgres_mig
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indisexclusion() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indisexclusion() error: Indexrelid=0`)
 		return err
 	}
 
@@ -459,8 +459,8 @@ func Update_Indislive_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indislive() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indislive() error: Indexrelid=0`)
 		return err
 	}
 
@@ -507,8 +507,8 @@ func Update_Indisprimary_ctx(ctx context.Context, db *gorm.DB, m *postgres_migra
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indisprimary() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indisprimary() error: Indexrelid=0`)
 		return err
 	}
 
@@ -555,8 +555,8 @@ func Update_Indisready_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indisready() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indisready() error: Indexrelid=0`)
 		return err
 	}
 
@@ -603,8 +603,8 @@ func Update_Indisreplident_ctx(ctx context.Context, db *gorm.DB, m *postgres_mig
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indisreplident() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indisreplident() error: Indexrelid=0`)
 		return err
 	}
 
@@ -651,8 +651,8 @@ func Update_Indisunique_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indisunique() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indisunique() error: Indexrelid=0`)
 		return err
 	}
 
@@ -699,8 +699,8 @@ func Update_Indisvalid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indisvalid() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indisvalid() error: Indexrelid=0`)
 		return err
 	}
 
@@ -747,8 +747,8 @@ func Update_Indkey_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg_
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indkey() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indkey() error: Indexrelid=0`)
 		return err
 	}
 
@@ -795,8 +795,8 @@ func Update_Indnatts_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indnatts() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indnatts() error: Indexrelid=0`)
 		return err
 	}
 
@@ -843,8 +843,8 @@ func Update_Indnkeyatts_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrat
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indnkeyatts() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indnkeyatts() error: Indexrelid=0`)
 		return err
 	}
 
@@ -891,8 +891,8 @@ func Update_Indoption_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indoption() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indoption() error: Indexrelid=0`)
 		return err
 	}
 
@@ -939,8 +939,8 @@ func Update_Indpred_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_pg
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indpred() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indpred() error: Indexrelid=0`)
 		return err
 	}
 
@@ -987,8 +987,8 @@ func Update_Indrelid_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_p
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_Indrelid() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_Indrelid() error: Indexrelid=0`)
 		return err
 	}
 
@@ -1035,8 +1035,8 @@ func Update_VersionID_ctx(ctx context.Context, db *gorm.DB, m *postgres_migrate_
 	}
 
 	//ID не должен быть =0
-	if (m.Indexrelid == 0) ||  (m.VersionID == 0) {
-		err = errors.New(m.TableNameDB()+` Update_VersionID() error: Indexrelid=0`)
+	if (m.Indexrelid == 0) || (m.VersionID == 0) {
+		err = errors.New(m.TableNameDB() + ` Update_VersionID() error: Indexrelid=0`)
 		return err
 	}
 

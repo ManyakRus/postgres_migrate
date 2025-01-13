@@ -4,12 +4,12 @@
 package postgres_migrate_pg_constraint
 
 import (
-	"strconv"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	"github.com/ManyakRus/postgres_migrate/pkg/db/calc_struct_version"
 	"encoding/json"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/calc_struct_version"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
 	"github.com/vmihailenco/msgpack/v5"
 	"reflect"
+	"strconv"
 )
 
 // versionPostgresMigratePgConstraint - версия структуры модели, с учётом имен и типов полей
@@ -125,7 +125,7 @@ func (m *PostgresMigratePgConstraint) Read() error {
 	if Crud_PostgresMigratePgConstraint == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgConstraint.Read(m)
 
 	return err
@@ -136,7 +136,7 @@ func (m *PostgresMigratePgConstraint) Save() error {
 	if Crud_PostgresMigratePgConstraint == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgConstraint.Save(m)
 
 	return err
@@ -147,7 +147,7 @@ func (m *PostgresMigratePgConstraint) Update() error {
 	if Crud_PostgresMigratePgConstraint == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgConstraint.Update(m)
 
 	return err
@@ -158,7 +158,7 @@ func (m *PostgresMigratePgConstraint) Create() error {
 	if Crud_PostgresMigratePgConstraint == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgConstraint.Create(m)
 
 	return err
@@ -169,7 +169,7 @@ func (m *PostgresMigratePgConstraint) Delete() error {
 	if Crud_PostgresMigratePgConstraint == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgConstraint.Delete(m)
 
 	return err
@@ -180,7 +180,7 @@ func (m *PostgresMigratePgConstraint) Restore() error {
 	if Crud_PostgresMigratePgConstraint == nil {
 		return db_constants.ErrorCrudIsNotInit
 	}
-	
+
 	err := Crud_PostgresMigratePgConstraint.Restore(m)
 
 	return err

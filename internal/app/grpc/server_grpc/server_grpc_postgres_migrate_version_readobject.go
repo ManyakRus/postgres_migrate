@@ -4,10 +4,10 @@
 package server_grpc
 
 import (
-	"github.com/ManyakRus/postgres_migrate/pkg/db/crud_objects/crud_object_postgres_migrate_version"
-	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
-	"github.com/ManyakRus/postgres_migrate/pkg/object_model/objects/object_postgres_migrate_version"
 	"context"
+	"github.com/ManyakRus/postgres_migrate/api/grpc_proto"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/crud_objects/crud_object_postgres_migrate_version"
+	"github.com/ManyakRus/postgres_migrate/pkg/object_model/objects/object_postgres_migrate_version"
 	"github.com/ManyakRus/starter/postgres_gorm"
 )
 
@@ -50,4 +50,3 @@ func (s *ServerGRPC) PostgresMigrateVersion_ReadObject(ctx context.Context, Requ
 
 	return &Otvet, err
 }
-

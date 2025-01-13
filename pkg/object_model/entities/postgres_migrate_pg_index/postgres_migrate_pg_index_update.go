@@ -2,8 +2,7 @@ package postgres_migrate_pg_index
 
 import (
 	"github.com/ManyakRus/postgres_migrate/pkg/db/db_constants"
-	)
-
+)
 
 // Update_Indcheckxmin - изменяет объект в БД по ID, присваивает Indcheckxmin
 func (m *PostgresMigratePgIndex) Update_Indcheckxmin() error {

@@ -10,6 +10,7 @@ import (
 	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter/crud_starter_postgres_migrate_pg_description"
 	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter/crud_starter_postgres_migrate_pg_index"
 	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter/crud_starter_postgres_migrate_pg_namespace"
+	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter/crud_starter_postgres_migrate_pg_sequence"
 	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter/crud_starter_postgres_migrate_version"
 
 	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_attribute"
@@ -18,6 +19,7 @@ import (
 	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_description"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_index"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_namespace"
+	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_pg_sequence"
 	"github.com/ManyakRus/postgres_migrate/pkg/db/crud/crud_postgres_migrate_version"
 
 	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client/grpc_postgres_migrate_pg_attribute"
@@ -26,6 +28,7 @@ import (
 	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client/grpc_postgres_migrate_pg_description"
 	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client/grpc_postgres_migrate_pg_index"
 	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client/grpc_postgres_migrate_pg_namespace"
+	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client/grpc_postgres_migrate_pg_sequence"
 	"github.com/ManyakRus/postgres_migrate/pkg/network/grpc/grpc_client/grpc_postgres_migrate_version"
 )
 
@@ -37,6 +40,7 @@ func initCrudTransport_manual_DB() {
 	crud_starter_postgres_migrate_pg_description.SetCrudManualInterface(crud_postgres_migrate_pg_description.Crud_DB{})
 	crud_starter_postgres_migrate_pg_index.SetCrudManualInterface(crud_postgres_migrate_pg_index.Crud_DB{})
 	crud_starter_postgres_migrate_pg_namespace.SetCrudManualInterface(crud_postgres_migrate_pg_namespace.Crud_DB{})
+	crud_starter_postgres_migrate_pg_sequence.SetCrudManualInterface(crud_postgres_migrate_pg_sequence.Crud_DB{})
 	crud_starter_postgres_migrate_version.SetCrudManualInterface(crud_postgres_migrate_version.Crud_DB{})
 }
 
@@ -48,5 +52,6 @@ func initCrudTransport_manual_GRPC() {
 	crud_starter_postgres_migrate_pg_description.SetCrudManualInterface(grpc_postgres_migrate_pg_description.Crud_GRPC{})
 	crud_starter_postgres_migrate_pg_index.SetCrudManualInterface(grpc_postgres_migrate_pg_index.Crud_GRPC{})
 	crud_starter_postgres_migrate_pg_namespace.SetCrudManualInterface(grpc_postgres_migrate_pg_namespace.Crud_GRPC{})
+	crud_starter_postgres_migrate_pg_sequence.SetCrudManualInterface(grpc_postgres_migrate_pg_sequence.Crud_GRPC{})
 	crud_starter_postgres_migrate_version.SetCrudManualInterface(grpc_postgres_migrate_version.Crud_GRPC{})
 }
