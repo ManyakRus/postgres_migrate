@@ -190,28 +190,28 @@ WHERE 1=1
 
 ------------------------------ сравнение -------------------------------------------
 SELECT
-	temp_pg_index.indexrelid as id
+	COALESCE(i.indexrelid, pi.indexrelid) as id
 FROM
-	temp_pm_pg_index
+	temp_pm_pg_index as pi
 
 FULL JOIN
-	temp_pg_index
+	temp_pg_index as i
 ON 
-	temp_pg_index.indexrelid = temp_pm_pg_index.indexrelid
+	i.indexrelid = pi.indexrelid
 
 WHERE 
-	(temp_pg_index.indexrelid IS NULL
+	(i.indexrelid IS NULL
 	OR
-	temp_pm_pg_index.indexrelid IS NULL
+	pi.indexrelid IS NULL
 	)
-	and COALESCE(temp_pm_pg_index.is_deleted, false) = false
+	and COALESCE(pi.is_deleted, false) = false
 
 
 UNION
 
 
 SELECT
-	i.indexrelid
+	COALESCE(i.indexrelid, pi.indexrelid) as id
 FROM
 	temp_pm_pg_index as pi
 

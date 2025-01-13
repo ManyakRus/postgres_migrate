@@ -12,8 +12,8 @@ import (
 	"time"
 )
 
-// Start_Tables_delete - добавляет текст SQL в Text
-func Start_Tables_delete(Settings *config.SettingsINI, VersionID int64) (string, error) {
+// Start_Attributes_delete - добавляет текст SQL в Text
+func Start_Attributes_delete(Settings *config.SettingsINI, VersionID int64) (string, error) {
 	var err error
 	Otvet := ""
 
@@ -249,7 +249,7 @@ ON
 
 
 WHERE 1=1
-	AND a.oid IS NULL
+	AND a.attname IS NULL
 
 
 `

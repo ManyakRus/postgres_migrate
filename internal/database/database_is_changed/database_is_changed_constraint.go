@@ -194,26 +194,28 @@ WHERE 1=1
 
 ------------------------------ сравнение -------------------------------------------
 SELECT
-	temp_pg_constraint.conname as name
+	COALESCE(c.conname, pc.conname) as name
 FROM
-	temp_pm_pg_constraint
+	temp_pm_pg_constraint as pc
 
 FULL JOIN
-	temp_pg_constraint
+	temp_pg_constraint as c
 ON 
-	temp_pg_constraint.oid = temp_pm_pg_constraint.oid
+	c.oid = pc.oid
 
 WHERE 
-	(temp_pg_constraint.oid IS NULL
+	(c.oid IS NULL
 	OR
-	temp_pm_pg_constraint.oid IS NULL
+	pc.oid IS NULL
 	)
-	and COALESCE(temp_pm_pg_constraint.is_deleted, false) = false
+	and COALESCE(pc.is_deleted, false) = false
+
 
 UNION
 
+
 SELECT
-	c.conname
+	COALESCE(c.conname, pc.conname) as name
 FROM
 	temp_pm_pg_constraint as pc
 

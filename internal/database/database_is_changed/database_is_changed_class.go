@@ -168,6 +168,7 @@ CREATE TEMPORARY TABLE temp_pg_class (
 	relfrozenxid xid,
 	relminmxid xid
 );
+
 INSERT into temp_pg_class as tc
 SELECT
 	pc."oid",
@@ -217,26 +218,28 @@ WHERE 1=1
 
 ------------------------------ сравнение -------------------------------------------
 SELECT
-	temp_pg_class.relname as name
+	COALESCE(c.relname, pc.relname) as name
 FROM
-	temp_pm_pg_class
+	temp_pm_pg_class as pc
 
 FULL JOIN
-	temp_pg_class
+	temp_pg_class as c
 ON 
-	temp_pg_class.oid = temp_pm_pg_class.oid
+	c.oid = pc.oid
 
 WHERE 
-	(temp_pg_class.oid IS NULL
+	(c.oid IS NULL
 	OR
-	temp_pm_pg_class.oid IS NULL
+	pc.oid IS NULL
 	)
-	and COALESCE(temp_pm_pg_class.is_deleted, false) = false
+	and COALESCE(pc.is_deleted, false) = false
+
 
 UNION
 
+
 SELECT
-	c.relname
+	COALESCE(c.relname, pc.relname) as relname
 FROM
 	temp_pm_pg_class as pc
 

@@ -118,9 +118,9 @@ FROM
 JOIN
 	temp_pg_attribute_max
 ON 
-	temp_pg_attribute_max.attrelid = pmpa.attrelid
-	and temp_pg_attribute_max.attname = pmpa.attname
-	and temp_pg_attribute_max.version_id = pmpa.version_id
+	temp_pg_attribute_max.attrelid = pa.attrelid
+	and temp_pg_attribute_max.attname = pa.attname
+	and temp_pg_attribute_max.version_id = pa.version_id
 
 WHERE 1=1
 

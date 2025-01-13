@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/ManyakRus/postgres_migrate/internal/config"
+	"github.com/ManyakRus/postgres_migrate/internal/logic"
 	"github.com/ManyakRus/postgres_migrate/pkg/constants"
 	"github.com/ManyakRus/postgres_migrate/pkg/crud_starter"
 	"github.com/ManyakRus/postgres_migrate/pkg/version"
@@ -31,7 +32,10 @@ func StartApp() {
 	crud_starter.InitCrudTransport_DB()
 
 	//
-	stopapp.GetWaitGroup_Main().Wait()
+	logic.Start(&config.Settings)
+
+	//
+	//stopapp.GetWaitGroup_Main().Wait()
 
 	//
 	log.Info("Application closed.")

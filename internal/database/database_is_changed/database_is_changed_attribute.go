@@ -202,7 +202,7 @@ WHERE 1=1
 
 ------------------------------ сравнение -------------------------------------------
 SELECT
-	a.attname as name
+	COALESCE(a.attname, pa.attname) as name
 FROM
 	temp_pm_pg_attribute as pa
 
@@ -225,7 +225,7 @@ UNION
 
 
 SELECT
-	a.attname
+	COALESCE(a.attname, pa.attname) as attname
 FROM
 	temp_pm_pg_attribute as pa
 

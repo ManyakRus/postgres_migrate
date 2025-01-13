@@ -145,7 +145,7 @@ WHERE 1=1
 
 ------------------------------ сравнение -------------------------------------------
 SELECT
-	d.description as name
+	COALESCE(d.description, pd.description) as name
 FROM
 	temp_pm_pg_description as pd
 
@@ -163,10 +163,12 @@ WHERE
 	)
 	and COALESCE(pd.is_deleted, false) = false
 
+
 UNION
 
+
 SELECT
-	d.description
+	COALESCE(d.description, pd.description) as name
 FROM
 	temp_pm_pg_description as pd
 

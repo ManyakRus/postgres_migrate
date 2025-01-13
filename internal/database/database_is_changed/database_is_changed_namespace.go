@@ -99,26 +99,28 @@ WHERE 1=1
 
 ------------------------------ сравнение -------------------------------------------
 SELECT
-	temp_pg_namespace.nspname as name
+	COALESCE(pn.nspname, n.nspname) as name
 FROM
-	temp_pm_pg_namespace
+	temp_pm_pg_namespace as pn
 
 FULL JOIN
-	temp_pg_namespace
+	temp_pg_namespace as n
 ON 
-	temp_pg_namespace.oid = temp_pm_pg_namespace.oid
+	n.oid = pn.oid
 
 WHERE 
-	(temp_pg_namespace.oid IS NULL
+	(n.oid IS NULL
 	OR
-	temp_pm_pg_namespace.oid IS NULL
+	pn.oid IS NULL
 	)
-	and COALESCE(temp_pm_pg_namespace.is_deleted, false) = false
+	and COALESCE(pn.is_deleted, false) = false
+
 
 UNION
 
+
 SELECT
-	pn.nspname
+	COALESCE(pn.nspname, n.nspname) as name
 FROM
 	temp_pm_pg_namespace as pn
 
