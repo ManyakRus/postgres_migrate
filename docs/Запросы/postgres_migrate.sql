@@ -5,7 +5,7 @@
 -- Dumped from database version 12.9
 -- Dumped by pg_dump version 14.15 (Ubuntu 14.15-0ubuntu0.22.04.1)
 
--- Started on 2024-12-18 13:07:59 MSK
+-- Started on 2025-01-13 11:27:20 MSK
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 89 (class 2615 OID 676103667)
+-- TOC entry 95 (class 2615 OID 678300789)
 -- Name: postgres_migrate; Type: SCHEMA; Schema: -; Owner: dev
 --
 
@@ -33,7 +33,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 461 (class 1259 OID 676124217)
+-- TOC entry 475 (class 1259 OID 678300790)
 -- Name: postgres_migrate_pg_attribute; Type: TABLE; Schema: postgres_migrate; Owner: dev
 --
 
@@ -59,15 +59,17 @@ CREATE TABLE postgres_migrate.postgres_migrate_pg_attribute (
     attisdropped boolean NOT NULL,
     attislocal boolean NOT NULL,
     attinhcount integer NOT NULL,
-    attcollation oid NOT NULL
+    attcollation oid NOT NULL,
+    is_deleted boolean DEFAULT false NOT NULL,
+    attmissingval text
 );
 
 
 ALTER TABLE postgres_migrate.postgres_migrate_pg_attribute OWNER TO dev;
 
 --
--- TOC entry 3707 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3729 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: TABLE postgres_migrate_pg_attribute; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -75,8 +77,8 @@ COMMENT ON TABLE postgres_migrate.postgres_migrate_pg_attribute IS 'В ката�
 
 
 --
--- TOC entry 3708 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3730 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.version_id; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -84,8 +86,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.version_id IS '
 
 
 --
--- TOC entry 3709 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3731 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attrelid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -93,8 +95,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attrelid IS 'Т
 
 
 --
--- TOC entry 3710 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3732 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attname; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -102,8 +104,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attname IS 'И�
 
 
 --
--- TOC entry 3711 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3733 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.atttypid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -111,8 +113,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.atttypid IS 'Т
 
 
 --
--- TOC entry 3712 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3734 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attstattarget; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -120,8 +122,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attstattarget I
 
 
 --
--- TOC entry 3713 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3735 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attlen; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -129,8 +131,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attlen IS 'Ко
 
 
 --
--- TOC entry 3714 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3736 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attnum; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -138,8 +140,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attnum IS 'По
 
 
 --
--- TOC entry 3715 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3737 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attndims; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -147,8 +149,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attndims IS 'Ч
 
 
 --
--- TOC entry 3716 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3738 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attcacheoff; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -156,8 +158,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attcacheoff IS 
 
 
 --
--- TOC entry 3717 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3739 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.atttypmod; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -165,8 +167,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.atttypmod IS '�
 
 
 --
--- TOC entry 3718 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3740 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attbyval; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -174,8 +176,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attbyval IS 'К
 
 
 --
--- TOC entry 3719 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3741 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attstorage; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -183,8 +185,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attstorage IS '
 
 
 --
--- TOC entry 3720 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3742 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attalign; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -192,8 +194,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attalign IS 'К
 
 
 --
--- TOC entry 3721 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3743 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attnotnull; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -201,8 +203,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attnotnull IS '
 
 
 --
--- TOC entry 3722 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3744 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.atthasdef; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -210,8 +212,35 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.atthasdef IS '�
 
 
 --
--- TOC entry 3723 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3745 (class 0 OID 0)
+-- Dependencies: 475
+-- Name: COLUMN postgres_migrate_pg_attribute.atthasmissing; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.atthasmissing IS 'Столбец имеет значение, которое используется, когда он полностью отсутствует в строке. Это имеет место, когда столбец добавляется с неизменчивым значением DEFAULT после создания строки. Фактическое значение хранится в attmissingval.';
+
+
+--
+-- TOC entry 3746 (class 0 OID 0)
+-- Dependencies: 475
+-- Name: COLUMN postgres_migrate_pg_attribute.attidentity; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attidentity IS 'Пустой символ ('''') указывает, что это не столбец идентификации. Символ a указывает, что значение генерируется всегда, а d — что значение генерируется по умолчанию.';
+
+
+--
+-- TOC entry 3747 (class 0 OID 0)
+-- Dependencies: 475
+-- Name: COLUMN postgres_migrate_pg_attribute.attgenerated; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attgenerated IS 'Если нулевой байт (''''), это не генерируемый столбец. В противном случае, s означает, что генерируемое значение хранится (stored). (Другие значения могут быть добавлены в будущем.)';
+
+
+--
+-- TOC entry 3748 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attisdropped; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -219,8 +248,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attisdropped IS
 
 
 --
--- TOC entry 3724 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3749 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attislocal; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -228,8 +257,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attislocal IS '
 
 
 --
--- TOC entry 3725 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3750 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attinhcount; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -237,8 +266,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attinhcount IS 
 
 
 --
--- TOC entry 3726 (class 0 OID 0)
--- Dependencies: 461
+-- TOC entry 3751 (class 0 OID 0)
+-- Dependencies: 475
 -- Name: COLUMN postgres_migrate_pg_attribute.attcollation; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -246,7 +275,25 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attcollation IS
 
 
 --
--- TOC entry 462 (class 1259 OID 676125388)
+-- TOC entry 3752 (class 0 OID 0)
+-- Dependencies: 475
+-- Name: COLUMN postgres_migrate_pg_attribute.is_deleted; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.is_deleted IS 'Признак что оригинальная запись удалена';
+
+
+--
+-- TOC entry 3753 (class 0 OID 0)
+-- Dependencies: 475
+-- Name: COLUMN postgres_migrate_pg_attribute.attmissingval; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_attribute.attmissingval IS 'В данном столбце размещается массив с одним элементом. Значение в этом элементе используется, когда столбец полностью отсутствует в строке, что имеет место, когда столбец добавляется с неизменчивым значением DEFAULT после создания строки. Это значение используется, только когда atthasmissing равен true. Если значение отсутствует, столбец будет содержать NULL.';
+
+
+--
+-- TOC entry 476 (class 1259 OID 678300793)
 -- Name: postgres_migrate_pg_class; Type: TABLE; Schema: postgres_migrate; Owner: dev
 --
 
@@ -281,15 +328,16 @@ CREATE TABLE postgres_migrate.postgres_migrate_pg_class (
     relispartition boolean NOT NULL,
     relrewrite oid NOT NULL,
     relfrozenxid xid NOT NULL,
-    relminmxid xid NOT NULL
+    relminmxid xid NOT NULL,
+    is_deleted boolean DEFAULT false NOT NULL
 );
 
 
 ALTER TABLE postgres_migrate.postgres_migrate_pg_class OWNER TO dev;
 
 --
--- TOC entry 3727 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3754 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: TABLE postgres_migrate_pg_class; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -297,8 +345,8 @@ COMMENT ON TABLE postgres_migrate.postgres_migrate_pg_class IS 'В катало�
 
 
 --
--- TOC entry 3728 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3755 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.version_id; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -306,8 +354,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.version_id IS 'Ве
 
 
 --
--- TOC entry 3729 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3756 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.oid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -315,8 +363,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.oid IS 'Идент�
 
 
 --
--- TOC entry 3730 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3757 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relname; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -324,8 +372,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relname IS 'Имя 
 
 
 --
--- TOC entry 3731 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3758 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relnamespace; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -333,8 +381,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relnamespace IS 'OI
 
 
 --
--- TOC entry 3732 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3759 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.reltype; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -342,8 +390,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.reltype IS 'OID т�
 
 
 --
--- TOC entry 3733 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3760 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.reloftype; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -351,8 +399,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.reloftype IS 'Дл�
 
 
 --
--- TOC entry 3734 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3761 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relowner; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -360,8 +408,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relowner IS 'Вла
 
 
 --
--- TOC entry 3735 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3762 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relam; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -369,8 +417,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relam IS 'Если 
 
 
 --
--- TOC entry 3736 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3763 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relfilenode; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -378,8 +426,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relfilenode IS 'И�
 
 
 --
--- TOC entry 3737 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3764 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.reltablespace; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -387,8 +435,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.reltablespace IS '�
 
 
 --
--- TOC entry 3738 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3765 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relpages; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -396,8 +444,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relpages IS 'Раз
 
 
 --
--- TOC entry 3739 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3766 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.reltuples; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -405,8 +453,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.reltuples IS 'Чи�
 
 
 --
--- TOC entry 3740 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3767 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relallvisible; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -414,8 +462,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relallvisible IS '�
 
 
 --
--- TOC entry 3741 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3768 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.reltoastrelid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -423,8 +471,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.reltoastrelid IS 'O
 
 
 --
--- TOC entry 3742 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3769 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relhasindex; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -432,8 +480,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relhasindex IS 'Tru
 
 
 --
--- TOC entry 3743 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3770 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relisshared; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -441,8 +489,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relisshared IS 'Tru
 
 
 --
--- TOC entry 3744 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3771 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relpersistence; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -450,8 +498,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relpersistence IS '
 
 
 --
--- TOC entry 3745 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3772 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relkind; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -459,8 +507,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relkind IS 'r = о�
 
 
 --
--- TOC entry 3746 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3773 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relnatts; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -468,8 +516,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relnatts IS 'Чис
 
 
 --
--- TOC entry 3747 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3774 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relchecks; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -477,8 +525,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relchecks IS 'Чи�
 
 
 --
--- TOC entry 3748 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3775 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relhasrules; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -486,8 +534,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relhasrules IS 'Tru
 
 
 --
--- TOC entry 3749 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3776 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relhastriggers; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -495,8 +543,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relhastriggers IS '
 
 
 --
--- TOC entry 3750 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3777 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relhassubclass; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -504,8 +552,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relhassubclass IS '
 
 
 --
--- TOC entry 3751 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3778 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relrowsecurity; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -513,8 +561,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relrowsecurity IS '
 
 
 --
--- TOC entry 3752 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3779 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relforcerowsecurity; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -522,8 +570,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relforcerowsecurity
 
 
 --
--- TOC entry 3753 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3780 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relispopulated; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -531,8 +579,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relispopulated IS '
 
 
 --
--- TOC entry 3754 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3781 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relreplident; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -540,8 +588,26 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relreplident IS 'С
 
 
 --
--- TOC entry 3755 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3782 (class 0 OID 0)
+-- Dependencies: 476
+-- Name: COLUMN postgres_migrate_pg_class.relispartition; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relispartition IS 'True, если таблица или индекс является секцией';
+
+
+--
+-- TOC entry 3783 (class 0 OID 0)
+-- Dependencies: 476
+-- Name: COLUMN postgres_migrate_pg_class.relrewrite; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relrewrite IS 'Для новых отношений, записываемых в процессе операции DDL, требующей перезаписи таблицы, это поле содержит OID исходного отношения; в противном случае — 0. Это состояние видимо только внутри; в этом поле никогда не должно быть ненулевого значения для видимого пользователем отношения.';
+
+
+--
+-- TOC entry 3784 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relfrozenxid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -549,8 +615,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relfrozenxid IS 'И
 
 
 --
--- TOC entry 3756 (class 0 OID 0)
--- Dependencies: 462
+-- TOC entry 3785 (class 0 OID 0)
+-- Dependencies: 476
 -- Name: COLUMN postgres_migrate_pg_class.relminmxid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -558,7 +624,16 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.relminmxid IS 'Ид
 
 
 --
--- TOC entry 463 (class 1259 OID 676125405)
+-- TOC entry 3786 (class 0 OID 0)
+-- Dependencies: 476
+-- Name: COLUMN postgres_migrate_pg_class.is_deleted; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_class.is_deleted IS 'Признак что оригинальная запись удалена';
+
+
+--
+-- TOC entry 477 (class 1259 OID 678300796)
 -- Name: postgres_migrate_pg_constraint; Type: TABLE; Schema: postgres_migrate; Owner: dev
 --
 
@@ -587,15 +662,16 @@ CREATE TABLE postgres_migrate.postgres_migrate_pg_constraint (
     conpfeqop oid[],
     conppeqop oid[],
     conffeqop oid[],
-    conexclop oid[]
+    conexclop oid[],
+    is_deleted boolean DEFAULT false NOT NULL
 );
 
 
 ALTER TABLE postgres_migrate.postgres_migrate_pg_constraint OWNER TO dev;
 
 --
--- TOC entry 3757 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3787 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: TABLE postgres_migrate_pg_constraint; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -607,8 +683,8 @@ COMMENT ON TABLE postgres_migrate.postgres_migrate_pg_constraint IS 'В ката
 
 
 --
--- TOC entry 3758 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3788 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.version_id; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -616,8 +692,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.version_id IS 
 
 
 --
--- TOC entry 3759 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3789 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.oid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -625,8 +701,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.oid IS 'Иде
 
 
 --
--- TOC entry 3760 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3790 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.conname; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -634,8 +710,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.conname IS 'И
 
 
 --
--- TOC entry 3761 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3791 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.connamespace; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -643,8 +719,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.connamespace I
 
 
 --
--- TOC entry 3762 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3792 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.contype; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -652,8 +728,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.contype IS 'c 
 
 
 --
--- TOC entry 3763 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3793 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.condeferrable; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -661,8 +737,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.condeferrable 
 
 
 --
--- TOC entry 3764 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3794 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.condeferred; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -670,8 +746,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.condeferred IS
 
 
 --
--- TOC entry 3765 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3795 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.convalidated; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -679,8 +755,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.convalidated I
 
 
 --
--- TOC entry 3766 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3796 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.conrelid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -688,8 +764,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.conrelid IS '�
 
 
 --
--- TOC entry 3767 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3797 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.contypid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -697,8 +773,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.contypid IS '�
 
 
 --
--- TOC entry 3768 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3798 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.conindid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -706,8 +782,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.conindid IS '�
 
 
 --
--- TOC entry 3769 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3799 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.conparentid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -715,8 +791,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.conparentid IS
 
 
 --
--- TOC entry 3770 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3800 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.confrelid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -724,8 +800,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.confrelid IS '
 
 
 --
--- TOC entry 3771 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3801 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.confupdtype; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -733,8 +809,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.confupdtype IS
 
 
 --
--- TOC entry 3772 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3802 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.confdeltype; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -742,8 +818,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.confdeltype IS
 
 
 --
--- TOC entry 3773 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3803 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.confmatchtype; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -751,8 +827,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.confmatchtype 
 
 
 --
--- TOC entry 3774 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3804 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.conislocal; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -760,8 +836,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.conislocal IS 
 
 
 --
--- TOC entry 3775 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3805 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.coninhcount; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -769,8 +845,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.coninhcount IS
 
 
 --
--- TOC entry 3776 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3806 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.connoinherit; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -778,8 +854,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.connoinherit I
 
 
 --
--- TOC entry 3777 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3807 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.conkey; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -787,8 +863,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.conkey IS 'Д�
 
 
 --
--- TOC entry 3778 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3808 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.confkey; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -796,8 +872,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.confkey IS 'Д
 
 
 --
--- TOC entry 3779 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3809 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.conpfeqop; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -805,8 +881,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.conpfeqop IS '
 
 
 --
--- TOC entry 3780 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3810 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.conppeqop; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -814,8 +890,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.conppeqop IS '
 
 
 --
--- TOC entry 3781 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3811 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.conffeqop; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -823,8 +899,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.conffeqop IS '
 
 
 --
--- TOC entry 3782 (class 0 OID 0)
--- Dependencies: 463
+-- TOC entry 3812 (class 0 OID 0)
+-- Dependencies: 477
 -- Name: COLUMN postgres_migrate_pg_constraint.conexclop; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -832,7 +908,16 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.conexclop IS '
 
 
 --
--- TOC entry 464 (class 1259 OID 676125433)
+-- TOC entry 3813 (class 0 OID 0)
+-- Dependencies: 477
+-- Name: COLUMN postgres_migrate_pg_constraint.is_deleted; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_constraint.is_deleted IS 'Признак что оригинальная запись удалена';
+
+
+--
+-- TOC entry 478 (class 1259 OID 678300802)
 -- Name: postgres_migrate_pg_description; Type: TABLE; Schema: postgres_migrate; Owner: dev
 --
 
@@ -841,15 +926,16 @@ CREATE TABLE postgres_migrate.postgres_migrate_pg_description (
     objoid oid NOT NULL,
     classoid oid NOT NULL,
     objsubid integer NOT NULL,
-    description text NOT NULL COLLATE pg_catalog."C"
+    description text NOT NULL COLLATE pg_catalog."C",
+    is_deleted boolean DEFAULT false NOT NULL
 );
 
 
 ALTER TABLE postgres_migrate.postgres_migrate_pg_description OWNER TO dev;
 
 --
--- TOC entry 3783 (class 0 OID 0)
--- Dependencies: 464
+-- TOC entry 3814 (class 0 OID 0)
+-- Dependencies: 478
 -- Name: TABLE postgres_migrate_pg_description; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -859,8 +945,8 @@ COMMENT ON TABLE postgres_migrate.postgres_migrate_pg_description IS 'В кат�
 
 
 --
--- TOC entry 3784 (class 0 OID 0)
--- Dependencies: 464
+-- TOC entry 3815 (class 0 OID 0)
+-- Dependencies: 478
 -- Name: COLUMN postgres_migrate_pg_description.version_id; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -868,8 +954,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_description.version_id IS
 
 
 --
--- TOC entry 3785 (class 0 OID 0)
--- Dependencies: 464
+-- TOC entry 3816 (class 0 OID 0)
+-- Dependencies: 478
 -- Name: COLUMN postgres_migrate_pg_description.objoid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -877,8 +963,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_description.objoid IS 'OI
 
 
 --
--- TOC entry 3786 (class 0 OID 0)
--- Dependencies: 464
+-- TOC entry 3817 (class 0 OID 0)
+-- Dependencies: 478
 -- Name: COLUMN postgres_migrate_pg_description.classoid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -886,8 +972,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_description.classoid IS '
 
 
 --
--- TOC entry 3787 (class 0 OID 0)
--- Dependencies: 464
+-- TOC entry 3818 (class 0 OID 0)
+-- Dependencies: 478
 -- Name: COLUMN postgres_migrate_pg_description.objsubid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -895,8 +981,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_description.objsubid IS '
 
 
 --
--- TOC entry 3788 (class 0 OID 0)
--- Dependencies: 464
+-- TOC entry 3819 (class 0 OID 0)
+-- Dependencies: 478
 -- Name: COLUMN postgres_migrate_pg_description.description; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -904,7 +990,16 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_description.description I
 
 
 --
--- TOC entry 465 (class 1259 OID 676125440)
+-- TOC entry 3820 (class 0 OID 0)
+-- Dependencies: 478
+-- Name: COLUMN postgres_migrate_pg_description.is_deleted; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_description.is_deleted IS 'Признак что оригинальная запись удалена';
+
+
+--
+-- TOC entry 479 (class 1259 OID 678300808)
 -- Name: postgres_migrate_pg_index; Type: TABLE; Schema: postgres_migrate; Owner: dev
 --
 
@@ -929,15 +1024,16 @@ CREATE TABLE postgres_migrate.postgres_migrate_pg_index (
     indclass oidvector NOT NULL,
     indoption int2vector NOT NULL,
     indexprs pg_node_tree COLLATE pg_catalog."C",
-    indpred pg_node_tree COLLATE pg_catalog."C"
+    indpred pg_node_tree COLLATE pg_catalog."C",
+    is_deleted boolean DEFAULT false NOT NULL
 );
 
 
 ALTER TABLE postgres_migrate.postgres_migrate_pg_index OWNER TO dev;
 
 --
--- TOC entry 3789 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3821 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: TABLE postgres_migrate_pg_index; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -945,8 +1041,8 @@ COMMENT ON TABLE postgres_migrate.postgres_migrate_pg_index IS 'В катало�
 
 
 --
--- TOC entry 3790 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3822 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.version_id; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -954,8 +1050,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.version_id IS 'Ве
 
 
 --
--- TOC entry 3791 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3823 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indexrelid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -963,8 +1059,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indexrelid IS 'OID 
 
 
 --
--- TOC entry 3792 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3824 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indrelid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -972,8 +1068,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indrelid IS 'OID з
 
 
 --
--- TOC entry 3793 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3825 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indnatts; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -981,8 +1077,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indnatts IS 'Чис
 
 
 --
--- TOC entry 3794 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3826 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indnkeyatts; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -990,8 +1086,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indnkeyatts IS 'К�
 
 
 --
--- TOC entry 3795 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3827 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indisunique; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -999,8 +1095,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indisunique IS 'Е�
 
 
 --
--- TOC entry 3796 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3828 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indisprimary; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1008,8 +1104,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indisprimary IS 'Е
 
 
 --
--- TOC entry 3797 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3829 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indisexclusion; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1017,8 +1113,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indisexclusion IS '
 
 
 --
--- TOC entry 3798 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3830 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indimmediate; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1026,8 +1122,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indimmediate IS 'Е
 
 
 --
--- TOC entry 3799 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3831 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indisclustered; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1035,8 +1131,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indisclustered IS '
 
 
 --
--- TOC entry 3800 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3832 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indisvalid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1044,8 +1140,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indisvalid IS 'Ес
 
 
 --
--- TOC entry 3801 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3833 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indcheckxmin; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1053,8 +1149,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indcheckxmin IS 'Е
 
 
 --
--- TOC entry 3802 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3834 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indisready; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1062,8 +1158,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indisready IS 'Ес
 
 
 --
--- TOC entry 3803 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3835 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indislive; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1071,8 +1167,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indislive IS 'Ес�
 
 
 --
--- TOC entry 3804 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3836 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indisreplident; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1080,8 +1176,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indisreplident IS '
 
 
 --
--- TOC entry 3805 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3837 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indkey; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1089,8 +1185,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indkey IS 'Это �
 
 
 --
--- TOC entry 3806 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3838 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indcollation; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1098,8 +1194,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indcollation IS 'Д
 
 
 --
--- TOC entry 3807 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3839 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indclass; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1107,8 +1203,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indclass IS 'Для
 
 
 --
--- TOC entry 3808 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3840 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indoption; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1116,8 +1212,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indoption IS 'Эт�
 
 
 --
--- TOC entry 3809 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3841 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indexprs; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1125,8 +1221,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indexprs IS 'Дер
 
 
 --
--- TOC entry 3810 (class 0 OID 0)
--- Dependencies: 465
+-- TOC entry 3842 (class 0 OID 0)
+-- Dependencies: 479
 -- Name: COLUMN postgres_migrate_pg_index.indpred; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1134,7 +1230,16 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.indpred IS 'Дер�
 
 
 --
--- TOC entry 466 (class 1259 OID 676125454)
+-- TOC entry 3843 (class 0 OID 0)
+-- Dependencies: 479
+-- Name: COLUMN postgres_migrate_pg_index.is_deleted; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_index.is_deleted IS 'Признак что оригинальная запись удалена';
+
+
+--
+-- TOC entry 480 (class 1259 OID 678300814)
 -- Name: postgres_migrate_pg_namespace; Type: TABLE; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1143,15 +1248,16 @@ CREATE TABLE postgres_migrate.postgres_migrate_pg_namespace (
     oid oid NOT NULL,
     nspname name NOT NULL,
     nspowner oid NOT NULL,
-    nspacl aclitem[]
+    nspacl aclitem[],
+    is_deleted boolean DEFAULT false NOT NULL
 );
 
 
 ALTER TABLE postgres_migrate.postgres_migrate_pg_namespace OWNER TO dev;
 
 --
--- TOC entry 3811 (class 0 OID 0)
--- Dependencies: 466
+-- TOC entry 3844 (class 0 OID 0)
+-- Dependencies: 480
 -- Name: TABLE postgres_migrate_pg_namespace; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1159,8 +1265,8 @@ COMMENT ON TABLE postgres_migrate.postgres_migrate_pg_namespace IS 'В postgres_
 
 
 --
--- TOC entry 3812 (class 0 OID 0)
--- Dependencies: 466
+-- TOC entry 3845 (class 0 OID 0)
+-- Dependencies: 480
 -- Name: COLUMN postgres_migrate_pg_namespace.version_id; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1168,8 +1274,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_namespace.version_id IS '
 
 
 --
--- TOC entry 3813 (class 0 OID 0)
--- Dependencies: 466
+-- TOC entry 3846 (class 0 OID 0)
+-- Dependencies: 480
 -- Name: COLUMN postgres_migrate_pg_namespace.oid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1177,8 +1283,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_namespace.oid IS 'Иде�
 
 
 --
--- TOC entry 3814 (class 0 OID 0)
--- Dependencies: 466
+-- TOC entry 3847 (class 0 OID 0)
+-- Dependencies: 480
 -- Name: COLUMN postgres_migrate_pg_namespace.nspname; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1186,8 +1292,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_namespace.nspname IS 'И�
 
 
 --
--- TOC entry 3815 (class 0 OID 0)
--- Dependencies: 466
+-- TOC entry 3848 (class 0 OID 0)
+-- Dependencies: 480
 -- Name: COLUMN postgres_migrate_pg_namespace.nspowner; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1195,8 +1301,8 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_namespace.nspowner IS 'В
 
 
 --
--- TOC entry 3816 (class 0 OID 0)
--- Dependencies: 466
+-- TOC entry 3849 (class 0 OID 0)
+-- Dependencies: 480
 -- Name: COLUMN postgres_migrate_pg_namespace.nspacl; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1204,8 +1310,128 @@ COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_namespace.nspacl IS 'Пр
 
 
 --
--- TOC entry 460 (class 1259 OID 676104923)
--- Name: version; Type: TABLE; Schema: postgres_migrate; Owner: dev
+-- TOC entry 3850 (class 0 OID 0)
+-- Dependencies: 480
+-- Name: COLUMN postgres_migrate_pg_namespace.is_deleted; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_namespace.is_deleted IS 'Признак что оригинальная запись удалена';
+
+
+--
+-- TOC entry 483 (class 1259 OID 736853565)
+-- Name: postgres_migrate_pg_sequence; Type: TABLE; Schema: postgres_migrate; Owner: dev
+--
+
+CREATE TABLE postgres_migrate.postgres_migrate_pg_sequence (
+    version_id bigint NOT NULL,
+    seqrelid oid NOT NULL,
+    seqtypid oid NOT NULL,
+    seqstart bigint NOT NULL,
+    seqincrement bigint NOT NULL,
+    seqmax bigint NOT NULL,
+    seqmin bigint NOT NULL,
+    seqcache bigint NOT NULL,
+    seqcycle boolean NOT NULL,
+    is_deleted boolean DEFAULT false NOT NULL
+);
+
+
+ALTER TABLE postgres_migrate.postgres_migrate_pg_sequence OWNER TO dev;
+
+--
+-- TOC entry 3851 (class 0 OID 0)
+-- Dependencies: 483
+-- Name: COLUMN postgres_migrate_pg_sequence.version_id; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_sequence.version_id IS 'Версия изменений (ИД)';
+
+
+--
+-- TOC entry 3852 (class 0 OID 0)
+-- Dependencies: 483
+-- Name: COLUMN postgres_migrate_pg_sequence.seqrelid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_sequence.seqrelid IS 'OID записи в pg_class для этой последовательности';
+
+
+--
+-- TOC entry 3853 (class 0 OID 0)
+-- Dependencies: 483
+-- Name: COLUMN postgres_migrate_pg_sequence.seqtypid; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_sequence.seqtypid IS 'Тип данных последовательности';
+
+
+--
+-- TOC entry 3854 (class 0 OID 0)
+-- Dependencies: 483
+-- Name: COLUMN postgres_migrate_pg_sequence.seqstart; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_sequence.seqstart IS 'Начальное значение последовательности';
+
+
+--
+-- TOC entry 3855 (class 0 OID 0)
+-- Dependencies: 483
+-- Name: COLUMN postgres_migrate_pg_sequence.seqincrement; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_sequence.seqincrement IS 'Шаг увеличения последовательности';
+
+
+--
+-- TOC entry 3856 (class 0 OID 0)
+-- Dependencies: 483
+-- Name: COLUMN postgres_migrate_pg_sequence.seqmax; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_sequence.seqmax IS 'Максимальное значение последовательности';
+
+
+--
+-- TOC entry 3857 (class 0 OID 0)
+-- Dependencies: 483
+-- Name: COLUMN postgres_migrate_pg_sequence.seqmin; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_sequence.seqmin IS 'Минимальное значение последовательности';
+
+
+--
+-- TOC entry 3858 (class 0 OID 0)
+-- Dependencies: 483
+-- Name: COLUMN postgres_migrate_pg_sequence.seqcache; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_sequence.seqcache IS 'Размер кеша последовательности';
+
+
+--
+-- TOC entry 3859 (class 0 OID 0)
+-- Dependencies: 483
+-- Name: COLUMN postgres_migrate_pg_sequence.seqcycle; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_sequence.seqcycle IS 'Зацикливается ли последовательность';
+
+
+--
+-- TOC entry 3860 (class 0 OID 0)
+-- Dependencies: 483
+-- Name: COLUMN postgres_migrate_pg_sequence.is_deleted; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+--
+
+COMMENT ON COLUMN postgres_migrate.postgres_migrate_pg_sequence.is_deleted IS 'Признак что оригинальная запись удалена';
+
+
+--
+-- TOC entry 481 (class 1259 OID 678300820)
+-- Name: postgres_migrate_version; Type: TABLE; Schema: postgres_migrate; Owner: dev
 --
 
 CREATE TABLE postgres_migrate.postgres_migrate_version (
@@ -1220,35 +1446,35 @@ CREATE TABLE postgres_migrate.postgres_migrate_version (
 ALTER TABLE postgres_migrate.postgres_migrate_version OWNER TO dev;
 
 --
--- TOC entry 3817 (class 0 OID 0)
--- Dependencies: 460
--- Name: COLUMN version.id; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+-- TOC entry 3861 (class 0 OID 0)
+-- Dependencies: 481
+-- Name: COLUMN postgres_migrate_version.id; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
 COMMENT ON COLUMN postgres_migrate.postgres_migrate_version.id IS 'Уникальный технический идентификатор';
 
 
 --
--- TOC entry 3818 (class 0 OID 0)
--- Dependencies: 460
--- Name: COLUMN version.created_at; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+-- TOC entry 3862 (class 0 OID 0)
+-- Dependencies: 481
+-- Name: COLUMN postgres_migrate_version.created_at; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
 COMMENT ON COLUMN postgres_migrate.postgres_migrate_version.created_at IS 'Дата создания элемента';
 
 
 --
--- TOC entry 3819 (class 0 OID 0)
--- Dependencies: 460
--- Name: COLUMN version.modified_at; Type: COMMENT; Schema: postgres_migrate; Owner: dev
+-- TOC entry 3863 (class 0 OID 0)
+-- Dependencies: 481
+-- Name: COLUMN postgres_migrate_version.modified_at; Type: COMMENT; Schema: postgres_migrate; Owner: dev
 --
 
 COMMENT ON COLUMN postgres_migrate.postgres_migrate_version.modified_at IS 'Дата последнего изменения элемента';
 
 
 --
--- TOC entry 459 (class 1259 OID 676104921)
--- Name: version_id_seq; Type: SEQUENCE; Schema: postgres_migrate; Owner: dev
+-- TOC entry 482 (class 1259 OID 678300826)
+-- Name: postgres_migrate_version_id_seq; Type: SEQUENCE; Schema: postgres_migrate; Owner: dev
 --
 
 ALTER TABLE postgres_migrate.postgres_migrate_version ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTITY (
@@ -1262,52 +1488,7 @@ ALTER TABLE postgres_migrate.postgres_migrate_version ALTER COLUMN id ADD GENERA
 
 
 --
--- TOC entry 3543 (class 2606 OID 676182095)
--- Name: postgres_migrate_pg_attribute postgres_migrate_pg_attribute_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
---
-
-ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_attribute
-    ADD CONSTRAINT postgres_migrate_pg_attribute_pk PRIMARY KEY (attrelid, attname, version_id);
-
-
---
--- TOC entry 3548 (class 2606 OID 676184153)
--- Name: postgres_migrate_pg_class postgres_migrate_pg_class_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
---
-
-ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_class
-    ADD CONSTRAINT postgres_migrate_pg_class_pk PRIMARY KEY (oid, version_id);
-
-
---
--- TOC entry 3557 (class 2606 OID 676185121)
--- Name: postgres_migrate_pg_constraint postgres_migrate_pg_constraint_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
---
-
-ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_constraint
-    ADD CONSTRAINT postgres_migrate_pg_constraint_pk PRIMARY KEY (oid, version_id);
-
-
---
--- TOC entry 3560 (class 2606 OID 676167159)
--- Name: postgres_migrate_pg_description postgres_migrate_pg_description_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
---
-
-ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_description
-    ADD CONSTRAINT postgres_migrate_pg_description_pk PRIMARY KEY (objoid, classoid, objsubid, version_id);
-
-
---
--- TOC entry 3564 (class 2606 OID 676187628)
--- Name: postgres_migrate_pg_index postgres_migrate_pg_index_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
---
-
-ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_index
-    ADD CONSTRAINT postgres_migrate_pg_index_pk PRIMARY KEY (indrelid, indexrelid, version_id);
-
-
---
--- TOC entry 3566 (class 2606 OID 676167165)
+-- TOC entry 3582 (class 2606 OID 678300839)
 -- Name: postgres_migrate_pg_namespace pg_name_space_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1316,8 +1497,62 @@ ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_namespace
 
 
 --
--- TOC entry 3541 (class 2606 OID 676104930)
--- Name: version version_pkey; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
+-- TOC entry 3559 (class 2606 OID 678300829)
+-- Name: postgres_migrate_pg_attribute postgres_migrate_pg_attribute_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
+--
+
+ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_attribute
+    ADD CONSTRAINT postgres_migrate_pg_attribute_pk PRIMARY KEY (attrelid, attname, version_id);
+
+
+--
+-- TOC entry 3564 (class 2606 OID 678300831)
+-- Name: postgres_migrate_pg_class postgres_migrate_pg_class_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
+--
+
+ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_class
+    ADD CONSTRAINT postgres_migrate_pg_class_pk PRIMARY KEY (oid, version_id);
+
+
+--
+-- TOC entry 3573 (class 2606 OID 678300833)
+-- Name: postgres_migrate_pg_constraint postgres_migrate_pg_constraint_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
+--
+
+ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_constraint
+    ADD CONSTRAINT postgres_migrate_pg_constraint_pk PRIMARY KEY (oid, version_id);
+
+
+--
+-- TOC entry 3576 (class 2606 OID 678300835)
+-- Name: postgres_migrate_pg_description postgres_migrate_pg_description_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
+--
+
+ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_description
+    ADD CONSTRAINT postgres_migrate_pg_description_pk PRIMARY KEY (objoid, classoid, objsubid, version_id);
+
+
+--
+-- TOC entry 3580 (class 2606 OID 682707219)
+-- Name: postgres_migrate_pg_index postgres_migrate_pg_index_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
+--
+
+ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_index
+    ADD CONSTRAINT postgres_migrate_pg_index_pk PRIMARY KEY (indexrelid, version_id);
+
+
+--
+-- TOC entry 3588 (class 2606 OID 736853570)
+-- Name: postgres_migrate_pg_sequence postgres_migrate_pg_sequence_pk; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
+--
+
+ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_sequence
+    ADD CONSTRAINT postgres_migrate_pg_sequence_pk PRIMARY KEY (seqrelid, version_id);
+
+
+--
+-- TOC entry 3586 (class 2606 OID 678300841)
+-- Name: postgres_migrate_version version_pkey; Type: CONSTRAINT; Schema: postgres_migrate; Owner: dev
 --
 
 ALTER TABLE ONLY postgres_migrate.postgres_migrate_version
@@ -1325,7 +1560,7 @@ ALTER TABLE ONLY postgres_migrate.postgres_migrate_version
 
 
 --
--- TOC entry 3544 (class 1259 OID 676125335)
+-- TOC entry 3560 (class 1259 OID 678300842)
 -- Name: postgres_migrate_pg_attribute_relid_attnam_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1333,7 +1568,7 @@ CREATE UNIQUE INDEX postgres_migrate_pg_attribute_relid_attnam_index ON postgres
 
 
 --
--- TOC entry 3545 (class 1259 OID 676125372)
+-- TOC entry 3561 (class 1259 OID 678300843)
 -- Name: postgres_migrate_pg_attribute_relid_attnum_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1341,7 +1576,7 @@ CREATE UNIQUE INDEX postgres_migrate_pg_attribute_relid_attnum_index ON postgres
 
 
 --
--- TOC entry 3546 (class 1259 OID 676125399)
+-- TOC entry 3562 (class 1259 OID 678300844)
 -- Name: postgres_migrate_pg_class_oid_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1349,7 +1584,7 @@ CREATE UNIQUE INDEX postgres_migrate_pg_class_oid_index ON postgres_migrate.post
 
 
 --
--- TOC entry 3549 (class 1259 OID 676125400)
+-- TOC entry 3565 (class 1259 OID 678300845)
 -- Name: postgres_migrate_pg_class_relname_nsp_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1357,7 +1592,7 @@ CREATE UNIQUE INDEX postgres_migrate_pg_class_relname_nsp_index ON postgres_migr
 
 
 --
--- TOC entry 3550 (class 1259 OID 676125401)
+-- TOC entry 3566 (class 1259 OID 678300846)
 -- Name: postgres_migrate_pg_class_tblspc_relfilenode_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1365,7 +1600,7 @@ CREATE INDEX postgres_migrate_pg_class_tblspc_relfilenode_index ON postgres_migr
 
 
 --
--- TOC entry 3551 (class 1259 OID 676125416)
+-- TOC entry 3567 (class 1259 OID 678300847)
 -- Name: postgres_migrate_pg_constraint_conname_nsp_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1373,7 +1608,7 @@ CREATE INDEX postgres_migrate_pg_constraint_conname_nsp_index ON postgres_migrat
 
 
 --
--- TOC entry 3552 (class 1259 OID 676125417)
+-- TOC entry 3568 (class 1259 OID 678300848)
 -- Name: postgres_migrate_pg_constraint_conparentid_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1381,7 +1616,7 @@ CREATE INDEX postgres_migrate_pg_constraint_conparentid_index ON postgres_migrat
 
 
 --
--- TOC entry 3553 (class 1259 OID 676125418)
+-- TOC entry 3569 (class 1259 OID 678300849)
 -- Name: postgres_migrate_pg_constraint_conrelid_contypid_conname_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1389,7 +1624,7 @@ CREATE UNIQUE INDEX postgres_migrate_pg_constraint_conrelid_contypid_conname_ind
 
 
 --
--- TOC entry 3554 (class 1259 OID 676125419)
+-- TOC entry 3570 (class 1259 OID 678300850)
 -- Name: postgres_migrate_pg_constraint_contypid_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1397,7 +1632,7 @@ CREATE INDEX postgres_migrate_pg_constraint_contypid_index ON postgres_migrate.p
 
 
 --
--- TOC entry 3555 (class 1259 OID 676125420)
+-- TOC entry 3571 (class 1259 OID 678300851)
 -- Name: postgres_migrate_pg_constraint_oid_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1405,7 +1640,7 @@ CREATE UNIQUE INDEX postgres_migrate_pg_constraint_oid_index ON postgres_migrate
 
 
 --
--- TOC entry 3558 (class 1259 OID 676125439)
+-- TOC entry 3574 (class 1259 OID 678300852)
 -- Name: postgres_migrate_pg_description_o_c_o_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1413,7 +1648,7 @@ CREATE UNIQUE INDEX postgres_migrate_pg_description_o_c_o_index ON postgres_migr
 
 
 --
--- TOC entry 3561 (class 1259 OID 676125451)
+-- TOC entry 3577 (class 1259 OID 678300853)
 -- Name: postgres_migrate_pg_index_indexrelid_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1421,7 +1656,7 @@ CREATE UNIQUE INDEX postgres_migrate_pg_index_indexrelid_index ON postgres_migra
 
 
 --
--- TOC entry 3562 (class 1259 OID 676125452)
+-- TOC entry 3578 (class 1259 OID 678300854)
 -- Name: postgres_migrate_pg_index_indrelid_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1429,7 +1664,7 @@ CREATE INDEX postgres_migrate_pg_index_indrelid_index ON postgres_migrate.postgr
 
 
 --
--- TOC entry 3567 (class 1259 OID 676125465)
+-- TOC entry 3583 (class 1259 OID 678300855)
 -- Name: postgres_migrate_pg_namespace_nspname_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1437,7 +1672,7 @@ CREATE UNIQUE INDEX postgres_migrate_pg_namespace_nspname_index ON postgres_migr
 
 
 --
--- TOC entry 3568 (class 1259 OID 676125466)
+-- TOC entry 3584 (class 1259 OID 678300856)
 -- Name: postgres_migrate_pg_namespace_oid_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1445,7 +1680,15 @@ CREATE UNIQUE INDEX postgres_migrate_pg_namespace_oid_index ON postgres_migrate.
 
 
 --
--- TOC entry 3569 (class 2606 OID 676124277)
+-- TOC entry 3589 (class 1259 OID 736853576)
+-- Name: postgres_migrate_pg_sequence_seqrelid_index; Type: INDEX; Schema: postgres_migrate; Owner: dev
+--
+
+CREATE UNIQUE INDEX postgres_migrate_pg_sequence_seqrelid_index ON postgres_migrate.postgres_migrate_pg_sequence USING btree (seqrelid);
+
+
+--
+-- TOC entry 3590 (class 2606 OID 678300857)
 -- Name: postgres_migrate_pg_attribute postgres_migrate_pg_attribute_version_id_fk; Type: FK CONSTRAINT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1454,7 +1697,7 @@ ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_attribute
 
 
 --
--- TOC entry 3570 (class 2606 OID 676125394)
+-- TOC entry 3591 (class 2606 OID 678300862)
 -- Name: postgres_migrate_pg_class postgres_migrate_pg_class_version_id_fk; Type: FK CONSTRAINT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1463,7 +1706,7 @@ ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_class
 
 
 --
--- TOC entry 3571 (class 2606 OID 676125411)
+-- TOC entry 3592 (class 2606 OID 678300867)
 -- Name: postgres_migrate_pg_constraint postgres_migrate_pg_constraint_version_id_fk; Type: FK CONSTRAINT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1472,7 +1715,7 @@ ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_constraint
 
 
 --
--- TOC entry 3572 (class 2606 OID 676125446)
+-- TOC entry 3593 (class 2606 OID 678300872)
 -- Name: postgres_migrate_pg_index postgres_migrate_pg_index_version_id_fk; Type: FK CONSTRAINT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1481,7 +1724,7 @@ ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_index
 
 
 --
--- TOC entry 3573 (class 2606 OID 676125460)
+-- TOC entry 3594 (class 2606 OID 678300877)
 -- Name: postgres_migrate_pg_namespace postgres_migrate_pg_namespace_version_id_fk; Type: FK CONSTRAINT; Schema: postgres_migrate; Owner: dev
 --
 
@@ -1489,7 +1732,16 @@ ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_namespace
     ADD CONSTRAINT postgres_migrate_pg_namespace_version_id_fk FOREIGN KEY (version_id) REFERENCES postgres_migrate.postgres_migrate_version(id);
 
 
--- Completed on 2024-12-18 13:07:59 MSK
+--
+-- TOC entry 3595 (class 2606 OID 736853571)
+-- Name: postgres_migrate_pg_sequence postgres_migrate_pg_sequence_version_id_fk; Type: FK CONSTRAINT; Schema: postgres_migrate; Owner: dev
+--
+
+ALTER TABLE ONLY postgres_migrate.postgres_migrate_pg_sequence
+    ADD CONSTRAINT postgres_migrate_pg_sequence_version_id_fk FOREIGN KEY (version_id) REFERENCES postgres_migrate.postgres_migrate_version(id);
+
+
+-- Completed on 2025-01-13 11:27:21 MSK
 
 --
 -- PostgreSQL database dump complete

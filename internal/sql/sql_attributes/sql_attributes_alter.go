@@ -23,9 +23,9 @@ type AttributeAlter struct {
 	AttributeHasMissing_Old   bool   `json:"AttributeHasMissing_Old" gorm:"column:AttributeHasMissing_Old"`
 	AttributeMissingValue_Old string `json:"AttributeMissingValue_Old" gorm:"column:AttributeMissingValue_Old"`
 	AttributeNotNull_Old      bool   `json:"AttributeNotNull_Old" gorm:"column:AttributeNotNull_Old"`
+	AttributeIdentity_Old     string `json:"AttributeIdentity_Old" gorm:"column:AttributeIdentity_Old"`
+	AttributeGenerated_Old    string `json:"AttributeGenerated_Old" gorm:"column:AttributeGenerated_Old"`
 	postgres_migrate_pg_attribute.PostgresMigratePgAttribute
-	AttributeIdentity_Old  string `json:"AttributeIdentity_Old" gorm:"column:AttributeIdentity_Old"`
-	AttributeGenerated_Old string `json:"AttributeGenerated_Old" gorm:"column:AttributeGenerated_Old"`
 }
 
 // Start_Attributes_alter - добавляет текст SQL в Text
@@ -293,7 +293,7 @@ ON
 LEFT JOIN
 	pg_catalog.pg_class as c
 ON 
-	pc.oid = pa.attrelid
+	c.oid = pa.attrelid
 
 
 LEFT JOIN
