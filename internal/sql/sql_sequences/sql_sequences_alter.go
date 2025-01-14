@@ -403,13 +403,65 @@ func TextSQL_Alter(Settings *config.SettingsINI, MassNames []SequenceAlter) (str
 			Otvet = Otvet + Otvet1
 		}
 
-		//тип и др.
+		//тип
 		if v.Seqtypid != v.Sequence_type_id_Old {
 			Otvet1 := `ALTER SEQUENCE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.Name + `"` + " AS " + v.TypeName + ";\n"
+			Otvet = Otvet + Otvet1
+		}
+
+		//MINVALUE
+		if v.Seqmin != v.Sequence_min_Old {
+			sValue := micro.StringFromInt64(v.Seqmin)
+			Otvet1 := `ALTER SEQUENCE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.Name + `"` + " MINVALUE " + sValue + ";\n"
+			Otvet = Otvet + Otvet1
+		}
+
+		//MAXVALUE
+		if v.Seqmax != v.Sequence_max_Old {
+			sValue := micro.StringFromInt64(v.Seqmax)
+			Otvet1 := `ALTER SEQUENCE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.Name + `"` + " MAXVALUE " + sValue + ";\n"
+			Otvet = Otvet + Otvet1
+		}
+
+		//START
+		if v.Seqstart != v.Sequence_start_Old {
+			sValue := micro.StringFromInt64(v.Seqstart)
+			Otvet1 := `ALTER SEQUENCE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.Name + `"` + " START " + sValue + ";\n"
+			Otvet = Otvet + Otvet1
+		}
+
+		//CACHE
+		if v.Seqcache != v.Sequence_cache_Old {
+			sValue := micro.StringFromInt64(v.Seqcache)
+			Otvet1 := `ALTER SEQUENCE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.Name + `"` + " CACHE " + sValue + ";\n"
+			Otvet = Otvet + Otvet1
+		}
+
+		//INCREMENT
+		if v.Seqincrement != v.Sequence_increment_Old {
+			sValue := micro.StringFromInt64(v.Seqincrement)
+			Otvet1 := `ALTER SEQUENCE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.Name + `"` + " INCREMENT " + sValue + ";\n"
+			Otvet = Otvet + Otvet1
+		}
+
+		//CYCLE
+		if v.Seqcache != v.Sequence_cache_Old {
+			TextNO := Find_TextNo(v.Seqcycle)
+			Otvet1 := `ALTER SEQUENCE "` + Settings.DB_SCHEME_DATABASE + `"."` + v.Name + `"` + TextNO + " CYCLE " + ";\n"
 			Otvet = Otvet + Otvet1
 		}
 
 	}
 
 	return Otvet, err
+}
+
+// Find_TextNo - возвращает " NO" для true
+func Find_TextNo(Seqcycle bool) string {
+	Otvet := ""
+	if Seqcycle == true {
+		return " NO"
+	}
+
+	return Otvet
 }
