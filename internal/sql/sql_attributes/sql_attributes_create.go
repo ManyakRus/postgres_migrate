@@ -327,7 +327,7 @@ SELECT
 FROM
 	temp_pm_pg_attribute as pa
 
-FULL JOIN
+RIGHT JOIN
 	temp_pg_attribute as a
 ON 
 	a.attrelid = pa.attrelid
@@ -352,32 +352,8 @@ ON
 	pc.oid = pa.attcollation
 
 
-WHERE 0=1
-	OR pa.attrelid <> a.attrelid
-	OR pa.attname <> a.attname
-	OR pa.atttypid <> a.atttypid
-	--OR pa.attstattarget <> a.attstattarget
-	OR pa.attlen <> a.attlen
-	OR pa.attnum <> a.attnum
-	OR pa.attndims <> a.attndims
-	--OR pa.attcacheoff <> a.attcacheoff
-	OR pa.atttypmod <> a.atttypmod
-	OR pa.attbyval <> a.attbyval
-	OR pa.attstorage <> a.attstorage
-	OR pa.attalign <> a.attalign
-	OR pa.attnotnull <> a.attnotnull
-	OR pa.atthasdef <> a.atthasdef
-	OR pa.atthasmissing <> a.atthasmissing
-	OR pa.attidentity <> a.attidentity
-	OR pa.attgenerated <> a.attgenerated
-	OR pa.attisdropped <> a.attisdropped
-	OR pa.attislocal <> a.attislocal
-	--OR pa.attinhcount <> a.attinhcount
-	OR pa.attcollation <> a.attcollation
-	OR pa.attmissingval <> a.attmissingval
-	OR pa.is_deleted = true
-
-
+WHERE 1=1
+	AND (pa.attrelid is null  OR  pa.is_deleted = true)
 
 `
 

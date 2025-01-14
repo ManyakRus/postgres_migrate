@@ -259,9 +259,32 @@ JOIN
 ON 
 	pt.oid = ps.seqtypid
 
-WHERE 1=1
 
-;
+
+JOIN 
+	pg_depend AS d
+ON 
+	d.refobjid = pc.oid
+
+
+JOIN
+	temp_pm_pg_class AS t
+ON 
+	t.oid = d.refobjid
+
+
+JOIN 
+	pg_attribute a 
+ON 
+	(d.refobjid, d.refobjsubid) = (a.attrelid, a.attnum)
+
+
+WHERE 1=1
+	and d.classid = 'pg_catalog.pg_class'::regclass
+	and d.refclassid = 'pg_catalog.pg_class'::regclass
+	and d.deptype IN ('i', 'a')
+	and t.relkind IN ('r', 'P')
+	and s.relkind = 'S';;
 
 ------------------------------- temp_pg_sequence --------------------------- 
 drop table if exists temp_pg_sequence; 
@@ -465,3 +488,5 @@ func Find_TextNo(Seqcycle bool) string {
 
 	return Otvet
 }
+
+// Start_Secuences_alter - добавляет текст SQL в Textand

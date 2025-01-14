@@ -22,9 +22,9 @@ func Start_Attributes(Settings *config.SettingsINI, VersionID int64) (string, er
 	Otvet = Otvet + Otvet1
 
 	//CREATE
-	Otvet1, err = Start_Attributes_create(Settings, VersionID)
+	Otvet1, err = Start_Sequences_create(Settings, VersionID)
 	if err != nil {
-		err = fmt.Errorf("Start_Attributes_create() error: %w", err)
+		err = fmt.Errorf("Start_Sequences_create() error: %w", err)
 		log.Error(err)
 		return Otvet, err
 	}

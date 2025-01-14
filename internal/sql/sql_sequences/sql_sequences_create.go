@@ -13,23 +13,23 @@ import (
 	"time"
 )
 
-// AttributeSQL - структура для атрибутов и дополнительных данных
-type AttributeSQL struct {
+// SequencesSQL - структура для атрибутов и дополнительных данных
+type SequencesSQL struct {
 	TableName     string `json:"TableName" gorm:"column:TableName"`
 	TypeName      string `json:"TypeName" gorm:"column:TypeName"`
 	CollationName string `json:"CollationName" gorm:"column:CollationName"`
 	postgres_migrate_pg_attribute.PostgresMigratePgAttribute
 }
 
-// Start_Attributes_create - добавляет текст SQL в Text
-func Start_Attributes_create(Settings *config.SettingsINI, VersionID int64) (string, error) {
+// Start_Sequences_create - добавляет текст SQL в Text
+func Start_Sequences_create(Settings *config.SettingsINI, VersionID int64) (string, error) {
 	var err error
 	Otvet := ""
 
 	//найдём массив новых
-	MassClass, err := Find_MassAttributeSQL_Create(Settings, VersionID)
+	MassClass, err := Find_MassSequenceSQL_Create(Settings, VersionID)
 	if err != nil {
-		err = fmt.Errorf("Find_MassAttributeSQL_Create() error: %w", err)
+		err = fmt.Errorf("Find_MassSequenceSQL_Create() error: %w", err)
 		log.Error(err)
 		return Otvet, err
 	}
@@ -48,9 +48,9 @@ func Start_Attributes_create(Settings *config.SettingsINI, VersionID int64) (str
 	return Otvet, err
 }
 
-// Find_MassAttributeSQL_Create - возвращает массив postgres_migrate_pg_class
-func Find_MassAttributeSQL_Create(Settings *config.SettingsINI, VersionID int64) ([]AttributeSQL, error) {
-	Otvet := make([]AttributeSQL, 0)
+// Find_MassSequenceSQL_Create - возвращает массив postgres_migrate_pg_class
+func Find_MassSequenceSQL_Create(Settings *config.SettingsINI, VersionID int64) ([]SequencesSQL, error) {
+	Otvet := make([]SequencesSQL, 0)
 	var err error
 
 	//соединение
@@ -63,22 +63,20 @@ func Find_MassAttributeSQL_Create(Settings *config.SettingsINI, VersionID int64)
 
 	//
 	TextSQL := `
-------------------------------- temp_pg_attribute_max --------------------------- 
-drop table if exists temp_pg_attribute_max; 
-CREATE TEMPORARY TABLE temp_pg_attribute_max ("attrelid" oid, attname name, version_id bigint);
-INSERT into temp_pg_attribute_max
+------------------------------- temp_pg_sequence_max --------------------------- 
+drop table if exists temp_pg_sequence_max; 
+CREATE TEMPORARY TABLE temp_pg_sequence_max (seqrelid oid, version_id bigint);
+INSERT into temp_pg_sequence_max
 SELECT
-	pmpa."attrelid",
-	pmpa."attname",
-	max(pmpa.version_id) as version_id
+	ps.seqrelid,
+	max(ps.version_id) as version_id
 FROM
-    SCHEMA_PM.postgres_migrate_pg_attribute as pmpa
-
+    SCHEMA_PM.postgres_migrate_pg_sequence as ps
 
 JOIN
-	SCHEMA_PM.postgres_migrate_pg_class as pmpc
-ON 
-	pmpc.oid = pmpa.attrelid
+    SCHEMA_PM.postgres_migrate_pg_class as pmpc
+ON
+	pmpc.oid = ps.seqrelid
 
 
 JOIN
@@ -89,142 +87,84 @@ ON
 
 WHERE 1=1
 	and pmpn.nspname = 'SCHEMA_DB'
-	--and pmpa.is_deleted = false
 	--and pmpc.is_deleted = false
 	--and pmpn.is_deleted = false
 
 GROUP BY
-	pmpa."attrelid",
-	pmpa."attname"
+	ps.seqrelid
 ;
 
 
-------------------------------- temp_pm_pg_attribute --------------------------- 
-drop table if exists temp_pm_pg_attribute; 
-CREATE TEMPORARY TABLE temp_pm_pg_attribute (
-	attrelid oid,
-	attname name,
-	atttypid oid,
-	attstattarget int4,
-	attlen int2,
-	attnum int2,
-	attndims int4,
-	attcacheoff int4,
-	atttypmod int4,
-	attbyval bool,
-	attstorage char,
-	attalign char,
-	attnotnull bool,
-	atthasdef bool,
-	atthasmissing bool,
-	attidentity char,
-	attgenerated char,
-	attisdropped bool,
-	attislocal bool,
-	attinhcount int4,
-	attcollation oid,
-	is_deleted bool,
-	attmissingval Text
+------------------------------- temp_pm_pg_sequence --------------------------- 
+drop table if exists temp_pm_pg_sequence; 
+CREATE TEMPORARY TABLE temp_pm_pg_sequence (
+	seqrelid oid,
+	seqtypid oid,
+	seqstart int8,
+	seqincrement int8,
+	seqmax int8,
+	seqmin int8,
+	seqcache int8,
+	seqcycle bool,
+	is_deleted bool
 );
-INSERT into temp_pm_pg_attribute
+INSERT into temp_pm_pg_sequence
 SELECT
-	pa.attrelid,
-	pa.attname,
-	pa.atttypid,
-	pa.attstattarget,
-	pa.attlen,
-	pa.attnum,
-	pa.attndims,
-	pa.attcacheoff,
-	pa.atttypmod,
-	pa.attbyval,
-	pa.attstorage,
-	pa.attalign,
-	pa.attnotnull,
-	pa.atthasdef,
-	pa.atthasmissing,
-	pa.attidentity,
-	pa.attgenerated,
-	pa.attisdropped,
-	pa.attislocal,
-	pa.attinhcount,
-	pa.attcollation,
-	pa.is_deleted,
-	pa.attmissingval
+	ps.seqrelid,
+	ps.seqtypid,
+	ps.seqstart,
+	ps.seqincrement,
+	ps.seqmax,
+	ps.seqmin,
+	ps.seqcache,
+	ps.seqcycle,
+	ps.is_deleted
 		
 FROM
-    SCHEMA_PM.postgres_migrate_pg_attribute as pa
+    SCHEMA_PM.postgres_migrate_pg_sequence as ps
 	
 JOIN
-	temp_pg_attribute_max
+	temp_pg_sequence_max
 ON 
-	temp_pg_attribute_max.attrelid = pa.attrelid
-	and temp_pg_attribute_max.attname = pa.attname
-	and temp_pg_attribute_max.version_id = pa.version_id
+	temp_pg_sequence_max.seqrelid = ps.seqrelid
+	and temp_pg_sequence_max.version_id = ps.version_id
 
 WHERE 1=1
 
 ;
 
-------------------------------- temp_pg_attribute --------------------------- 
-drop table if exists temp_pg_attribute; 
-CREATE TEMPORARY TABLE temp_pg_attribute (
-	attrelid oid,
-	attname name,
-	atttypid oid,
-	attstattarget int4,
-	attlen int2,
-	attnum int2,
-	attndims int4,
-	attcacheoff int4,
-	atttypmod int4,
-	attbyval bool,
-	attstorage char,
-	attalign char,
-	attnotnull bool,
-	atthasdef bool,
-	atthasmissing bool,
-	attidentity char,
-	attgenerated char,
-	attisdropped bool,
-	attislocal bool,
-	attinhcount int4,
-	attcollation oid,
-	attmissingval Text
+------------------------------- temp_pg_sequence --------------------------- 
+drop table if exists temp_pg_sequence; 
+CREATE TEMPORARY TABLE temp_pg_sequence (
+	seqrelid oid,
+	seqtypid oid,
+	seqstart int8,
+	seqincrement int8,
+	seqmax int8,
+	seqmin int8,
+	seqcache int8,
+	seqcycle bool,
+	Name text
 );
-INSERT into temp_pg_attribute as tc
-SELECT
-	a.attrelid,
-	a.attname,
-	a.atttypid,
-	a.attstattarget,
-	a.attlen,
-	a.attnum,
-	a.attndims,
-	a.attcacheoff,
-	a.atttypmod,
-	a.attbyval,
-	a.attstorage,
-	a.attalign,
-	a.attnotnull,
-	a.atthasdef,
-	a.atthasmissing,
-	a.attidentity,
-	a.attgenerated,
-	a.attisdropped,
-	a.attislocal,
-	a.attinhcount,
-	a.attcollation,
-	a.attmissingval::Text
-		
-FROM
-    pg_catalog.pg_attribute as a
 
+INSERT into temp_pg_sequence as tc
+SELECT
+	ps.seqrelid,
+	ps.seqtypid,
+	ps.seqstart,
+	ps.seqincrement,
+	ps.seqmax,
+	ps.seqmin,
+	ps.seqcache,
+	ps.seqcycle,
+	pc.relname	
+FROM
+    pg_catalog.pg_sequence as ps
 
 JOIN
-	pg_catalog.pg_class as pc
-ON 
-	pc.oid = a.attrelid
+    pg_catalog.pg_class as pc
+ON
+	pc.oid = ps.seqrelid
 
 
 JOIN
@@ -239,144 +179,17 @@ WHERE 1=1
 
 ------------------------------ сравнение -------------------------------------------
 SELECT
-	a.attrelid,
-	a.attname,
-	a.atttypid,
-	a.attstattarget,
-	a.attlen,
-	a.attnum,
-	a.attndims,
-	a.attcacheoff,
-	a.atttypmod,
-	a.attbyval,
-	a.attstorage,
-	a.attalign,
-	a.attnotnull,
-	a.atthasdef,
-	a.atthasmissing,
-	a.attidentity,
-	a.attgenerated,
-	a.attisdropped,
-	a.attislocal,
-	a.attinhcount,
-	a.attcollation,
-	a.attmissingval::Text as attmissingval,
-
-	c.relname as TableName,
-	t.typname as TypeName
+	COALESCE(s.seqrelid, ps.seqrelid) as id
 FROM
-	temp_pm_pg_attribute as pa
+	temp_pm_pg_sequence as ps
 
 FULL JOIN
-	temp_pg_attribute as a
+	temp_pg_sequence as s
 ON 
-	a.attrelid = pa.attrelid
-	and a.attname = pa.attname
-	
+	s.seqrelid = ps.seqrelid
 
-LEFT JOIN
-	pg_catalog.pg_class as c
-ON 
-	pc.oid = pa.attrelid
-
-
-LEFT JOIN
-	pg_catalog.pg_type as t
-ON
-	t.oid = pa.atttypid
-
-
-WHERE 
-	(a.attrelid IS NULL
-	OR
-	pa.attrelid IS NULL
-	)
-	and COALESCE(pa.is_deleted, false) = false
-
-
-UNION
-
-
-SELECT
-	a.attrelid,
-	a.attname,
-	a.atttypid,
-	a.attstattarget,
-	a.attlen,
-	a.attnum,
-	a.attndims,
-	a.attcacheoff,
-	a.atttypmod,
-	a.attbyval,
-	a.attstorage,
-	a.attalign,
-	a.attnotnull,
-	a.atthasdef,
-	a.atthasmissing,
-	a.attidentity,
-	a.attgenerated,
-	a.attisdropped,
-	a.attislocal,
-	a.attinhcount,
-	a.attcollation,
-	a.attmissingval::Text as attmissingval,
-
-	c.relname as TableName,
-	t.typname as TypeName,
-	pc.callname as CollationName
-FROM
-	temp_pm_pg_attribute as pa
-
-FULL JOIN
-	temp_pg_attribute as a
-ON 
-	a.attrelid = pa.attrelid
-	and a.attname = pa.attname
-
-
-LEFT JOIN
-	pg_catalog.pg_class as c
-ON 
-	pc.oid = pa.attrelid
-
-
-LEFT JOIN
-	pg_catalog.pg_type as t
-ON
-	t.oid = pa.atttypid
-
-
-LEFT JOIN
-	pg_catalog.pg_collation as pc
-ON
-	pc.oid = pa.attcollation
-
-
-WHERE 0=1
-	OR pa.attrelid <> a.attrelid
-	OR pa.attname <> a.attname
-	OR pa.atttypid <> a.atttypid
-	--OR pa.attstattarget <> a.attstattarget
-	OR pa.attlen <> a.attlen
-	OR pa.attnum <> a.attnum
-	OR pa.attndims <> a.attndims
-	--OR pa.attcacheoff <> a.attcacheoff
-	OR pa.atttypmod <> a.atttypmod
-	OR pa.attbyval <> a.attbyval
-	OR pa.attstorage <> a.attstorage
-	OR pa.attalign <> a.attalign
-	OR pa.attnotnull <> a.attnotnull
-	OR pa.atthasdef <> a.atthasdef
-	OR pa.atthasmissing <> a.atthasmissing
-	OR pa.attidentity <> a.attidentity
-	OR pa.attgenerated <> a.attgenerated
-	OR pa.attisdropped <> a.attisdropped
-	OR pa.attislocal <> a.attislocal
-	--OR pa.attinhcount <> a.attinhcount
-	OR pa.attcollation <> a.attcollation
-	OR pa.attmissingval <> a.attmissingval
-	OR pa.is_deleted = true
-
+WHERE 1=1
+	AND (ps.seqrelid is null  OR  ps.is_deleted = true)
 
 
 `
@@ -409,7 +222,7 @@ WHERE 0=1
 }
 
 // TextSQL_Create - возвращает текст SQL для создания таблиц
-func TextSQL_Create(Settings *config.SettingsINI, MassAttribute []AttributeSQL) (string, error) {
+func TextSQL_Create(Settings *config.SettingsINI, MassAttribute []SequencesSQL) (string, error) {
 	Otvet := ""
 	var err error
 

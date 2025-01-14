@@ -292,7 +292,7 @@ ON
 	
 
 WHERE 1=1
-	AND pc.oid IS NULL
+	AND (pc.oid IS NULL  or pc.is_deleted = true)
 
 
 
